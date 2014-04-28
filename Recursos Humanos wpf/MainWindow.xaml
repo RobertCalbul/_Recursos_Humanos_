@@ -42,7 +42,7 @@
             <Grid Height="488" Name="grid2" Width="681">
                 <Label Content="Juan Perez" HorizontalAlignment="Left" Margin="16,20,0,0" Name="lName" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="32" />
                 <Label Content="Vendedor" Height="28" HorizontalAlignment="Left" Margin="367,37,0,0" Name="lPuesto" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="16" />
-                <TabControl Height="353" HorizontalAlignment="Left" Margin="16,86,0,0" Name="tabControl1" VerticalAlignment="Top" Width="665" Background="#FF0C9CF3" BorderBrush="#FF0C9CF3" Padding="0" TabStripPlacement="Top" SelectedIndex="0">
+                <TabControl Height="338" HorizontalAlignment="Left" Margin="16,86,0,0" Name="tabControl1" VerticalAlignment="Top" Width="667" Background="#FF0C9CF3" BorderBrush="#FF0C9CF3" Padding="0" TabStripPlacement="Top" Grid.ColumnSpan="10" Grid.Column="0" Grid.RowSpan="5" SelectedIndex="0">
                     <TabControl.Resources>
                         <Style TargetType="{x:Type TabItem}">
                             <Setter Property="BorderBrush" Value="#FF0C9CF3"></Setter>
@@ -102,7 +102,7 @@
                         </Grid>
                     </TabItem>
                     <TabItem Name="tabItem2" Margin="-5"  OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" Padding="0" BorderBrush="#FF0C9CF3" Background="#FF0C9CF3" Width="100" Height="30" HorizontalAlignment="Stretch">
-                        <Grid Background="White" Width="661" Height="316" Margin="0">
+                        <Grid Background="White" Width="663" Height="311" Margin="0">
                             <Label Content="Ejecutivo de ventas" Height="45" HorizontalAlignment="Left" Name="lDescription" VerticalAlignment="Top" Width="664" Background="#FF4185F4" Foreground="White" FontSize="18" FontStretch="Normal" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="6" FlowDirection="LeftToRight" Target="{Binding}" IsEnabled="True" />
                             <Label Content="Fecha Inicio:" HorizontalAlignment="Left" Margin="28,59,0,221" Name="label15" Width="96" />
                             <Label Content="Fecha Termino:" Height="27" HorizontalAlignment="Left" Margin="28,83,0,0" Name="label16" VerticalAlignment="Top" Width="96" />
@@ -113,16 +113,16 @@
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="124,61,0,0" Name="tDateInit" VerticalAlignment="Top" Width="135" BorderBrush="White" Foreground="#FF2D2D2D" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="124,85,0,0" Name="tDateEnd" VerticalAlignment="Top" Width="135" BorderBrush="White" Foreground="#FF2D2D2D" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="124,109,0,0" Name="tStat" VerticalAlignment="Top" Width="135" BorderBrush="White" Foreground="#FF2D2D2D" />
-                            <Label Content="Nuevo Contrato" Height="25" HorizontalAlignment="Center" Margin="422,279,8,13" Name="btnNewContract" VerticalAlignment="Center" Width="231" Target="{Binding}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" />
-                            <Label Content="Finalizar Contrato" Height="25" HorizontalAlignment="Center" Margin="422,279,8,13" Name="btnEndContract" VerticalAlignment="Center" Width="231" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" />
+                            <Label Content="Nuevo Contrato" Height="25" HorizontalAlignment="Center" Margin="734,279,-304,6" Name="btnNewContract" VerticalAlignment="Center" Width="231" Target="{Binding}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" />
+                            <Label Content="Finalizar Contrato" Height="25" HorizontalAlignment="Center" Margin="734,279,-304,6" Name="btnEndContract" VerticalAlignment="Center" Width="231" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" />
                             <Label Content="Cancelar" Height="25" HorizontalAlignment="Left" Margin="422,279,0,0" Name="btnCancelNewContract" VerticalAlignment="Top" Width="231" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" IsEnabled="True" MouseLeftButtonUp="btnCancelNewContract_Click" Visibility="Hidden" />
                             <Label Content="Ingresar Contrato" Height="28" HorizontalAlignment="Left" Margin="422,249,0,0" Name="btnInsertNewContract" VerticalAlignment="Top" Width="231" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF129D5A" MouseLeftButtonUp="btnInsertNewContract_Click" Visibility="Hidden" />
                             <Label Content="Vista Previa" Height="25" HorizontalAlignment="Left" Margin="422,222,0,0" Name="btnShowContract" VerticalAlignment="Top" Width="231" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseLeftButtonUp="btnShowContract_Click" Visibility="Hidden" />
                             <ComboBox Height="23" HorizontalAlignment="Left" Margin="124,133,0,0" Name="cTypeContract" VerticalAlignment="Top" Width="135" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" PreviewMouseDown="cTypeContract_Click" />
                             <ComboBox Height="23" HorizontalAlignment="Left" Margin="124,159,0,0" Name="cCargo" VerticalAlignment="Top" Width="135" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" Background="White" PreviewMouseDown="cCargo_Click" />
-                            <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="259,61,0,0" Name="btnDateInitCalendar" VerticalAlignment="Top" MouseLeftButtonUp="btnDateInitCalendar_Click" Visibility="Hidden" />
-                            <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="259,91,0,0" Name="btnDateEndCalendar" VerticalAlignment="Top" Target="{Binding}" MouseLeftButtonUp="btnDateEndCalendar_Click" Visibility="Hidden" />
-                            <Calendar Height="170" HorizontalAlignment="Left" Margin="274,91,0,0" Name="calendar1" VerticalAlignment="Top" Width="186" SelectedDatesChanged="selectedDateChanges_Clikc" Visibility="Hidden" Background="White" />
+                            <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="259,61,0,0" Name="btnDateInitCalendar" VerticalAlignment="Top" MouseLeftButtonUp="btnDateInitCalendar_Click" />
+                            <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="259,0,0,202" Name="label21" VerticalAlignment="Bottom" Target="{Binding}" MouseLeftButtonUp="btnDateEndCalendar_Click" />
+                            <Calendar Height="170" HorizontalAlignment="Left" Margin="259,90,0,0" Name="calendar1" VerticalAlignment="Top" Width="186" SelectedDatesChanged="selectedDateChanges_Clikc" Visibility="Hidden" Background="White" />
                         </Grid>
                     </TabItem>
                 </TabControl>
