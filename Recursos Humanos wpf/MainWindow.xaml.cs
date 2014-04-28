@@ -204,6 +204,8 @@ namespace Recursos_Humanos_wpf
                 cCargo.SelectedItem = dtRow["cargo"].ToString();
             }
             Label [] labelVisible = { label15, label16, label17, label18, label19, label20 };
+
+
             Label[] btnVisible = { btnShowContract, btnInsertNewContract, btnCancelNewContract, btnDateEndCalendar, btnDateInitCalendar };
             lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
             lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : cCargo.Text;
@@ -223,6 +225,8 @@ namespace Recursos_Humanos_wpf
         {
             lDescription.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#129d5a"));
             lDescription.Content = "Agregar Nuevo contrato";
+
+
             Label[] labels = { label15, label16, label17, label18, label19, label20, btnShowContract, btnInsertNewContract, btnCancelNewContract };
             foreach (Label x in labels) x.Visibility = Visibility.Visible; 
             tDateInit.Visibility = Visibility.Visible;
@@ -232,6 +236,8 @@ namespace Recursos_Humanos_wpf
             cCargo.Visibility = Visibility.Visible;
             btnEndContract.Visibility = Visibility.Hidden;
             btnNewContract.Visibility = Visibility.Hidden;
+
+
             btnDateInitCalendar.Visibility = Visibility.Visible;
             btnDateEndCalendar.Visibility = Visibility.Visible;
         }
