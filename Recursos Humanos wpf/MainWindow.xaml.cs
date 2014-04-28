@@ -39,18 +39,6 @@ namespace Recursos_Humanos_wpf
             pInfo.IsEnabled = false;
             rbRut.IsChecked = true;
         }
-
-      /* private void changeColorTab(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (TabItem item in tabControl1.Items)
-            {
-                item.Background = item.IsSelected ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff0c9cf3")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0c9cf3"));
-                item.BorderBrush = item.IsSelected ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff2d2d2d")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0c9cf3"));
-                item.Foreground = item.IsSelected ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff2d2d2d")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffffffff"));
-            }
-        }
-        */
-
 /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
