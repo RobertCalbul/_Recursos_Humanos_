@@ -30,6 +30,7 @@ namespace Recursos_Humanos_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        Boolean Rutok = false;
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
         public MainWindow()
@@ -43,9 +44,13 @@ namespace Recursos_Humanos_wpf
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
         {
-            try
+            Search();
+        }
+        private void Search(){
+          try
             {
-                if (!cBusqueda.Text.Trim().Equals(""))
+                String busqueda = cBusqueda.Text.Trim().Equals("") ? tRut.Text.Trim() : cBusqueda.Text.Trim();
+                if (!busqueda.Equals(""))
                 {
                     limpiarTexbox();
                     if (rbRut.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "rut");
@@ -56,8 +61,8 @@ namespace Recursos_Humanos_wpf
                     else if (rbEmail.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "email");
                 }else
                 {
-                    MessageBox.Show("Ingrese un parametro de búsqueda");
                     cBusqueda.Focus();//doy el foco al cuadro de busqueda
+                    MessageBox.Show("Ingrese un parametro de búsqueda");
                 }
             }
             catch (Exception ex)
@@ -65,12 +70,39 @@ namespace Recursos_Humanos_wpf
                 Console.WriteLine("btnBuscar_click() " + ex.Message.ToString());
             }
         }
+        //CARGA DATOS PERSONALES BASICOS
+        private void cargarDatosPersonal(String value, String paramSearch)
+        {
+            if (!value.Equals(""))
+            {
+                pInfo.IsEnabled = true;
+                object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
+                if (arreglo != null)
+                {
+                    tRut.Text = valida_Rut(arreglo[1].ToString());
+                    lName.Content = arreglo[2].ToString();
+                    tName.Text = arreglo[2].ToString();
+                    tSurname.Text = arreglo[3].ToString();
+                    tYear.Text = arreglo[4].ToString();
+                    tPhone.Text = arreglo[5].ToString();
+                    tAdress.Text = arreglo[6].ToString();
+                    tEmail.Text = arreglo[7].ToString();
+                    tCtaBancaria.Text = arreglo[8].ToString();
+                    cAfp.Items.Add(arreglo[9].ToString());
+                    cSalud.Items.Add(arreglo[10].ToString());
+                    cDepto.Items.Add(arreglo[11].ToString());
+                    cAfp.SelectedItem = arreglo[9].ToString();
+                    cSalud.SelectedItem = arreglo[10].ToString();
+                    cDepto.SelectedItem = arreglo[11].ToString();
+                } loadDataContract(tRut.Text.Trim());
+            }
+        }
         //INGRESA NUEVO USUARIO
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {
             tRut.IsEnabled = true;
             iAddUser.IsEnabled = true;
-             if  (!validacionAddUser())
+             if  (validacionAddUser())
             {
                 MessageBoxResult dialogResult = MessageBox.Show("Desea agregar a esta persona?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 
@@ -82,9 +114,6 @@ namespace Recursos_Humanos_wpf
                                             int.Parse(tYear.Text.Trim()), foto, tPhone.Text.Trim(),tAdress.Text.Trim(),
                                             tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]),
                                             int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
-
-
-
                     if (per.Save() > 0)
                     {   
                         MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -118,7 +147,9 @@ namespace Recursos_Humanos_wpf
                                        tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]), 
                                        int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
 
-            if (personal.Update() > 0) MessageBox.Show("actualizacion ok");
+            if (personal.Update() > 0) {
+                Search();
+                MessageBox.Show("actualizacion ok"); }
         }
         //CANCELA INGRESO EMPLEADO
         private void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
@@ -143,9 +174,9 @@ namespace Recursos_Humanos_wpf
                 {
                     if (new Clases.Personal(rut_per).DeleteByRrut() > 0)
                     {
-                        MessageBox.Show("El personal borrado correctamente", "Registro eliminado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         limpiarTexbox();
                         cBusqueda.Text = "";
+                        MessageBox.Show("El personal borrado correctamente", "Registro eliminado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     }
                     else MessageBox.Show("que paso");
                 }
@@ -167,8 +198,9 @@ namespace Recursos_Humanos_wpf
             {
                 if (new Clases.Contratos().DeleteByRut(new Personal(rut_per)) > 0)
                 {
-                    MessageBox.Show("Se elimino el contrato con exito");
+                    limpiarTexbox();
                     loadDataContract(rut_per);
+                    MessageBox.Show("Se elimino el contrato con exito"); 
                 }
             }
         }
@@ -447,33 +479,6 @@ namespace Recursos_Humanos_wpf
             }
             
         }
-        //CARGA DATOS PERSONALES BASICOS
-        private void cargarDatosPersonal(String value, String paramSearch)
-        {
-            if (!value.Equals(""))
-            {
-                pInfo.IsEnabled = true;
-                object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
-                if (arreglo != null)
-                {
-                    tRut.Text = arreglo[1].ToString();
-                    lName.Content = arreglo[2].ToString();
-                    tName.Text = arreglo[2].ToString();
-                    tSurname.Text = arreglo[3].ToString();
-                    tYear.Text = arreglo[4].ToString();
-                    tPhone.Text = arreglo[5].ToString();
-                    tAdress.Text = arreglo[6].ToString();
-                    tEmail.Text = arreglo[7].ToString();
-                    tCtaBancaria.Text = arreglo[8].ToString();
-                    cAfp.Items.Add(arreglo[9].ToString());
-                    cSalud.Items.Add(arreglo[10].ToString());
-                    cDepto.Items.Add(arreglo[11].ToString());
-                    cAfp.SelectedItem = arreglo[9].ToString();
-                    cSalud.SelectedItem = arreglo[10].ToString();
-                    cDepto.SelectedItem = arreglo[11].ToString();
-                } loadDataContract(tRut.Text.Trim());
-            }
-        }
         //CARGA LOS TIPOS DE CONTRATOS
         private void cTypeContract_Click(object sender, MouseButtonEventArgs e)
         {
@@ -539,12 +544,13 @@ namespace Recursos_Humanos_wpf
  /*>>>>VALIDACIONES<<<<<*/
         public void limpiarTexbox()
         {
+            lPuesto.Content = "";
+            lName.Content = "";
             TextBox[] campos = { tRut, tName, tSurname, tYear, tPhone, tAdress, tEmail, tCtaBancaria, tDateEnd, tDateInit, tStat };
             ComboBox[] combos = { cAfp, cDepto, cSalud, cTypeContract, cCargo };
             foreach (TextBox x in campos) x.Text = "";
             foreach (ComboBox x in combos) x.Items.Clear();
-            lPuesto.Content = "";
-            lName.Content = "";
+            
         }
 
         public void validaNumeros(TextCompositionEventArgs e)
@@ -570,7 +576,8 @@ namespace Recursos_Humanos_wpf
             string digito = "";
             int lengthRut = rut.Length - 1;
             int contador = 0;
-           // salida.Content = rut.Length == 9 ? "" : "Ingrese un rut valido";
+            tRut.Foreground = rut.Length == 9 ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2d2d2d")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#DD4337"));
+            Rutok = rut.Length == 9 ?  true:false;
             if (rut.Length == 9)
             {
                 for (int i = lengthRut - 1; i >= 0; i--)
@@ -610,7 +617,7 @@ namespace Recursos_Humanos_wpf
 
         public Boolean validacionAddUser() {
             //verficamos si hay foto en el picturebox
-            Boolean vacio = false;
+            Boolean lleno = false;
             String concadenacion = "";
             String[] campos = { tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(), tYear.Text.Trim(), tPhone.Text.Trim(), tAdress.Text.Trim(), tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), cAfp.Text, cSalud.Text, cDepto.Text };
             concadenacion += string.IsNullOrEmpty(tRut.Text.Trim())?"*Ingrese el rut para completar el registro" + System.Environment.NewLine:"";
@@ -625,11 +632,41 @@ namespace Recursos_Humanos_wpf
             concadenacion += string.IsNullOrEmpty(cSalud.Text)?"*Ingrese un registro de salud del menu desplegable para continuar" + System.Environment.NewLine:"";
             concadenacion += string.IsNullOrEmpty(cDepto.Text)?"*Ingrese un dpto del menu desplegable para continuar" + System.Environment.NewLine:"";           
             concadenacion += path.Content.ToString().Equals("1")?"*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine:"";
+            valida_Rut(tRut.Text);
 
-            foreach (string x in campos) vacio = string.IsNullOrEmpty(x) || path.Content.ToString().Equals("1")?true:false;
+            foreach (string x in campos) lleno = string.IsNullOrEmpty(x) || path.Content.ToString().Equals("1") ? false : true;
+
+            lleno = lleno && Rutok;
+            concadenacion += Rutok == true ? "" : "Ingrese un rut valido";
             if(!concadenacion.Equals("")) MessageBox.Show(concadenacion);
-            return vacio;
+            return lleno;
         }
+
+        private void tName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            validaString(e);
+        }
+
+        private void tSurname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            validaString(e);
+        }
+
+        private void tYear_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            validaNumeros(e);
+        }
+
+        private void tPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            validaNumeros(e);
+        }
+
+        private void tRut_LostFocus(object sender, RoutedEventArgs e)
+        {
+            tRut.Text =  valida_Rut(tRut.Text);
+        }
+
 
 
         
