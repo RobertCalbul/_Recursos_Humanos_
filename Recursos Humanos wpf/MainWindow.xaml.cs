@@ -213,28 +213,33 @@ namespace Recursos_Humanos_wpf
                 cCargo.Items.Add(dtRow["cargo"].ToString());
                 cCargo.SelectedItem = dtRow["cargo"].ToString();
             }
- 
-
+            Label [] labelVisible = { label15, label16, label17, label18, label19, label20 };
+            Label[] btnVisible = { btnShowContract, btnInsertNewContract, btnCancelNewContract, btnDateEndCalendar, btnDateInitCalendar };
             lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
             lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : cCargo.Text;
-            label15.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            label16.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            label17.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            label18.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            label19.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            label20.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             tDateInit.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             tDateEnd.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             tStat.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             cTypeContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             cCargo.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             btnEndContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-
-            btnShowContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            btnInsertNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            btnCancelNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-
             btnNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Visible : Visibility.Hidden;
+
+            foreach(Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            foreach (Label x in btnVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            //label15.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            //label16.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            //label17.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            //label18.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            //label19.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            //label20.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+
+            //btnShowContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            //btnInsertNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            //btnCancelNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            //btnDateEndCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            //btnDateInitCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
+            
 
         }
         //CREA INTERFAZ PARA AGREGAR CONTRATO
@@ -251,6 +256,8 @@ namespace Recursos_Humanos_wpf
             cCargo.Visibility = Visibility.Visible;
             btnEndContract.Visibility = Visibility.Hidden;
             btnNewContract.Visibility = Visibility.Hidden;
+            btnDateInitCalendar.Visibility = Visibility.Visible;
+            btnDateEndCalendar.Visibility = Visibility.Visible;
         }
         //CANCELA INGRESO CONTRATO (RECARGA INTERFAZ CONTRATO)
         private void btnCancelNewContract_Click(object sender, MouseButtonEventArgs e)
@@ -329,7 +336,7 @@ namespace Recursos_Humanos_wpf
         {
             flagCalendar = 0;
             calendar1.Visibility = Visibility.Visible;
-            calendar1.Margin = new Thickness(0, 66, 0, 0);
+            calendar1.Margin = new Thickness(259, 61, 0, 0);
 
         }
         //SETEA LA FECHA DE INICIO O TERMINO DE COTRATO
@@ -345,7 +352,7 @@ namespace Recursos_Humanos_wpf
         {
             flagCalendar = 1;
             calendar1.Visibility = Visibility.Visible;
-            calendar1.Margin = new Thickness(0, 90, 0, 0);
+            calendar1.Margin = new Thickness(259, 91, 0, 0);
         }
  /*>>>>FIN CRUD CONTRATOS<<<<<*/
 
