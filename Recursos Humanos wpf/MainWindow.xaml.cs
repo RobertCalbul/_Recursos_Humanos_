@@ -39,6 +39,8 @@ namespace Recursos_Humanos_wpf
             pInfo.IsEnabled = false;
             rbRut.IsChecked = true;
         }
+
+        //HOLA
 /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
