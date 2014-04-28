@@ -227,20 +227,6 @@ namespace Recursos_Humanos_wpf
 
             foreach(Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             foreach (Label x in btnVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            //label15.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            //label16.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            //label17.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            //label18.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            //label19.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-            //label20.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
-
-            //btnShowContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            //btnInsertNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            //btnCancelNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            //btnDateEndCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            //btnDateInitCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            
-
         }
         //CREA INTERFAZ PARA AGREGAR CONTRATO
         private void btnNewContract_Click(object sender, MouseButtonEventArgs e)
