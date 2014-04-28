@@ -298,7 +298,6 @@ namespace Recursos_Humanos_wpf
                 {
                     Clases.Contratos contrato = new Clases.Contratos(rut_per, tDateInit.Text, tDateEnd.Text, tStat.Text,
                                                 250000, cTypeContract.Text.Split(':')[0], cCargo.Text.Split(':')[0]);
-
                     if ( contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
