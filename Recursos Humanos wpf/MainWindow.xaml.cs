@@ -39,8 +39,6 @@ namespace Recursos_Humanos_wpf
             pInfo.IsEnabled = false;
             rbRut.IsChecked = true;
         }
-
-        //HOLA
 /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
@@ -85,8 +83,10 @@ namespace Recursos_Humanos_wpf
                                             tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]),
                                             int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
 
+
+
                     if (per.Save() > 0)
-                    {
+                    {   
                         MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         this.cBusqueda.IsEnabled = true;
                         this.iPerfil.IsEnabled = false;
@@ -204,8 +204,6 @@ namespace Recursos_Humanos_wpf
                 cCargo.SelectedItem = dtRow["cargo"].ToString();
             }
             Label [] labelVisible = { label15, label16, label17, label18, label19, label20 };
-
-
             Label[] btnVisible = { btnShowContract, btnInsertNewContract, btnCancelNewContract, btnDateEndCalendar, btnDateInitCalendar };
             lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
             lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : cCargo.Text;
@@ -300,7 +298,8 @@ namespace Recursos_Humanos_wpf
                 {
                     Clases.Contratos contrato = new Clases.Contratos(rut_per, tDateInit.Text, tDateEnd.Text, tStat.Text,
                                                 250000, cTypeContract.Text.Split(':')[0], cCargo.Text.Split(':')[0]);
-                    if (contrato.save() > 0)
+
+                    if ( contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
                         MessageBox.Show("Contrato ingresado exitosamente.");
@@ -629,9 +628,10 @@ namespace Recursos_Humanos_wpf
             concadenacion += path.Content.ToString().Equals("1")?"*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine:"";
 
             foreach (string x in campos) vacio = string.IsNullOrEmpty(x) || path.Content.ToString().Equals("1")?true:false;
-            MessageBox.Show(concadenacion);
+            if(!concadenacion.Equals("")) MessageBox.Show(concadenacion);
             return vacio;
         }
+
 
         
 
