@@ -30,6 +30,7 @@ namespace Recursos_Humanos_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        //HOLA MUNDO
         Boolean Rutok = false;
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
