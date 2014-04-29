@@ -52,7 +52,7 @@ namespace Recursos_Humanos_wpf
                 String busqueda = cBusqueda.Text.Trim().Equals("") ? tRut.Text.Trim() : cBusqueda.Text.Trim();
                 if (!busqueda.Equals(""))
                 {
-                    limpiarTexbox();
+                    //limpiarTexbox();
                     if (rbRut.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "rut");
                     else if (rbName.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "nombre");
                     else if (rbSurname.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "apellido");
