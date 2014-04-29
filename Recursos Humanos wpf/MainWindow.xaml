@@ -19,7 +19,7 @@
                 <Grid Height="175" HorizontalAlignment="Left" Margin="8,86,0,0" Name="grid3" VerticalAlignment="Top" Width="697" Grid.Column="2" />
                 <Separator Height="2" HorizontalAlignment="Left" Name="separator1" VerticalAlignment="Top" Width="169" Background="#FF2D2D2D" Margin="13,386,0,0" Grid.ColumnSpan="2" />
                 <Separator Height="2" HorizontalAlignment="Left" Margin="12,498,0,0" Name="separator2" VerticalAlignment="Top" Width="169" Background="#FF2D2D2D" />
-                <RadioButton Content="Rutj" Height="16" HorizontalAlignment="Left" Margin="19,137,0,0" Name="rbRut" VerticalAlignment="Top" Checked="RadioButtonSearch" />
+                <RadioButton Content="Rut" Height="16" Margin="19,137,124,0" Name="rbRut" VerticalAlignment="Top" Checked="RadioButtonSearch" />
                 <RadioButton Content="Nombres" Height="16" HorizontalAlignment="Left" Margin="19,162,0,0" Name="rbName" VerticalAlignment="Top" Checked="RadioButtonSearch" />
                 <RadioButton Content="Apellidos" HorizontalAlignment="Left" Margin="19,189,0,294" Name="rbSurname" Checked="RadioButtonSearch" />
                 <RadioButton Content="Telefono" Height="16" HorizontalAlignment="Left" Margin="21,215,0,0" Name="rbPhone" VerticalAlignment="Top" Checked="RadioButtonSearch" />
