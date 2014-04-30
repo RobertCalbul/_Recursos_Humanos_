@@ -71,7 +71,7 @@
                     </TabControl.Resources>
                    
                     <TabItem Header="Personal" Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" Margin="-5" OverridesDefaultStyle="False" BorderBrush="#FF0C9CF3" Background="#FF0C9CF3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" Width="100" IsSelected="True">
-                        <Grid Name="page1" Background="White" OpacityMask="{x:Null}" Height="311" Width="663" Margin="0">
+                        <Grid Name="page1" Background="White" OpacityMask="{x:Null}" Height="311" Width="663" Margin="0" DataContext="{Binding}" Visibility="Hidden">
                             <Image HorizontalAlignment="Left" Margin="8,16,0,172" Name="iPerfil" Stretch="Fill" Width="98" Source="Images/icono.png" MouseLeftButtonUp="iPerfil_Click" />
                             <Label Content="Nombres" Height="28" HorizontalAlignment="Left" Margin="135,48,0,0" Name="label4" VerticalAlignment="Top" />
                             <Label Content="Apellidos" Height="28" HorizontalAlignment="Left" Margin="135,76,0,0" Name="label5" VerticalAlignment="Top" />
