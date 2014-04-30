@@ -23,7 +23,7 @@ namespace Recursos_Humanos_wpf.Clases
 
                 conex = new Conexion().getConexion();
                 conex.Open();
-                MySqlCommand comando = new MySqlCommand(string.Format("INSERT INTO salud (nombre,descuento) VALUES ('{0}','{1}')",
+                MySqlCommand comando = new MySqlCommand(string.Format("insert into salud (nombre,descuento) values ('{0}','{1}')",
                     this.name_salud, this.desc), conex);
                 return comando.ExecuteNonQuery();
             }catch(Exception e){
