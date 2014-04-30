@@ -18,11 +18,29 @@ namespace Recursos_Humanos_wpf
     /// </summary>
     public partial class Dialog : Window
     {
-
-        public Dialog()
+        String msg { get; set; }
+        public Dialog(String msg)
         {
+            
             InitializeComponent();
-           
+            label2.Content = msg;
+            if (msg.Length < 256)
+            {
+                this.MinHeight = 190;
+                this.MaxHeight = 190;
+                this.grid.MinHeight = 170;
+                this.grid.MaxHeight = 170;
+                this.label2.MinHeight = 130;
+                this.label2.MaxHeight = 130;
+                this.label1.Margin = new Thickness(10, 10, 10,10);
+                //116,0,104,12
+            }
+            
+        }
+
+        private void acept(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
         }
 
     }

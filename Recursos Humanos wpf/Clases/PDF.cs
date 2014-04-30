@@ -12,6 +12,7 @@ using System.IO;
 using iTextSharp;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using System.Windows;
 
 
 namespace Recursos_Humanos_wpf.Clases
@@ -37,6 +38,7 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Error en CrearCarpetaXml, ClaseXml:" + ex.Message);
                     Console.Write("Error en CrearCarpetaXml, ClaseXml:" + ex.Message);
                     return Respuesta;
                     //No fue posible crear el directorio...
@@ -53,6 +55,8 @@ namespace Recursos_Humanos_wpf.Clases
             {
                 try
                 {
+                    MessageBox.Show("" + Ruta + " " + rut + " " + fecha_ini + " " + fecha_ini + " " + nombre + dire + " " + cargo + " " + departamento 
+                        + " " + tipo_contrato + " " + sueldo + " " + fecha_ter + " " + afp + " " + salud);
                     DateTime thisDay = DateTime.Today;
                     System.Xml.Linq.XDocument miXML = new XDocument(
                     new XDeclaration("1.0", "utf-8", "yes"),
@@ -134,6 +138,7 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Error: " + ex.Message);
                     Console.Write("Error: " + ex.Message);
 
                 }
@@ -155,12 +160,12 @@ namespace Recursos_Humanos_wpf.Clases
 
             XmlNodeList lista =
                 ((XmlElement)personas[0]).GetElementsByTagName(tipo);
-
+            
             foreach (XmlElement nodo in lista)
             {
                 string nNombre = nodo.GetAttribute("Titulo");
                 //.GetElementsByTagName("nombre");
-
+                MessageBox.Show(nodo.GetAttribute("primer_parrafo"));
                 string p1 = nodo.GetAttribute("primer_parrafo");
                 string p2 = nodo.GetAttribute("segundo_parrafo");
                 string p3 = nodo.GetAttribute("tercer_parrafo");
@@ -186,4 +191,7 @@ namespace Recursos_Humanos_wpf.Clases
             return nodos;
         } //fin del metodo
     }
+
+
+
 }

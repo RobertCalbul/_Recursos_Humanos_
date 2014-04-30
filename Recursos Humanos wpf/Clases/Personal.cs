@@ -125,11 +125,12 @@ namespace Recursos_Humanos_wpf.Clases
                     } 
                 }else
                 {
-                    MessageBox.Show("No se han encontrado resultados.");
+                    Dialog dialog = new Dialog("No se encontraron coincidencias");
+                    dialog.Show();
                 }
                 return arreglo;
             }catch(Exception e){
-                MessageBox.Show("ERRO CARGAR FINDPERSONAL "+e.Message);
+                //MessageBox.Show("ERRO CARGAR FINDPERSONAL "+e.Message);
                 return arreglo;
             }
 
@@ -216,7 +217,6 @@ namespace Recursos_Humanos_wpf.Clases
                     + "',salud_id_salud='" +this.salud_id_salud
                     + "',departamento_id_departamento='" + this.departamento_id_departamento
                     + "' WHERE rut='" + this.rut + "'";
-
                 return new Clases.Consultas().Update(sql);
                
             }

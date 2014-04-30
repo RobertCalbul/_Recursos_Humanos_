@@ -60,16 +60,16 @@
                         <Border Name="Border"
                                     Background="#00000000"
                                     BorderBrush="Transparent"
-                                    BorderThickness="1"
-                                    CornerRadius="2"
-                                    Padding="2">
+                                    BorderThickness="0"
+                                    CornerRadius="0"
+                                    Padding="0">
                             <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="Border" Property="Background" Value="#ffffffff" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#EEEEEE" />
-                                <Setter Property="Foreground" Value="#888888" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF4185F4" />
+                                <Setter Property="Foreground" Value="#2d2d2d" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

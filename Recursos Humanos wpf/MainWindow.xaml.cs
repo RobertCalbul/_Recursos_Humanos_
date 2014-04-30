@@ -20,8 +20,6 @@ using iTextSharp.text.pdf;
 using System.Globalization;
 using System.Threading;
 using System.Diagnostics;
-using Microsoft.VisualStudio.DebuggerVisualizers;
-
 
 namespace Recursos_Humanos_wpf
 {
@@ -33,11 +31,12 @@ namespace Recursos_Humanos_wpf
         Boolean Rutok = false;
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
+        
         public MainWindow()
         {
             InitializeComponent();
             listAutocomplet = new Clases.Personal().findAll(0);
-            pInfo.IsEnabled = false;
+            grid5.IsEnabled = false;
             rbRut.IsChecked = true;
         }
 /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
@@ -62,7 +61,9 @@ namespace Recursos_Humanos_wpf
                 }else
                 {
                     cBusqueda.Focus();//doy el foco al cuadro de busqueda
-                    MessageBox.Show("Ingrese un parametro de búsqueda");
+                    Dialog dialog = new Dialog("Ingrese un parametro de búsqueda.");
+                    dialog.Show();
+                  
                 }
             }
             catch (Exception ex)
@@ -75,7 +76,7 @@ namespace Recursos_Humanos_wpf
         {
             if (!value.Equals(""))
             {
-                pInfo.IsEnabled = true;
+                grid5.IsEnabled = true;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
@@ -115,8 +116,10 @@ namespace Recursos_Humanos_wpf
                                             tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]),
                                             int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
                     if (per.Save() > 0)
-                    {   
-                        MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    {
+                        Dialog dialog = new Dialog("Personal guardado con exito.");
+                        dialog.Show();
+                        //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         this.cBusqueda.IsEnabled = true;
                         this.iPerfil.IsEnabled = false;
                         this.btnAddUser.Visibility = Visibility.Hidden;
@@ -134,7 +137,10 @@ namespace Recursos_Humanos_wpf
                             cargarDatosPersonal(this.tRut.Text, "rut");
                         }
                     }
-                    else { MessageBox.Show("no guardo"); }
+                    else {
+                        Dialog dialog = new Dialog("Personal no pudo ser ingresado");
+                        dialog.Show();
+                    }
                 }
             }
         }
@@ -146,17 +152,18 @@ namespace Recursos_Humanos_wpf
                                        tPhone.Text.Trim(),tAdress.Text.Trim(), tEmail.Text.Trim(),
                                        tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]), 
                                        int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
-
             if (personal.Update() > 0) {
                 Search();
-                MessageBox.Show("actualizacion ok"); }
+                Dialog dialog = new Dialog("Datos actualizados correctamente.");
+                dialog.Show();
+            }
         }
         //CANCELA INGRESO EMPLEADO
         private void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
         {
             Label[] labels = { this.btnAddAfp, this.btnAddSalud, this.btnAddUser, this.btnCancelAdd };
             foreach (Label x in labels) x.Visibility = Visibility.Hidden;
-            this.pInfo.IsEnabled = false;
+            this.grid5.IsEnabled = false;
             this.cBusqueda.IsEnabled = true;
             this.btnUpdateReg.Visibility = Visibility.Visible;
             this.btnDeleteReg.Visibility = Visibility.Visible;
@@ -176,14 +183,19 @@ namespace Recursos_Humanos_wpf
                     {
                         limpiarTexbox();
                         cBusqueda.Text = "";
-                        MessageBox.Show("El personal borrado correctamente", "Registro eliminado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        Dialog dialog = new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.");
+                        dialog.Show();
+                        //MessageBox.Show("El personal borrado correctamente", "Registro eliminado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     }
-                    else MessageBox.Show("que paso");
+                    else {
+                        Dialog dialog = new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per+".");
+                        dialog.Show();
+                    } ;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en eliminar personal" );
+                //MessageBox.Show("Error en eliminar personal" );
             }
         }
 /*>>>>FIN OPERACIONES CRUD EMPLEADOS<<<<<*/
@@ -200,7 +212,8 @@ namespace Recursos_Humanos_wpf
                 {
                     limpiarTexbox();
                     loadDataContract(rut_per);
-                    MessageBox.Show("Se elimino el contrato con exito"); 
+                    Dialog dialog = new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".");
+                    dialog.Show(); //MessageBox.Show("Se elimino el contrato con exito"); 
                 }
             }
         }
@@ -280,7 +293,7 @@ namespace Recursos_Humanos_wpf
         private void btnShowContract_Click(object sender, MouseButtonEventArgs e)
         {
             bool crearcarp = new Clases.PDF().CrearCarpetaXml("contratos");
-
+            
             if (crearcarp)
             {
                 try
@@ -290,8 +303,8 @@ namespace Recursos_Humanos_wpf
                                                             cTypeContract.Text.Trim().Split(':')[1], 25000, tDateEnd.Text,
                                                             cAfp.Text.Split(':')[1], cSalud.Text.Split(':')[1]
                         );
-                    MessageBox.Show(contrato.rut + contrato.fInicio + contrato.nombre_completo + contrato.direccion + contrato.Cargo + contrato.depto + contrato.tContrato +
-                    contrato.SueldoBase + contrato.fTermino + contrato.afp + contrato.salud);
+
+
                     new Clases.PDF().CrearArchivoXML("contratos/contract.xml",
                     contrato.rut, contrato.fInicio, contrato.nombre_completo, contrato.direccion, contrato.Cargo, contrato.depto, contrato.tContrato,
                     contrato.SueldoBase, contrato.fTermino, contrato.afp, contrato.salud);
@@ -315,6 +328,7 @@ namespace Recursos_Humanos_wpf
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
                 }
             }
@@ -330,12 +344,17 @@ namespace Recursos_Humanos_wpf
                 {
                     Clases.Contratos contrato = new Clases.Contratos(rut_per, tDateInit.Text, tDateEnd.Text, tStat.Text,
                                                 250000, cTypeContract.Text.Split(':')[0], cCargo.Text.Split(':')[0]);
-                    if ( contrato.save() > 0)
+                    if (contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
-                        MessageBox.Show("Contrato ingresado exitosamente.");
+                        Dialog dialog = new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".");
+                        dialog.Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
                     }
-                    else MessageBox.Show("Ocurrio un error al ingresar contrato");
+                    else
+                    {
+                        Dialog dialog = new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".");
+                        dialog.Show();
+                    } 
                 }
             }catch (Exception ex)
             {
@@ -413,6 +432,7 @@ namespace Recursos_Humanos_wpf
                     cBusqueda.Text = lAutoComplete.SelectedItem.ToString();
                 }
                 cBusqueda.TextChanged += new TextChangedEventHandler(cBusqueda_TextChanged);
+                Search();
             }
         }
 /*>>>>FIN SOLO AUTOCOMPLETE<<<<<*/
@@ -438,7 +458,8 @@ namespace Recursos_Humanos_wpf
             }
             catch (Exception ex)
             {
-                MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
+                Dialog dialog = new Dialog("Seleccione una imagen mas pequeña.");
+                dialog.Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
         }
         //CARGA DATOS DE AFP EN COMBOBOX
@@ -521,7 +542,7 @@ namespace Recursos_Humanos_wpf
         private void iAddUser_Click(object sender, MouseButtonEventArgs e)
         {
 
-            pInfo.IsEnabled = true;
+            grid5.IsEnabled = true;
             limpiarTexbox();
             this.tRut.Focus();
             this.cBusqueda.Text = "";
@@ -637,8 +658,12 @@ namespace Recursos_Humanos_wpf
             foreach (string x in campos) lleno = string.IsNullOrEmpty(x) || path.Content.ToString().Equals("1") ? false : true;
 
             lleno = lleno && Rutok;
-            concadenacion += Rutok == true ? "" : "Ingrese un rut valido";
-            if(!concadenacion.Equals("")) MessageBox.Show(concadenacion);
+            concadenacion += Rutok == true ? "" : " *Ingrese un rut valido";
+            if (!concadenacion.Equals(""))
+            {
+                Dialog dialog = new Dialog(concadenacion);
+                dialog.Show();
+            }
             return lleno;
         }
 
@@ -666,6 +691,18 @@ namespace Recursos_Humanos_wpf
         {
             tRut.Text =  valida_Rut(tRut.Text);
         }
+
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void close_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+ 
 
 
 
