@@ -702,6 +702,11 @@ namespace Recursos_Humanos_wpf
             this.Close();
         }
 
+        private void minimize_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
  
 
 

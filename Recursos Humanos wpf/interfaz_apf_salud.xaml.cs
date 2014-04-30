@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace Recursos_Humanos_wpf
 {
@@ -37,15 +38,17 @@ namespace Recursos_Humanos_wpf
          
                 if (flag == 0)//AFP
                 {
-                   
-                    if(new Clases.Afp(name,desc).save() > 0)
+                    
+                    if (new Clases.Afp(name, desc).save() > 0 )
                     {
+                        
                         MessageBox.Show("Registro AFP Guardado Con Exito!!", "Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
                         MessageBox.Show("No se pudo guardar el Registro AFP", "Fallo!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
+                    
                 }
                 else if (flag == 1) 
                 {

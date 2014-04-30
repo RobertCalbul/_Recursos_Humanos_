@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="interfaz_apf_salud" Height="225" Width="349" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen" AllowsTransparency="False" Icon="Images/Icono.ico">
     <Grid>
-        <Grid Height="187" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="grid1" VerticalAlignment="Top" Width="327" ClipToBounds="True">
+        <Grid Height="186" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="337" ClipToBounds="True">
             <TextBox BorderBrush="White" Foreground="#FF2D2D2D" Height="23" HorizontalAlignment="Left" Margin="155,32,0,0" Name="tNameIntitucion" VerticalAlignment="Top" Width="120" FontFamily="Futura LT" />
             <TextBox BorderBrush="White" Foreground="#FF2D2D2D" Height="23" HorizontalAlignment="Left" Margin="155,86,0,0" Name="tDescuento" VerticalAlignment="Top" Width="120" />
             <Label Content="Nombre institucion" Height="28" HorizontalAlignment="Left" Margin="17,30,0,0" Name="label1" VerticalAlignment="Top" />
             <Label Content="Porcentaje (%)" Height="28" HorizontalAlignment="Left" Margin="17,84,0,0" Name="label2" VerticalAlignment="Top" />
             <Label Background="#FF4185F4" Content="Ingresar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="26,145,0,0" Name="btnIngresar" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" MouseLeftButtonUp="btnInsert_Click" />
             <Label Content="Cancelar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="180,145,0,0" Name="btnCancel" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" MouseLeftButtonUp="btnCancel_Click" Style="{StaticResource label red}" />
+            <Label  Height="5" HorizontalAlignment="Left" Name="carga" VerticalAlignment="Top" Width="0" Background="#FFCB1010" />
         </Grid>
     </Grid>
 </Window>
