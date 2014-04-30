@@ -10,7 +10,7 @@ using System.Data;
 namespace Recursos_Humanos_wpf.Clases
 {
     class Consultas
-    {        MySqlConnection conex;
+    {        MySqlConnection conex = null;
 
         public DataTable QueryDB(String query)
         {
@@ -54,28 +54,7 @@ namespace Recursos_Humanos_wpf.Clases
 
         
 
-        public  int guardar_afp(string name,double desc)
-        {
-            int retorno = 0;
-            try
-            {
-                conex = new Conexion().getConexion();
-                conex.Open();
-                MySqlCommand comando = new MySqlCommand(string.Format("Insert into afp (nombre,descuento) values ('{0}','{1}')",
-                    name, desc), conex);
-                retorno = comando.ExecuteNonQuery();
-                conex.Close();
-                return retorno;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                conex.Close();
-                return retorno;
-            }
-           
-        }
-
+ 
         public int guardar_salud(string name, double desc)
         {
             int retorno = 0;

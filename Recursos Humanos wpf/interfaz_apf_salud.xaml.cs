@@ -37,7 +37,8 @@ namespace Recursos_Humanos_wpf
          
                 if (flag == 0)//AFP
                 {
-                    if (new Clases.Consultas().guardar_afp(name, desc) > 0)
+                   
+                    if(new Clases.Afp(name,desc).save() > 0)
                     {
                         MessageBox.Show("Registro AFP Guardado Con Exito!!", "Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -48,8 +49,7 @@ namespace Recursos_Humanos_wpf
                 }
                 else if (flag == 1) 
                 {
-                    
-                    if (new Clases.Consultas().guardar_salud(name, desc) > 0)
+                    if (new Clases.Salud(name, desc).save() > 0)
                     {
                      MessageBox.Show("Registro de Salud Guardado Con Exito!!", "Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
