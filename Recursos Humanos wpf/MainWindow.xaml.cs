@@ -117,8 +117,7 @@ namespace Recursos_Humanos_wpf
                                             int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
                     if (per.Save() > 0)
                     {
-                        Dialog dialog = new Dialog("Personal guardado con exito.");
-                        dialog.Show();
+                        new Dialog("Personal guardado con exito.").Show();
                         //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         this.cBusqueda.IsEnabled = true;
                         this.iPerfil.IsEnabled = false;
@@ -138,8 +137,7 @@ namespace Recursos_Humanos_wpf
                         }
                     }
                     else {
-                        Dialog dialog = new Dialog("Personal no pudo ser ingresado");
-                        dialog.Show();
+                        new Dialog("Personal no pudo ser ingresado").Show();
                     }
                 }
             }

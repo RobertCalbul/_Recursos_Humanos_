@@ -24,10 +24,7 @@ namespace Recursos_Humanos_wpf
         {
             this.flag = flag;
             InitializeComponent();
-            this.Title = flag==1?"Ingreso nueva prevision":"Ingreso nueva AFP";
-
-            
-            
+            this.Title = flag==1?"Ingreso nueva prevision":"Ingreso nueva AFP"; 
         }
 
         private void btnInsert_Click(object sender, MouseButtonEventArgs e)
@@ -35,35 +32,20 @@ namespace Recursos_Humanos_wpf
             try{
                 string name = this.tNameIntitucion.Text.Trim();
                 double desc = double.Parse(this.tDescuento.Text.Trim());
-         
-                if (flag == 0)//AFP
+
+                if (this.flag == 0)//AFP
                 {
-                    
-                    if (new Clases.Afp(name, desc).save() > 0 )
-                    {
-                        
-                        MessageBox.Show("Registro AFP Guardado Con Exito!!", "Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo guardar el Registro AFP", "Fallo!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    }
-                    
+                    if (new Clases.Afp(name, desc).save() > 0 ) new Dialog("Registro AFP Guardado Con Exito!!.").Show();
+                    else new Dialog("No se pudo guardar el Registro AFP.").Show();
                 }
-                else if (flag == 1) 
+                else if (this.flag == 1) 
                 {
-                    if (new Clases.Salud(name, desc).save() > 0)
-                    {
-                     MessageBox.Show("Registro de Salud Guardado Con Exito!!", "Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo guardar el Registro de Salud", "Fallo!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    }
+                    if (new Clases.Salud(name, desc).save() > 0) new Dialog("Registro de Salud Guardado Con Exito!!.").Show();
+                    else new Dialog("No se pudo guardar el Registro de Salud.").Show();
                 }
             }catch(Exception ex){
                 Console.WriteLine("Interfaz_afp_salud.btnInsert_Click() " + ex.Message.ToString());
-                MessageBox.Show("rellene todos los campos");
+                new Dialog("Rellene todos los campos.").Show(); 
             }
         }
 
