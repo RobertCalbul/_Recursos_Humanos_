@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,15 +16,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data;
-using Microsoft.Win32;
-using System.IO;
-using Recursos_Humanos_wpf.Clases;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.Globalization;
-using System.Threading;
-using System.Diagnostics;
+using Microsoft.Win32;
+using Recursos_Humanos_wpf.Clases;
 
 namespace Recursos_Humanos_wpf
 {
@@ -99,6 +99,27 @@ namespace Recursos_Humanos_wpf
             }
         }
         //INGRESA NUEVO USUARIO
+        private void iAddUser_Click(object sender, MouseButtonEventArgs e)
+        {
+
+            grid5.IsEnabled = true;
+            limpiarTexbox();
+            this.tRut.Focus();
+            this.cBusqueda.Text = "";
+            this.cBusqueda.IsEnabled = false;
+            this.tRut.IsEnabled = true;
+            this.iPerfil.IsEnabled = true;
+            this.btnAddUser.IsEnabled = true;
+            this.image1.IsEnabled = false;
+            this.btnAddAfp.Visibility = Visibility.Visible;
+            this.btnUpdateReg.Visibility = Visibility.Hidden;
+            this.btnDeleteReg.Visibility = Visibility.Hidden;
+            this.btnAddSalud.Visibility = Visibility.Visible;
+            this.btnAddUser.Visibility = Visibility.Visible;
+            this.btnCancelAdd.Visibility = Visibility.Visible;
+            loadDataContract("");
+            //this.dDatos.ItemsSource = null;
+        }
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {
             tRut.IsEnabled = true;
@@ -106,18 +127,16 @@ namespace Recursos_Humanos_wpf
              if  (validacionAddUser())
             {
                 MessageBoxResult dialogResult = MessageBox.Show("Desea agregar a esta persona?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     byte[] foto = File.ReadAllBytes(path.Content.ToString());
-
                     Clases.Personal per = new Clases.Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(), 
                                             int.Parse(tYear.Text.Trim()), foto, tPhone.Text.Trim(),tAdress.Text.Trim(),
                                             tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]),
                                             int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
                     if (per.Save() > 0)
                     {
-                        new Dialog("Personal guardado con exito.").Show();
+                        //new Dialog("Personal guardado con exito.").Show();
                         //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         this.cBusqueda.IsEnabled = true;
                         this.iPerfil.IsEnabled = false;
@@ -365,7 +384,7 @@ namespace Recursos_Humanos_wpf
         {
             flagCalendar = 0;
             calendar1.Visibility = Visibility.Visible;
-            calendar1.Margin = new Thickness(259, 61, 0, 0);
+            calendar1.Margin = btnDateInitCalendar.Margin;// new Thickness(0, 130, 0, 0);
 
         }
         //SETEA LA FECHA DE INICIO O TERMINO DE COTRATO
@@ -381,7 +400,7 @@ namespace Recursos_Humanos_wpf
         {
             flagCalendar = 1;
             calendar1.Visibility = Visibility.Visible;
-            calendar1.Margin = new Thickness(259, 91, 0, 0);
+            calendar1.Margin = btnDateEndCalendar.Margin;// new Thickness(0, 151, 0, 0);
         }
  /*>>>>FIN CRUD CONTRATOS<<<<<*/
 
@@ -447,7 +466,7 @@ namespace Recursos_Humanos_wpf
                 {
                     this.path.Content = ofd.FileName;
                     using (Stream stream = ofd.OpenFile())
-                    {
+                    {   
                         BitmapDecoder bitdecoder = BitmapDecoder.Create(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                         this.iPerfil.Source = bitdecoder.Frames[0];
                     }
@@ -537,27 +556,7 @@ namespace Recursos_Humanos_wpf
 
         }
         //RESETEA LOS CAMPOS PARA INGRESAR UN NUEVO USUARIO
-        private void iAddUser_Click(object sender, MouseButtonEventArgs e)
-        {
-
-            grid5.IsEnabled = true;
-            limpiarTexbox();
-            this.tRut.Focus();
-            this.cBusqueda.Text = "";
-            this.cBusqueda.IsEnabled = false;
-            this.tRut.IsEnabled = true;
-            this.iPerfil.IsEnabled = true;
-            this.btnAddUser.IsEnabled = true;
-            this.image1.IsEnabled = false;
-            this.btnAddAfp.Visibility = Visibility.Visible;
-            this.btnUpdateReg.Visibility = Visibility.Hidden;
-            this.btnDeleteReg.Visibility = Visibility.Hidden;
-            this.btnAddSalud.Visibility = Visibility.Visible;
-            this.btnAddUser.Visibility = Visibility.Visible;
-            this.btnCancelAdd.Visibility = Visibility.Visible;
-            loadDataContract("");
-            //this.dDatos.ItemsSource = null;
-        }
+      
 
 
  /*>>>>VALIDACIONES<<<<<*/

@@ -8,8 +8,8 @@
             <TextBox BorderBrush="White" Foreground="#FF2D2D2D" Height="23" HorizontalAlignment="Left" Margin="155,86,0,0" Name="tDescuento" VerticalAlignment="Top" Width="120" />
             <Label Content="Nombre institucion" Height="28" HorizontalAlignment="Left" Margin="17,30,0,0" Name="label1" VerticalAlignment="Top" />
             <Label Content="Porcentaje (%)" Height="28" HorizontalAlignment="Left" Margin="17,84,0,0" Name="label2" VerticalAlignment="Top" />
-            <Label Background="#FF4185F4" Content="Ingresar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="26,145,0,0" Name="btnIngresar" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" MouseLeftButtonUp="btnInsert_Click" />
-            <Label Content="Cancelar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="180,145,0,0" Name="btnCancel" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" MouseLeftButtonUp="btnCancel_Click" Style="{StaticResource label red}" />
+            <Label Background="#FF4185F4" Content="Ingresar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="26,145,0,0" Name="btnIngresar" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" MouseDown="btnInsert_Click" />
+            <Label Content="Cancelar" Foreground="White" Height="26" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="180,145,0,0" Name="btnCancel" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="115" Style="{StaticResource label red}" MouseDown="btnCancel_Click" />
             <Label  Height="5" HorizontalAlignment="Left" Name="carga" VerticalAlignment="Top" Width="0" Background="#FFCB1010" />
         </Grid>
     </Grid>

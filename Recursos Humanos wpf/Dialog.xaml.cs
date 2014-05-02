@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Recursos_Humanos_wpf
 {
@@ -35,6 +36,7 @@ namespace Recursos_Humanos_wpf
                 this.label1.Margin = new Thickness(10, 10, 10,10);
                 //116,0,104,12
             }
+
             
         }
 
