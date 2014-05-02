@@ -703,6 +703,17 @@ namespace Recursos_Humanos_wpf
         {
             this.WindowState = WindowState.Minimized;
         }
+            
+        //EVENTOS para el cambio de color de la imagen cerrar X
+        private void CambiaColor(object sender, MouseEventArgs e)
+        {
+            image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/CloseRed.png"));
+        }
+                
+        private void ColorNormal(object sender, MouseEventArgs e)
+        {
+            image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
+        }
 
  
 

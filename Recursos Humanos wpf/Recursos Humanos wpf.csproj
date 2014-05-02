@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icono.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
       <HintPath>.\itextsharp.dll</HintPath>
@@ -142,7 +145,7 @@
     <Resource Include="Images\icono.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Logo.png" />
+    <SplashScreen Include="Images\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icono.ico" />
@@ -164,6 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Maximize1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icono.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloseRed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
