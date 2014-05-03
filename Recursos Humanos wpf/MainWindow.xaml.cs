@@ -31,7 +31,9 @@ namespace Recursos_Humanos_wpf
         Boolean Rutok = false;
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
-        
+        List<Afp> listAfp = new Afp().findAll();
+        List<Salud> listSalud = new Salud().findAll();
+        List<Departamento> listDpto = new Departamento().findAll();
         public MainWindow()
         {
             InitializeComponent();
@@ -167,8 +169,8 @@ namespace Recursos_Humanos_wpf
             Clases.Personal personal = new Clases.Personal(tRut.Text.Trim(), tName.Text.Trim(), 
                                        tSurname.Text.Trim(), int.Parse(tYear.Text.Trim()),
                                        tPhone.Text.Trim(),tAdress.Text.Trim(), tEmail.Text.Trim(),
-                                       tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]), 
-                                       int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
+                                       tCtaBancaria.Text.Trim(), listAfp[cAfp.SelectedIndex].id,
+                                       listSalud[cSalud.SelectedIndex].id, listDpto[cDepto.SelectedIndex].id);
             if (personal.Update() > 0) {
                 Search();
                 Dialog dialog = new Dialog("Datos actualizados correctamente.");
@@ -483,39 +485,19 @@ namespace Recursos_Humanos_wpf
         private void cAfp_Click(object sender, MouseButtonEventArgs e)
         {
             cAfp.Items.Clear();
-            String sql = "select id_afp,nombre from afp";
-            DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-            foreach (DataRow dtRow in dataTable.Rows)
-            {
-                string rowz = string.Format("{0}:{1}", dtRow["id_afp"], dtRow["nombre"]);
-                cAfp.Items.Add(rowz);
-            }
+            foreach (Afp afp in listAfp) cAfp.Items.Add(afp.nombre_afp);
         }
         //CARGA DATOS DE SALUD EN COMBOBOX
         private void cSalud_Click(object sender, MouseButtonEventArgs e)
         {
             cSalud.Items.Clear();
-            String sql = "select id_salud,nombre from salud";
-            DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-            foreach (DataRow dtRow in dataTable.Rows)
-            {
-                string rowz = string.Format("{0}:{1}", dtRow["id_salud"], dtRow["nombre"]);
-                cSalud.Items.Add(rowz);
-            }
+            foreach (Salud salud in listSalud) cSalud.Items.Add(salud.name_salud);
         }
         //CARGA DATOS DE DEPARTAMENTO EN COMBOBOX
         private void cDepto_Click(object sender, MouseButtonEventArgs e)
         {
             cDepto.Items.Clear();
-            String sql = "select id_departamento,nombre from departamento";
-            DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-            foreach (DataRow dtRow in dataTable.Rows)
-            {
-                string rowz = string.Format("{0}:{1}", dtRow["id_departamento"], dtRow["nombre"]);
-                cDepto.Items.Add(rowz);
-                cDepto.SelectedIndex = 0;
-            }
-            
+            foreach (Departamento dpto in listDpto) cDepto.Items.Add(dpto.name);          
         }
         //CARGA LOS TIPOS DE CONTRATOS
         private void cTypeContract_Click(object sender, MouseButtonEventArgs e)

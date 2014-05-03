@@ -32,10 +32,7 @@
             <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
             <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
         </Style>
-        <Style TargetType="{x:Type TabControl}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
+
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
             <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>

@@ -22,9 +22,14 @@ namespace Recursos_Humanos_wpf.Clases
         public string cta_bancaria { get; set; }
         public int AFP_id_afp { get; set; }
         public int salud_id_salud { get; set; }
-        public int departamento_id_departamento { get; set; }
-        public int contrato_id_contrato { get; set; }
+        public string nacionalidad { get; set; }
+        public string fecha_nacimiento { get; set; }
+        public string comuna { get; set; }
+        public string nivel_academico { get; set; }
 
+
+        public int contrato_id_contrato { get; set; }
+        public int departamento_id_departamento { get; set; }
         public Personal()
         { }
         public Personal(string rut) {
@@ -95,8 +100,8 @@ namespace Recursos_Humanos_wpf.Clases
                 // RUT -- NOMBRE -- APELLIDO -- EDAD -- FOTO -- TELEFONO -- DIRECCION
                 // EMAIL -- CTA.BANCARIA -- AFP_NOMBRE -- SALUD_NOMBRE -- NOMBRE_DPTO --
                 String sql = "SELECT b.rut, b.nombre, b.apellido,b.edad, b.foto_portada,"
-                           + " b.telefono,b.direccion, b.email,b.cta_bancaria,a.id_afp,a.nombre as afp,"
-                           + " c.id_salud,c.nombre AS salud,d.id_departamento,d.nombre AS dpto,b.contrato_id_contrato"
+                           + " b.telefono,b.direccion, b.email,b.cta_bancaria,a.nombre as afp,"
+                           + " c.nombre AS salud,d.nombre AS dpto,b.contrato_id_contrato"
                            + " FROM personal AS b"
                            + " INNER JOIN afp AS a ON(b.AFP_id_afp=a.id_afp)"
                            + " INNER JOIN salud AS c ON (c.`id_salud`= b.`salud_id_salud`)"
@@ -118,9 +123,9 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[6] = dtRow["direccion"];
                         arreglo[7] = dtRow["email"];
                         arreglo[8] = dtRow["cta_bancaria"];
-                        arreglo[9] = string.Format("{0}:{1}", dtRow["id_afp"], dtRow["afp"]);
-                        arreglo[10] = string.Format("{0}:{1}", dtRow["id_salud"], dtRow["salud"]);
-                        arreglo[11] = string.Format("{0}:{1}", dtRow["id_departamento"], dtRow["dpto"]);
+                        arreglo[9] = dtRow["afp"];
+                        arreglo[10] = dtRow["salud"];
+                        arreglo[11] = dtRow["dpto"];
                            
                     } 
                 }else
