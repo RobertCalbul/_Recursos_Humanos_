@@ -67,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="Clases\Afp.cs" />
     <Compile Include="Clases\Departamento.cs" />
+    <Compile Include="Clases\Personal_Departamento.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>

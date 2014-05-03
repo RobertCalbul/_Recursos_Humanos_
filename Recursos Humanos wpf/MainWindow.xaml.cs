@@ -82,22 +82,28 @@ namespace Recursos_Humanos_wpf
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
-                    tRut.Text = valida_Rut(arreglo[1].ToString());
-                    lName.Content = arreglo[2].ToString();
-                    tName.Text = arreglo[2].ToString();
-                    tSurname.Text = arreglo[3].ToString();
-                    tYear.Text = arreglo[4].ToString();
-                    tPhone.Text = arreglo[5].ToString();
-                    tAdress.Text = arreglo[6].ToString();
-                    tEmail.Text = arreglo[7].ToString();
-                    tCtaBancaria.Text = arreglo[8].ToString();
-                    cAfp.Items.Add(arreglo[9].ToString());
-                    cSalud.Items.Add(arreglo[10].ToString());
-                    cDepto.Items.Add(arreglo[11].ToString());
+                    BitmapImage imagenes = new BitmapImage();//Byte[] datas = (byte[])arreglo[0];
+                    imagenes.BeginInit();
+                    MemoryStream stri = new MemoryStream((byte[])arreglo[0], 0, ((byte[])arreglo[0]).Length, false, false);
+                    imagenes.StreamSource = stri;
+                    imagenes.EndInit();
+                    iPerfil.Source = imagenes;
+                    tName.Text = arreglo[1].ToString();
+                    tSurname.Text = arreglo[2].ToString();
+                    tRut.Text = arreglo[3].ToString();
+                    tDateNaci.Text = arreglo[4].ToString();
+                    tAdress.Text = arreglo[5].ToString();
+                    tComuna.Text = arreglo[6].ToString();
+                    cSalud.SelectedItem = arreglo[7].ToString();
+                    cDepto.SelectedItem = arreglo[8].ToString();
                     cAfp.SelectedItem = arreglo[9].ToString();
-                    cSalud.SelectedItem = arreglo[10].ToString();
-                    cDepto.SelectedItem = arreglo[11].ToString();
-                } loadDataContract(tRut.Text.Trim());
+                    tYear.Text = arreglo[10].ToString();
+                    tRegion.Text = arreglo[11].ToString();
+                    tPhone.Text = arreglo[12].ToString();
+                    tEmail.Text = arreglo[13].ToString();
+                    tCtaBancaria.Text = arreglo[14].ToString();
+                    tNacionalidad.Text = arreglo[15].ToString();
+                } //loadDataContract(tRut.Text.Trim());
             }
         }
         //INGRESA NUEVO USUARIO
@@ -132,29 +138,37 @@ namespace Recursos_Humanos_wpf
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     byte[] foto = File.ReadAllBytes(path.Content.ToString());
-                    Clases.Personal per = new Clases.Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(), 
-                                            int.Parse(tYear.Text.Trim()), foto, tPhone.Text.Trim(),tAdress.Text.Trim(),
-                                            tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), int.Parse(cAfp.Text.Split(':')[0]),
-                                            int.Parse(cSalud.Text.Split(':')[0]), int.Parse(cDepto.Text.Split(':')[0]));
+                    Personal per = new Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(),
+                                                int.Parse(tYear.Text.Trim()), foto, tPhone.Text.Trim(),tAdress.Text.Trim(),
+                                                tEmail.Text.Trim(), tCtaBancaria.Text.Trim(),tNacionalidad.Text.Trim(),
+                                                tDateNaci.Text.Trim(),tComuna.Text.Trim(),tRegion.Text.Trim(),
+                                                listAfp[cAfp.SelectedIndex].id, listSalud[cSalud.SelectedIndex].id
+                                                );
+                    
                     if (per.Save() > 0)
                     {
-                        //new Dialog("Personal guardado con exito.").Show();
-                        //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                        this.cBusqueda.IsEnabled = true;
-                        this.iPerfil.IsEnabled = false;
-                        this.btnAddUser.Visibility = Visibility.Hidden;
-                        this.btnAddAfp.Visibility = Visibility.Hidden;
-                        this.btnAddSalud.Visibility = Visibility.Hidden;
-                        this.btnCancelAdd.Visibility = Visibility.Hidden;
-                        this.btnUpdateReg.Visibility = Visibility.Visible;
-                        this.btnDeleteReg.Visibility = Visibility.Visible;
-
-                        //PREGUNTO SI ESTA SEGURO
-                        MessageBoxResult pregunta = MessageBox.Show("¿Desea contratar a este nuevo personal?", "Pregunta:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                        if (pregunta == MessageBoxResult.Yes)
+                        MessageBox.Show(""+new Personal(tRut.Text.Trim()).get_idPersonal());
+                        Personal_Departamento pd = new Personal_Departamento(new Personal(tRut.Text.Trim()).get_idPersonal(), listDpto[cDepto.SelectedIndex].id);
+                        if (pd.save() > 0)
                         {
-                            this.tabControl1.SelectedIndex = 1;
-                            cargarDatosPersonal(this.tRut.Text, "rut");
+                            //new Dialog("Personal guardado con exito.").Show();
+                            //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                            this.cBusqueda.IsEnabled = true;
+                            this.iPerfil.IsEnabled = false;
+                            this.btnAddUser.Visibility = Visibility.Hidden;
+                            this.btnAddAfp.Visibility = Visibility.Hidden;
+                            this.btnAddSalud.Visibility = Visibility.Hidden;
+                            this.btnCancelAdd.Visibility = Visibility.Hidden;
+                            this.btnUpdateReg.Visibility = Visibility.Visible;
+                            this.btnDeleteReg.Visibility = Visibility.Visible;
+
+                            //PREGUNTO SI ESTA SEGURO
+                            MessageBoxResult pregunta = MessageBox.Show("¿Desea contratar a este nuevo personal?", "Pregunta:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                            if (pregunta == MessageBoxResult.Yes)
+                            {
+                                this.tabControl1.SelectedIndex = 1;
+                                cargarDatosPersonal(this.tRut.Text, "rut");
+                            }
                         }
                     }
                     else {
@@ -166,12 +180,14 @@ namespace Recursos_Humanos_wpf
         //ACTUALIZA DATOS EMPLEADO
         private void btnUpdateReg_Click(object sender, MouseButtonEventArgs e)
         {
-            Clases.Personal personal = new Clases.Personal(tRut.Text.Trim(), tName.Text.Trim(), 
-                                       tSurname.Text.Trim(), int.Parse(tYear.Text.Trim()),
-                                       tPhone.Text.Trim(),tAdress.Text.Trim(), tEmail.Text.Trim(),
-                                       tCtaBancaria.Text.Trim(), listAfp[cAfp.SelectedIndex].id,
-                                       listSalud[cSalud.SelectedIndex].id, listDpto[cDepto.SelectedIndex].id);
-            if (personal.Update() > 0) {
+            Personal per = new Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(),
+                                                int.Parse(tYear.Text.Trim()), tPhone.Text.Trim(), tAdress.Text.Trim(),
+                                                tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), tNacionalidad.Text.Trim(),
+                                                tDateNaci.Text.Trim(), tComuna.Text.Trim(), tRegion.Text.Trim(),
+                                                listAfp[cAfp.SelectedIndex].id, listSalud[cSalud.SelectedIndex].id
+                                                );
+            if (per.Update() > 0)
+            {
                 Search();
                 Dialog dialog = new Dialog("Datos actualizados correctamente.");
                 dialog.Show();
