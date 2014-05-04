@@ -20,6 +20,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Win32;
 using Recursos_Humanos_wpf.Clases;
+using System.Text.RegularExpressions;
 
 namespace Recursos_Humanos_wpf
 {
@@ -646,35 +647,74 @@ namespace Recursos_Humanos_wpf
             afp.ShowDialog();
         }
 
-        public Boolean validacionAddUser() {
-            //verficamos si hay foto en el picturebox
-            Boolean lleno = false;
+        public Boolean validacionAddUser()
+        {
             String concadenacion = "";
             String[] campos = { tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(), tYear.Text.Trim(), tPhone.Text.Trim(), tAdress.Text.Trim(), tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), cAfp.Text, cSalud.Text, cDepto.Text };
-            concadenacion += string.IsNullOrEmpty(tRut.Text.Trim())?"*Ingrese el rut para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tName.Text.Trim())?"*Ingrese el nombre para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tSurname.Text.Trim())?"*Ingrese el apellido para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tYear.Text.Trim())?"*Ingrese la edad para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tPhone.Text.Trim())?"*Ingrese el nro. telefonico para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tAdress.Text.Trim())?"*Ingrese la direccion para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tEmail.Text.Trim())?"*Ingrese el correo electronico para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(tCtaBancaria.Text.Trim())?"*ingrese el n. de cta bancaria para completar el registro" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(cAfp.Text)?"*Ingrese una afp del menu desplegable para continuar" + System.Environment.NewLine:""; 
-            concadenacion += string.IsNullOrEmpty(cSalud.Text)?"*Ingrese un registro de salud del menu desplegable para continuar" + System.Environment.NewLine:"";
-            concadenacion += string.IsNullOrEmpty(cDepto.Text)?"*Ingrese un dpto del menu desplegable para continuar" + System.Environment.NewLine:"";           
-            concadenacion += path.Content.ToString().Equals("1")?"*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine:"";
+            concadenacion += string.IsNullOrEmpty(tRut.Text.Trim()) ? "*Ingrese el rut para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tName.Text.Trim()) ? "*Ingrese el nombre para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tSurname.Text.Trim()) ? "*Ingrese el apellido para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tYear.Text.Trim()) ? "*Ingrese la edad para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tPhone.Text.Trim()) ? "*Ingrese el nro. telefonico para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tAdress.Text.Trim()) ? "*Ingrese la direccion para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tCtaBancaria.Text.Trim()) ? "*ingrese el n. de cta bancaria para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(cAfp.Text) ? "*Ingrese una afp del menu desplegable para continuar" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(cSalud.Text) ? "*Ingrese un registro de salud del menu desplegable para continuar" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(cDepto.Text) ? "*Ingrese un dpto del menu desplegable para continuar" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(tNacionalidad.Text.Trim()) ? "*Ingrese la nacionalidad del personal" + System.Environment.NewLine : "";
+            concadenacion += path.Content.ToString().Equals("1") ? "*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine : "";
             valida_Rut(tRut.Text);
+            concadenacion += Rutok == true ? "" : "*Ingrese un rut valido";
 
-            foreach (string x in campos) lleno = string.IsNullOrEmpty(x) || path.Content.ToString().Equals("1") ? false : true;
-
-            lleno = lleno && Rutok;
-            concadenacion += Rutok == true ? "" : " *Ingrese un rut valido";
-            if (!concadenacion.Equals(""))
+            if (concadenacion.Length == 0)
             {
-                Dialog dialog = new Dialog(concadenacion);
-                dialog.Show();
+                //Verifico el correo...
+                if (tEmail.Text.Trim().Length != 0) {
+                    if (email_bien_escrito(tEmail.Text.Trim())) { 
+                        return true; 
+                    } else {
+                        Dialog dialog = new Dialog("*Correo electronico mal escrito, verifiquelo para continuar");
+                        dialog.Show();
+                        return false; }
+                } else {
+                    Dialog dialog = new Dialog("*Ingrese el correo electronico para completar el registro");
+                    dialog.Show();
+                    return false;
+                }
             }
-            return lleno;
+            else {
+                if (tEmail.Text.Trim().Length == 0)
+                {
+                    Dialog dialog = new Dialog(concadenacion + "*Ingrese el correo electronico para completar el registro");
+                    dialog.Show();
+                }
+                else {
+                    Dialog dialog = new Dialog(concadenacion);
+                    dialog.Show();
+                }
+                return false;
+            }            
+            
+        }
+
+        public static bool email_bien_escrito(string email)
+        {
+            string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void tName_PreviewTextInput(object sender, TextCompositionEventArgs e)
