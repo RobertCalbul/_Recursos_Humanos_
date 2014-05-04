@@ -47,6 +47,169 @@ namespace Recursos_Humanos_wpf.Clases
             }
         }// fin del metodo CrearCarpetaXml
 
+        public string enletras(string num)
+        {
+
+            string res, dec = "";
+
+            Int64 entero;
+
+            int decimales;
+
+            double nro;
+
+            try
+            {
+
+                nro = Convert.ToDouble(num);
+
+            }
+
+            catch
+            {
+
+                return "";
+
+            }
+
+            entero = Convert.ToInt64(Math.Truncate(nro));
+
+            decimales = Convert.ToInt32(Math.Round((nro - entero) * 100, 2));
+
+            if (decimales > 0)
+            {
+
+                dec = " CON " + decimales.ToString() + "/100";
+
+            }
+
+            res = toText(Convert.ToDouble(entero)) + dec;
+
+            return res;
+
+        }
+
+        private string toText(double value)
+        {
+
+            string Num2Text = "";
+
+            value = Math.Truncate(value);
+
+            if (value == 0) Num2Text = "CERO";
+
+            else if (value == 1) Num2Text = "UNO";
+
+            else if (value == 2) Num2Text = "DOS";
+
+            else if (value == 3) Num2Text = "TRES";
+
+            else if (value == 4) Num2Text = "CUATRO";
+
+            else if (value == 5) Num2Text = "CINCO";
+
+            else if (value == 6) Num2Text = "SEIS";
+
+            else if (value == 7) Num2Text = "SIETE";
+
+            else if (value == 8) Num2Text = "OCHO";
+
+            else if (value == 9) Num2Text = "NUEVE";
+
+            else if (value == 10) Num2Text = "DIEZ";
+
+            else if (value == 11) Num2Text = "ONCE";
+
+            else if (value == 12) Num2Text = "DOCE";
+
+            else if (value == 13) Num2Text = "TRECE";
+
+            else if (value == 14) Num2Text = "CATORCE";
+
+            else if (value == 15) Num2Text = "QUINCE";
+
+            else if (value < 20) Num2Text = "DIECI" + toText(value - 10);
+
+            else if (value == 20) Num2Text = "VEINTE";
+
+            else if (value < 30) Num2Text = "VEINTI" + toText(value - 20);
+
+            else if (value == 30) Num2Text = "TREINTA";
+
+            else if (value == 40) Num2Text = "CUARENTA";
+
+            else if (value == 50) Num2Text = "CINCUENTA";
+
+            else if (value == 60) Num2Text = "SESENTA";
+
+            else if (value == 70) Num2Text = "SETENTA";
+
+            else if (value == 80) Num2Text = "OCHENTA";
+
+            else if (value == 90) Num2Text = "NOVENTA";
+
+            else if (value < 100) Num2Text = toText(Math.Truncate(value / 10) * 10) + " Y " + toText(value % 10);
+
+            else if (value == 100) Num2Text = "CIEN";
+
+            else if (value < 200) Num2Text = "CIENTO " + toText(value - 100);
+
+            else if ((value == 200) || (value == 300) || (value == 400) || (value == 600) || (value == 800)) Num2Text = toText(Math.Truncate(value / 100)) + "CIENTOS";
+
+            else if (value == 500) Num2Text = "QUINIENTOS";
+
+            else if (value == 700) Num2Text = "SETECIENTOS";
+
+            else if (value == 900) Num2Text = "NOVECIENTOS";
+
+            else if (value < 1000) Num2Text = toText(Math.Truncate(value / 100) * 100) + " " + toText(value % 100);
+
+            else if (value == 1000) Num2Text = "MIL";
+
+            else if (value < 2000) Num2Text = "MIL " + toText(value % 1000);
+
+            else if (value < 1000000)
+            {
+
+                Num2Text = toText(Math.Truncate(value / 1000)) + " MIL";
+
+                if ((value % 1000) > 0) Num2Text = Num2Text + " " + toText(value % 1000);
+
+            }
+
+            else if (value == 1000000) Num2Text = "UN MILLON";
+
+            else if (value < 2000000) Num2Text = "UN MILLON " + toText(value % 1000000);
+
+            else if (value < 1000000000000)
+            {
+
+                Num2Text = toText(Math.Truncate(value / 1000000)) + " MILLONES ";
+
+                if ((value - Math.Truncate(value / 1000000) * 1000000) > 0) Num2Text = Num2Text + " " + toText(value - Math.Truncate(value / 1000000) * 1000000);
+
+            }
+
+            else if (value == 1000000000000) Num2Text = "UN BILLON";
+
+            else if (value < 2000000000000) Num2Text = "UN BILLON " + toText(value - Math.Truncate(value / 1000000000000) * 1000000000000);
+
+            else
+            {
+
+                Num2Text = toText(Math.Truncate(value / 1000000000000)) + " BILLONES";
+
+                if ((value - Math.Truncate(value / 1000000000000) * 1000000000000) > 0) Num2Text = Num2Text + " " + toText(value - Math.Truncate(value / 1000000000000) * 1000000000000);
+
+            }
+
+            return Num2Text;
+
+        }
+
+
+
+
         public void CrearArchivoXML(String Ruta, String rut, String fecha_ini, String nombre,
             String dire, String cargo, String departamento, String tipo_contrato, int sueldo,
             String fecha_ter, String afp, String salud)
@@ -55,8 +218,7 @@ namespace Recursos_Humanos_wpf.Clases
             {
                 try
                 {
-                    MessageBox.Show("" + Ruta + " " + rut + " " + fecha_ini + " " + fecha_ini + " " + nombre + dire + " " + cargo + " " + departamento 
-                        + " " + tipo_contrato + " " + sueldo + " " + fecha_ter + " " + afp + " " + salud);
+                    
                     DateTime thisDay = DateTime.Today;
                     System.Xml.Linq.XDocument miXML = new XDocument(
                     new XDeclaration("1.0", "utf-8", "yes"),
@@ -64,31 +226,32 @@ namespace Recursos_Humanos_wpf.Clases
                     new XElement("Tipos_de_contrato",
                            new XElement("administrativo",
                                new XAttribute("Titulo", "Contrato de trabajo"),
-                               new XAttribute("primer_parrafo", "En temuco a" + thisDay.ToString("D") + ",entre" +
-                               "Tiendas de musica azalea ltda. con domicilio en Brasil #1429 pueblo nuevo, en la"
-                               + " cuidad de Temuco y don(a): " + nombre + " de nacionalidad Chilena "
-                               + " nacido el _____________________________________, domiciliado en"
-                               + " ___________________________________ , de estado civil soltero"
-                               + " y procedente de " + dire + " se ha convenido el siguiente"
-                               + "CONTRATO DE TRABAJO, para cuyos efectos las partes convienen"
-                               + "denominarse, respectivamente, EMPLEADOR Y TRABAJADOR."),
-                               new XAttribute("segundo_parrado",
+                               new XAttribute("primer_parrafo",
+                               "En TEMUCO a " + thisDay.ToString("D") + ", entre don(a)"
+                                + " Tiendas de musica azalea ltda. Con domicilio en LAS NIEVES 766 en"
+                                + " la ciudad de TEMUCO, representada legalmente por don (a) JORGE"
+                                + " HUENCHUÑIR DIAZ, R.U.T. 7.839.780-2 y don(a) " + nombre + " "
+                                + " Con rut " + rut + " de nacionalidad Chilena "
+                                + "domiciliado en " + dire + " se ha convenido el siguiente"
+                                + " CONTRATO DE TRABAJO, para cuyos efectos las partes convienen"
+                                + " denominarse, respectivamente, EMPLEADOR Y TRABAJADOR."),
+                               new XAttribute("segundo_parrafo",
                                "1- El Trabajador se compromete a ejecutar el trabajo de"
                                + " " + cargo + " en el establecimiento u departamento"
-                               + " " + departamento + " denominado(a) _____________________y"
-                               + " ubicado(a)_________________________ en pudiendo ser trasladado a"
+                               + " " + departamento + " bajo el tipo de contrato " + tipo_contrato + " "
+                               + " en conocimiento que puede ser trasladado a"
                                + " otro domicilio o labores similares, dentro de la ciudad por causa"
-                               + "justificada, sin que ello importe menoscabo para el Trabajador."),
+                               + " justificada, sin que ello importe menoscabo para el Trabajador."),
                                new XAttribute("tercer_parrafo",
                                "2- El Empleador se compromete a remunerar al Trabajador con la"
-                               + " suma de __________________(________________________________"
-                               + " pesos) como sueldo fijo por Mes además se asigna al Trabajador una"
+                               + " suma de " + enletras("250000")
+                               + " pesos como sueldo BASE por Mes además se asigna al Trabajador una"
                                + " comisión de __________________________. Las remuneraciones se"
                                + " pagarán Los 5 primeros días del Mes por 1 Mes periodos vencidos,"
                                + " en dinero efectivo, moneda nacional y del monto de ellas el"
                                + " Empleador hará las deducciones que establecen las leyes vigentes."),
                                new XAttribute("cuarto_parrafo",
-                                   "3- El presente contrato durará ____________________________"
+                                   "3- El presente contrato durará haste el " + fecha_ter + " "
                                    + " y podrá ponérsele término cuando concurran para ello causas"
                                    + " justificadas que, en conformidad a la ley, puedan producir su"
                                    + " caducidad, o sea permitido dar al Trabajador el aviso de desahucio"
@@ -102,35 +265,28 @@ namespace Recursos_Humanos_wpf.Clases
                                     + " disposiciones que se dicten con posterioridad a la fecha de"
                                     + " suscripción y que tengan relación con Él."),
                                new XAttribute("septimo_parrafo",
-                                   "6- Se deja constancia que don(a) ________________________________"
-                                   + " ingreso al servicio el _____________________"),
+                                   "6- Se deja constancia que don(a) " + nombre + " "
+                                   + " ingreso al servicio el " + fecha_ini + " "),
                                new XAttribute("octavo_parrafo",
-                                   "7- El trabajador declara que su régimen previsional es el"
-
-                                    + " siguiente:"
-
-                                    + " REGIMEN DE PENSIONES:"
-
-                                    + " a) Régimen antiguo ______________ b) A.F.P.__________________."
-
-                                    + " REGIMEN DE SALUD:"
-
-                                    + " a) FONASA ____________________ b) ISAPRE ____________________"),
+                                   "7- El trabajador declara que su régimen previsional es el siguiente: \n"
+                                    + " REGIMEN DE PENSIONES: \n"
+                                    + "\n"
+                                    + "\n"
+                                    + " a) Régimen antiguo ______________ b) A.F.P.______" + afp + "_________. \n"
+                                    + "\n"
+                                    + "\n"
+                                    + " REGIMEN DE SALUD: \n"
+                                    + "\n"
+                                    + "\n"
+                                    + " a) FONASA o ISAPRE.___________" + salud + "____________\n"),
                                new XAttribute("noveno_parrafo",
-                                   "_____________________ ______________________"
+                                   "\n"
+                                   + "\n"
+                                   + "\n"
+                                   + "\n"
+                                   + " _____________________ ______________________ \n"
 
-                                   + " Firma del Empleador Firma del Trabajador"),
-                               new XAttribute("fecha_inicio", fecha_ini),
-                               new XAttribute("rut", rut),
-                               new XElement("nombrecompleto_personal", nombre),
-                               new XElement("direccion", dire),
-                               new XElement("cargo", cargo),
-                               new XElement("departamento", departamento),
-                               new XElement("tipo_contrato", tipo_contrato),
-                               new XElement("sueldo", sueldo.ToString()),
-                               new XElement("fecha_termino", fecha_ter),
-                               new XElement("afp", afp),
-                               new XElement("salud", salud))
+                                   + " Firma del Empleador            Firma del Trabajador"))
               ));
 
                     miXML.Save(Ruta);
@@ -165,7 +321,6 @@ namespace Recursos_Humanos_wpf.Clases
             {
                 string nNombre = nodo.GetAttribute("Titulo");
                 //.GetElementsByTagName("nombre");
-                MessageBox.Show(nodo.GetAttribute("primer_parrafo"));
                 string p1 = nodo.GetAttribute("primer_parrafo");
                 string p2 = nodo.GetAttribute("segundo_parrafo");
                 string p3 = nodo.GetAttribute("tercer_parrafo");

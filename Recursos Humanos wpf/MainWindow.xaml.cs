@@ -350,13 +350,13 @@ namespace Recursos_Humanos_wpf
                                                             cAfp.Text.Trim(), cSalud.Text.Trim()
                         );
 
-                    MessageBox.Show(" y aqui tmb");
+                    
                     new Clases.PDF().CrearArchivoXML("contratos/contract.xml",
                     contrato.rut, contrato.fInicio, contrato.nombre_completo, contrato.direccion, contrato.Cargo, contrato.depto, contrato.tContrato,
                     contrato.SueldoBase, contrato.fTermino, contrato.afp, contrato.salud);
                     Document document = new Document();
 
-                    List<String> resul = new Clases.PDF().leer(contrato.tContrato);
+                    List<String> resul = new Clases.PDF().leer("administrativo");
 
                     PdfWriter.GetInstance(document, new FileStream("contrato.pdf", FileMode.OpenOrCreate));
                     document.Open();
