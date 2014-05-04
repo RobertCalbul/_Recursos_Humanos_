@@ -35,6 +35,7 @@ namespace Recursos_Humanos_wpf.Clases
                 return comando.ExecuteNonQuery();
             }
             catch (Exception e) {
+                Console.Write("error: "+e.Message);
                 return 0;
             }
         }

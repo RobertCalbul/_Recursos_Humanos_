@@ -42,9 +42,11 @@ namespace Recursos_Humanos_wpf.Clases
                 }return list;
             }catch(Exception e)
              {
+                 Console.Write("error: " + e.Message);
                 return list;
              }
         }
+
         public int save(){
             try
             {
@@ -56,7 +58,8 @@ namespace Recursos_Humanos_wpf.Clases
             }
             catch (Exception e)
             {
-               
+
+                Console.Write(e.Message);
                 return 0;
             }
             finally {

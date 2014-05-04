@@ -33,6 +33,7 @@ namespace Recursos_Humanos_wpf.Clases
             }
             catch (Exception e)
             {
+                Console.Write("sdds" + e.Message);
                 return list;
             }
         }

@@ -90,16 +90,20 @@ namespace Recursos_Humanos_wpf.Clases
             int flag = 0;
             try{
                 Clases.Consultas consult = new Clases.Consultas();
-                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,sueldo_base,tipo_contrato_id_tipo_contrato, cargo_id_cargo,anexo_id_anexo)" +
-                    " values('" + this.fInicio + "','" + this.fTermino + "','" + this.estado + "',"+this.SueldoBase+"," + this.tContrato + "," + this.Cargo+ ",1)";
-                
+                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,sueldo_minimo,tipo_contrato_id_tipo_contrato, cargo_id_cargo)" +
+                    " values('"+ this.fInicio + "','" + this.fTermino + "','" + this.estado + "',"+this.SueldoBase+"," + this.tContrato + "," + this.Cargo+ ")";
+                MessageBox.Show(sql);
                 if (consult.Update(sql) > 0)
                 {
                     sql = "SELECT DISTINCT LAST_INSERT_ID() as id_contrato FROM contrato";
                     String id_contrato = "";
                     foreach (DataRow dtRow in new Clases.Consultas().QueryDB(sql).Rows)id_contrato = dtRow["id_contrato"].ToString();
 
-                    sql = "UPDATE personal set contrato_id_contrato= " + id_contrato + " where  rut ='" +this.rut + "'";
+                    sql = "SELECT id_personal from personal where rut='"+this.rut+"'";
+                    String id_personal = "";
+                    foreach (DataRow dtRow in new Clases.Consultas().QueryDB(sql).Rows) id_personal = dtRow["id_personal"].ToString();
+
+                    sql = "INSERT INTO personal_contrato(id_personal,id_contrato) values(" + id_personal + "," + id_contrato + ")";
                     return consult.Update(sql); 
                 }
                 else flag = 0;
@@ -113,15 +117,20 @@ namespace Recursos_Humanos_wpf.Clases
         public int DeleteByRut(Personal per) {
 
             try {
-                string sql = "Select contrato_id_contrato from personal where rut = '" + per.rut + "'";
-                DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-                String id_contrato = "";
-                foreach (DataRow dtRow in dataTable.Rows) id_contrato = dtRow["contrato_id_contrato"].ToString();
+                string sql = "";
+                //string sql = "Select id from personal where rut = '" + per.rut + "'";
+                //DataTable dataTable = new Clases.Consultas().QueryDB(sql);
+                //String id_contrato = "";
+                //foreach (DataRow dtRow in dataTable.Rows) id_contrato = dtRow["contrato_id_contrato"].ToString();
 
-                sql = "DELETE  FROM contrato WHERE id_contrato = '" + id_contrato + "'";
+                sql = "DELETE c.* FROM contrato c"
+                +" INNER JOIN personal_contrato pc ON pc.id_contrato = c.id_contrato"
+                +" INNER JOIN personal p ON p.id_personal = pc.id_personal"
+                +" WHERE (p.rut='"+per.rut+"')";
                 return new Clases.Consultas().Update(sql);
             }catch(Exception ex)
             {
+                Console.Write("error: " + ex.Message);
                 return 0;
             }
         }

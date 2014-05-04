@@ -40,13 +40,11 @@ namespace Recursos_Humanos_wpf
             listAutocomplet = new Clases.Personal().findAll(0);
             grid5.IsEnabled = false;
             rbRut.IsChecked = true;
+            tabItem1.IsSelected = true;
         }
-/*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
+        /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
-        private void btnBuscar_click(object sender, MouseButtonEventArgs e)
-        {
-            Search();
-        }
+        
         private void Search(){
           try
             {
@@ -73,6 +71,11 @@ namespace Recursos_Humanos_wpf
                 Console.WriteLine("btnBuscar_click() " + ex.Message.ToString());
             }
         }
+
+        private void btnBuscar_click(object sender, MouseButtonEventArgs e)
+        {
+            Search();
+        }
         //CARGA DATOS PERSONALES BASICOS
         private void cargarDatosPersonal(String value, String paramSearch)
         {
@@ -94,16 +97,16 @@ namespace Recursos_Humanos_wpf
                     tDateNaci.Text = arreglo[4].ToString();
                     tAdress.Text = arreglo[5].ToString();
                     tComuna.Text = arreglo[6].ToString();
-                    cSalud.SelectedItem = arreglo[7].ToString();
-                    cDepto.SelectedItem = arreglo[8].ToString();
-                    cAfp.SelectedItem = arreglo[9].ToString();
+                    cSalud.SelectedValue = arreglo[7].ToString();    //SelectedItem
+                    cDepto.SelectedValue = arreglo[8].ToString();    //SelectedItem
+                    cAfp.SelectedValue = arreglo[9].ToString();  //SelectedItem
                     tYear.Text = arreglo[10].ToString();
                     tRegion.Text = arreglo[11].ToString();
                     tPhone.Text = arreglo[12].ToString();
                     tEmail.Text = arreglo[13].ToString();
                     tCtaBancaria.Text = arreglo[14].ToString();
                     tNacionalidad.Text = arreglo[15].ToString();
-                } //loadDataContract(tRut.Text.Trim());
+                } loadDataContract(tRut.Text.Trim());
             }
         }
         //INGRESA NUEVO USUARIO
@@ -230,7 +233,7 @@ namespace Recursos_Humanos_wpf
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error en eliminar personal" );
+                MessageBox.Show("Error en eliminar personal"+ex.Message );
             }
         }
 /*>>>>FIN OPERACIONES CRUD EMPLEADOS<<<<<*/
@@ -255,21 +258,24 @@ namespace Recursos_Humanos_wpf
         //CARGA CONTRATOS DE UN EMPLEADO ESPECIFICO
         private void loadDataContract(string value)
         {
-            string sql = "SELECT e.fecha_inicio,e.fecha_termino,e.estado,"
-            + " (SELECT c.tipo AS tipo_contrato"
-            + " FROM personal AS p"
-            + " INNER JOIN contrato AS e ON (e.id_contrato = p.contrato_id_contrato)"
-            + " INNER JOIN tipo_contrato AS c ON(e.tipo_contrato_id_tipo_contrato=c.id_tipo_contrato)"
-            + " WHERE p.rut ='" + value + "') AS tipo_contrato, "
-            + " IFNULL((SELECT f.cargo AS nombre_cargo"
-            + " FROM personal AS p"
-            + " INNER JOIN contrato AS e ON (e.id_contrato = p.contrato_id_contrato)"
-            + " INNER JOIN cargo AS f ON(f.id_cargo=e.cargo_id_cargo)"
-            + " WHERE p.rut ='" + value + "'),'1')AS cargo "
-            + " FROM personal AS p"
-            + " INNER JOIN contrato AS e ON (e.id_contrato = p.contrato_id_contrato)"
-            + " INNER JOIN cargo AS f ON(f.id_cargo=e.cargo_id_cargo)"
-            + " WHERE nombre = '" + value + "' OR apellido ='" + value + "' OR rut ='" + value + "'";
+            string sql ="SELECT e.fecha_inicio,e.fecha_termino,e.estado,"
+             +" (SELECT c.tipo AS tipo_contrato"
+             +" FROM personal_contrato AS pc"
+			 +" INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
+             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             +" INNER JOIN tipo_contrato AS c ON(e.tipo_contrato_id_tipo_contrato=c.id_tipo_contrato)"
+             +" WHERE p.rut ='" + value + "') AS tipo_contrato,"
+             +" IFNULL((SELECT f.cargo AS nombre_cargo"
+             +" FROM personal_contrato AS pc"
+			 +" INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
+             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             +" INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
+             +" WHERE p.rut = '" + value + "'),'1')AS cargo" 
+             +" FROM personal AS p"
+             +" INNER JOIN personal_contrato AS pc ON(p.id_personal = pc.id_personal)"
+             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             +" INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
+             +" WHERE p.nombre = '" + value + "' OR p.apellido ='" + value + "' OR p.rut = '" + value + "'";
             string interfaces = "";
             foreach (DataRow dtRow in new Clases.Consultas().QueryDB(sql).Rows)
             {
@@ -285,8 +291,11 @@ namespace Recursos_Humanos_wpf
             }
             Label [] labelVisible = { label15, label16, label17, label18, label19, label20 };
             Label[] btnVisible = { btnShowContract, btnInsertNewContract, btnCancelNewContract, btnDateEndCalendar, btnDateInitCalendar };
+            //cambia color en caso de que no existe contrato PD: ROBERT QLO xd
             lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
+            //cambia el texto del titulo en caso de que no exista contrato
             lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : cCargo.Text;
+
             tDateInit.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             tDateEnd.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             tStat.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
@@ -333,13 +342,14 @@ namespace Recursos_Humanos_wpf
             {
                 try
                 {
+                    
                     Clases.Contratos contrato = new Clases.Contratos(tRut.Text, tDateInit.Text, tName.Text + " " + tSurname.Text, tAdress.Text,
-                                                            cCargo.Text.Trim().Split(':')[1], cDepto.Text.Trim().Split(':')[1],
+                                                            cCargo.Text.Trim().Split(':')[1], cDepto.Text.Trim(),
                                                             cTypeContract.Text.Trim().Split(':')[1], 25000, tDateEnd.Text,
-                                                            cAfp.Text.Split(':')[1], cSalud.Text.Split(':')[1]
+                                                            cAfp.Text.Trim(), cSalud.Text.Trim()
                         );
 
-
+                    MessageBox.Show(" y aqui tmb");
                     new Clases.PDF().CrearArchivoXML("contratos/contract.xml",
                     contrato.rut, contrato.fInicio, contrato.nombre_completo, contrato.direccion, contrato.Cargo, contrato.depto, contrato.tContrato,
                     contrato.SueldoBase, contrato.fTermino, contrato.afp, contrato.salud);
@@ -493,6 +503,7 @@ namespace Recursos_Humanos_wpf
             }
             catch (Exception ex)
             {
+                Console.Write("error: " + ex.Message);
                 Dialog dialog = new Dialog("Seleccione una imagen mas pequeña.");
                 dialog.Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
@@ -501,18 +512,21 @@ namespace Recursos_Humanos_wpf
         private void cAfp_Click(object sender, MouseButtonEventArgs e)
         {
             cAfp.Items.Clear();
+            List<Afp> listAfp = new Afp().findAll();
             foreach (Afp afp in listAfp) cAfp.Items.Add(afp.nombre_afp);
         }
         //CARGA DATOS DE SALUD EN COMBOBOX
         private void cSalud_Click(object sender, MouseButtonEventArgs e)
         {
             cSalud.Items.Clear();
+            List<Salud> listSalud = new Salud().findAll();
             foreach (Salud salud in listSalud) cSalud.Items.Add(salud.name_salud);
         }
         //CARGA DATOS DE DEPARTAMENTO EN COMBOBOX
         private void cDepto_Click(object sender, MouseButtonEventArgs e)
         {
             cDepto.Items.Clear();
+            List<Departamento> listDpto = new Departamento().findAll();
             foreach (Departamento dpto in listDpto) cDepto.Items.Add(dpto.name);          
         }
         //CARGA LOS TIPOS DE CONTRATOS
@@ -711,6 +725,11 @@ namespace Recursos_Humanos_wpf
         private void ColorNormal(object sender, MouseEventArgs e)
         {
             image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
+        }
+
+        private void iAddUser_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
         }
 
  

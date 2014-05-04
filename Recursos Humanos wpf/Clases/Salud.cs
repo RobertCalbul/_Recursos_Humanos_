@@ -41,6 +41,7 @@ namespace Recursos_Humanos_wpf.Clases
             }
             catch (Exception e)
             {
+                Console.Write("error: " + e.Message);
                 return list;
             }
         }
@@ -53,6 +54,7 @@ namespace Recursos_Humanos_wpf.Clases
                     this.name_salud, this.desc), conex);
                 return comando.ExecuteNonQuery();
             }catch(Exception e){
+                Console.Write(e.Message);
                 return 0;
             }
         }

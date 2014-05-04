@@ -196,11 +196,11 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 return arreglo;
             }catch(Exception e){
-                //MessageBox.Show("ERRO CARGAR FINDPERSONAL "+e.Message);
+                MessageBox.Show("ERRO CARGAR FINDPERSONAL "+e.Message);
                 return arreglo;
             }
 
-        }
+        } // fin del metodo findby
 
         public int Save()
         {
