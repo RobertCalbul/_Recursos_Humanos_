@@ -133,7 +133,7 @@ namespace Recursos_Humanos_wpf.Clases
                                new XElement("salud", salud))
               ));
 
-                    miXML.Save(@Ruta);
+                    miXML.Save(Ruta);
 
                 }
                 catch (Exception ex)

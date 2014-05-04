@@ -97,9 +97,9 @@ namespace Recursos_Humanos_wpf
                     tDateNaci.Text = arreglo[4].ToString();
                     tAdress.Text = arreglo[5].ToString();
                     tComuna.Text = arreglo[6].ToString();
-                    cSalud.SelectedValue = arreglo[7].ToString();    //SelectedItem
-                    cDepto.SelectedValue = arreglo[8].ToString();    //SelectedItem
-                    cAfp.SelectedValue = arreglo[9].ToString();  //SelectedItem
+                    this.cSalud.Text =arreglo[7].ToString();    //SelectedItem
+                    this.cDepto.Text = arreglo[8].ToString();    //SelectedItem
+                    this.cAfp.Text = arreglo[9].ToString();  //SelectedItem
                     tYear.Text = arreglo[10].ToString();
                     tRegion.Text = arreglo[11].ToString();
                     tPhone.Text = arreglo[12].ToString();
@@ -183,6 +183,7 @@ namespace Recursos_Humanos_wpf
         //ACTUALIZA DATOS EMPLEADO
         private void btnUpdateReg_Click(object sender, MouseButtonEventArgs e)
         {
+
             Personal per = new Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(),
                                                 int.Parse(tYear.Text.Trim()), tPhone.Text.Trim(), tAdress.Text.Trim(),
                                                 tEmail.Text.Trim(), tCtaBancaria.Text.Trim(), tNacionalidad.Text.Trim(),
