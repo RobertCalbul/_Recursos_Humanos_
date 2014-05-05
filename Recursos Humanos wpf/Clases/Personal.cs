@@ -140,14 +140,10 @@ namespace Recursos_Humanos_wpf.Clases
 
                 int  resultados = -1;
 
-                while (res.Read())
-                {
-                    resultados = res.GetInt32(0);
-                }
+                while (res.Read()) resultados = res.GetInt32(0);
                 conex.Close();
                 return resultados;
             }catch(Exception e){
-                MessageBox.Show(e.Message.ToString());
                 return -1;
             }
         }
@@ -189,14 +185,9 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[14] = dtRow["cta_bancaria"];
                         arreglo[15] = dtRow["nacionalidad"];
                     } 
-                }else
-                {
-                    Dialog dialog = new Dialog("No se encontraron coincidencias");
-                    dialog.Show();
-                }
+                }else new Dialog("No se encontraron coincidencias").Show();
                 return arreglo;
             }catch(Exception e){
-                MessageBox.Show("ERRO CARGAR FINDPERSONAL "+e.Message);
                 return arreglo;
             }
 
@@ -312,7 +303,7 @@ namespace Recursos_Humanos_wpf.Clases
             {
                 conex = new Conexion().getConexion();
                 conex.Open();
-                MySqlCommand comando = new MySqlCommand(string.Format("delete from personal where rut =('{0}')", this.rut), conex);
+                MySqlCommand comando = new MySqlCommand(string.Format("delete from personal where rut = '{0}'", this.rut), conex);
                 return comando.ExecuteNonQuery();
             }
             catch (Exception ex)

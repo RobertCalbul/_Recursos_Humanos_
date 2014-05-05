@@ -614,26 +614,22 @@ namespace Recursos_Humanos_wpf
 
         }
         //RESETEA LOS CAMPOS PARA INGRESAR UN NUEVO USUARIO
-      
-
 
  /*>>>>VALIDACIONES<<<<<*/
         public void limpiarTexbox()
         {
             lPuesto.Content = "";
             lName.Content = "";
-            TextBox[] campos = { tRut, tName, tSurname, tYear, tPhone, tAdress, tEmail, tCtaBancaria, tDateEnd, tDateInit, tStat };
+            TextBox[] campos = { tRut, tName, tSurname, tYear, tPhone, tAdress, tEmail, tCtaBancaria, tDateEnd, tDateInit, tStat, tDateNaci,tRegion, tNacionalidad,tComuna};
             ComboBox[] combos = { cAfp, cDepto, cSalud, cTypeContract, cCargo };
             foreach (TextBox x in campos) x.Text = "";
-            foreach (ComboBox x in combos) x.Items.Clear();
-            
+            foreach (ComboBox x in combos) x.Items.Clear();    
         }
 
         public void validaNumeros(TextCompositionEventArgs e)
         {
             int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
             e.Handled = ascci >= 48 && ascci <= 57? false : true;
-           // salida.Content = ascci >= 65 && ascci <= 90 || ascci >= 97 && ascci <= 122 ? "" : "Ingrese solo numeros";
         }
         public String DateFormat(String value){
             return value.Substring(6, 4) + "-"+value.Substring(3, 2) + "-"+value.Substring(0, 2);
@@ -718,25 +714,19 @@ namespace Recursos_Humanos_wpf
                     if (email_bien_escrito(tEmail.Text.Trim())) { 
                         return true; 
                     } else {
-                        Dialog dialog = new Dialog("*Correo electronico mal escrito, verifiquelo para continuar");
-                        dialog.Show();
+                        new Dialog("*Correo electronico mal escrito, verifiquelo para continuar").Show();
                         return false; }
                 } else {
-                    Dialog dialog = new Dialog("*Ingrese el correo electronico para completar el registro");
-                    dialog.Show();
+                    new Dialog("*Ingrese el correo electronico para completar el registro").Show();
                     return false;
                 }
             }
             else {
                 if (tEmail.Text.Trim().Length == 0)
                 {
-                    Dialog dialog = new Dialog(concadenacion + "*Ingrese el correo electronico para completar el registro");
-                    dialog.Show();
+                    new Dialog(concadenacion + "*Ingrese el correo electronico para completar el registro").Show();
                 }
-                else {
-                    Dialog dialog = new Dialog(concadenacion);
-                    dialog.Show();
-                }
+                else new Dialog(concadenacion).Show();
                 return false;
             }            
             
@@ -745,7 +735,6 @@ namespace Recursos_Humanos_wpf
         public static bool email_bien_escrito(string email)
         {
             string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-           /* if (Regex.IsMatch(email, expresion)){if (Regex.Replace(email, expresion, String.Empty).Length == 0){return true;}else{return false;}}else{return false;}*/
             return Regex.IsMatch(email, expresion) ? Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false : false;
         }
 
