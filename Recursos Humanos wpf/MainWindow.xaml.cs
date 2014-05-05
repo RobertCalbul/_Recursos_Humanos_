@@ -98,9 +98,49 @@ namespace Recursos_Humanos_wpf
                     tDateNaci.Text = arreglo[4].ToString();
                     tAdress.Text = arreglo[5].ToString();
                     tComuna.Text = arreglo[6].ToString();
-                    this.cSalud.Text =arreglo[7].ToString();    //SelectedItem
-                    this.cDepto.Text = arreglo[8].ToString();    //SelectedItem
-                    this.cAfp.Text = arreglo[9].ToString();  //SelectedItem
+                    //this.cSalud.Text =arreglo[7].ToString();    //SelectedItem
+
+                    cSalud.Items.Clear();
+                    List<Salud> listSalud = new Salud().findAll();
+                    int i = 0;
+                    foreach (Salud salud in listSalud)
+                    {
+                        cSalud.Items.Add(salud.name_salud);
+                        if (salud.name_salud.Equals(arreglo[7].ToString()))
+                        {
+                            cSalud.SelectedIndex = i;
+                        }
+                        i++;
+                    }
+                    i = 0;
+
+                    //this.cDepto.Text = arreglo[8].ToString();    //SelectedItem
+                    cDepto.Items.Clear();
+                    List<Departamento> listDpto = new Departamento().findAll();
+                    foreach (Departamento dpto in listDpto)
+                    {
+                        cDepto.Items.Add(dpto.name);
+                        if (dpto.name.Equals(arreglo[8].ToString()))
+                        {
+                            cDepto.SelectedIndex = i;
+                        }
+                        i++;
+                    }
+                    i = 0;
+
+                    //this.cAfp.Text = arreglo[9].ToString();  //SelectedItem
+                    cAfp.Items.Clear();
+                    List<Afp> listAfp = new Afp().findAll();
+                    foreach (Afp afp in listAfp) 
+                    {
+                        cAfp.Items.Add(afp.nombre_afp);
+                        if (afp.nombre_afp.Equals(arreglo[9].ToString()))
+                        {
+                            cAfp.SelectedIndex = i;
+                        }
+                        i++;
+                    }
+                    
                     tYear.Text = arreglo[10].ToString();
                     tRegion.Text = arreglo[11].ToString();
                     tPhone.Text = arreglo[12].ToString();
