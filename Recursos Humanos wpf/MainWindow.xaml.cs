@@ -86,6 +86,7 @@ namespace Recursos_Humanos_wpf
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
+                    lName.Content = arreglo[1].ToString() + " " + arreglo[2].ToString(); 
                     BitmapImage imagenes = new BitmapImage();//Byte[] datas = (byte[])arreglo[0];
                     imagenes.BeginInit();
                     MemoryStream stri = new MemoryStream((byte[])arreglo[0], 0, ((byte[])arreglo[0]).Length, false, false);
