@@ -196,6 +196,8 @@ namespace Recursos_Humanos_wpf
                         Personal_Departamento pd = new Personal_Departamento(new Personal(tRut.Text.Trim()).get_idPersonal(), listDpto[cDepto.SelectedIndex].id);
                         if (pd.save() > 0)
                         {
+                            //Actualizo lista del autocomplete
+                            listAutocomplet = new Clases.Personal().findAll(0);
                             //new Dialog("Personal guardado con exito.").Show();
                             //MessageBox.Show("Personal guardado con exito", "Registro agregado", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                             this.cBusqueda.IsEnabled = true;
