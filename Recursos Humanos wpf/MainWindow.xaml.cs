@@ -293,6 +293,7 @@ namespace Recursos_Humanos_wpf
                 {
                     limpiarTexbox();
                     loadDataContract(rut_per);
+                    cargarDatosPersonal(rut_per, "rut");
                     Dialog dialog = new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".");
                     dialog.Show(); //MessageBox.Show("Se elimino el contrato con exito"); 
                 }
