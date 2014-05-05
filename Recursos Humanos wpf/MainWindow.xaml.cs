@@ -710,6 +710,7 @@ namespace Recursos_Humanos_wpf
             if (concadenacion.Length == 0)
             {
                 //Verifico el correo...
+                //concadenacion += tEmail.Text.Trim().Length > 0?email_bien_escrito(tEmail.Text.Trim())?"":"*Correo electronico mal escrito, verifiquelo para continuar":"*Ingrese el correo electronico para completar el registro";
                 if (tEmail.Text.Trim().Length != 0) {
                     if (email_bien_escrito(tEmail.Text.Trim())) { 
                         return true; 
@@ -741,21 +742,8 @@ namespace Recursos_Humanos_wpf
         public static bool email_bien_escrito(string email)
         {
             string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(email, expresion))
-            {
-                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+           /* if (Regex.IsMatch(email, expresion)){if (Regex.Replace(email, expresion, String.Empty).Length == 0){return true;}else{return false;}}else{return false;}*/
+            return Regex.IsMatch(email, expresion) ? Regex.Replace(email, expresion, String.Empty).Length == 0 ? true : false : false;
         }
 
         private void tName_PreviewTextInput(object sender, TextCompositionEventArgs e)
