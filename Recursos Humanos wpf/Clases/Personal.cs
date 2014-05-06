@@ -304,12 +304,12 @@ namespace Recursos_Humanos_wpf.Clases
             {
                 conex = new Conexion().getConexion();
                 conex.Open();
-                MySqlCommand comando = new MySqlCommand(string.Format("delete from personal where rut = '{0}'", this.rut), conex);
-                return comando.ExecuteNonQuery();
+                MySqlCommand comando3 = new MySqlCommand(string.Format("delete from personal where rut = '{0}'", this.rut), conex);
+                return comando3.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex);
                 conex.Close();
                 return 0;
             }
