@@ -110,7 +110,8 @@
                                 <Label Content="Comuna" Height="28" HorizontalAlignment="Left" Margin="0,193,0,0" Name="label22" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
                                 <Label Content="Nacionalidad" Height="28" HorizontalAlignment="Left" Margin="0,285,0,0" Name="label23" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
                                 <Label Content="Region" Grid.Column="3" Height="28" HorizontalAlignment="Left" Margin="0,165,0,0" Name="label25" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
-                                </Grid>
+                                <Label Content="#" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="146.687,135,0,0" Name="btnDateNacimiento" VerticalAlignment="Top" Target="{Binding}" FontFamily="Futura LT" MouseDown="btnDateNacimiento_Click" MouseLeftButtonDown="btnDateNacimiento_Click" />
+                            </Grid>
                         </TabItem>
                         <TabItem Name="tabItem2" OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" BorderBrush="#FF4185F4" Background="#FF4185F4" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="0">
                             <Grid Background="White" Width="727" Height="467" Margin="0">
