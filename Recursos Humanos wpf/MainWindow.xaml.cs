@@ -85,7 +85,7 @@ namespace Recursos_Humanos_wpf
             if (!value.Equals(""))
             {
                 grid5.IsEnabled = true;
-                btnDateNacimiento.Visibility = Visibility.Hidden;
+                //btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
@@ -203,6 +203,7 @@ namespace Recursos_Humanos_wpf
                                 this.tabControl1.SelectedIndex = 1;
                                 cargarDatosPersonal(this.tRut.Text, "rut");
                             }
+                            else cargarDatosPersonal(this.tRut.Text, "rut");
                         }
                     }
                     else {
@@ -260,6 +261,8 @@ namespace Recursos_Humanos_wpf
                     {
                         limpiarTexbox();
                         cBusqueda.Text = "";
+                        cBusqueda.Focus();
+                        grid5.IsEnabled = false;
                         new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.").Show();
                     }
                     else {
@@ -376,10 +379,11 @@ namespace Recursos_Humanos_wpf
             {
                 try
                 {
-                    
+                    listCargo = new Cargo().findAll();
+                    listTipoContrato = new TipoContrato().findAll();
                     Clases.Contratos contrato = new Clases.Contratos(tRut.Text, tDateInit.Text, tName.Text + " " + tSurname.Text, tAdress.Text,
-                                                            cCargo.Text.Trim().Split(':')[1], cDepto.Text.Trim(),
-                                                            cTypeContract.Text.Trim().Split(':')[1], 25000, tDateEnd.Text,
+                                                            listCargo[cCargo.SelectedIndex].cargo, cDepto.Text.Trim(),
+                                                            listTipoContrato[cTypeContract.SelectedIndex].tipo, 25000, tDateEnd.Text,
                                                             cAfp.Text.Trim(), cSalud.Text.Trim()
                         );
 
@@ -402,12 +406,12 @@ namespace Recursos_Humanos_wpf
                     }
                     document.Close();
 
-                    MessageBox.Show("Contrato generado con exito");
+                    new Dialog("Contrato generado con exito.");
                     System.Diagnostics.Process.Start("contrato.pdf");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    new Dialog("Ocurrio un error al generar el contrato.").Show();
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
                 }
             }
@@ -475,7 +479,7 @@ namespace Recursos_Humanos_wpf
         {
             flagCalendar = 2;
             calendar2.Visibility = Visibility.Visible;
-            calendar2.DisplayMode = CalendarMode.Year;
+            calendar2.DisplayMode = CalendarMode.Decade;
             calendar2.Margin = btnDateNacimiento.Margin;
         }
         private void calendar2_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -715,6 +719,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += !string.IsNullOrEmpty(tStat.Text.Trim()) == true && (tStat.Text.Trim().ToUpper().Equals("VIGENTE") || tStat.Text.Trim().ToUpper().Equals("NO VIGENTE")) ? "" : "*Ingrese un estado de contrato VIGENTE/NO VIGENTE." + System.Environment.NewLine;
             concadenacion += !string.IsNullOrEmpty(cTypeContract.Text) == true ? "" : "*Seleccione un tipo de contrato." + System.Environment.NewLine;
             concadenacion += !string.IsNullOrEmpty(cCargo.Text) == true ? "" : "*Ingrese un cargo." + System.Environment.NewLine;
+            concadenacion += DateTime.Compare(Convert.ToDateTime(tDateInit.Text), Convert.ToDateTime(tDateEnd.Text)) == -1 ? "" : "*Verifique que las fechas sean correctas." + System.Environment.NewLine;
             Boolean ok = true;
             if (concadenacion.Length > 0) { 
                 new Dialog(concadenacion).Show();
