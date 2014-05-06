@@ -39,8 +39,8 @@
         <DockPanel Height="732" Name="pInfo" Width="746" Background="#FFFFFFFF" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Grid Height="732" Name="grid2" Width="752" VerticalAlignment="Bottom" Background="#FF33B5E5" HorizontalAlignment="Center">
                 <Grid Height="680" HorizontalAlignment="Left" Margin="-3,0,0,-1" Name="grid5" VerticalAlignment="Bottom" Width="752" Background="#FFFFFFFC">
-                    <Label Content="Juan Perez" HorizontalAlignment="Left" Margin="23,10,0,0" Name="lName" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="32" FontFamily="Futura LT" />
-                    <Label Content="Vendedor" Height="28" HorizontalAlignment="Left" Margin="429,56,0,0" Name="lPuesto" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="18" FontFamily="Futura LT" />
+                    <Label HorizontalAlignment="Left" Margin="23,10,0,0" Name="lName" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="32" FontFamily="Futura LT" IsEnabled="False" />
+                    <Label Height="28" HorizontalAlignment="Left" Margin="429,56,0,0" Name="lPuesto" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="18" FontFamily="Futura LT" />
                     <TabControl Height="501" HorizontalAlignment="Left" Margin="11,75,0,0" Name="tabControl1" VerticalAlignment="Top" Background="#FF4185F4" BorderBrush="#FF4185F4" Padding="0" TabStripPlacement="Top" SelectedIndex="0" BorderThickness="0">
                         <TabControl.Resources>
                             <Style TargetType="{x:Type TabItem}">
