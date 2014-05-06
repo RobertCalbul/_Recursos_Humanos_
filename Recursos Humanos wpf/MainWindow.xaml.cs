@@ -102,12 +102,7 @@ namespace Recursos_Humanos_wpf
                     tAdress.Text = arreglo[5].ToString();
                     tComuna.Text = arreglo[6].ToString();
                     cSalud.Items.Clear();
-<<<<<<< HEAD
-                    cDepto.Items.Clear();
-                    cAfp.Items.Clear();
-=======
-                    
->>>>>>> b802710b058eeff184bb325fe2215dbc7047975b
+
                     int i = 0;
                     foreach (Salud salud in new Salud().findAll())
                     {
@@ -116,24 +111,19 @@ namespace Recursos_Humanos_wpf
                         i++;
                     }
                     i = 0;
-<<<<<<< HEAD
-                    foreach (Departamento dpto in listDpto)
-=======
+
+
                     cDepto.Items.Clear();
                     foreach (Departamento dpto in new Departamento().findAll())
->>>>>>> b802710b058eeff184bb325fe2215dbc7047975b
                     {
                         cDepto.Items.Add(dpto.name);
                         if (dpto.name.Equals(arreglo[8].ToString())) cDepto.SelectedIndex = i;
                         i++;
                     }
                     i = 0;
-<<<<<<< HEAD
-                    foreach (Afp afp in listAfp) 
-=======
+
                     cAfp.Items.Clear();
                     foreach (Afp afp in new Afp().findAll()) 
->>>>>>> b802710b058eeff184bb325fe2215dbc7047975b
                     {
                         cAfp.Items.Add(afp.nombre_afp);
                         if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i;
@@ -555,12 +545,7 @@ namespace Recursos_Humanos_wpf
         private void cAfp_Click(object sender, MouseButtonEventArgs e)
         {
             cAfp.Items.Clear();
-<<<<<<< HEAD
-           List<Afp> listAfp = new Afp().findAll();
-            foreach (Afp afp in listAfp) cAfp.Items.Add(afp.nombre_afp);
-=======
             foreach (Afp afp in new Afp().findAll()) cAfp.Items.Add(afp.nombre_afp);
->>>>>>> b802710b058eeff184bb325fe2215dbc7047975b
         }
         //CARGA DATOS DE SALUD EN COMBOBOX
         private void cSalud_Click(object sender, MouseButtonEventArgs e)
@@ -572,12 +557,7 @@ namespace Recursos_Humanos_wpf
         private void cDepto_Click(object sender, MouseButtonEventArgs e)
         {
             cDepto.Items.Clear();
-<<<<<<< HEAD
-           List<Departamento> listDpto = new Departamento().findAll();
-            foreach (Departamento dpto in listDpto) cDepto.Items.Add(dpto.name);          
-=======
             foreach (Departamento dpto in new Departamento().findAll()) cDepto.Items.Add(dpto.name);          
->>>>>>> b802710b058eeff184bb325fe2215dbc7047975b
         }
         //CARGA LOS TIPOS DE CONTRATOS
         private void cTypeContract_Click(object sender, MouseButtonEventArgs e)
