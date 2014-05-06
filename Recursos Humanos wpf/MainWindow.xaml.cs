@@ -32,13 +32,16 @@ namespace Recursos_Humanos_wpf
         Boolean Rutok = false;
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
-        List<Afp> listAfp = new Afp().findAll();
-        List<Salud> listSalud = new Salud().findAll();
-        List<Departamento> listDpto = new Departamento().findAll();
+        List<Afp> listAfp = null;
+        List<Salud> listSalud = null;
+        List<Departamento> listDpto = null;
+        List<Cargo> listCargo = null;
+        List<TipoContrato> listTipoContrato = null;
         public MainWindow()
         {
             InitializeComponent();
             listAutocomplet = new Clases.Personal().findAll(0);
+
             grid5.IsEnabled = false;
             rbRut.IsChecked = true;
             tabItem1.IsSelected = true;
@@ -62,9 +65,7 @@ namespace Recursos_Humanos_wpf
                 }else
                 {
                     cBusqueda.Focus();//doy el foco al cuadro de busqueda
-                    Dialog dialog = new Dialog("Ingrese un parametro de búsqueda.");
-                    dialog.Show();
-                  
+                    new Dialog("Ingrese un parametro de búsqueda.").Show();
                 }
             }
             catch (Exception ex)
@@ -83,6 +84,7 @@ namespace Recursos_Humanos_wpf
             if (!value.Equals(""))
             {
                 grid5.IsEnabled = true;
+                btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
@@ -99,12 +101,10 @@ namespace Recursos_Humanos_wpf
                     tDateNaci.Text = arreglo[4].ToString();
                     tAdress.Text = arreglo[5].ToString();
                     tComuna.Text = arreglo[6].ToString();
-                    //this.cSalud.Text =arreglo[7].ToString();    //SelectedItem
-
                     cSalud.Items.Clear();
-                    List<Salud> listSalud = new Salud().findAll();
+                    
                     int i = 0;
-                    foreach (Salud salud in listSalud)
+                    foreach (Salud salud in new Salud().findAll())
                     {
                         cSalud.Items.Add(salud.name_salud);
                         if (salud.name_salud.Equals(arreglo[7].ToString()))
@@ -114,11 +114,8 @@ namespace Recursos_Humanos_wpf
                         i++;
                     }
                     i = 0;
-
-                    //this.cDepto.Text = arreglo[8].ToString();    //SelectedItem
                     cDepto.Items.Clear();
-                    List<Departamento> listDpto = new Departamento().findAll();
-                    foreach (Departamento dpto in listDpto)
+                    foreach (Departamento dpto in new Departamento().findAll())
                     {
                         cDepto.Items.Add(dpto.name);
                         if (dpto.name.Equals(arreglo[8].ToString()))
@@ -128,11 +125,8 @@ namespace Recursos_Humanos_wpf
                         i++;
                     }
                     i = 0;
-
-                    //this.cAfp.Text = arreglo[9].ToString();  //SelectedItem
                     cAfp.Items.Clear();
-                    List<Afp> listAfp = new Afp().findAll();
-                    foreach (Afp afp in listAfp) 
+                    foreach (Afp afp in new Afp().findAll()) 
                     {
                         cAfp.Items.Add(afp.nombre_afp);
                         if (afp.nombre_afp.Equals(arreglo[9].ToString()))
@@ -157,7 +151,7 @@ namespace Recursos_Humanos_wpf
 
             grid5.IsEnabled = true;
             limpiarTexbox();
-            this.tRut.Focus();
+            this.tName.Focus();
             this.cBusqueda.Text = "";
             this.cBusqueda.IsEnabled = false;
             this.tRut.IsEnabled = true;
@@ -170,8 +164,9 @@ namespace Recursos_Humanos_wpf
             this.btnAddSalud.Visibility = Visibility.Visible;
             this.btnAddUser.Visibility = Visibility.Visible;
             this.btnCancelAdd.Visibility = Visibility.Visible;
+            this.btnDateNacimiento.Visibility = Visibility.Visible;
+            this.iPerfil.Source = null;
             loadDataContract("");
-            //this.dDatos.ItemsSource = null;
         }
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {
@@ -183,6 +178,9 @@ namespace Recursos_Humanos_wpf
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     byte[] foto = File.ReadAllBytes(path.Content.ToString());
+                    listDpto = new Departamento().findAll();
+                    listAfp = new Afp().findAll();
+                    listSalud = new Salud().findAll();
                     Personal per = new Personal(tRut.Text.Trim(), tName.Text.Trim(), tSurname.Text.Trim(),
                                                 int.Parse(tYear.Text.Trim()), foto, tPhone.Text.Trim(),tAdress.Text.Trim(),
                                                 tEmail.Text.Trim(), tCtaBancaria.Text.Trim(),tNacionalidad.Text.Trim(),
@@ -192,7 +190,6 @@ namespace Recursos_Humanos_wpf
                     
                     if (per.Save() > 0)
                     {
-                        MessageBox.Show(""+new Personal(tRut.Text.Trim()).get_idPersonal());
                         Personal_Departamento pd = new Personal_Departamento(new Personal(tRut.Text.Trim()).get_idPersonal(), listDpto[cDepto.SelectedIndex].id);
                         if (pd.save() > 0)
                         {
@@ -237,8 +234,7 @@ namespace Recursos_Humanos_wpf
             if (per.Update() > 0)
             {
                 Search();
-                Dialog dialog = new Dialog("Datos actualizados correctamente.");
-                dialog.Show();
+                new Dialog("Datos actualizados correctamente.").Show();
             }
         }
         //CANCELA INGRESO EMPLEADO
@@ -296,8 +292,7 @@ namespace Recursos_Humanos_wpf
                     limpiarTexbox();
                     loadDataContract(rut_per);
                     cargarDatosPersonal(rut_per, "rut");
-                    Dialog dialog = new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".");
-                    dialog.Show(); //MessageBox.Show("Se elimino el contrato con exito"); 
+                    new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Se elimino el contrato con exito"); 
                 }
             }
         }
@@ -358,8 +353,6 @@ namespace Recursos_Humanos_wpf
         {
             lDescription.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#129d5a"));
             lDescription.Content = "Agregar Nuevo contrato";
-
-
             Label[] labels = { label15, label16, label17, label18, label19, label20, btnShowContract, btnInsertNewContract, btnCancelNewContract };
             foreach (Label x in labels) x.Visibility = Visibility.Visible; 
             tDateInit.Visibility = Visibility.Visible;
@@ -433,18 +426,18 @@ namespace Recursos_Humanos_wpf
                 MessageBoxResult dialogResult = MessageBox.Show("Desea asignar el contrato al rut: " + rut_per + " ?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
-                    Clases.Contratos contrato = new Clases.Contratos(rut_per, tDateInit.Text, tDateEnd.Text, tStat.Text,
-                                                250000, cTypeContract.Text.Split(':')[0], cCargo.Text.Split(':')[0]);
+                    listCargo = new Cargo().findAll();
+                    listTipoContrato = new TipoContrato().findAll();
+                    Clases.Contratos contrato = new Contratos(rut_per, tDateInit.Text, tDateEnd.Text, tStat.Text,
+                                                250000, listTipoContrato[cTypeContract.SelectedIndex].id.ToString(), listCargo[cCargo.SelectedIndex].id.ToString());
                     if (contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
-                        Dialog dialog = new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".");
-                        dialog.Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
+                        new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
                     }
                     else
                     {
-                        Dialog dialog = new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".");
-                        dialog.Show();
+                        new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".").Show();
                     } 
                 }
             }catch (Exception ex)
@@ -466,6 +459,7 @@ namespace Recursos_Humanos_wpf
         {
             tDateInit.Text = flagCalendar == 0 ? calendar1.SelectedDate.Value.ToString("yyyy-MM-dd") : tDateInit.Text;
             tDateEnd.Text = flagCalendar == 1 ? calendar1.SelectedDate.Value.ToString("yyyy-MM-dd") : tDateEnd.Text;
+            tDateNaci.Text = flagCalendar == 2 ? calendar1.SelectedDate.Value.ToString("yyyy-MM-dd") : tDateNaci.Text;
             calendar1.Visibility = Visibility.Hidden;
             flagCalendar = -1;
         }
@@ -550,54 +544,38 @@ namespace Recursos_Humanos_wpf
             catch (Exception ex)
             {
                 Console.Write("error: " + ex.Message);
-                Dialog dialog = new Dialog("Seleccione una imagen mas pequeña.");
-                dialog.Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
+                new Dialog("Seleccione una imagen mas pequeña.").Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
         }
         //CARGA DATOS DE AFP EN COMBOBOX
         private void cAfp_Click(object sender, MouseButtonEventArgs e)
         {
             cAfp.Items.Clear();
-            List<Afp> listAfp = new Afp().findAll();
-            foreach (Afp afp in listAfp) cAfp.Items.Add(afp.nombre_afp);
+            foreach (Afp afp in new Afp().findAll()) cAfp.Items.Add(afp.nombre_afp);
         }
         //CARGA DATOS DE SALUD EN COMBOBOX
         private void cSalud_Click(object sender, MouseButtonEventArgs e)
         {
             cSalud.Items.Clear();
-            List<Salud> listSalud = new Salud().findAll();
-            foreach (Salud salud in listSalud) cSalud.Items.Add(salud.name_salud);
+            foreach (Salud salud in new Salud().findAll()) cSalud.Items.Add(salud.name_salud);
         }
         //CARGA DATOS DE DEPARTAMENTO EN COMBOBOX
         private void cDepto_Click(object sender, MouseButtonEventArgs e)
         {
             cDepto.Items.Clear();
-            List<Departamento> listDpto = new Departamento().findAll();
-            foreach (Departamento dpto in listDpto) cDepto.Items.Add(dpto.name);          
+            foreach (Departamento dpto in new Departamento().findAll()) cDepto.Items.Add(dpto.name);          
         }
         //CARGA LOS TIPOS DE CONTRATOS
         private void cTypeContract_Click(object sender, MouseButtonEventArgs e)
         {
             cTypeContract.Items.Clear();
-            String sql = "select id_tipo_contrato,tipo from tipo_contrato";
-            DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-            foreach (DataRow dtRow in dataTable.Rows)
-            {
-                string rowz = string.Format("{0}:{1}", dtRow["id_tipo_contrato"], dtRow["tipo"]);
-                cTypeContract.Items.Add(rowz);
-            }
+            foreach (TipoContrato tContrato in new TipoContrato().findAll()) cTypeContract.Items.Add(tContrato.tipo);
         }
         //CARGA LOS DIFERENTE CARGOS
         private void cCargo_Click(object sender, MouseButtonEventArgs e)
         {
             cCargo.Items.Clear();
-            String sql = "select id_cargo,cargo from cargo";
-            DataTable dataTable = new Clases.Consultas().QueryDB(sql);
-            foreach (DataRow dtRow in dataTable.Rows)
-            {
-                string rowz = string.Format("{0}:{1}", dtRow["id_cargo"], dtRow["cargo"]);
-                cCargo.Items.Add(rowz);
-            }
+            foreach (Cargo cargo in new Cargo().findAll()) cCargo.Items.Add(cargo.cargo);
         }
         //FILTRO SEGUN INFORMACION PERSONAL
         private void RadioButtonSearch(object sender, RoutedEventArgs e)
@@ -623,7 +601,8 @@ namespace Recursos_Humanos_wpf
             TextBox[] campos = { tRut, tName, tSurname, tYear, tPhone, tAdress, tEmail, tCtaBancaria, tDateEnd, tDateInit, tStat, tDateNaci,tRegion, tNacionalidad,tComuna};
             ComboBox[] combos = { cAfp, cDepto, cSalud, cTypeContract, cCargo };
             foreach (TextBox x in campos) x.Text = "";
-            foreach (ComboBox x in combos) x.Items.Clear();    
+            foreach (ComboBox x in combos) x.Items.Clear();
+            this.iPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/icono.png"));
         }
 
         public void validaNumeros(TextCompositionEventArgs e)
@@ -793,6 +772,14 @@ namespace Recursos_Humanos_wpf
         {
 
         }
+
+        private void btnDateNacimiento_Click(object sender, MouseButtonEventArgs e)
+        {
+            flagCalendar = 2;
+            calendar1.Visibility = Visibility.Visible;
+            calendar1.Margin = btnDateNacimiento.Margin;
+        }
+
 
  
 
