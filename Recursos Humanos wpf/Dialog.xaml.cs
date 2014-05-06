@@ -25,7 +25,7 @@ namespace Recursos_Humanos_wpf
             
             InitializeComponent();
             label2.Content = msg;
-            if (msg.Length < 256)
+            if (msg.Length < 200)
             {
                 this.MinHeight = 190;
                 this.MaxHeight = 190;

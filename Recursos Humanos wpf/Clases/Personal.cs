@@ -283,6 +283,7 @@ namespace Recursos_Humanos_wpf.Clases
                     + "',AFP_id_afp='" + this.AFP_id_afp
                     + "',salud_id_salud='" +this.salud_id_salud
                     + "',nacionalidad ='"+this.nacionalidad
+                    +"',fecha_nacimiento='"+this.fecha_nacimiento
                     + "',comuna='"+this.comuna
                     + "',region_residencia='"+this.region_residencia
                     + "' WHERE rut='" + this.rut + "'";
