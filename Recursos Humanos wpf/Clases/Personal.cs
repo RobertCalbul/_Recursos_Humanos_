@@ -27,46 +27,12 @@ namespace Recursos_Humanos_wpf.Clases
         public int AFP_id_afp { get; set; }
         public int salud_id_salud { get; set; }
 
-        public int contrato_id_contrato { get; set; }
-        public int departamento_id_departamento { get; set; }
         public Personal()
         { }
         public Personal(string rut) {
             this.rut = rut;
         }
-        public Personal(string rut, string nombre, string apellido, int edad, string telefono,
-            string direccion, string email, string cta_bancaria, int AFP_id_afp, int salud_id_salud, int departamento_id_departamento)
-        {
-            this.rut = rut;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.edad = edad;
-            this.telefono = telefono;
-            this.direccion = direccion;
-            this.email = email;
-            this.cta_bancaria = cta_bancaria;
-            this.AFP_id_afp = AFP_id_afp;
-            this.salud_id_salud = salud_id_salud;
-            this.departamento_id_departamento = departamento_id_departamento;
-            //this.contrato_id_contrato = contrato_id_contrato;
-        }
-        public Personal(string rut, string nombre, string apellido, int edad, byte[] foto_portada, string telefono,
-            string direccion, string email, string cta_bancaria, int AFP_id_afp, int salud_id_salud, int departamento_id_departamento)
-        {
-            this.rut = rut;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.edad = edad;
-            this.foto_portada = foto_portada;
-            this.telefono = telefono;
-            this.direccion = direccion;
-            this.email = email;
-            this.cta_bancaria = cta_bancaria;
-            this.AFP_id_afp = AFP_id_afp;
-            this.salud_id_salud = salud_id_salud;
-            this.departamento_id_departamento = departamento_id_departamento;
-            //this.contrato_id_contrato = contrato_id_contrato;
-        }
+
         
         
         //ESTE ES EL ACTUAL

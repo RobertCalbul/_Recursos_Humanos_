@@ -66,11 +66,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Clases\Afp.cs" />
+    <Compile Include="Clases\AutoComplete.cs" />
     <Compile Include="Clases\Cargo.cs" />
     <Compile Include="Clases\Departamento.cs" />
     <Compile Include="Clases\Personal_Departamento.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Clases\TipoContrato.cs" />
+    <Compile Include="Clases\Validaciones.cs" />
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>

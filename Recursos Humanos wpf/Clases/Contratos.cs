@@ -74,8 +74,6 @@ namespace Recursos_Humanos_wpf.Clases
                     obj[3] = dtRow["estado"].ToString();
                     obj[4] = dtRow["tipo_contrato"].ToString();
                     obj[5] = dtRow["cargo"].ToString();
-                   // if (obj[5] == "1" || obj[5] == "") return new string[1];
-                    //else  
                     MessageBox.Show(obj[0]);
                 }
                 return obj;
