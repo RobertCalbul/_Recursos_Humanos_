@@ -29,7 +29,7 @@ namespace Recursos_Humanos_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        Boolean Rutok = false;
+        Boolean Rutok = false;  
         int flagCalendar = -1;
         List<string> listAutocomplet = null;
         List<Afp> listAfp = null;
