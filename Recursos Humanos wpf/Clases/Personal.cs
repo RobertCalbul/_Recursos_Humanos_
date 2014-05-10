@@ -76,8 +76,6 @@ namespace Recursos_Humanos_wpf.Clases
         }
         public List<string> findAll(int value)
         {
-            
-            
             conex = new Clases.Conexion().getConexion();
             conex.Open();
 
