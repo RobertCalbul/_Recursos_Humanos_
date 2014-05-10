@@ -2,31 +2,20 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.Win32;
 using Recursos_Humanos_wpf.Clases;
-using System.Text.RegularExpressions;
 
 namespace Recursos_Humanos_wpf
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         Boolean Rutok = false;
@@ -49,9 +38,10 @@ namespace Recursos_Humanos_wpf
         }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
-        
-        private void Search(){
-          try
+
+        private void Search()
+        {
+            try
             {
                 String busqueda = cBusqueda.Text.Trim().Equals("") ? tRut.Text.Trim() : cBusqueda.Text.Trim();
                 if (!busqueda.Equals(""))
@@ -62,13 +52,12 @@ namespace Recursos_Humanos_wpf
                     else if (rbPhone.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "telefono");
                     else if (rbAdress.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "direccion");
                     else if (rbEmail.IsChecked == true) cargarDatosPersonal(cBusqueda.Text.Trim(), "email");
-                }else
+                } else
                 {
                     cBusqueda.Focus();//doy el foco al cuadro de busqueda
                     new Dialog("Ingrese un parametro de búsqueda.").Show();
                 }
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Console.WriteLine("btnBuscar_click() " + ex.Message.ToString());
             }
@@ -89,7 +78,7 @@ namespace Recursos_Humanos_wpf
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
                 {
-                    lName.Content = arreglo[1].ToString() + " " + arreglo[2].ToString(); 
+                    lName.Content = arreglo[1].ToString() + " " + arreglo[2].ToString();
                     BitmapImage imagenes = new BitmapImage();//Byte[] datas = (byte[])arreglo[0];
                     imagenes.BeginInit();
                     MemoryStream stri = new MemoryStream((byte[])arreglo[0], 0, ((byte[])arreglo[0]).Length, false, false);
@@ -120,13 +109,13 @@ namespace Recursos_Humanos_wpf
                         i++;
                     }
                     i = 0;
-                    foreach (Afp afp in new Afp().findAll()) 
+                    foreach (Afp afp in new Afp().findAll())
                     {
                         cAfp.Items.Add(afp.nombre_afp);
-                        if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i;
+                        if (afp.nombre_afp.Equals(arreglo[9].ToString())) cAfp.SelectedIndex = i;
                         i++;
                     }
-                    
+
                     tYear.Text = arreglo[10].ToString();
                     tRegion.Text = arreglo[11].ToString();
                     tPhone.Text = arreglo[12].ToString();
@@ -160,49 +149,49 @@ namespace Recursos_Humanos_wpf
             loadDataContract("");
         }
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
-        {   this.tRut.IsEnabled = true;
+        {
+            this.tRut.IsEnabled = true;
             this.iAddUser.IsEnabled = true;
-                MessageBoxResult dialogResult = MessageBox.Show("Desea agregar a esta persona?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                if (dialogResult == MessageBoxResult.Yes && validacionAddUser())
+            MessageBoxResult dialogResult = MessageBox.Show("Desea agregar a esta persona?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if (dialogResult == MessageBoxResult.Yes && validacionAddUser())
+            {
+                byte[] foto = File.ReadAllBytes(path.Content.ToString());
+                listDpto = new Departamento().findAll();
+                listAfp = new Afp().findAll();
+                listSalud = new Salud().findAll();
+                Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
+                                            int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.tAdress.Text.Trim(),
+                                            this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
+                                            this.tDateNaci.Text.Trim(), this.tComuna.Text.Trim(), this.tRegion.Text.Trim(),
+                                            listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
+                                            );
+
+                if (per.Save() > 0)
                 {
-                    byte[] foto = File.ReadAllBytes(path.Content.ToString());
-                    listDpto = new Departamento().findAll();
-                    listAfp = new Afp().findAll();
-                    listSalud = new Salud().findAll();
-                    Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
-                                                int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.tAdress.Text.Trim(),
-                                                this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
-                                                this.tDateNaci.Text.Trim(), this.tComuna.Text.Trim(), this.tRegion.Text.Trim(),
-                                                listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
-                                                );
-                    
-                    if (per.Save() > 0)
+                    Personal_Departamento pd = new Personal_Departamento(new Personal(this.tRut.Text.Trim()).get_idPersonal(), listDpto[this.cDepto.SelectedIndex].id);
+                    if (pd.save() > 0)
                     {
-                        Personal_Departamento pd = new Personal_Departamento(new Personal(this.tRut.Text.Trim()).get_idPersonal(), listDpto[this.cDepto.SelectedIndex].id);
-                        if (pd.save() > 0)
+                        listAutocomplet = new Clases.Personal().findAll(0);
+                        this.cBusqueda.IsEnabled = true;
+                        this.iPerfil.IsEnabled = false;
+                        this.btnAddUser.Visibility = Visibility.Hidden;
+                        this.btnAddAfp.Visibility = Visibility.Hidden;
+                        this.btnAddSalud.Visibility = Visibility.Hidden;
+                        this.btnCancelAdd.Visibility = Visibility.Hidden;
+                        this.btnUpdateReg.Visibility = Visibility.Visible;
+                        this.btnDeleteReg.Visibility = Visibility.Visible;
+                        MessageBoxResult pregunta = MessageBox.Show("¿Desea contratar a este nuevo personal?", "Pregunta:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        if (pregunta == MessageBoxResult.Yes)
                         {
-                            listAutocomplet = new Clases.Personal().findAll(0);
-                            this.cBusqueda.IsEnabled = true;
-                            this.iPerfil.IsEnabled = false;
-                            this.btnAddUser.Visibility = Visibility.Hidden;
-                            this.btnAddAfp.Visibility = Visibility.Hidden;
-                            this.btnAddSalud.Visibility = Visibility.Hidden;
-                            this.btnCancelAdd.Visibility = Visibility.Hidden;
-                            this.btnUpdateReg.Visibility = Visibility.Visible;
-                            this.btnDeleteReg.Visibility = Visibility.Visible;
-                            MessageBoxResult pregunta = MessageBox.Show("¿Desea contratar a este nuevo personal?", "Pregunta:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                            if (pregunta == MessageBoxResult.Yes)
-                            {
-                                this.tabControl1.SelectedIndex = 1;
-                                cargarDatosPersonal(this.tRut.Text, "rut");
-                            }
-                            else cargarDatosPersonal(this.tRut.Text, "rut");
-                        }
+                            this.tabControl1.SelectedIndex = 1;
+                            cargarDatosPersonal(this.tRut.Text, "rut");
+                        } else cargarDatosPersonal(this.tRut.Text, "rut");
                     }
-                    else {
-                        new Dialog("Personal no pudo ser ingresado").Show();
-                    }
+                } else
+                {
+                    new Dialog("Personal no pudo ser ingresado").Show();
                 }
+            }
         }
         //ACTUALIZA DATOS EMPLEADO
         private void btnUpdateReg_Click(object sender, MouseButtonEventArgs e)
@@ -221,10 +210,8 @@ namespace Recursos_Humanos_wpf
                 {
                     Search();
                     new Dialog("Datos actualizados correctamente.").Show();
-                }
-                else new Dialog("Ocurrio un error al actualizar los datos").Show();
-            }
-            else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").Show();
+                } else new Dialog("Ocurrio un error al actualizar los datos").Show();
+            } else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").Show();
         }
         //CANCELA INGRESO EMPLEADO
         private void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
@@ -256,18 +243,16 @@ namespace Recursos_Humanos_wpf
                         this.cBusqueda.Focus();
                         this.grid5.IsEnabled = false;
                         new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.").Show();
-                    }
-                    else  new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per+".").Show();
+                    } else new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per + ".").Show();
                 }
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
-                MessageBox.Show("Error en eliminar personal"+ex.Message );
+                MessageBox.Show("Error en eliminar personal" + ex.Message);
             }
         }
-/*>>>>FIN OPERACIONES CRUD EMPLEADOS<<<<<*/
+        /*>>>>FIN OPERACIONES CRUD EMPLEADOS<<<<<*/
 
-/*>>>>INICIO CRUD CONTRATOS<<<<<*/
+        /*>>>>INICIO CRUD CONTRATOS<<<<<*/
         //ELIMINA UN CONTRATO ASOCIADO A UN EMPLEADO
         private void btnEndContract_Click(object sender, MouseButtonEventArgs e)
         {
@@ -290,23 +275,23 @@ namespace Recursos_Humanos_wpf
             ClearContract();
             this.tabItem2.IsEnabled = !string.IsNullOrEmpty(this.tRut.Text.Trim()) == true ? true : false;
             string sql ="SELECT e.fecha_inicio,e.fecha_termino,e.estado,"
-             +" (SELECT c.tipo AS tipo_contrato"
-             +" FROM personal_contrato AS pc"
-			 +" INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
-             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
-             +" INNER JOIN tipo_contrato AS c ON(e.tipo_contrato_id_tipo_contrato=c.id_tipo_contrato)"
-             +" WHERE p.rut ='" + value + "') AS tipo_contrato,"
-             +" IFNULL((SELECT f.cargo AS nombre_cargo"
-             +" FROM personal_contrato AS pc"
-			 +" INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
-             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
-             +" INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
-             +" WHERE p.rut = '" + value + "'),'1')AS cargo" 
-             +" FROM personal AS p"
-             +" INNER JOIN personal_contrato AS pc ON(p.id_personal = pc.id_personal)"
-             +" INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
-             +" INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
-             +" WHERE p.nombre = '" + value + "' OR p.apellido ='" + value + "' OR p.rut = '" + value + "'";
+             + " (SELECT c.tipo AS tipo_contrato"
+             + " FROM personal_contrato AS pc"
+             + " INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
+             + " INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             + " INNER JOIN tipo_contrato AS c ON(e.tipo_contrato_id_tipo_contrato=c.id_tipo_contrato)"
+             + " WHERE p.rut ='" + value + "') AS tipo_contrato,"
+             + " IFNULL((SELECT f.cargo AS nombre_cargo"
+             + " FROM personal_contrato AS pc"
+             + " INNER JOIN personal AS p ON(p.id_personal = pc.id_personal)"
+             + " INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             + " INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
+             + " WHERE p.rut = '" + value + "'),'1')AS cargo"
+             + " FROM personal AS p"
+             + " INNER JOIN personal_contrato AS pc ON(p.id_personal = pc.id_personal)"
+             + " INNER JOIN contrato AS e ON (e.id_contrato = pc.id_contrato)"
+             + " INNER JOIN cargo AS f ON(f.id_cargo = e.cargo_id_cargo)"
+             + " WHERE p.nombre = '" + value + "' OR p.apellido ='" + value + "' OR p.rut = '" + value + "'";
             string interfaces = "";
             foreach (DataRow dtRow in new Clases.Consultas().QueryDB(sql).Rows)
             {
@@ -333,7 +318,7 @@ namespace Recursos_Humanos_wpf
             this.btnEndContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.btnNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Visible : Visibility.Hidden;
 
-            foreach(Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            foreach (Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             foreach (Label x in btnVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
         }
         //CREA INTERFAZ PARA AGREGAR CONTRATO
@@ -361,7 +346,7 @@ namespace Recursos_Humanos_wpf
         //MUESTRA PREVISUALIZACION CONTRATO
         private void btnShowContract_Click(object sender, MouseButtonEventArgs e)
         {
-            bool crearcarp = new Clases.PDF().CrearCarpetaXml("contratos");     
+            bool crearcarp = new Clases.PDF().CrearCarpetaXml("contratos");
             if (crearcarp)
             {
                 try
@@ -394,8 +379,7 @@ namespace Recursos_Humanos_wpf
 
                     new Dialog("Contrato generado con exito.");
                     System.Diagnostics.Process.Start("contrato.pdf");
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     new Dialog("Ocurrio un error al generar el contrato.").Show();
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
@@ -419,18 +403,17 @@ namespace Recursos_Humanos_wpf
                     {
                         loadDataContract(rut_per);
                         new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
-                    }
-                    else new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".").Show();
+                    } else new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".").Show();
                 }
-            }catch (Exception ex)
+            } catch (Exception ex)
             {
                 Trace.WriteLine("MainWindow.btnInsertNewContract_Click() " + ex.Message.ToString());
             }
 
         }
- /*>>>>FIN CRUD CONTRATOS<<<<<*/
+        /*>>>>FIN CRUD CONTRATOS<<<<<*/
 
- /*>>>>CALENDARIOS >>>>>>*/
+        /*>>>>CALENDARIOS >>>>>>*/
 
         //ABRE EL CALENDARIO
         private void btnDateInitCalendar_Click(object sender, MouseButtonEventArgs e)
@@ -468,13 +451,13 @@ namespace Recursos_Humanos_wpf
             this.tYear.Text = (2014 - int.Parse(this.tDateNaci.Text.Substring(0, 4))).ToString();
             this.calendar2.Visibility = Visibility.Hidden;
         }
- /*FIN CALENDARIO<<<<<*/
-/*>>>>AUTOCOMPLETE<<<<<*/
+        /*FIN CALENDARIO<<<<<*/
+        /*>>>>AUTOCOMPLETE<<<<<*/
         private void cBusqueda_TextChanged(object sender, TextChangedEventArgs e)
         {
             string typed = this.cBusqueda.Text.Trim();
 
-            this.lAutoComplete = new AutoComplete().llenaList(typed);
+           // this.lAutoComplete = new AutoComplete().llenaList(typed);
             List<string> autoList = new List<string>();
             autoList.Clear();
             foreach (string item in listAutocomplet)
@@ -492,13 +475,11 @@ namespace Recursos_Humanos_wpf
             {
                 this.lAutoComplete.ItemsSource = autoList;
                 this.lAutoComplete.Visibility = Visibility.Visible;
-            }
-            else if (this.cBusqueda.Text.Equals(""))
+            } else if (this.cBusqueda.Text.Equals(""))
             {
                 this.lAutoComplete.Visibility = Visibility.Collapsed;
                 this.lAutoComplete.ItemsSource = null;
-            }
-            else
+            } else
             {
                 this.lAutoComplete.Visibility = Visibility.Collapsed;
                 this.lAutoComplete.ItemsSource = null;
@@ -518,7 +499,7 @@ namespace Recursos_Humanos_wpf
                 Search();
             }
         }
-/*>>>>FIN SOLO AUTOCOMPLETE<<<<<*/
+        /*>>>>FIN SOLO AUTOCOMPLETE<<<<<*/
 
         //CARGA IMAGEN A CONTENDOR IMAGEN PERFIL
         private void iPerfil_Click(object sender, MouseButtonEventArgs e)
@@ -531,13 +512,12 @@ namespace Recursos_Humanos_wpf
                 {
                     this.path.Content = ofd.FileName;
                     using (Stream stream = ofd.OpenFile())
-                    {   
+                    {
                         BitmapDecoder bitdecoder = BitmapDecoder.Create(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                         this.iPerfil.Source = bitdecoder.Frames[0];
                     }
                 }
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Console.Write("error: " + ex.Message);
                 new Dialog("Seleccione una imagen mas pequeña.").Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
@@ -559,7 +539,7 @@ namespace Recursos_Humanos_wpf
         private void cDepto_Click(object sender, MouseButtonEventArgs e)
         {
             this.cDepto.Items.Clear();
-            foreach (Departamento dpto in new Departamento().findAll()) this.cDepto.Items.Add(dpto.name);          
+            foreach (Departamento dpto in new Departamento().findAll()) this.cDepto.Items.Add(dpto.name);
         }
         //CARGA LOS TIPOS DE CONTRATOS
         private void cTypeContract_Click(object sender, MouseButtonEventArgs e)
@@ -586,8 +566,9 @@ namespace Recursos_Humanos_wpf
             this.listAutocomplet = new Clases.Personal().findAll(parametroSearch);
         }
 
- /*>>>>VALIDACIONES<<<<<*/
-        public void ClearContract() {
+        /*>>>>VALIDACIONES<<<<<*/
+        public void ClearContract()
+        {
             this.tDateInit.Text = "";
             this.tDateEnd.Text = "";
             this.tStat.Text = "";
@@ -631,7 +612,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += string.IsNullOrEmpty(this.cSalud.Text) ? "*Ingrese un registro de salud del menu desplegable para continuar" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.cDepto.Text) ? "*Ingrese un dpto del menu desplegable para continuar" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tNacionalidad.Text.Trim()) ? "*Ingrese la nacionalidad del personal" + System.Environment.NewLine : "";
-            concadenacion += path.Content.ToString().Equals("1")? "*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine : "";
+            concadenacion += path.Content.ToString().Equals("1") ? "*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tEmail.Text.Trim()) ? "*Ingrese el correo electronico para completar el registro" + System.Environment.NewLine : "";
             concadenacion += validacion.validaFecha(this.tDateNaci.Text.Trim()) ? "" : "*Formato de fecha nacimiento invalido." + System.Environment.NewLine;
             concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el  registro." + System.Environment.NewLine : "";
@@ -639,13 +620,15 @@ namespace Recursos_Humanos_wpf
             //concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
             concadenacion += tEmail.Text.Trim().Length > 0 ? validacion.validaEmail(tEmail.Text.Trim()) ? "" : "*Correo electronico mal escrito, verifiquelo para continuar." + System.Environment.NewLine : "*Ingrese el correo electronico para completar el registro." + System.Environment.NewLine;
             Boolean ok = true;
-            if (concadenacion.Length > 0){
+            if (concadenacion.Length > 0)
+            {
                 new Dialog(concadenacion).Show();
                 ok = false;
             }
             return ok;
         }
-        public Boolean validacionAddContract() {
+        public Boolean validacionAddContract()
+        {
             String concadenacion = validacion.validaFecha(this.tDateInit.Text.Trim()) ? "" : "*Formato fecha de inicio no valida." + System.Environment.NewLine;
             concadenacion += !string.IsNullOrEmpty(this.tDateInit.Text.Trim()) == true ? "" : "*Ingrese una fecha de inicio." + System.Environment.NewLine;
             concadenacion += validacion.validaFecha(this.tDateEnd.Text.Trim()) ? "" : "*Formato de termino no valida." + System.Environment.NewLine;
@@ -655,7 +638,8 @@ namespace Recursos_Humanos_wpf
             concadenacion += !string.IsNullOrEmpty(this.cCargo.Text) == true ? "" : "*Ingrese un cargo." + System.Environment.NewLine;
             concadenacion += DateTime.Compare(Convert.ToDateTime(this.tDateInit.Text), Convert.ToDateTime(this.tDateEnd.Text)) == -1 ? "" : "*Verifique que las fechas sean correctas." + System.Environment.NewLine;
             Boolean ok = true;
-            if (concadenacion.Length > 0) { 
+            if (concadenacion.Length > 0)
+            {
                 new Dialog(concadenacion).Show();
                 ok = false;
             }
@@ -683,7 +667,7 @@ namespace Recursos_Humanos_wpf
             this.tRut.Text = validacion.validaRut(this.tRut.Text, this.tRut);
         }
 
-/*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
+        /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -692,15 +676,15 @@ namespace Recursos_Humanos_wpf
         {
             this.Close();
         }
-       private void minimize_Click(object sender, MouseButtonEventArgs e)
+        private void minimize_Click(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }         
+        }
         //EVENTOS para el cambio de color de la imagen cerrar X
         private void CambiaColor(object sender, MouseEventArgs e)
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/CloseRed.png"));
-        }              
+        }
         private void ColorNormal(object sender, MouseEventArgs e)
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
@@ -716,13 +700,13 @@ namespace Recursos_Humanos_wpf
         private void Loadreg_Click(object sender, MouseButtonEventArgs e)
         {
             this.Regi.Items.Clear();
-            foreach(Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
-            
+            foreach (Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
+
 
         }
-/*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
+        /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
-/*>>>>FIN VALIDACIONES<<<<<*/
+        /*>>>>FIN VALIDACIONES<<<<<*/
     }
 
 }
