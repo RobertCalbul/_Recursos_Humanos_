@@ -705,6 +705,22 @@ namespace Recursos_Humanos_wpf
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
         }
+
+        private void Loadcom_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Comu.Items.Clear();
+            int busqueda = this.Regi.SelectedIndex + 1;
+            foreach (Comunas comuna in new Comunas().FindByidReg(busqueda)) this.Comu.Items.Add(comuna.nombre_comuna);
+
+        }
+
+        private void Loadreg_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Regi.Items.Clear();
+            foreach(Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
+            
+
+        }
 /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
 /*>>>>FIN VALIDACIONES<<<<<*/
