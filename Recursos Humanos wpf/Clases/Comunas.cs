@@ -22,8 +22,8 @@ namespace Recursos_Humanos_wpf.Clases
             List<Comunas> listcom = null;
             try
             {
-                string sql = "select * from comunas where region_id=" + id_region.ToString()+"order by nombre";
-                Comunas comuns = null;
+                string sql = "select * from comunas where region_id=" + id_region.ToString() +" order by nombre";
+                Comunas comuns = null;  
                 listcom = new List<Comunas>();
                 foreach (DataRow dtrow in new Clases.Consultas().QueryDB(sql).Rows)
                 {

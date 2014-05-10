@@ -37,6 +37,8 @@ namespace Recursos_Humanos_wpf
         List<Departamento> listDpto = null;
         List<Cargo> listCargo = null;
         List<TipoContrato> listTipoContrato = null;
+        List<Regiones> listReg = null;
+        List<Comunas> listCom = null;
         Validaciones validacion = new Validaciones();
         public MainWindow()
         {
@@ -100,12 +102,14 @@ namespace Recursos_Humanos_wpf
                     tSurname.Text = arreglo[2].ToString();
                     tRut.Text = arreglo[3].ToString();
                     tDateNaci.Text = arreglo[4].ToString();
-                    tAdress.Text = arreglo[5].ToString();
-                    tComuna.Text = arreglo[6].ToString();
+                    Tdireccion.Text = arreglo[5].ToString();
+                    Regi.Items.Clear();
+                    Comu.Items.Clear();
                     cSalud.Items.Clear();
                     cDepto.Items.Clear();
                     cAfp.Items.Clear();
                     int i = 0;
+                    int c = 0;
                     foreach (Salud salud in new Salud().findAll())
                     {
                         cSalud.Items.Add(salud.name_salud);
@@ -126,9 +130,20 @@ namespace Recursos_Humanos_wpf
                         if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i;
                         i++;
                     }
-                    
+                    c = 0;
+                    foreach(Regiones region in new Regiones().findAll())
+                    {
+                        Regi.Items.Add(region.nombre);
+                        if(region.nombre.Equals(arreglo[11].ToString()))Regi.SelectedIndex=i;
+                           foreach (Comunas comuna in new Comunas().FindByidReg(region.id_region))
+                         { 
+                            Comu.Items.Add(comuna.nombre_comuna);
+                            if (comuna.nombre_comuna.Equals(arreglo[6].ToString())) Comu.SelectedIndex = c;
+                               c++;//busqueda de comuna
+                           }//fin buscar comuna
+                           i++;//busqueda de region
+                           }//fin buscar region
                     tYear.Text = arreglo[10].ToString();
-                    tRegion.Text = arreglo[11].ToString();
                     tPhone.Text = arreglo[12].ToString();
                     tEmail.Text = arreglo[13].ToString();
                     tCtaBancaria.Text = arreglo[14].ToString();
@@ -159,6 +174,7 @@ namespace Recursos_Humanos_wpf
             this.cBusqueda.Text = "";
             loadDataContract("");
         }
+        
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {   this.tRut.IsEnabled = true;
             this.iAddUser.IsEnabled = true;
@@ -169,10 +185,14 @@ namespace Recursos_Humanos_wpf
                     listDpto = new Departamento().findAll();
                     listAfp = new Afp().findAll();
                     listSalud = new Salud().findAll();
+                    listReg = new Regiones().findAll();
+                    listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex+1);
+                    
+
                     Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
-                                                int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.tAdress.Text.Trim(),
+                                                int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
                                                 this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
-                                                this.tDateNaci.Text.Trim(), this.tComuna.Text.Trim(), this.tRegion.Text.Trim(),
+                                                this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(), listReg[this.Regi.SelectedIndex].id_region.ToString(),
                                                 listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
                                                 );
                     
@@ -204,18 +224,21 @@ namespace Recursos_Humanos_wpf
                     }
                 }
         }
+        
         //ACTUALIZA DATOS EMPLEADO
         private void btnUpdateReg_Click(object sender, MouseButtonEventArgs e)
         {
             listAfp = new Afp().findAll();
             listSalud = new Salud().findAll();
             listDpto = new Departamento().findAll();
+            listReg = new Regiones().findAll();
+            listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex + 1);
             if (validacion.validaFecha(this.tDateNaci.Text.Trim()))
             {
                 Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(), int.Parse(this.tYear.Text.Trim()),
-                                            this.tPhone.Text.Trim(), this.tAdress.Text.Trim(), this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(),
-                                            this.tNacionalidad.Text.Trim(), this.tDateNaci.Text.Trim(), this.tComuna.Text.Trim(), this.tRegion.Text.Trim(),
-                                            listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
+                                            this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(), this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(),
+                                            this.tNacionalidad.Text.Trim(), this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(),
+                                            listReg[this.Regi.SelectedIndex].id_region.ToString(), listAfp[this.cAfp.SelectedIndex].id , listSalud[this.cSalud.SelectedIndex].id
                                                     );
                 if (per.Update() > 0)
                 {
@@ -599,9 +622,9 @@ namespace Recursos_Humanos_wpf
         {
             this.lPuesto.Content = "";
             this.lName.Content = "";
-            TextBox[] campos = { this.tRut, this.tName, this.tSurname, this.tYear, this.tPhone, this.tAdress,this.tEmail, this.tCtaBancaria, 
-                                 this.tDateEnd, this.tDateInit, this.tStat, this.tDateNaci, this.tRegion, this.tNacionalidad, this.tComuna };
-            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo };
+            TextBox[] campos = { this.tRut, this.tName, this.tSurname, this.tYear, this.tPhone, this.Tdireccion,this.tEmail, this.tCtaBancaria, 
+                                 this.tDateEnd, this.tDateInit, this.tStat, this.tDateNaci, this.tNacionalidad };
+            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo, this.Regi, this.Comu };
             foreach (TextBox x in campos) x.Text = "";
             foreach (ComboBox x in combos) x.Items.Clear();
             this.iPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/icono.png"));
@@ -625,7 +648,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += string.IsNullOrEmpty(this.tSurname.Text.Trim()) ? "*Ingrese el apellido para completar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tYear.Text.Trim()) ? "*Ingrese la edad para completar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tPhone.Text.Trim()) ? "*Ingrese el nro. telefonico para completar el registro" + System.Environment.NewLine : "";
-            concadenacion += string.IsNullOrEmpty(this.tAdress.Text.Trim()) ? "*Ingrese la direccion para completar el registro" + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(this.Tdireccion.Text.Trim()) ? "*Ingrese la direccion para completar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tCtaBancaria.Text.Trim()) ? "*ingrese el n. de cta bancaria para completar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.cAfp.Text) ? "*Ingrese una afp del menu desplegable para continuar" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.cSalud.Text) ? "*Ingrese un registro de salud del menu desplegable para continuar" + System.Environment.NewLine : "";
@@ -636,7 +659,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += validacion.validaFecha(this.tDateNaci.Text.Trim()) ? "" : "*Formato de fecha nacimiento invalido." + System.Environment.NewLine;
             concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el  registro." + System.Environment.NewLine : "";
             validacion.validaRut(this.tRut.Text, this.tRut);
-            //concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
+            concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
             concadenacion += tEmail.Text.Trim().Length > 0 ? validacion.validaEmail(tEmail.Text.Trim()) ? "" : "*Correo electronico mal escrito, verifiquelo para continuar." + System.Environment.NewLine : "*Ingrese el correo electronico para completar el registro." + System.Environment.NewLine;
             Boolean ok = true;
             if (concadenacion.Length > 0){
@@ -672,7 +695,7 @@ namespace Recursos_Humanos_wpf
         }
         private void tYear_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            validacion.validaNumeros(e);
+            //validacion.validaNumeros(e);
         }
         private void tPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -705,7 +728,7 @@ namespace Recursos_Humanos_wpf
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
         }
-
+        // CARGAR LAS COMUNAS
         private void Loadcom_Click(object sender, MouseButtonEventArgs e)
         {
             this.Comu.Items.Clear();
@@ -713,13 +736,16 @@ namespace Recursos_Humanos_wpf
             foreach (Comunas comuna in new Comunas().FindByidReg(busqueda)) this.Comu.Items.Add(comuna.nombre_comuna);
 
         }
-
+        //CARGA LAS REGIONES
         private void Loadreg_Click(object sender, MouseButtonEventArgs e)
         {
             this.Regi.Items.Clear();
             foreach(Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
-            
+        }
 
+        private void Tdireccion_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            validacion.validaString(e);
         }
 /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
