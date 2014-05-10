@@ -391,7 +391,7 @@ namespace Recursos_Humanos_wpf
                 {
                     listCargo = new Cargo().findAll();
                     listTipoContrato = new TipoContrato().findAll();
-                    Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.tAdress.Text,
+                    Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.Tdireccion.Text,
                                                             listCargo[this.cCargo.SelectedIndex].cargo, this.cDepto.Text.Trim(),
                                                             listTipoContrato[this.cTypeContract.SelectedIndex].tipo, 25000, this.tDateEnd.Text,
                                                             this.cAfp.Text.Trim(), this.cSalud.Text.Trim()
@@ -497,7 +497,7 @@ namespace Recursos_Humanos_wpf
         {
             string typed = this.cBusqueda.Text.Trim();
 
-            this.lAutoComplete = new AutoComplete().llenaList(typed);
+            //this.lAutoComplete = new AutoComplete().llenaList(typed);
             List<string> autoList = new List<string>();
             autoList.Clear();
             foreach (string item in listAutocomplet)
@@ -659,7 +659,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += validacion.validaFecha(this.tDateNaci.Text.Trim()) ? "" : "*Formato de fecha nacimiento invalido." + System.Environment.NewLine;
             concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el  registro." + System.Environment.NewLine : "";
             validacion.validaRut(this.tRut.Text, this.tRut);
-            concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
+            //concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
             concadenacion += tEmail.Text.Trim().Length > 0 ? validacion.validaEmail(tEmail.Text.Trim()) ? "" : "*Correo electronico mal escrito, verifiquelo para continuar." + System.Environment.NewLine : "*Ingrese el correo electronico para completar el registro." + System.Environment.NewLine;
             Boolean ok = true;
             if (concadenacion.Length > 0){
