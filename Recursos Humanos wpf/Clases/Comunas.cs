@@ -8,22 +8,32 @@ namespace Recursos_Humanos_wpf.Clases
 {
     class Comunas
     {
+        public int id_region{get; set;}
         public int id_comuna { get; set; }
         public string nombre_comuna { get; set; }
 
         public Comunas() { }
+
+        public Comunas(int id_region){
+            this.id_region = id_region;
+        }
         public Comunas(int id, string nombre) {
             this.id_comuna = id;
             this.nombre_comuna = nombre;
         }//fin constructor
 
         //buscar comunas mediante la id de la region
-        public List<Comunas> FindByidReg(int id_region) {
+        public List<Comunas> FindByidReg() {
             List<Comunas> listcom = null;
             try
             {
+<<<<<<< HEAD
                 string sql = "select * from comunas where region_id=" + id_region.ToString() +" order by nombre";
                 Comunas comuns = null;  
+=======
+                string sql = "select * from comunas where region_id= " + this.id_region+" order by nombre";
+                Comunas comuns = null;
+>>>>>>> f3aba21aec72f3ca9bfa6def020e12010699fd14
                 listcom = new List<Comunas>();
                 foreach (DataRow dtrow in new Clases.Consultas().QueryDB(sql).Rows)
                 {
