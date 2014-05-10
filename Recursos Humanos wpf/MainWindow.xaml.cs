@@ -119,23 +119,20 @@ namespace Recursos_Humanos_wpf
                         if (afp.nombre_afp.Equals(arreglo[9].ToString())) cAfp.SelectedIndex = i;
                         i++;
                     }
-<<<<<<< HEAD
+
                     c = 0;
                     foreach(Regiones region in new Regiones().findAll())
                     {
                         Regi.Items.Add(region.nombre);
                         if(region.nombre.Equals(arreglo[11].ToString()))Regi.SelectedIndex=i;
-                           foreach (Comunas comuna in new Comunas().FindByidReg(region.id_region))
+                        foreach (Comunas comuna in new Comunas(region.id_region).FindByidReg())
                          { 
                             Comu.Items.Add(comuna.nombre_comuna);
                             if (comuna.nombre_comuna.Equals(arreglo[6].ToString())) Comu.SelectedIndex = c;
                                c++;//busqueda de comuna
-                           }//fin buscar comuna
+                        }//fin buscar comuna
                            i++;//busqueda de region
-                           }//fin buscar region
-=======
-
->>>>>>> f3aba21aec72f3ca9bfa6def020e12010699fd14
+                   }//fin buscar region
                     tYear.Text = arreglo[10].ToString();
                     tPhone.Text = arreglo[12].ToString();
                     tEmail.Text = arreglo[13].ToString();
@@ -179,36 +176,23 @@ namespace Recursos_Humanos_wpf
                 listDpto = new Departamento().findAll();
                 listAfp = new Afp().findAll();
                 listSalud = new Salud().findAll();
+                listReg = new Regiones().findAll();
+                listCom = new Comunas(this.Regi.SelectedIndex + 1).FindByidReg();
+
+
                 Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
-                                            int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.tAdress.Text.Trim(),
+                                            int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
                                             this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
-                                            this.tDateNaci.Text.Trim(), this.tComuna.Text.Trim(), this.tRegion.Text.Trim(),
+                                            this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(), listReg[this.Regi.SelectedIndex].id_region.ToString(),
                                             listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
                                             );
 
                 if (per.Save() > 0)
                 {
-<<<<<<< HEAD
-                    byte[] foto = File.ReadAllBytes(path.Content.ToString());
-                    listDpto = new Departamento().findAll();
-                    listAfp = new Afp().findAll();
-                    listSalud = new Salud().findAll();
-                    listReg = new Regiones().findAll();
-                    listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex+1);
-                    
 
-                    Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
-                                                int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
-                                                this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
-                                                this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(), listReg[this.Regi.SelectedIndex].id_region.ToString(),
-                                                listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
-                                                );
-                    
-                    if (per.Save() > 0)
-=======
                     Personal_Departamento pd = new Personal_Departamento(new Personal(this.tRut.Text.Trim()).get_idPersonal(), listDpto[this.cDepto.SelectedIndex].id);
                     if (pd.save() > 0)
->>>>>>> f3aba21aec72f3ca9bfa6def020e12010699fd14
+
                     {
                         listAutocomplet = new Clases.Personal().findAll(0);
                         this.cBusqueda.IsEnabled = true;
@@ -240,7 +224,7 @@ namespace Recursos_Humanos_wpf
             listSalud = new Salud().findAll();
             listDpto = new Departamento().findAll();
             listReg = new Regiones().findAll();
-            listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex + 1);
+            listCom = new Comunas(this.Regi.SelectedIndex + 1).FindByidReg();
             if (validacion.validaFecha(this.tDateNaci.Text.Trim()))
             {
                 Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(), int.Parse(this.tYear.Text.Trim()),
@@ -395,7 +379,7 @@ namespace Recursos_Humanos_wpf
                 {
                     listCargo = new Cargo().findAll();
                     listTipoContrato = new TipoContrato().findAll();
-                    Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.tAdress.Text,
+                    Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.Tdireccion.Text,
                                                             listCargo[this.cCargo.SelectedIndex].cargo, this.cDepto.Text.Trim(),
                                                             listTipoContrato[this.cTypeContract.SelectedIndex].tipo, 25000, this.tDateEnd.Text,
                                                             this.cAfp.Text.Trim(), this.cSalud.Text.Trim()
@@ -659,7 +643,7 @@ namespace Recursos_Humanos_wpf
             concadenacion += validacion.validaFecha(this.tDateNaci.Text.Trim()) ? "" : "*Formato de fecha nacimiento invalido." + System.Environment.NewLine;
             concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el  registro." + System.Environment.NewLine : "";
             validacion.validaRut(this.tRut.Text, this.tRut);
-            concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
+            //concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
             concadenacion += tEmail.Text.Trim().Length > 0 ? validacion.validaEmail(tEmail.Text.Trim()) ? "" : "*Correo electronico mal escrito, verifiquelo para continuar." + System.Environment.NewLine : "*Ingrese el correo electronico para completar el registro." + System.Environment.NewLine;
             Boolean ok = true;
             if (concadenacion.Length > 0)
@@ -742,13 +726,10 @@ namespace Recursos_Humanos_wpf
         private void Loadreg_Click(object sender, MouseButtonEventArgs e)
         {
             this.Regi.Items.Clear();
-<<<<<<< HEAD
+
             foreach(Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
         }
-=======
-            foreach (Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
 
->>>>>>> f3aba21aec72f3ca9bfa6def020e12010699fd14
 
         private void Tdireccion_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
