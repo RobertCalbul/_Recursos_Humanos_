@@ -709,8 +709,7 @@ namespace Recursos_Humanos_wpf
         private void Loadcom_Click(object sender, MouseButtonEventArgs e)
         {
             this.Comu.Items.Clear();
-            int busqueda = this.Regi.SelectedIndex + 1;
-            foreach (Comunas comuna in new Comunas().FindByidReg(busqueda)) this.Comu.Items.Add(comuna.nombre_comuna);
+            foreach (Comunas comuna in new Comunas(this.Regi.SelectedIndex + 1).FindByidReg()) this.Comu.Items.Add(comuna.nombre_comuna);
 
         }
 
