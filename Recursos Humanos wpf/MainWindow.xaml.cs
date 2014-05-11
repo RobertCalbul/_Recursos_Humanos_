@@ -131,19 +131,23 @@ namespace Recursos_Humanos_wpf
                         if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i;
                         i++;
                     }
-                    c = 0;
-                    foreach(Regiones region in new Regiones().findAll())
+                    i = 0;
+                    foreach (Regiones region in new Regiones().findAll())
                     {
                         Regi.Items.Add(region.nombre);
-                        if(region.nombre.Equals(arreglo[11].ToString()))Regi.SelectedIndex=i;
-                           foreach (Comunas comuna in new Comunas().FindByidReg(region.id_region))
-                         { 
-                            Comu.Items.Add(comuna.nombre_comuna);
-                            if (comuna.nombre_comuna.Equals(arreglo[6].ToString())) Comu.SelectedIndex = c;
-                               c++;//busqueda de comuna
-                           }//fin buscar comuna
-                           i++;//busqueda de region
-                           }//fin buscar region
+                        //El region.id_region habia que pasarlo a string ;)
+                        if (region.id_region.ToString().Equals(arreglo[11].ToString()))
+                        {
+                            Regi.SelectedIndex = i;
+                            foreach (Comunas comuna in new Comunas().FindByidReg(region.id_region))
+                            {
+                                Comu.Items.Add(comuna.nombre_comuna);
+                                if (comuna.id_comuna.ToString().Equals(arreglo[6].ToString())) Comu.SelectedIndex = c;
+                                c++;//busqueda de comuna
+                            }//fin buscar comuna
+                        }
+                        i++;//busqueda de region
+                    }//fin buscar region
                     tYear.Text = arreglo[10].ToString();
                     tPhone.Text = arreglo[12].ToString();
                     tEmail.Text = arreglo[13].ToString();
