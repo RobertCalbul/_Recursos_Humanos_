@@ -768,6 +768,7 @@ namespace Recursos_Humanos_wpf
         private void bAcceder_Click(object sender, RoutedEventArgs e)
         {
             animacionLogeo.Begin();
+            animacionPresentacion.Begin();
         }
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
