@@ -752,9 +752,19 @@ namespace Recursos_Humanos_wpf
         {
             validacion.validaString(e);
         }
-/*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
-/*>>>>FIN VALIDACIONES<<<<<*/
+        private void Regi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Al cambiar la region, reseteo el combobox de las comunas
+            foreach (Comunas comuna in new Comunas().FindByidReg(Regi.SelectedIndex))
+            {
+                Comu.Items.Clear();
+                Comu.Items.Add(comuna.nombre_comuna);
+            }
+        }
+        /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
+
+        /*>>>>FIN VALIDACIONES<<<<<*/
     }
 
 }
