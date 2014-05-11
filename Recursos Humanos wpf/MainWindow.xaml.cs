@@ -87,6 +87,7 @@ namespace Recursos_Humanos_wpf
             if (!value.Equals(""))
             {
                 grid5.IsEnabled = true;
+                tDateNaci.IsEnabled = false;//solo editable por el calendario
                 //btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 if (arreglo != null)
