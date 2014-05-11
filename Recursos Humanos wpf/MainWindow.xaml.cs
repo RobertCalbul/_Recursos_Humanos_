@@ -764,6 +764,11 @@ namespace Recursos_Humanos_wpf
                 Comu.Items.Add(comuna.nombre_comuna);
             }
         }
+
+        private void bAcceder_Click(object sender, RoutedEventArgs e)
+        {
+            animacionLogeo.Begin();
+        }
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
         /*>>>>FIN VALIDACIONES<<<<<*/
