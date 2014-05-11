@@ -35,7 +35,7 @@
                 </Grid>
                 <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2">
 
-                    <!--AQUI ESTABLEZCO EL CONTROL AL CUAL ASIGNARE UNA ANIMACION, en este caso, la grid-->
+                    <!--ANIMACION, en este caso, la grid-->
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <TranslateTransform x:Name="TTranslateX" />
@@ -46,9 +46,12 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard Name="objBeginStoryBoard">
                                     <Storyboard Name="animacionLogeo">
-                                        <DoubleAnimation x:Name="ElementoX" Storyboard.TargetName="TTranslateX"
+                                        <DoubleAnimation x:Name="ElementoX" Storyboard.TargetName="gridLogeo"
+                                                     Storyboard.TargetProperty="Opacity"     
+                                                     From="1.0" To="0.0" Duration="0:0:1"/>
+                                        <DoubleAnimation x:Name="ElementoX2" Storyboard.TargetName="TTranslateX"
                                                      Storyboard.TargetProperty="X"
-                                                     From="0" To="-500" Duration="0:0:1"/>
+                                                     From="0" To="-500" Duration="0:0:10"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
