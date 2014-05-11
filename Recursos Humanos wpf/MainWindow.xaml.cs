@@ -662,7 +662,9 @@ namespace Recursos_Humanos_wpf
             concadenacion += path.Content.ToString().Equals("1")? "*Ingrese una foto de perfil para continuar el registro" + System.Environment.NewLine : "";
             concadenacion += string.IsNullOrEmpty(this.tEmail.Text.Trim()) ? "*Ingrese el correo electronico para completar el registro" + System.Environment.NewLine : "";
             concadenacion += validacion.validaFecha(this.tDateNaci.Text.Trim()) ? "" : "*Formato de fecha nacimiento invalido." + System.Environment.NewLine;
-            concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el  registro." + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(this.tDateNaci.Text.Trim()) ? "*Ingrese fecha nacimiento para completar el registro." + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(this.Regi.Text.Trim()) ? "*Seleccione una region de residencia." + System.Environment.NewLine : "";
+            concadenacion += string.IsNullOrEmpty(this.Comu.Text.Trim()) ? "*Seleccione una comuna de residencia." + System.Environment.NewLine : "";
             validacion.validaRut(this.tRut.Text, this.tRut);
             //concadenacion += Rutok == true ? "" : "*Ingrese un rut valido." + System.Environment.NewLine;
             concadenacion += tEmail.Text.Trim().Length > 0 ? validacion.validaEmail(tEmail.Text.Trim()) ? "" : "*Correo electronico mal escrito, verifiquelo para continuar." + System.Environment.NewLine : "*Ingrese el correo electronico para completar el registro." + System.Environment.NewLine;
