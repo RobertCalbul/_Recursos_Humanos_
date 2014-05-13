@@ -34,7 +34,7 @@
                     <Label Content="Lynx" Height="41" Margin="4,4,0,0" x:Name="label2" VerticalAlignment="Top" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" />
                     <Label Content="soft" Height="41" HorizontalAlignment="Left" Margin="65,6,0,0" x:Name="label3" VerticalAlignment="Top" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
                 </Grid>
-                <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" x:Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2" Panel.ZIndex="-2">
+                <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" x:Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2">
 
                     <!--ANIMACION del logeo-->
                     <Grid.RenderTransform>
@@ -184,7 +184,7 @@
                     <Label Content="Editar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnUpdateReg" VerticalAlignment="Bottom" Width="115" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" />
                     <Label Content="Cancelar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" x:Name="btnCancelAdd" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" />
                     <Label Content="Agregar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnAddUser" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" />
-                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" x:Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC" Panel.ZIndex="-1">
+                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" x:Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC">
 
                         <!--ANIMACION de de la presentacion-->
                         <Grid.RenderTransform>

@@ -167,7 +167,7 @@ namespace Recursos_Humanos_wpf
                 } loadDataContract(tRut.Text.Trim());
             }
         }
-        //INGRESA NUEVO USUARIO
+        // click en agregar usuario
         private void iAddUser_Click(object sender, MouseButtonEventArgs e)
         {
 
@@ -191,7 +191,7 @@ namespace Recursos_Humanos_wpf
             this.cBusqueda.Text = "";
             loadDataContract("");
         }
-        
+        //INGRESA NUEVO USUARIO
         private void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {   this.tRut.IsEnabled = true;
             this.iAddUser.IsEnabled = true;
@@ -239,9 +239,9 @@ namespace Recursos_Humanos_wpf
                         }
                     }
                     else {
-                        new Dialog("COMUNA: "+listCom[this.Comu.SelectedIndex].id_comuna.ToString()
-                                 +" REGION: " + listReg[this.Regi.SelectedIndex].id_region.ToString()
-                                 + " afp: " + listAfp[this.cAfp.SelectedIndex].id).Show();
+                        //new Dialog("COMUNA: "+listCom[this.Comu.SelectedIndex].id_comuna.ToString()
+                        //         +" REGION: " + listReg[this.Regi.SelectedIndex].id_region.ToString()
+                        //         +" afp: " +listAfp[this.cAfp.SelectedIndex].id).Show();
                         new Dialog("Personal no pudo ser ingresado").Show();
                     }
                 }
