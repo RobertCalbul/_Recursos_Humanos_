@@ -73,7 +73,9 @@
     <Compile Include="Clases\Cargo.cs" />
     <Compile Include="Clases\Comunas.cs" />
     <Compile Include="Clases\Departamento.cs" />
+    <Compile Include="Clases\Banco_Personal.cs" />
     <Compile Include="Clases\Personal_Departamento.cs" />
+    <Compile Include="Clases\Banco.cs" />
     <Compile Include="Clases\Regiones.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Clases\TipoContrato.cs" />

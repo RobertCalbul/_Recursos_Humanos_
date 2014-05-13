@@ -22,8 +22,8 @@ namespace Recursos_Humanos_wpf.Clases
         public string cta_bancaria { get; set; }
         public string nacionalidad { get; set; }
         public string fecha_nacimiento { get; set; }
-        public string comuna { get; set; }
-        public string region_residencia {get; set;}
+        public int comuna { get; set; }
+        public int region_residencia {get; set;}
         public int AFP_id_afp { get; set; }
         public int salud_id_salud { get; set; }
 
@@ -37,7 +37,7 @@ namespace Recursos_Humanos_wpf.Clases
         
         //ESTE ES EL ACTUAL
         public Personal(string rut, string nombre, string apellido, int edad ,byte[] foto_portada,string telefono, string direccion,string email, 
-            string cta_bancaria, string nacionalidad, string fecha_nacimiento, string comuna, string region_residencia, int id_afp, int id_salud ) 
+            string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud ) 
         {
             this.rut = rut;
             this.nombre = nombre;
@@ -56,7 +56,7 @@ namespace Recursos_Humanos_wpf.Clases
             this.salud_id_salud = id_salud;
         }
         public Personal(string rut, string nombre, string apellido, int edad, string telefono, string direccion, string email,
-    string cta_bancaria, string nacionalidad, string fecha_nacimiento, string comuna, string region_residencia, int id_afp, int id_salud)
+    string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud)
         {
             this.rut = rut;
             this.nombre = nombre;
@@ -117,16 +117,38 @@ namespace Recursos_Humanos_wpf.Clases
         {
             object[] arreglo = null;
             try
-            {
-                arreglo = new object[16];
+            {   /*
+                 *0. foto portada 
+                 *1. nombre 
+                 *2. apellido
+                 *3. rut
+                 *4. fecha
+                 *5. fecha_nacimiento
+                 *6. direccion
+                 *7. comuna
+                 *8. salud
+                 *9. departamento
+                 *10. afp
+                 *11. edad
+                 *12. region_residencia
+                 *13. telefono
+                 *14. email
+                 *15. nacionalidad
+                 *16. cta_bancaria
+                 *17. banco
+                 * 
+                 */
+                arreglo = new object[17];
                 string sql =    "SELECT p.foto_portada,p.nombre,p.apellido,p.rut,p.fecha_nacimiento,p.direccion,p.comuna,"
                                 +" s.nombre AS salud,d.nombre AS depto,a.nombre AS afp,p.edad,p.region_residencia,"
-                                +" p.telefono,p.email,p.cta_bancaria,p.nacionalidad"
+                                +" p.telefono,p.email,p.nacionalidad,bp.cta_bancaria,b.nombre as banco"
                                 +" FROM personal AS p"
                                 +" INNER JOIN afp AS a ON(p.AFP_id_afp = a.id_afp)"
                                 +" INNER JOIN salud AS s ON(p.salud_id_salud = s.id_salud)"
                                 +" INNER JOIN personal_departamento AS pd ON(p.id_personal = pd.id_personal)"
                                 +" INNER JOIN departamento AS d ON(pd.id_departamento = d.id_departamento)"
+                                +" INNER JOIN banco_personal AS bp ON(bp.personal_id_personal = p.id_personal)"
+                                +" INNER JOIN banco AS b ON(b.id_banco = bp.banco_id_banco)"
                                 + " WHERE p." + paramSearch + " = '" + value + "'";
                 DataTable dataTable = new Clases.Consultas().QueryDB(sql);
                 if (dataTable.Rows.Count != 0)
@@ -148,8 +170,9 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[11] = dtRow["region_residencia"];
                         arreglo[12] = dtRow["telefono"];
                         arreglo[13] = dtRow["email"];
-                        arreglo[14] = dtRow["cta_bancaria"];
-                        arreglo[15] = dtRow["nacionalidad"];
+                        arreglo[14] = dtRow["nacionalidad"];
+                        arreglo[15] = dtRow["cta_bancaria"];
+                        arreglo[16] = dtRow["banco"];
                     } 
                 }else new Dialog("No se encontraron coincidencias").Show();
                 return arreglo;
@@ -167,8 +190,8 @@ namespace Recursos_Humanos_wpf.Clases
                 conex = new Conexion().getConexion();
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = conex;
-                command.CommandText = "Insert into personal (rut,nombre,apellido,edad,foto_portada,telefono,direccion,email,cta_bancaria,nacionalidad,fecha_nacimiento,comuna,region_residencia,AFP_id_afp,salud_id_salud)"
-                + " VALUES (?rut, ?nombre, ?apellido,?edad,?foto_portada,?telefono,?direccion,?email,?cta_bancaria,?nacionalidad,?fecha_nacimiento,?comuna,?region_residencia,?AFP_id_afp,?salud_id_salud);";
+                command.CommandText = "Insert into personal (rut,nombre,apellido,edad,foto_portada,telefono,direccion,email,nacionalidad,fecha_nacimiento,AFP_id_afp,salud_id_salud,comuna,region_residencia)"
+                + " VALUES (?rut, ?nombre, ?apellido,?edad,?foto_portada,?telefono,?direccion,?email,?nacionalidad,?fecha_nacimiento,?comuna,?region_residencia,?AFP_id_afp,?salud_id_salud);";
                 MySqlParameter fileNameParameter = new MySqlParameter("?rut", MySqlDbType.VarChar, 20);
                 MySqlParameter fileNameParameter2 = new MySqlParameter("?nombre", MySqlDbType.VarChar, 20);
                 MySqlParameter fileNameParameter3 = new MySqlParameter("?apellido", MySqlDbType.VarChar, 45);
@@ -177,11 +200,10 @@ namespace Recursos_Humanos_wpf.Clases
                 MySqlParameter fileNameParameter6 = new MySqlParameter("?telefono", MySqlDbType.VarChar, 45);
                 MySqlParameter fileNameParameter7 = new MySqlParameter("?direccion", MySqlDbType.VarChar, 45);
                 MySqlParameter fileNameParameter8 = new MySqlParameter("?email", MySqlDbType.VarChar, 45);
-                MySqlParameter fileNameParameter9 = new MySqlParameter("?cta_bancaria", MySqlDbType.VarChar, 45);
                 MySqlParameter fileNameParameter10 = new MySqlParameter("?nacionalidad", MySqlDbType.VarChar, 45);
                 MySqlParameter fileNameParameter11 = new MySqlParameter("?fecha_nacimiento", MySqlDbType.VarChar, 45);
-                MySqlParameter fileNameParameter12 = new MySqlParameter("?comuna", MySqlDbType.VarChar, 45);
-                MySqlParameter fileNameParameter13 = new MySqlParameter("?region_residencia", MySqlDbType.VarChar, 45);
+                MySqlParameter fileNameParameter12 = new MySqlParameter("?comuna", MySqlDbType.Int32, 11);
+                MySqlParameter fileNameParameter13 = new MySqlParameter("?region_residencia", MySqlDbType.Int32, 11);
                 MySqlParameter fileNameParameter14 = new MySqlParameter("?AFP_id_afp", MySqlDbType.Int32, 11);
                 MySqlParameter fileNameParameter15 = new MySqlParameter("?salud_id_salud", MySqlDbType.Int32, 11);
 
@@ -194,7 +216,6 @@ namespace Recursos_Humanos_wpf.Clases
                 fileNameParameter6.Value = this.telefono;
                 fileNameParameter7.Value = this.direccion;
                 fileNameParameter8.Value = this.email;
-                fileNameParameter9.Value = this.cta_bancaria;
                 fileNameParameter10.Value = this.nacionalidad;
                 fileNameParameter11.Value = this.fecha_nacimiento;
                 fileNameParameter12.Value = this.comuna;
@@ -211,7 +232,6 @@ namespace Recursos_Humanos_wpf.Clases
                 command.Parameters.Add(fileNameParameter6);
                 command.Parameters.Add(fileNameParameter7);
                 command.Parameters.Add(fileNameParameter8);
-                command.Parameters.Add(fileNameParameter9);
                 command.Parameters.Add(fileNameParameter10);
                 command.Parameters.Add(fileNameParameter11);
                 command.Parameters.Add(fileNameParameter12);

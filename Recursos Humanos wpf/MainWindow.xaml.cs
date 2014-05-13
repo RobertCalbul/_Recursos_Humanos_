@@ -39,6 +39,7 @@ namespace Recursos_Humanos_wpf
         List<TipoContrato> listTipoContrato = null;
         List<Regiones> listReg = null;
         List<Comunas> listCom = null;
+        List<Banco> listBank = null;
         Validaciones validacion = new Validaciones();
         public MainWindow()
         {
@@ -99,36 +100,37 @@ namespace Recursos_Humanos_wpf
                     imagenes.StreamSource = stri;
                     imagenes.EndInit();
                     iPerfil.Source = imagenes;
-                    tName.Text = arreglo[1].ToString();
-                    tSurname.Text = arreglo[2].ToString();
-                    tRut.Text = arreglo[3].ToString();
-                    tDateNaci.Text = arreglo[4].ToString();
-                    Tdireccion.Text = arreglo[5].ToString();
+                    tName.Text = arreglo[1].ToString(); //nombre
+                    tSurname.Text = arreglo[2].ToString(); //apellido
+                    tRut.Text = arreglo[3].ToString(); //rut
+                    tDateNaci.Text = arreglo[4].ToString(); //fecha_nacimiento
+                    Tdireccion.Text = arreglo[5].ToString(); // direccion
                     Regi.Items.Clear();
                     Comu.Items.Clear();
                     cSalud.Items.Clear();
                     cDepto.Items.Clear();
                     cAfp.Items.Clear();
+                    tBank.Items.Clear();
                     int i = 0;
                     int c = 0;
                     foreach (Salud salud in new Salud().findAll())
                     {
                         cSalud.Items.Add(salud.name_salud);
-                        if (salud.name_salud.Equals(arreglo[7].ToString())) cSalud.SelectedIndex = i;
+                        if (salud.name_salud.Equals(arreglo[7].ToString())) cSalud.SelectedIndex = i; //salud
                         i++;
                     }
                     i = 0;
                     foreach (Departamento dpto in new Departamento().findAll())
                     {
                         cDepto.Items.Add(dpto.name);
-                        if (dpto.name.Equals(arreglo[8].ToString())) cDepto.SelectedIndex = i;
+                        if (dpto.name.Equals(arreglo[8].ToString())) cDepto.SelectedIndex = i; //dpto
                         i++;
                     }
                     i = 0;
                     foreach (Afp afp in new Afp().findAll()) 
                     {
                         cAfp.Items.Add(afp.nombre_afp);
-                        if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i;
+                        if (afp.nombre_afp.Equals(arreglo[9].ToString()))cAfp.SelectedIndex = i; //afp
                         i++;
                     }
                     i = 0;
@@ -136,23 +138,32 @@ namespace Recursos_Humanos_wpf
                     {
                         Regi.Items.Add(region.nombre);
                         //El region.id_region habia que pasarlo a string ;)
-                        if (region.id_region.ToString().Equals(arreglo[11].ToString()))
+                        if (region.id_region.ToString().Equals(arreglo[11].ToString())) //region_residencia
                         {
                             Regi.SelectedIndex = i;
                             foreach (Comunas comuna in new Comunas().FindByidReg(region.id_region))
                             {
                                 Comu.Items.Add(comuna.nombre_comuna);
-                                if (comuna.id_comuna.ToString().Equals(arreglo[6].ToString())) Comu.SelectedIndex = c;
+                                if (comuna.id_comuna.ToString().Equals(arreglo[6].ToString())) Comu.SelectedIndex = c; //comuna
                                 c++;//busqueda de comuna
                             }//fin buscar comuna
                         }
                         i++;//busqueda de region
                     }//fin buscar region
-                    tYear.Text = arreglo[10].ToString();
-                    tPhone.Text = arreglo[12].ToString();
-                    tEmail.Text = arreglo[13].ToString();
-                    tCtaBancaria.Text = arreglo[14].ToString();
-                    tNacionalidad.Text = arreglo[15].ToString();
+                    tYear.Text = arreglo[10].ToString(); //edad
+                    tPhone.Text = arreglo[12].ToString(); //telefono
+                    tEmail.Text = arreglo[13].ToString(); //email
+                    tNacionalidad.Text = arreglo[14].ToString(); //nacionalidad
+                    tCtaBancaria.Text = arreglo[15].ToString(); // cta_bancaria
+                    i = 0;
+                    foreach (Banco banco in new Banco().findAll())
+                    {
+                        tBank.Items.Add(banco.nombre);
+                        if (banco.nombre.Equals(arreglo[16].ToString())) tBank.SelectedIndex = i; //nombre_banco
+                        i++;
+                    }
+                    i = 0;
+                    
                 } loadDataContract(tRut.Text.Trim());
             }
         }
@@ -192,19 +203,21 @@ namespace Recursos_Humanos_wpf
                     listSalud = new Salud().findAll();
                     listReg = new Regiones().findAll();
                     listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex+1);
+                    listBank = new Banco().findAll();
                     
 
                     Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
                                                 int.Parse(this.tYear.Text.Trim()), foto, this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
                                                 this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
-                                                this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(), listReg[this.Regi.SelectedIndex].id_region.ToString(),
+                                                this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna, listReg[this.Regi.SelectedIndex].id_region,
                                                 listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
                                                 );
                     
                     if (per.Save() > 0)
                     {
                         Personal_Departamento pd = new Personal_Departamento(new Personal(this.tRut.Text.Trim()).get_idPersonal(), listDpto[this.cDepto.SelectedIndex].id);
-                        if (pd.save() > 0)
+                        Banco_Personal bp = new Banco_Personal (listBank[this.tBank.SelectedIndex].id,new Personal(this.tRut.Text.Trim()).get_idPersonal(),tCtaBancaria.Text.Trim());
+                        if (pd.save() > 0 && bp.save() > 0)
                         {
                             listAutocomplet = new Clases.Personal().findAll(0);
                             this.cBusqueda.IsEnabled = true;
@@ -225,6 +238,9 @@ namespace Recursos_Humanos_wpf
                         }
                     }
                     else {
+                        new Dialog("COMUNA: "+listCom[this.Comu.SelectedIndex].id_comuna.ToString()
+                                 +" REGION: " + listReg[this.Regi.SelectedIndex].id_region.ToString()
+                                 + " afp: " + listAfp[this.cAfp.SelectedIndex].id).Show();
                         new Dialog("Personal no pudo ser ingresado").Show();
                     }
                 }
@@ -238,13 +254,17 @@ namespace Recursos_Humanos_wpf
             listDpto = new Departamento().findAll();
             listReg = new Regiones().findAll();
             listCom = new Comunas().FindByidReg(this.Regi.SelectedIndex + 1);
+            listBank = new Banco().findAll();
             if (validacion.validaFecha(this.tDateNaci.Text.Trim()))
             {
-                Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(), int.Parse(this.tYear.Text.Trim()),
-                                            this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(), this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(),
-                                            this.tNacionalidad.Text.Trim(), this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna.ToString(),
-                                            listReg[this.Regi.SelectedIndex].id_region.ToString(), listAfp[this.cAfp.SelectedIndex].id , listSalud[this.cSalud.SelectedIndex].id
-                                                    );
+
+                Personal per = new Personal(this.tRut.Text.Trim(), this.tName.Text.Trim(), this.tSurname.Text.Trim(),
+                                                int.Parse(this.tYear.Text.Trim()), this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
+                                                this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
+                                                this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna, listReg[this.Regi.SelectedIndex].id_region,
+                                                listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
+                                                );
+                
                 if (per.Update() > 0)
                 {
                     Search();
@@ -629,7 +649,7 @@ namespace Recursos_Humanos_wpf
             this.lName.Content = "";
             TextBox[] campos = { this.tRut, this.tName, this.tSurname, this.tYear, this.tPhone, this.Tdireccion,this.tEmail, this.tCtaBancaria, 
                                  this.tDateEnd, this.tDateInit, this.tStat, this.tDateNaci, this.tNacionalidad };
-            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo, this.Regi, this.Comu };
+            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo, this.Regi, this.Comu,this.tBank };
             foreach (TextBox x in campos) x.Text = "";
             foreach (ComboBox x in combos) x.Items.Clear();
             this.iPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/icono.png"));
@@ -769,6 +789,17 @@ namespace Recursos_Humanos_wpf
         {
             animacionLogeo.Begin();
             animacionPresentacion.Begin();
+        }
+
+        private void cargarBanco(object sender, MouseButtonEventArgs e)
+        {
+            this.tBank.Items.Clear();
+            foreach (Banco banco in new Banco().findAll()) this.tBank.Items.Add(banco.nombre);
+        }
+
+        private void Comu_QueryCursor(object sender, QueryCursorEventArgs e)
+        {
+
         }
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
