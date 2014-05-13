@@ -149,7 +149,7 @@ namespace Recursos_Humanos_wpf.Clases
                                 +" INNER JOIN departamento AS d ON(pd.id_departamento = d.id_departamento)"
                                 +" INNER JOIN banco_personal AS bp ON(bp.personal_id_personal = p.id_personal)"
                                 +" INNER JOIN banco AS b ON(b.id_banco = bp.banco_id_banco)"
-                                + " WHERE p." + paramSearch + " = '" + value + "'";
+                                +" WHERE p." + paramSearch + " = '" + value + "'";
                 DataTable dataTable = new Clases.Consultas().QueryDB(sql);
                 if (dataTable.Rows.Count != 0)
                 {
@@ -190,6 +190,7 @@ namespace Recursos_Humanos_wpf.Clases
                 conex = new Conexion().getConexion();
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = conex;
+                MessageBox.Show(this.AFP_id_afp.ToString());
                 command.CommandText = "Insert into personal (rut,nombre,apellido,edad,foto_portada,telefono,direccion,email,nacionalidad,fecha_nacimiento,AFP_id_afp,salud_id_salud,comuna,region_residencia)"
                 + " VALUES (?rut, ?nombre, ?apellido,?edad,?foto_portada,?telefono,?direccion,?email,?nacionalidad,?fecha_nacimiento,?comuna,?region_residencia,?AFP_id_afp,?salud_id_salud);";
                 MySqlParameter fileNameParameter = new MySqlParameter("?rut", MySqlDbType.VarChar, 20);
