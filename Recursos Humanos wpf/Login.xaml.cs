@@ -25,7 +25,7 @@ namespace Recursos_Humanos_wpf
 
         private void btnLogin_Click(object sender, MouseButtonEventArgs e)
         {
-            if (tUser.Text.Equals("1") && tPassword.Text.Equals("1"))
+           if (tUser.Text.Equals("1") && tPassword.Text.Equals("1"))
             {
                 new MainWindow().Show();
                 this.Close();

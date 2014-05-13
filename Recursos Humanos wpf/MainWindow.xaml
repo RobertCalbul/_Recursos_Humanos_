@@ -1,39 +1,40 @@
-﻿<Window x:Class="Recursos_Humanos_wpf.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Recursos_Humanos_wpf.MainWindow"
         Title="Lynxsoft" Height="768" Width="1024" Background="#FFE6E7E8" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Icon="Images/Icono.ico" ShowInTaskbar="True" VerticalAlignment="Center" HorizontalAlignment="Center" SizeToContent="WidthAndHeight" AllowDrop="True" UseLayoutRounding="True" VisualClearTypeHint="Enabled" VisualTextHintingMode="Animated" BorderBrush="#FF2D2D2D" BorderThickness="1">
-    
-    <DockPanel Height="732" Name="dockPanel1" Width="1000" Background="#FF33B5E5" >
-        
-        <DockPanel Height="732" Name="dockPanel2" Width="252" Background="#FFE6E7E8" VerticalAlignment="Bottom">
 
-            <Grid Height="732" Name="grid1" Width="256" Background="#FFE6E7E8" VerticalAlignment="Bottom">
+    <DockPanel Height="732" x:Name="dockPanel1" Width="1000" Background="#FF33B5E5" >
+
+        <DockPanel Height="732" x:Name="dockPanel2" Width="252" Background="#FFE6E7E8" VerticalAlignment="Bottom">
+
+            <Grid Height="732" x:Name="grid1" Width="256" Background="#FFE6E7E8" VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="203*" />
                     <ColumnDefinition Width="8*" />
                 </Grid.ColumnDefinitions>
-                <TextBox Height="28" Name="cBusqueda" VerticalAlignment="Top" Background="#FFE6E7E8" BorderBrush="#FF2D2D2D" SelectionBrush="#FF43E2E2" TextChanged="cBusqueda_TextChanged" Margin="18,97,8,0" Style="{StaticResource Search}" Padding="0" FontFamily="Futura LT" FontSize="16" />
-                <Label Content="Buscar funcionario" Height="28" HorizontalAlignment="Left" Margin="12,74,0,0" Name="label1" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" />
-                <Image Height="20" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Images/lupa.png" MouseLeftButtonUp="btnBuscar_click" Margin="213,101,0,0" Opacity="0.5" Visibility="Visible" />
-                <Separator Height="2" HorizontalAlignment="Left" Name="separator1" VerticalAlignment="Top" Width="220" Background="#FF2D2D2D" Margin="18,584,0,0" FontFamily="Futura LT" FontSize="16" />
-                <Separator Height="2" HorizontalAlignment="Left" Margin="18,696,0,0" Name="separator2" VerticalAlignment="Top" Width="220" Background="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" />
-                <RadioButton Content="Rut" Height="28" Margin="18,137,0,0" Name="rbRut" VerticalAlignment="Top" Checked="RadioButtonSearch" HorizontalAlignment="Stretch" FontFamily="Futura LT" FontSize="16" />
-                <RadioButton Content="Nombres" Height="28" HorizontalAlignment="Stretch" Margin="18,165,0,0" Name="rbName" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
-                <RadioButton Content="Apellidos" HorizontalAlignment="Stretch" Margin="18,193,0,0" Name="rbSurname" Checked="RadioButtonSearch" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" Height="28" />
-                <RadioButton Content="Telefono" Height="28" HorizontalAlignment="Stretch" Margin="18,221,0,0" Name="rbPhone" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
-                <RadioButton Content="Direccion" HorizontalAlignment="Stretch" Margin="18,249,0,269" Name="rbAdress" Checked="RadioButtonSearch" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" Height="28" />
-                <RadioButton Content="Email" Height="28" HorizontalAlignment="Stretch" Margin="18,277,0,0" Name="rbEmail" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
-                <CheckBox Content="Administrativo" HorizontalAlignment="Left" Margin="33,601,0,0" Name="checkBox1" FontFamily="Futura LT" FontSize="16" Height="28" VerticalAlignment="Top" />
-                <CheckBox Content="Personal Aseo" Height="28" HorizontalAlignment="Left" Margin="33,626,0,0" Name="checkBox2" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
-                <CheckBox Content="Operarios" HorizontalAlignment="Left" Margin="33,649,0,0" Name="checkBox3" FontFamily="Futura LT" FontSize="16" Height="28" VerticalAlignment="Top" />
-                <CheckBox Content="Externos" Height="28" HorizontalAlignment="Left" Margin="33,672,0,0" Name="checkBox4" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
-                <Image Height="28" HorizontalAlignment="Left" Margin="210,555,0,0" Name="iAddUser" Stretch="Fill" VerticalAlignment="Top" Width="28" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" />
-                <ListBox HorizontalAlignment="Left" Margin="18,124,0,0" Name="lAutoComplete" VerticalAlignment="Top" Width="220" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" />
-                <Grid Grid.ColumnSpan="2" Height="53" Name="grid4" VerticalAlignment="Top" Background="#FF33B5E5" MouseLeftButtonDown="moveWindow">
-                    <Label Content="Lynx" Height="41" Margin="4,4,0,0" Name="label2" VerticalAlignment="Top" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" />
-                    <Label Content="soft" Height="41" HorizontalAlignment="Left" Margin="65,6,0,0" Name="label3" VerticalAlignment="Top" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
+                <TextBox Height="28" x:Name="cBusqueda" VerticalAlignment="Top" Background="#FFE6E7E8" BorderBrush="#FF2D2D2D" SelectionBrush="#FF43E2E2" TextChanged="cBusqueda_TextChanged" Margin="18,97,8,0" Style="{StaticResource Search}" Padding="0" FontFamily="Futura LT" FontSize="16" />
+                <Label Content="Buscar funcionario" Height="28" HorizontalAlignment="Left" Margin="12,74,0,0" x:Name="label1" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" />
+                <Image Height="20" HorizontalAlignment="Left" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Images/lupa.png" MouseLeftButtonUp="btnBuscar_click" Margin="213,101,0,0" Opacity="0.5" Visibility="Visible" />
+                <Separator Height="2" HorizontalAlignment="Left" x:Name="separator1" VerticalAlignment="Top" Width="220" Background="#FF2D2D2D" Margin="18,584,0,0" FontFamily="Futura LT" FontSize="16" />
+                <Separator Height="2" HorizontalAlignment="Left" Margin="18,696,0,0" x:Name="separator2" VerticalAlignment="Top" Width="220" Background="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" />
+                <RadioButton Content="Rut" Height="28" Margin="18,137,0,0" x:Name="rbRut" VerticalAlignment="Top" Checked="RadioButtonSearch" HorizontalAlignment="Stretch" FontFamily="Futura LT" FontSize="16" />
+                <RadioButton Content="Nombres" Height="28" HorizontalAlignment="Stretch" Margin="18,165,0,0" x:Name="rbName" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
+                <RadioButton Content="Apellidos" HorizontalAlignment="Stretch" Margin="18,193,0,0" x:Name="rbSurname" Checked="RadioButtonSearch" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" Height="28" />
+                <RadioButton Content="Telefono" Height="28" HorizontalAlignment="Stretch" Margin="18,221,0,0" x:Name="rbPhone" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
+                <RadioButton Content="Direccion" HorizontalAlignment="Stretch" Margin="18,249,0,269" x:Name="rbAdress" Checked="RadioButtonSearch" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" Height="28" />
+                <RadioButton Content="Email" Height="28" HorizontalAlignment="Stretch" Margin="18,277,0,0" x:Name="rbEmail" VerticalAlignment="Top" Checked="RadioButtonSearch" FontFamily="Futura LT" FontSize="16" />
+                <CheckBox Content="Administrativo" HorizontalAlignment="Left" Margin="33,601,0,0" x:Name="checkBox1" FontFamily="Futura LT" FontSize="16" Height="28" VerticalAlignment="Top" />
+                <CheckBox Content="Personal Aseo" Height="28" HorizontalAlignment="Left" Margin="33,626,0,0" x:Name="checkBox2" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
+                <CheckBox Content="Operarios" HorizontalAlignment="Left" Margin="33,649,0,0" x:Name="checkBox3" FontFamily="Futura LT" FontSize="16" Height="28" VerticalAlignment="Top" />
+                <CheckBox Content="Externos" Height="28" HorizontalAlignment="Left" Margin="33,672,0,0" x:Name="checkBox4" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
+                <Image Height="28" HorizontalAlignment="Left" Margin="210,555,0,0" x:Name="iAddUser" Stretch="Fill" VerticalAlignment="Top" Width="28" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" />
+                <ListBox HorizontalAlignment="Left" Margin="18,124,0,0" x:Name="lAutoComplete" VerticalAlignment="Top" Width="220" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" />
+                <Grid Grid.ColumnSpan="2" Height="53" x:Name="grid4" VerticalAlignment="Top" Background="#FF33B5E5" MouseLeftButtonDown="moveWindow">
+                    <Label Content="Lynx" Height="41" Margin="4,4,0,0" x:Name="label2" VerticalAlignment="Top" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" />
+                    <Label Content="soft" Height="41" HorizontalAlignment="Left" Margin="65,6,0,0" x:Name="label3" VerticalAlignment="Top" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
                 </Grid>
-                <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2">
+                <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" x:Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2" Panel.ZIndex="-2">
 
                     <!--ANIMACION del logeo-->
                     <Grid.RenderTransform>
@@ -41,42 +42,52 @@
                             <TranslateTransform x:Name="TTranslateX" />
                         </TransformGroup>
                     </Grid.RenderTransform>
+<<<<<<< HEAD
                     <Grid.Triggers >
                         <EventTrigger  RoutedEvent="Grid.MouseLeftButtonUp">
                             <EventTrigger.Actions>
                                 <BeginStoryboard Name="objBeginStoryBoard">
                                     <Storyboard Name="animacionLogeo">
                                         <DoubleAnimation x:Name="opacidadLogeo" Storyboard.TargetName="gridLogeo"
+=======
+
+                    <Button Content="Acceder" Height="24" HorizontalAlignment="Left" Margin="131,168,0,0" Name="bAcceder" VerticalAlignment="Top" Width="82" FontSize="14" Click="bAcceder_Click" >
+                        <Button.Triggers >
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard Name="objBeginStoryBoard">
+                                        <Storyboard Name="animacionLogeo">
+                                            <DoubleAnimation x:Name="opacidadLogeo" Storyboard.TargetName="gridLogeo"
+>>>>>>> 145a6417d75b928d221f77bfa605c11b8a1783ea
                                                      Storyboard.TargetProperty="Opacity"     
                                                      From="1.0" To="0.0" Duration="0:0:1"/>
-                                        <DoubleAnimation x:Name="posicionX" Storyboard.TargetName="TTranslateX"
+                                            <DoubleAnimation x:Name="posicionX" Storyboard.TargetName="TTranslateX"
                                                      Storyboard.TargetProperty="X"
                                                      From="0" To="-500" Duration="0:0:5"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
-                    </Grid.Triggers>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Button.Triggers>
 
-
-                    <Button Content="Acceder" Height="24" HorizontalAlignment="Left" Margin="131,168,0,0" Name="bAcceder" VerticalAlignment="Top" Width="82" FontSize="14" Click="bAcceder_Click" />
-                    <Label Content="Usuario" Height="28" HorizontalAlignment="Left" Margin="38,43,0,0" Name="label24" VerticalAlignment="Top" Foreground="White" FontWeight="Normal" FontSize="16" Width="72" />
-                    <Label Content="Clave" Height="28" HorizontalAlignment="Left" Margin="38,108,0,0" Name="label26" VerticalAlignment="Top" FontSize="16" Foreground="White" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="43,71,0,0" Name="textBox1" VerticalAlignment="Top" Width="170" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="43,136,0,0" Name="textBox2" VerticalAlignment="Top" Width="170" />
+                    </Button>
+                    <Label Content="Usuario" Height="28" HorizontalAlignment="Left" Margin="38,43,0,0" x:Name="label24" VerticalAlignment="Top" Foreground="White" FontWeight="Normal" FontSize="16" Width="72" />
+                    <Label Content="Clave" Height="28" HorizontalAlignment="Left" Margin="38,108,0,0" x:Name="label26" VerticalAlignment="Top" FontSize="16" Foreground="White" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="43,71,0,0" x:Name="textBox1" VerticalAlignment="Top" Width="170" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="43,136,0,0" x:Name="textBox2" VerticalAlignment="Top" Width="170" />
                 </Grid>
             </Grid>
-            
+
         </DockPanel>
-        <DockPanel Height="732" Name="pInfo" Width="746" Background="#FFFFFFFF" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Grid Height="732" Name="grid2" Width="752" VerticalAlignment="Bottom" Background="#FF33B5E5" HorizontalAlignment="Center">
-                <Grid Height="680" HorizontalAlignment="Left" Margin="-3,0,0,-1" Name="grid5" VerticalAlignment="Bottom" Width="752" Background="#FFFFFFFC">
-                    <Label HorizontalAlignment="Left" Margin="23,10,0,0" Name="lName" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="32" FontFamily="Futura LT" IsEnabled="False" />
-                    <Label Height="28" HorizontalAlignment="Left" Margin="429,56,0,0" Name="lPuesto" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="18" FontFamily="Futura LT" />
-                    <TabControl Height="501" HorizontalAlignment="Left" Margin="11,75,0,0" Name="tabControl1" VerticalAlignment="Top" Background="#FF4185F4" BorderBrush="#FF4185F4" Padding="0" TabStripPlacement="Top" SelectedIndex="0" BorderThickness="0">
+        <DockPanel Height="732" x:Name="pInfo" Width="746" Background="#FFFFFFFF" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Grid Height="732" x:Name="grid2" Width="752" VerticalAlignment="Bottom" Background="#FF33B5E5" HorizontalAlignment="Center">
+                <Grid Height="680" HorizontalAlignment="Left" Margin="-3,0,0,-1" x:Name="grid5" VerticalAlignment="Bottom" Width="752" Background="#FFFFFFFC">
+                    <Label HorizontalAlignment="Left" Margin="23,10,0,0" x:Name="lName" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="32" FontFamily="Futura LT" IsEnabled="False" />
+                    <Label Height="28" HorizontalAlignment="Left" Margin="429,56,0,0" x:Name="lPuesto" VerticalAlignment="Top" Foreground="#FF2D2D2D" FontSize="18" FontFamily="Futura LT" />
+                    <TabControl Height="501" HorizontalAlignment="Left" Margin="11,75,0,0" x:Name="tabControl1" VerticalAlignment="Top" Background="#FF4185F4" BorderBrush="#FF4185F4" Padding="0" TabStripPlacement="Top" SelectedIndex="0" BorderThickness="0">
                         <TabControl.Resources>
                             <Style TargetType="{x:Type TabItem}">
-                                <Setter Property="BorderBrush" Value="#FF0C9CF3"></Setter>
+                                <Setter Property="BorderBrush" Value="#FF0C9CF3"/>
                                 <Setter Property="HeaderTemplate">
                                     <Setter.Value>
                                         <DataTemplate>
@@ -88,7 +99,7 @@
                                                 </ContentPresenter>
                                             </Border>
                                             <DataTemplate.Triggers>
-                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
+                                                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type TabItem}, Mode=FindAncestor}}" Value="True">
                                                     <Setter TargetName="grid" Property="Background" Value="#FF0C9CF3" />
                                                     <Setter TargetName="oka" Property="Foreground" Value="#ffffff" />
                                                     <Setter TargetName="oka" Property="Width" Value="150" />
@@ -99,8 +110,8 @@
                                 </Setter>
                             </Style>
                         </TabControl.Resources>
-                        <TabItem Header="Informacion personal" Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Center" Height="25" IsSelected="False" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16">
-                            <Grid Name="page1" Background="White" OpacityMask="{x:Null}" Height="467.283" Width="735" Margin="0" DataContext="{Binding}" Visibility="Visible">
+                        <TabItem Header="Informacion personal" x:Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Center" Height="25" IsSelected="False" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16">
+                            <Grid x:Name="page1" Background="White" OpacityMask="{x:Null}" Height="467.283" Width="735" Margin="0" DataContext="{Binding}" Visibility="Visible">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="129*" />
                                     <ColumnDefinition Width="136*" />
@@ -108,79 +119,81 @@
                                     <ColumnDefinition Width="131*" />
                                     <ColumnDefinition Width="147*" />
                                 </Grid.ColumnDefinitions>
-                                <Image HorizontalAlignment="Left" Margin="12,59,0,0" Name="iPerfil" Stretch="Fill" Width="107.273" Source="Images/icono.png" MouseLeftButtonUp="iPerfil_Click" Height="130" VerticalAlignment="Top" />
-                                <Label Content="Nombres" Height="28" HorizontalAlignment="Left" Margin="0.156,45,0,0" Name="label4" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Apellidos" Height="28" HorizontalAlignment="Left" Margin="0,75,0,0" Name="label5" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Rut" Height="28" HorizontalAlignment="Left" Margin="0,105,0,0" Name="label6" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Edad" Height="28" HorizontalAlignment="Left" Margin="0,135,0,0" Name="label7" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
-                                <Label Content="Telefono" Height="28" HorizontalAlignment="Left" Margin="0,195,0,0" Name="label8" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
-                                <Label Content="Region" Height="28" HorizontalAlignment="Left" Margin="0,163,0,0" Name="label9" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Email" Height="28" HorizontalAlignment="Left" Margin="0,225,0,0" Name="label10" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
-                                <Label Content="Cuenta bancaria" Height="28" HorizontalAlignment="Left" Margin="0,255,0,0" Name="label11" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
-                                <Label Content="AFP" Height="28" HorizontalAlignment="Left" Margin="0,283,0,0" Name="label12" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Salud" Height="28" HorizontalAlignment="Left" Margin="0,223,0,0" Name="label13" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Departamento" Height="28" HorizontalAlignment="Left" Margin="0,253,0,0" Name="label14" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,45,0,0" Name="tName" VerticalAlignment="Top" Width="181" BorderBrush="White" Style="{StaticResource textBox}" OverridesDefaultStyle="True" Background="White" PreviewTextInput="tName_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,75,0,0" Name="tSurname" VerticalAlignment="Top" Width="181" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tSurname_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,105,0,0" Name="tRut" VerticalAlignment="Top" Width="181" SelectionBrush="#FF3399FF" BorderBrush="White" Background="White" Style="{StaticResource textBox}" LostFocus="tRut_LostFocus" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
-                                <TextBox Grid.Column="2" Height="26" HorizontalAlignment="Left" Margin="0,135,0,0" Name="tDateNaci" VerticalAlignment="Top" Width="130" Style="{StaticResource textBox}" Background="White" BorderBrush="White" FontFamily="Futura LT" FontSize="16" />
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,223,0,0" Name="cSalud" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cSalud_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" Text=""></ComboBox>
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,253,0,0" Name="cDepto" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="#FF2D2D2D" PreviewMouseDown="cDepto_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" />
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,283,0,0" Name="cAfp" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cAfp_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D"></ComboBox>
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,163,0,0" Name="Regi" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadreg_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" SelectionChanged="Regi_SelectionChanged"></ComboBox>
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,193,0,0" Name="Comu" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadcom_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D"></ComboBox>
-                                <TextBox Grid.Column="4" Height="23" HorizontalAlignment="Left" Margin="0,165,0,0" Name="Tdireccion" VerticalAlignment="Top" Width="120" Style="{StaticResource textBox}" FontFamily="Futura LT" FontSize="16" Background="White" BorderBrush="White" PreviewTextInput="Tdireccion_PreviewTextInput" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,193,0,0" Name="tPhone" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tPhone_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,223,0,0" Name="tEmail" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,255,0,0" Name="tCtaBancaria" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
-                                <TextBox Grid.Column="4" Height="26" HorizontalAlignment="Left" Margin="0,285,0,0" Name="tNacionalidad" VerticalAlignment="Top" Width="130" Style="{StaticResource textBox}" Background="White" BorderBrush="White" FontFamily="Futura LT" FontSize="16" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,135,0,0" Name="tYear" VerticalAlignment="Top" Width="130" BorderBrush="White" Background="White" Style="{StaticResource textBox}" PreviewTextInput="tYear_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" IsEnabled="False" />
-                                <Label Height="42.667" HorizontalAlignment="Left" Margin="25.46,240,0,0" Name="path" VerticalAlignment="Top" Width="76.743" Visibility="Hidden" IsEnabled="False" Content="1" />
-                                <Label Content="+" Height="24" HorizontalAlignment="Right" Margin="0,283,35,0" Name="btnAddAfp" VerticalAlignment="Top" MouseLeftButtonUp="btnAddAfp_Click" Width="20" FontSize="12" FontFamily="Futura LT" Grid.Column="2" />
-                                <Label Content="+" Height="24" HorizontalAlignment="Right" Margin="0,223,35,0" Name="btnAddSalud" VerticalAlignment="Top" Width="20" MouseLeftButtonUp="btnSalud_Click" FontSize="12" FontFamily="Futura LT" Grid.Column="2" />
-                                <Label Content="Fecha nacimiento" Height="28" HorizontalAlignment="Left" Margin="0,135,0,0" Name="label21" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Comuna" Height="28" HorizontalAlignment="Left" Margin="0,193,0,0" Name="label22" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
-                                <Label Content="Nacionalidad" Height="28" HorizontalAlignment="Left" Margin="0,285,0,0" Name="label23" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
-                                <Label Content="Direccion" Grid.Column="3" Height="28" HorizontalAlignment="Left" Margin="0,165,0,0" Name="label25" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" />
-                                <Label Content="#" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="146.687,135,0,0" Name="btnDateNacimiento" VerticalAlignment="Top" FontFamily="Futura LT" MouseLeftButtonUp="btnDateNacimiento_Click" />
-                                <Calendar Grid.Column="2" Grid.ColumnSpan="2" Height="170" HorizontalAlignment="Left" Margin="22,323.642,0,0" Name="calendar2" VerticalAlignment="Top" Width="180" SelectedDatesChanged="calendar2_SelectedDatesChanged" IsEnabled="True" Visibility="Hidden" DisplayMode="Decade" />
+                                <Image HorizontalAlignment="Left" Margin="12,59,0,0" x:Name="iPerfil" Stretch="Fill" Width="107.273" Source="Images/icono.png" MouseLeftButtonUp="iPerfil_Click" Height="130" VerticalAlignment="Top" />
+                                <Label Content="Nombres" Height="28" HorizontalAlignment="Left" Margin="0.156,45,0,0" x:Name="label4" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Apellidos" Height="28" HorizontalAlignment="Left" Margin="0,75,0,0" x:Name="label5" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Rut" Height="28" HorizontalAlignment="Left" Margin="0,105,0,0" x:Name="label6" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Edad" Height="28" HorizontalAlignment="Left" Margin="10,105,0,0" x:Name="label7" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
+                                <Label Content="Telefono" Height="28" HorizontalAlignment="Left" Margin="10,163,0,0" x:Name="label8" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
+                                <Label Content="Region" Height="28" HorizontalAlignment="Left" Margin="0,163,0,0" x:Name="label9" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Email" Height="28" HorizontalAlignment="Left" Margin="10,191,0,0" x:Name="label10" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
+                                <Label Content="Cuenta bancaria" Height="28" HorizontalAlignment="Left" Margin="7,221,0,0" x:Name="label11" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
+                                <Label Content="AFP" Height="28" HorizontalAlignment="Left" Margin="0,283,0,0" x:Name="label12" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Salud" Height="28" HorizontalAlignment="Left" Margin="0,223,0,0" x:Name="label13" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Departamento" Height="28" HorizontalAlignment="Left" Margin="0,253,0,0" x:Name="label14" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,45,0,0" x:Name="tName" VerticalAlignment="Top" Width="181" BorderBrush="White" Style="{StaticResource textBox}" OverridesDefaultStyle="True" Background="White" PreviewTextInput="tName_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,75,0,0" x:Name="tSurname" VerticalAlignment="Top" Width="181" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tSurname_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,105,0,0" x:Name="tRut" VerticalAlignment="Top" Width="181" SelectionBrush="#FF3399FF" BorderBrush="White" Background="White" Style="{StaticResource textBox}" LostFocus="tRut_LostFocus" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" />
+                                <TextBox Grid.Column="2" Height="26" HorizontalAlignment="Left" Margin="0,135,0,0" x:Name="tDateNaci" VerticalAlignment="Top" Width="130" Style="{StaticResource textBox}" Background="White" BorderBrush="White" FontFamily="Futura LT" FontSize="16" />
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,223,0,0" x:Name="cSalud" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cSalud_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" Text=""/>
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,253,0,0" x:Name="cDepto" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="#FF2D2D2D" PreviewMouseDown="cDepto_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" />
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,283,0,0" x:Name="cAfp" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cAfp_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D"/>
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="0,163,0,0" x:Name="Regi" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadreg_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D" SelectionChanged="Regi_SelectionChanged"/>
+                                <ComboBox x:Name="Comu" Height="26" HorizontalAlignment="Left" Margin="0,193,0,0" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadcom_Click" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Foreground="#FF2D2D2D"/>
+                                <TextBox Grid.Column="4" Height="23" HorizontalAlignment="Left" Margin="0,135,0,0" x:Name="Tdireccion" VerticalAlignment="Top" Width="120" Style="{StaticResource textBox}" FontFamily="Futura LT" FontSize="16" Background="White" BorderBrush="White" PreviewTextInput="Tdireccion_PreviewTextInput" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,158,0,0" x:Name="tPhone" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tPhone_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,191,0,0" x:Name="tEmail" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,223,0,0" x:Name="tCtaBancaria" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="White" Style="{StaticResource textBox}" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" />
+                                <TextBox Grid.Column="4" Height="26" HorizontalAlignment="Left" Margin="0,283,0,0" x:Name="tNacionalidad" VerticalAlignment="Top" Width="130" Style="{StaticResource textBox}" Background="White" BorderBrush="White" FontFamily="Futura LT" FontSize="16" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="0,107,0,0" x:Name="tYear" VerticalAlignment="Top" Width="130" BorderBrush="White" Background="White" Style="{StaticResource textBox}" PreviewTextInput="tYear_PreviewTextInput" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" IsEnabled="False" />
+                                <Label Height="42.667" HorizontalAlignment="Left" Margin="25.46,240,0,0" x:Name="path" VerticalAlignment="Top" Width="76.743" Visibility="Hidden" IsEnabled="False" Content="1" />
+                                <Label Content="+" Height="24" HorizontalAlignment="Right" Margin="0,283,35,0" x:Name="btnAddAfp" VerticalAlignment="Top" MouseLeftButtonUp="btnAddAfp_Click" Width="20" FontSize="12" FontFamily="Futura LT" Grid.Column="2" />
+                                <Label Content="+" Height="24" HorizontalAlignment="Right" Margin="0,223,35,0" x:Name="btnAddSalud" VerticalAlignment="Top" Width="20" MouseLeftButtonUp="btnSalud_Click" FontSize="12" FontFamily="Futura LT" Grid.Column="2" />
+                                <Label Content="Fecha nacimiento" Height="28" HorizontalAlignment="Left" Margin="0,135,0,0" x:Name="label21" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Comuna" Height="28" HorizontalAlignment="Left" Margin="0,193,0,0" x:Name="label22" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="1" />
+                                <Label Content="Nacionalidad" Height="28" HorizontalAlignment="Left" Margin="10,279,0,0" x:Name="label23" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
+                                <Label Content="Direccion" Grid.Column="3" Height="28" HorizontalAlignment="Left" Margin="10,135,0,0" x:Name="label25" VerticalAlignment="Top" FontFamily="Futura LT" FontSize="16" RenderTransformOrigin="0.789,-0.964" />
+                                <Label Content="#" Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="146.687,135,0,0" x:Name="btnDateNacimiento" VerticalAlignment="Top" FontFamily="Futura LT" MouseLeftButtonUp="btnDateNacimiento_Click" />
+                                <Calendar Grid.Column="2" Grid.ColumnSpan="2" Height="170" HorizontalAlignment="Left" Margin="22,323.642,0,0" x:Name="calendar2" VerticalAlignment="Top" Width="180" SelectedDatesChanged="calendar2_SelectedDatesChanged" IsEnabled="True" Visibility="Hidden" DisplayMode="Decade" />
+                                <ComboBox Height="26" x:Name="tBank" HorizontalAlignment="Left" Margin="0,253,0,0" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="Futura LT" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" Foreground="#FF2D2D2D" PreviewMouseDown="cargarBanco"/>
+                                <Label Content="Banco" Height="28" HorizontalAlignment="Left" Margin="10,251,0,0" x:Name="label11_Copy" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Grid.Column="3" />
                             </Grid>
                         </TabItem>
-                        <TabItem Name="tabItem2" OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" BorderBrush="#FF4185F4" Background="#FF4185F4" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="0">
+                        <TabItem x:Name="tabItem2" OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" BorderBrush="#FF4185F4" Background="#FF4185F4" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="0">
                             <Grid Background="White" Width="727" Height="467" Margin="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="330*" />
                                     <ColumnDefinition Width="369*" />
                                     <ColumnDefinition Width="24*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Fecha Inicio:" HorizontalAlignment="Left" Margin="83,130,0,0" Name="label15" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <Label Content="Fecha Termino:" HorizontalAlignment="Left" Margin="83,160,0,0" Name="label16" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <Label Content="Estado:" HorizontalAlignment="Left" Margin="83,190,0,0" Name="label17" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <Label Content="Tipo de contato:" HorizontalAlignment="Left" Margin="83,220,0,0" Name="label18" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <Label Content="Cargo:" HorizontalAlignment="Left" Margin="83,250,0,0" Name="label19" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <Label Content="Anexos:" HorizontalAlignment="Left" Margin="83,280,0,0" Name="label20" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,130,0,0" Name="tDateInit" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" UseLayoutRounding="False" Background="White" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,160,0,0" Name="tDateEnd" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" />
-                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,190,0,0" Name="tStat" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" />
-                                <Label Content="Nuevo Contrato" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" Name="btnNewContract" VerticalAlignment="Center" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" FontFamily="Futura LT" FontSize="16" Grid.Column="1" Visibility="Visible" />
-                                <Label Content="Finalizar Contrato" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" Name="btnEndContract" VerticalAlignment="Center" Width="236" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
-                                <Label Content="Cancelar" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" Name="btnCancelNewContract" VerticalAlignment="Center" Width="236" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" IsEnabled="True" MouseLeftButtonUp="btnCancelNewContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
-                                <Label Content="Ingresar Contrato" Height="28" HorizontalAlignment="Right" Margin="0,383,1,0" Name="btnInsertNewContract" VerticalAlignment="Top" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF129D5A" MouseLeftButtonUp="btnInsertNewContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
-                                <Label Content="Vista Previa" Height="28" HorizontalAlignment="Right" Margin="0,348,1,0" Name="btnShowContract" VerticalAlignment="Top" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseLeftButtonUp="btnShowContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="200,220,0,0" Name="cTypeContract" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" PreviewMouseDown="cTypeContract_Click" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" />
-                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="200,250,0,0" Name="cCargo" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" Background="White" PreviewMouseDown="cCargo_Click" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" />
-                                <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="0,130,0,0" Name="btnDateInitCalendar" VerticalAlignment="Top" MouseLeftButtonUp="btnDateInitCalendar_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="12" Grid.Column="1" />
-                                <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="0,160,0,0" Name="btnDateEndCalendar" VerticalAlignment="Top" Target="{Binding}" MouseLeftButtonUp="btnDateEndCalendar_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="12" Grid.Column="1" />
-                                <Calendar Height="170" HorizontalAlignment="Left" Margin="182,135,0,0" Name="calendar1" VerticalAlignment="Top" Width="186" SelectedDatesChanged="selectedDateChanges_Clikc" Visibility="Hidden" Background="White" BorderBrush="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
-                                <Label Content="Ejecutivo de ventas" Height="45" HorizontalAlignment="Left" Name="lDescription" VerticalAlignment="Top" Width="739" Background="#FF4185F4" Foreground="White" FontSize="18" FontStretch="Normal" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="6" FlowDirection="LeftToRight" Target="{Binding}" IsEnabled="True" Grid.ColumnSpan="3" Margin="0,-1,0,0" />
+                                <Label Content="Fecha Inicio:" HorizontalAlignment="Left" Margin="83,130,0,0" x:Name="label15" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <Label Content="Fecha Termino:" HorizontalAlignment="Left" Margin="83,160,0,0" x:Name="label16" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <Label Content="Estado:" HorizontalAlignment="Left" Margin="83,190,0,0" x:Name="label17" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <Label Content="Tipo de contato:" HorizontalAlignment="Left" Margin="83,220,0,0" x:Name="label18" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <Label Content="Cargo:" HorizontalAlignment="Left" Margin="83,250,0,0" x:Name="label19" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <Label Content="Anexos:" HorizontalAlignment="Left" Margin="83,280,0,0" x:Name="label20" VerticalAlignment="Top" FontSize="16" FontFamily="Futura LT" Height="28" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,130,0,0" x:Name="tDateInit" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" UseLayoutRounding="False" Background="White" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,160,0,0" x:Name="tDateEnd" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" />
+                                <TextBox Height="26" HorizontalAlignment="Left" Margin="200,190,0,0" x:Name="tStat" VerticalAlignment="Top" Width="130" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" />
+                                <Label Content="Nuevo Contrato" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" x:Name="btnNewContract" VerticalAlignment="Center" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" FontFamily="Futura LT" FontSize="16" Grid.Column="1" Visibility="Visible" />
+                                <Label Content="Finalizar Contrato" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" x:Name="btnEndContract" VerticalAlignment="Center" Width="236" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
+                                <Label Content="Cancelar" Height="28" HorizontalAlignment="Center" Margin="133,418,0,21" x:Name="btnCancelNewContract" VerticalAlignment="Center" Width="236" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" IsEnabled="True" MouseLeftButtonUp="btnCancelNewContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
+                                <Label Content="Ingresar Contrato" Height="28" HorizontalAlignment="Right" Margin="0,383,1,0" x:Name="btnInsertNewContract" VerticalAlignment="Top" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF129D5A" MouseLeftButtonUp="btnInsertNewContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
+                                <Label Content="Vista Previa" Height="28" HorizontalAlignment="Right" Margin="0,348,1,0" x:Name="btnShowContract" VerticalAlignment="Top" Width="236" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseLeftButtonUp="btnShowContract_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="200,220,0,0" x:Name="cTypeContract" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" PreviewMouseDown="cTypeContract_Click" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" />
+                                <ComboBox Height="26" HorizontalAlignment="Left" Margin="200,250,0,0" x:Name="cCargo" VerticalAlignment="Top" Width="130" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" Background="White" PreviewMouseDown="cCargo_Click" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" />
+                                <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="0,130,0,0" x:Name="btnDateInitCalendar" VerticalAlignment="Top" MouseLeftButtonUp="btnDateInitCalendar_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="12" Grid.Column="1" />
+                                <Label Content="#" Height="23" HorizontalAlignment="Left" Margin="0,160,0,0" x:Name="btnDateEndCalendar" VerticalAlignment="Top" Target="{Binding}" MouseLeftButtonUp="btnDateEndCalendar_Click" Visibility="Hidden" FontFamily="Futura LT" FontSize="12" Grid.Column="1" />
+                                <Calendar Height="170" HorizontalAlignment="Left" Margin="182,135,0,0" x:Name="calendar1" VerticalAlignment="Top" Width="186" SelectedDatesChanged="selectedDateChanges_Clikc" Visibility="Hidden" Background="White" BorderBrush="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Column="1" />
+                                <Label Content="Ejecutivo de ventas" Height="45" HorizontalAlignment="Left" x:Name="lDescription" VerticalAlignment="Top" Width="739" Background="#FF4185F4" Foreground="White" FontSize="18" FontStretch="Normal" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="6" FlowDirection="LeftToRight" Target="{Binding}" IsEnabled="True" Grid.ColumnSpan="3" Margin="0,-1,0,0" />
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Label Content="Eliminar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" Name="btnDeleteReg" VerticalAlignment="Bottom" Width="115" Background="#FFE87467" HorizontalContentAlignment="Center" Foreground="White" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnDeleteReg_Click" />
-                    <Label Content="Editar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" Name="btnUpdateReg" VerticalAlignment="Bottom" Width="115" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" />
-                    <Label Content="Cancelar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" Name="btnCancelAdd" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" />
-                    <Label Content="Agregar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" Name="btnAddUser" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" />
-                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC">
+                    <Label Content="Eliminar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" x:Name="btnDeleteReg" VerticalAlignment="Bottom" Width="115" Background="#FFE87467" HorizontalContentAlignment="Center" Foreground="White" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnDeleteReg_Click" />
+                    <Label Content="Editar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnUpdateReg" VerticalAlignment="Bottom" Width="115" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" />
+                    <Label Content="Cancelar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" x:Name="btnCancelAdd" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" />
+                    <Label Content="Agregar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnAddUser" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" />
+                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" x:Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC" Panel.ZIndex="-1">
 
                         <!--ANIMACION de de la presentacion-->
                         <Grid.RenderTransform>
@@ -189,28 +202,26 @@
                             </TransformGroup>
                         </Grid.RenderTransform>
                         <Grid.Triggers >
-                            <EventTrigger RoutedEvent="Grid.MouseLeftButtonUp">
-                                <EventTrigger.Actions>
-                                    <BeginStoryboard Name="objBeginStoryBoard2">
-                                        <Storyboard Name="animacionPresentacion">
-                                            <DoubleAnimation x:Name="opacidadPresent" Storyboard.TargetName="gridPresentacion"
-                                                     Storyboard.TargetProperty="Opacity"     
-                                                     From="1.0" To="0.0" Duration="0:0:1"/>
-                                            <DoubleAnimation x:Name="posicionPresent" Storyboard.TargetName="TTranslateX2"
-                                                     Storyboard.TargetProperty="X"
-                                                     From="0" To="800" Duration="0:0:5"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger.Actions>
+                            <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
+                                <BeginStoryboard x:Name="objBeginStoryBoard2">
+                                    <Storyboard x:Name="animacionPresentacion">
+                                        <DoubleAnimation x:Name="opacidadPresent" Storyboard.TargetName="gridPresentacion"
+											Storyboard.TargetProperty="Opacity"     
+											From="1.0" To="0.0" Duration="0:0:1"/>
+                                        <DoubleAnimation x:Name="posicionPresent" Storyboard.TargetName="TTranslateX2"
+											Storyboard.TargetProperty="X"
+											From="0" To="800" Duration="0:0:5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
                             </EventTrigger>
                         </Grid.Triggers>
-                        
-                        <Label Content="LynxSoft" Height="92" HorizontalAlignment="Left" Margin="25,11,0,0" Name="label27" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" FontSize="40" Width="290" />
+
+                        <Label Content="LynxSoft" Height="92" HorizontalAlignment="Left" Margin="25,11,0,0" x:Name="label27" VerticalAlignment="Top" FontStyle="Italic" FontWeight="Bold" FontSize="40" Width="290" />
                     </Grid>
                 </Grid>
-                <Grid Height="53" HorizontalAlignment="Left" Name="grid3" VerticalAlignment="Top" Width="690" Background="#FF33B5E5" Margin="-1,-3,0,0" MouseLeftButtonDown="moveWindow" />
-                <Image Height="20" HorizontalAlignment="Left" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="/Images/Close2.png" Margin="720,8,0,0" MouseUp="close_Click" MouseMove="CambiaColor" MouseLeave="ColorNormal" />
-                <Image Height="20" Margin="695,8,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Source="Images/Minimize.png" MouseUp="minimize_Click" HorizontalAlignment="Left" Width="20" />
+                <Grid Height="53" HorizontalAlignment="Left" x:Name="grid3" VerticalAlignment="Top" Width="690" Background="#FF33B5E5" Margin="-1,-3,0,0" MouseLeftButtonDown="moveWindow" />
+                <Image Height="20" HorizontalAlignment="Left" x:Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="/Images/Close2.png" Margin="720,8,0,0" MouseUp="close_Click" MouseMove="CambiaColor" MouseLeave="ColorNormal" />
+                <Image Height="20" Margin="695,8,0,0" x:Name="image3" Stretch="Fill" VerticalAlignment="Top" Source="Images/Minimize.png" MouseUp="minimize_Click" HorizontalAlignment="Left" Width="20" />
             </Grid>
         </DockPanel>
     </DockPanel>
