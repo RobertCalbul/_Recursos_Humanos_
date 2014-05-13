@@ -42,7 +42,7 @@
                         </TransformGroup>
                     </Grid.RenderTransform>
                     <Grid.Triggers >
-                        <EventTrigger RoutedEvent="Grid.MouseLeftButtonUp">
+                        <EventTrigger  RoutedEvent="Grid.MouseLeftButtonUp">
                             <EventTrigger.Actions>
                                 <BeginStoryboard Name="objBeginStoryBoard">
                                     <Storyboard Name="animacionLogeo">
