@@ -35,21 +35,12 @@
                     <Label Content="soft" Height="41" HorizontalAlignment="Left" Margin="65,6,0,0" x:Name="label3" VerticalAlignment="Top" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
                 </Grid>
                 <Grid Height="679" HorizontalAlignment="Left" Margin="0,53,0,0" x:Name="gridLogeo" VerticalAlignment="Top" Width="256" Background="#FF33B5E5" Grid.ColumnSpan="2">
-
                     <!--ANIMACION del logeo-->
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <TranslateTransform x:Name="TTranslateX" />
                         </TransformGroup>
                     </Grid.RenderTransform>
-<<<<<<< HEAD
-                    <Grid.Triggers >
-                        <EventTrigger  RoutedEvent="Grid.MouseLeftButtonUp">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard Name="objBeginStoryBoard">
-                                    <Storyboard Name="animacionLogeo">
-                                        <DoubleAnimation x:Name="opacidadLogeo" Storyboard.TargetName="gridLogeo"
-=======
 
                     <Button Content="Acceder" Height="24" HorizontalAlignment="Left" Margin="131,168,0,0" Name="bAcceder" VerticalAlignment="Top" Width="82" FontSize="14" Click="bAcceder_Click" >
                         <Button.Triggers >
@@ -58,7 +49,6 @@
                                     <BeginStoryboard Name="objBeginStoryBoard">
                                         <Storyboard Name="animacionLogeo">
                                             <DoubleAnimation x:Name="opacidadLogeo" Storyboard.TargetName="gridLogeo"
->>>>>>> 145a6417d75b928d221f77bfa605c11b8a1783ea
                                                      Storyboard.TargetProperty="Opacity"     
                                                      From="1.0" To="0.0" Duration="0:0:1"/>
                                             <DoubleAnimation x:Name="posicionX" Storyboard.TargetName="TTranslateX"
