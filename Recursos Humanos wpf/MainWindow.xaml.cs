@@ -173,6 +173,7 @@ namespace Recursos_Humanos_wpf
 
             limpiarTexbox();
             this.grid5.IsEnabled = true;
+            this.tDateNaci.IsEnabled = false;
             this.tRut.IsEnabled = true;
             this.iPerfil.IsEnabled = true;
             this.btnAddUser.IsEnabled = true;
