@@ -345,6 +345,32 @@ namespace Recursos_Humanos_wpf.Clases
             }
             return nodos;
         } //fin del metodo
+
+        public List<String> leerpaises()
+        {
+            List<String> nodos = new List<String>();
+            XmlTextReader reader = new XmlTextReader("contratos/country.xml");
+            while (reader.Read())
+            {
+                if (reader.IsStartElement())
+                {
+                    switch (reader.Name)
+                    {
+                        case "name":
+                            if (reader.Read())
+                            {
+                                nodos.Add(reader.Value);
+
+                            }
+                            break;
+                    }
+
+                }
+            }
+            return nodos;
+        } //fin del metodo
+
+
     }
 
 

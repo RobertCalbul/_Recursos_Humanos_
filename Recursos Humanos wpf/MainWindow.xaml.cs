@@ -41,6 +41,7 @@ namespace Recursos_Humanos_wpf
         List<Comunas> listCom = null;
         List<Banco> listBank = null;
         Validaciones validacion = new Validaciones();
+               
         public MainWindow()
         {
             InitializeComponent();
@@ -91,6 +92,7 @@ namespace Recursos_Humanos_wpf
                 tDateNaci.IsEnabled = false;//solo editable por el calendario
                 //btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
+                List<String> resul = new Clases.PDF().leerpaises();
                 if (arreglo != null)
                 {
                     lName.Content = arreglo[1].ToString() + " " + arreglo[2].ToString(); 
@@ -153,7 +155,13 @@ namespace Recursos_Humanos_wpf
                     tYear.Text = arreglo[10].ToString(); //edad
                     tPhone.Text = arreglo[12].ToString(); //telefono
                     tEmail.Text = arreglo[13].ToString(); //email
-                    tNacionalidad.Text = arreglo[14].ToString(); //nacionalidad
+                    i = 0;
+                    foreach (String paises in  resul)
+                    {
+                        tNacionalidad.Items.Add(paises);
+                        if (paises.Equals(arreglo[14].ToString())) tNacionalidad.SelectedIndex = i; //nombre_banco
+                        i++;
+                    }
                     tCtaBancaria.Text = arreglo[15].ToString(); // cta_bancaria
                     i = 0;
                     foreach (Banco banco in new Banco().findAll())
@@ -212,6 +220,7 @@ namespace Recursos_Humanos_wpf
                                                 this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
                                                 this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna, listReg[this.Regi.SelectedIndex].id_region,
                                                 listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
+
                                                 );
                     
                     if (per.Save() > 0)
@@ -239,9 +248,6 @@ namespace Recursos_Humanos_wpf
                         }
                     }
                     else {
-                        //new Dialog("COMUNA: "+listCom[this.Comu.SelectedIndex].id_comuna.ToString()
-                        //         +" REGION: " + listReg[this.Regi.SelectedIndex].id_region.ToString()
-                        //         +" afp: " +listAfp[this.cAfp.SelectedIndex].id).Show();
                         new Dialog("Personal no pudo ser ingresado").Show();
                     }
                 }
@@ -263,7 +269,8 @@ namespace Recursos_Humanos_wpf
                                                 int.Parse(this.tYear.Text.Trim()), this.tPhone.Text.Trim(), this.Tdireccion.Text.Trim(),
                                                 this.tEmail.Text.Trim(), this.tCtaBancaria.Text.Trim(), this.tNacionalidad.Text.Trim(),
                                                 this.tDateNaci.Text.Trim(), listCom[this.Comu.SelectedIndex].id_comuna, listReg[this.Regi.SelectedIndex].id_region,
-                                                listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id
+                                                listAfp[this.cAfp.SelectedIndex].id, listSalud[this.cSalud.SelectedIndex].id, listBank[this.tBank.SelectedIndex].id
+
                                                 );
                 
                 if (per.Update() > 0)
@@ -338,6 +345,9 @@ namespace Recursos_Humanos_wpf
         {
             ClearContract();
             this.tabItem2.IsEnabled = !string.IsNullOrEmpty(this.tRut.Text.Trim()) == true ? true : false;
+            List<String> estados = new List<String>();  
+            estados.Add("VIGENTE");
+            estados.Add("NO VIGENTE");
             string sql ="SELECT e.fecha_inicio,e.fecha_termino,e.estado,"
              +" (SELECT c.tipo AS tipo_contrato"
              +" FROM personal_contrato AS pc"
@@ -363,7 +373,15 @@ namespace Recursos_Humanos_wpf
                 interfaces = dtRow["cargo"].ToString();
                 this.tDateInit.Text = validacion.DateFormat(dtRow["fecha_inicio"].ToString());
                 this.tDateEnd.Text = validacion.DateFormat(dtRow["fecha_termino"].ToString());
-                this.tStat.Text = dtRow["estado"].ToString();
+                //this.tStat.Text = dtRow["estado"].ToString();
+                int i = 0;
+                foreach (String es in estados)
+                {
+                    this.tStat.Items.Add(es);
+                    if (es.Equals(dtRow["estado"].ToString())) this.tStat.SelectedIndex = i; //nombre_banco
+                    i++;
+                }
+                i = 0;
                 this.cTypeContract.Items.Add(dtRow["tipo_contrato"].ToString());
                 this.cTypeContract.SelectedItem = dtRow["tipo_contrato"].ToString();
                 this.cCargo.Items.Add(dtRow["cargo"].ToString());
@@ -379,12 +397,20 @@ namespace Recursos_Humanos_wpf
             this.tStat.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.cTypeContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.cCargo.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+
+            this.tDateInit.IsEnabled = interfaces == "1" || interfaces == "" ?  true: false;
+            this.tDateEnd.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
+            this.tStat.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
+            this.cTypeContract.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
+            this.cCargo.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
+
             this.btnEndContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.btnNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Visible : Visibility.Hidden;
 
             foreach(Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             foreach (Label x in btnVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
         }
+
         //CREA INTERFAZ PARA AGREGAR CONTRATO
         private void btnNewContract_Click(object sender, MouseButtonEventArgs e)
         {
@@ -415,7 +441,7 @@ namespace Recursos_Humanos_wpf
             {
                 try
                 {
-                    listCargo = new Cargo().findAll();
+                    listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();
                     Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.Tdireccion.Text,
                                                             listCargo[this.cCargo.SelectedIndex].cargo, this.cDepto.Text.Trim(),
@@ -460,7 +486,7 @@ namespace Recursos_Humanos_wpf
                 MessageBoxResult dialogResult = MessageBox.Show("Desea asignar el contrato al rut: " + rut_per + " ?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                 if (dialogResult == MessageBoxResult.Yes && validacionAddContract())
                 {
-                    listCargo = new Cargo().findAll();
+                    listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();
                     Clases.Contratos contrato = new Contratos(rut_per, this.tDateInit.Text, this.tDateEnd.Text, this.tStat.Text.ToUpper(),
                                                     250000, listTipoContrato[this.cTypeContract.SelectedIndex].id.ToString(), listCargo[this.cCargo.SelectedIndex].id.ToString());
@@ -468,6 +494,12 @@ namespace Recursos_Humanos_wpf
                     {
                         loadDataContract(rut_per);
                         new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
+                        this.tDateInit.IsEnabled = false;
+                        this.tDateEnd.IsEnabled = false;
+                        this.tStat.IsEnabled = false;
+                        this.cTypeContract.IsEnabled = false;
+                        this.cCargo.IsEnabled = false;
+
                     }
                     else new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".").Show();
                 }
@@ -620,7 +652,8 @@ namespace Recursos_Humanos_wpf
         private void cCargo_Click(object sender, MouseButtonEventArgs e)
         {
             this.cCargo.Items.Clear();
-            foreach (Cargo cargo in new Cargo().findAll()) this.cCargo.Items.Add(cargo.cargo);
+            int busqueda = this.cTypeContract.SelectedIndex + 1;
+            foreach (Cargo cargo in new Cargo().findAll(busqueda)) this.cCargo.Items.Add(cargo.cargo);
         }
         //FILTRO SEGUN INFORMACION PERSONAL
         private void RadioButtonSearch(object sender, RoutedEventArgs e)
@@ -649,8 +682,8 @@ namespace Recursos_Humanos_wpf
             this.lPuesto.Content = "";
             this.lName.Content = "";
             TextBox[] campos = { this.tRut, this.tName, this.tSurname, this.tYear, this.tPhone, this.Tdireccion,this.tEmail, this.tCtaBancaria, 
-                                 this.tDateEnd, this.tDateInit, this.tStat, this.tDateNaci, this.tNacionalidad };
-            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo, this.Regi, this.Comu,this.tBank };
+                                 this.tDateEnd, this.tDateInit, this.tDateNaci,  };
+            ComboBox[] combos = { this.cAfp, this.cDepto, this.cSalud, this.cTypeContract, this.cCargo, this.Regi, this.Comu, this.tBank, this.tNacionalidad, this.tStat };
             foreach (TextBox x in campos) x.Text = "";
             foreach (ComboBox x in combos) x.Items.Clear();
             this.iPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/icono.png"));
@@ -802,6 +835,33 @@ namespace Recursos_Humanos_wpf
         {
 
         }
+
+        private void verpaises(object sender, MouseButtonEventArgs e)
+        {
+            List<String> resul = new Clases.PDF().leerpaises();
+            foreach (String pais in resul) this.tNacionalidad.Items.Add(pais.Trim()); 
+        }
+
+        private void tStat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.tStat.Items.Clear();
+            List<String> estados = new List<String>();  
+            estados.Add("VIGENTE");
+            estados.Add("NO VIGENTE");
+            foreach (String es in estados) this.tStat.Items.Add(es); 
+        }
+
+        private void cTypeContract_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Al cambiar el tipo de contrato, reseteo el combobox del cargo
+            foreach (Cargo cargo in new Cargo().findAll(cTypeContract.SelectedIndex))
+            {
+                cCargo.Items.Clear();
+                Comu.Items.Add(cargo.cargo);
+            }
+        }
+
+ 
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
         /*>>>>FIN VALIDACIONES<<<<<*/

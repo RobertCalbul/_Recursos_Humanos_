@@ -26,6 +26,7 @@ namespace Recursos_Humanos_wpf.Clases
         public int region_residencia {get; set;}
         public int AFP_id_afp { get; set; }
         public int salud_id_salud { get; set; }
+        public int id_banco { get; set; }
 
         public Personal()
         { }
@@ -37,7 +38,7 @@ namespace Recursos_Humanos_wpf.Clases
         
         //ESTE ES EL ACTUAL
         public Personal(string rut, string nombre, string apellido, int edad ,byte[] foto_portada,string telefono, string direccion,string email, 
-            string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud ) 
+            string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud) 
         {
             this.rut = rut;
             this.nombre = nombre;
@@ -56,13 +57,12 @@ namespace Recursos_Humanos_wpf.Clases
             this.salud_id_salud = id_salud;
         }
         public Personal(string rut, string nombre, string apellido, int edad, string telefono, string direccion, string email,
-    string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud)
+    string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud,int id_banco)
         {
             this.rut = rut;
             this.nombre = nombre;
             this.apellido = apellido;
             this.edad = edad;
-            this.foto_portada = foto_portada;
             this.telefono = telefono;
             this.direccion = direccion;
             this.email = email;
@@ -73,6 +73,7 @@ namespace Recursos_Humanos_wpf.Clases
             this.region_residencia = region_residencia;
             this.AFP_id_afp = id_afp;
             this.salud_id_salud = id_salud;
+            this.id_banco = id_banco;
         }
         public List<string> findAll(int value)
         {
@@ -190,9 +191,8 @@ namespace Recursos_Humanos_wpf.Clases
                 conex = new Conexion().getConexion();
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = conex;
-                MessageBox.Show(this.AFP_id_afp.ToString());
                 command.CommandText = "Insert into personal (rut,nombre,apellido,edad,foto_portada,telefono,direccion,email,nacionalidad,fecha_nacimiento,AFP_id_afp,salud_id_salud,comuna,region_residencia)"
-                + " VALUES (?rut, ?nombre, ?apellido,?edad,?foto_portada,?telefono,?direccion,?email,?nacionalidad,?fecha_nacimiento,?comuna,?region_residencia,?AFP_id_afp,?salud_id_salud);";
+                + " VALUES (?rut, ?nombre, ?apellido,?edad,?foto_portada,?telefono,?direccion,?email,?nacionalidad,?fecha_nacimiento,?AFP_id_afp,?salud_id_salud,?comuna,?region_residencia);";
                 MySqlParameter fileNameParameter = new MySqlParameter("?rut", MySqlDbType.VarChar, 20);
                 MySqlParameter fileNameParameter2 = new MySqlParameter("?nombre", MySqlDbType.VarChar, 20);
                 MySqlParameter fileNameParameter3 = new MySqlParameter("?apellido", MySqlDbType.VarChar, 45);
@@ -260,20 +260,23 @@ namespace Recursos_Humanos_wpf.Clases
              * **/
             try
             {
-                string sql = "UPDATE personal set nombre ='" + this.nombre
-                    + "',apellido='" + this.apellido
-                    + "',telefono='" + this.telefono
-                    + "',email='" + this.email
-                    + "',edad='" + this.edad
-                    + "',direccion='" + this.direccion
-                    + "',cta_bancaria='" + this.cta_bancaria
-                    + "',AFP_id_afp='" + this.AFP_id_afp
-                    + "',salud_id_salud='" +this.salud_id_salud
-                    + "',nacionalidad ='"+this.nacionalidad
-                    +"',fecha_nacimiento='"+this.fecha_nacimiento
-                    + "',comuna='"+this.comuna
-                    + "',region_residencia='"+this.region_residencia
-                    + "' WHERE rut='" + this.rut + "'";
+                string sql = "UPDATE personal as p"
+                    + " INNER JOIN banco_personal AS bp ON(bp.personal_id_personal = p.id_personal)"
+                    + " set p.nombre ='" + this.nombre
+                    + "',p.apellido='" + this.apellido
+                    + "',p.telefono='" + this.telefono
+                    + "',p.email='" + this.email
+                    + "',p.edad='" + this.edad
+                    + "',p.direccion='" + this.direccion
+                    + "',bp.cta_bancaria='" + this.cta_bancaria
+                    + "',bp.banco_id_banco='" + this.id_banco
+                    + "',p.AFP_id_afp='" + this.AFP_id_afp
+                    + "',p.salud_id_salud='" +this.salud_id_salud
+                    + "',p.nacionalidad ='"+this.nacionalidad
+                    + "',p.fecha_nacimiento='"+this.fecha_nacimiento
+                    + "',p.comuna='"+this.comuna
+                    + "',p.region_residencia='"+this.region_residencia
+                    + "' WHERE p.rut='" + this.rut + "'";
                 return new Clases.Consultas().Update(sql);
                
             }
