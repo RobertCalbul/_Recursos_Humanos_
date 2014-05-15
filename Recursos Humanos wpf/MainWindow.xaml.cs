@@ -187,10 +187,17 @@ namespace Recursos_Humanos_wpf
             this.btnAddUser.IsEnabled = true;
             this.cBusqueda.IsEnabled = false;
             this.image1.IsEnabled = false;
+<<<<<<< HEAD
             //this.btnAddAfp.Visibility = Visibility.Visible;
             this.btnAddUser.Visibility = Visibility.Visible;
             this.btnCancelAdd.Visibility = Visibility.Visible;
             //this.btnAddSalud.Visibility = Visibility.Visible;
+=======
+     //     this.btnAddAfp.Visibility = Visibility.Visible;
+            this.btnAddUser.Visibility = Visibility.Visible;
+            this.btnCancelAdd.Visibility = Visibility.Visible;
+   //       this.btnAddSalud.Visibility = Visibility.Visible;
+>>>>>>> e43155ed15d093a86b7d401e4bb2586d9706979a
             this.btnDateNacimiento.Visibility = Visibility.Visible;
             this.btnUpdateReg.Visibility = Visibility.Hidden;
             this.btnDeleteReg.Visibility = Visibility.Hidden;
@@ -233,8 +240,8 @@ namespace Recursos_Humanos_wpf
                             this.cBusqueda.IsEnabled = true;
                             this.iPerfil.IsEnabled = false;
                             this.btnAddUser.Visibility = Visibility.Hidden;
-                            this.btnAddAfp.Visibility = Visibility.Hidden;
-                            this.btnAddSalud.Visibility = Visibility.Hidden;
+            //              this.btnAddAfp.Visibility = Visibility.Hidden;
+          //                this.btnAddSalud.Visibility = Visibility.Hidden;
                             this.btnCancelAdd.Visibility = Visibility.Hidden;
                             this.btnUpdateReg.Visibility = Visibility.Visible;
                             this.btnDeleteReg.Visibility = Visibility.Visible;
@@ -285,7 +292,9 @@ namespace Recursos_Humanos_wpf
         //CANCELA INGRESO EMPLEADO
         private void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
         {
-            Label[] labels = { this.btnAddAfp, this.btnAddSalud, this.btnAddUser, this.btnCancelAdd };
+
+
+            Label[] labels = {/* this.btnAddAfp, this.btnAddSalud,*/ this.btnAddUser, this.btnCancelAdd };
             foreach (Label x in labels) x.Visibility = Visibility.Hidden;
             this.grid5.IsEnabled = false;
             this.cBusqueda.IsEnabled = true;
