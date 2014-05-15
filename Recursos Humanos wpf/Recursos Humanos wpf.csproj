@@ -187,6 +187,21 @@
   <ItemGroup>
     <Resource Include="Images\CloseRed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendario-de-planificacion-rss-sello-22-icono-8987.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendario-de-planificacion-rss-sello-22-icono-8987-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendario-de-planificacion-rss-sello-22-icono-89871.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendario-icono-8819.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendario-icono-8630-128.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

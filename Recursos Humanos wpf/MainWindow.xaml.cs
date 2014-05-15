@@ -547,7 +547,9 @@ namespace Recursos_Humanos_wpf
             flagCalendar = 2;
             this.calendar2.Visibility = Visibility.Visible;
             this.calendar2.DisplayMode = CalendarMode.Decade;
-            this.calendar2.Margin = this.btnDateNacimiento.Margin;
+
+            this.calendar2.Margin = this.image4.Margin;
+
         }
         private void calendar2_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -876,6 +878,11 @@ namespace Recursos_Humanos_wpf
 
 
 
+
+        }
+
+        private void image4_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
 
