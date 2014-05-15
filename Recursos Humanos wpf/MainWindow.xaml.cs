@@ -861,6 +861,18 @@ namespace Recursos_Humanos_wpf
             }
         }
 
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+
+
+
+
+
+
+        }
+
  
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 

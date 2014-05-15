@@ -178,12 +178,31 @@
                                 <ComboBox Height="26" HorizontalAlignment="Left" Margin="200,190,0,0" x:Name="tStat" VerticalAlignment="Top" Width="130" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" VerticalContentAlignment="Center" PreviewMouseDown="tStat_PreviewMouseDown" />
                             </Grid>
                         </TabItem>
+                        <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" Height="25" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Name="tabItem3" OverridesDefaultStyle="False" Padding="0" Selector.IsSelected="True" SnapsToDevicePixels="True" VerticalAlignment="Center">
+                            <Grid Background="White" Height="467" Margin="0" Width="727">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="330*" />
+                                    <ColumnDefinition Width="369*" />
+                                    <ColumnDefinition Width="24*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Background="#FF129D5A" Content="Nuevo Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="133,418,0,21" MouseLeftButtonUp="btnNewContract_Click" Name="label34" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Visible" Width="236" />
+                                <Label Background="#FFDD4337" Content="Finalizar Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="True" Margin="133,418,0,21" MouseLeftButtonUp="btnEndContract_Click" Name="label35" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="236" />
+                                <Label Background="#FFE87467" Content="Cancelar" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="True" Margin="133,418,0,21" MouseLeftButtonUp="btnCancelNewContract_Click" Name="label36" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
+                                <Label Background="#FF129D5A" Content="Ingresar Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,383,1,0" MouseLeftButtonUp="btnInsertNewContract_Click" Name="label37" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
+                                <Label Background="#FF4185F4" Content="Vista Previa" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,348,1,0" MouseLeftButtonUp="btnShowContract_Click" Name="label38" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
+                                <Label Background="#FF4185F4" Content="Ejecutivo de ventas" FlowDirection="LeftToRight" FontSize="18" FontStretch="Normal" Foreground="White" Grid.ColumnSpan="3" Height="45" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsEnabled="True" Margin="0,-1,0,0" Name="label41" Padding="6" Target="{Binding}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="739" />
+                                <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="100,62,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="366" Grid.ColumnSpan="2" SelectionChanged="dataGrid1_SelectionChanged" />
+                            </Grid>
+                        </TabItem>
                     </TabControl>
+                    
+                    
+
                     <Label Content="Eliminar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" x:Name="btnDeleteReg" VerticalAlignment="Bottom" Width="115" Background="#FFE87467" HorizontalContentAlignment="Center" Foreground="White" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnDeleteReg_Click" />
                     <Label Content="Editar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnUpdateReg" VerticalAlignment="Bottom" Width="115" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" />
                     <Label Content="Cancelar" Height="28" HorizontalAlignment="Right" Margin="0,0,38,33" x:Name="btnCancelAdd" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" />
                     <Label Content="Agregar" Height="28" HorizontalAlignment="Right" Margin="0,0,160,32" x:Name="btnAddUser" VerticalAlignment="Bottom" Width="115" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" />
-                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" x:Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC">
+                    <Grid Height="665" HorizontalAlignment="Left" Margin="11,10,0,0" x:Name="gridPresentacion" VerticalAlignment="Top" Width="740" Background="#FFFFFFFC" Panel.ZIndex="-1">
 
                         <!--ANIMACION de de la presentacion-->
                         <Grid.RenderTransform>
