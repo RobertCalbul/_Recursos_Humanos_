@@ -187,17 +187,14 @@ namespace Recursos_Humanos_wpf
             this.btnAddUser.IsEnabled = true;
             this.cBusqueda.IsEnabled = false;
             this.image1.IsEnabled = false;
-<<<<<<< HEAD
             //this.btnAddAfp.Visibility = Visibility.Visible;
             this.btnAddUser.Visibility = Visibility.Visible;
             this.btnCancelAdd.Visibility = Visibility.Visible;
             //this.btnAddSalud.Visibility = Visibility.Visible;
-=======
      //     this.btnAddAfp.Visibility = Visibility.Visible;
             this.btnAddUser.Visibility = Visibility.Visible;
             this.btnCancelAdd.Visibility = Visibility.Visible;
    //       this.btnAddSalud.Visibility = Visibility.Visible;
->>>>>>> e43155ed15d093a86b7d401e4bb2586d9706979a
             this.btnDateNacimiento.Visibility = Visibility.Visible;
             this.btnUpdateReg.Visibility = Visibility.Hidden;
             this.btnDeleteReg.Visibility = Visibility.Hidden;
