@@ -318,7 +318,7 @@
                 <Label Content="Agregar" Margin="2" x:Name="btnAddUser" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" Grid.Row="6" Grid.Column="2" Padding="0" />
 
             </Grid>
-            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" Panel.ZIndex="-1">
+            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="71*"/>
                     <RowDefinition Height="423*"/>
@@ -343,20 +343,7 @@
                         <TranslateTransform x:Name="TTranslateX2" />
                     </TransformGroup>
                 </Grid.RenderTransform>
-                <Grid.Triggers >
-                    <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
-                        <BeginStoryboard x:Name="objBeginStoryBoard2">
-                            <Storyboard x:Name="animacionPresentacion">
-                                <DoubleAnimation x:Name="opacidadPresent" Storyboard.TargetName="gridPresentacion"
-											Storyboard.TargetProperty="Opacity"     
-											From="1.0" To="0.0" Duration="0:0:1"/>
-                                <DoubleAnimation x:Name="posicionPresent" Storyboard.TargetName="TTranslateX2"
-											Storyboard.TargetProperty="X"
-											From="0" To="800" Duration="0:0:5"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Grid.Triggers>
+                
                 <Image Grid.Column="1" Margin="0" Grid.Row="1" Source="Images/Logo.jpg"/>
                 <Label Content="Integrantes" Grid.Column="1" Margin="0" Grid.Row="2" Background="White" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
                 <Label Content="Marcelo Carrasco" Grid.Column="1" Margin="0" Grid.Row="3" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
@@ -364,6 +351,22 @@
                 <Label Content="Igor Riquelme" Grid.Column="1" Margin="0" Grid.Row="5" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
                 <Label Content="Esteban Campos" Grid.Column="1" Margin="0" Grid.Row="6" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
                 <Label Content="Robert Calbul" Grid.Column="1" Margin="0" Grid.Row="7" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+                <Label x:Name="HuevoPascua" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="311,159,0,0" Grid.Row="1" VerticalAlignment="Top" Height="6" Width="4">
+                    <Label.Triggers >
+                        <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
+                            <BeginStoryboard x:Name="objBeginStoryBoard2">
+                                <Storyboard x:Name="animacionPresentacion">
+                                    <DoubleAnimation x:Name="opacidadPresent" Storyboard.TargetName="gridPresentacion"
+											Storyboard.TargetProperty="Opacity"     
+											From="1.0" To="0.0" Duration="0:0:1"/>
+                                    <DoubleAnimation x:Name="posicionPresent" Storyboard.TargetName="TTranslateX2"
+											Storyboard.TargetProperty="X"
+											From="0" To="800" Duration="0:0:5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Label.Triggers>
+                </Label>
             </Grid>
         </Grid>
 
