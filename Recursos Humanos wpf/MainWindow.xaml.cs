@@ -44,7 +44,7 @@ namespace Recursos_Humanos_wpf
                
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
             listAutocomplet = new Clases.Personal().findAll(0);
             this.tabControl1.SelectedIndex = 0;
             this.grid5.IsEnabled = false;
@@ -195,7 +195,7 @@ namespace Recursos_Humanos_wpf
             this.btnAddUser.Visibility = Visibility.Visible;
             this.btnCancelAdd.Visibility = Visibility.Visible;
    //       this.btnAddSalud.Visibility = Visibility.Visible;
-            //this.btnDateNacimiento.Visibility = Visibility.Visible;
+            this.btnDateNacimiento.Visibility = Visibility.Visible;
             this.btnUpdateReg.Visibility = Visibility.Hidden;
             this.btnDeleteReg.Visibility = Visibility.Hidden;
             this.tabControl1.SelectedIndex = 0;
@@ -394,9 +394,7 @@ namespace Recursos_Humanos_wpf
                 this.cCargo.SelectedItem = dtRow["cargo"].ToString();
             }
             Label[] labelVisible = { this.label15, this.label16, this.label17, this.label18, this.label19, this.label20 };
-            //Label[] btnVisible = { this.btnShowContract, this.btnInsertNewContract, this.btnCancelNewContract, this.btnDateEndCalendar, this.btnDateInitCalendar };
-            Label[] btnVisible = { this.btnShowContract, this.btnInsertNewContract, this.btnCancelNewContract };
-
+            Label[] btnVisible = { this.btnShowContract, this.btnInsertNewContract, this.btnCancelNewContract, this.btnDateEndCalendar, this.btnDateInitCalendar };
             //cambia color en caso de que no existe contrato PD: ROBERT QLO xd
             this.lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
             this.lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : this.cCargo.Text;
@@ -417,9 +415,6 @@ namespace Recursos_Humanos_wpf
 
             foreach(Label x in labelVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             foreach (Label x in btnVisible) x.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            this.btnDateEndCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-            this.btnDateInitCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
-
         }
 
         //CREA INTERFAZ PARA AGREGAR CONTRATO
@@ -438,8 +433,6 @@ namespace Recursos_Humanos_wpf
             this.btnNewContract.Visibility = Visibility.Hidden;
             this.btnDateInitCalendar.Visibility = Visibility.Visible;
             this.btnDateEndCalendar.Visibility = Visibility.Visible;
-            tDateInit.IsEnabled = false;//solo editables a travez del calendario
-            tDateEnd.IsEnabled = false;
         }
         //CANCELA INGRESO CONTRATO (RECARGA INTERFAZ CONTRATO)
         private void btnCancelNewContract_Click(object sender, MouseButtonEventArgs e)
@@ -554,9 +547,7 @@ namespace Recursos_Humanos_wpf
             flagCalendar = 2;
             this.calendar2.Visibility = Visibility.Visible;
             this.calendar2.DisplayMode = CalendarMode.Decade;
-
-            this.calendar2.Margin = this.image4.Margin;
-
+            this.calendar2.Margin = this.btnDateNacimiento.Margin;
         }
         private void calendar2_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -887,15 +878,6 @@ namespace Recursos_Humanos_wpf
 
 
         }
-
-        private void image4_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        
-
-        
 
  
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
