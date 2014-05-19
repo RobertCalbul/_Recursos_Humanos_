@@ -179,7 +179,7 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="Informacion personal" x:Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" IsSelected="False" FontSize="16" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" ToolTip="" VerticalContentAlignment="Stretch" >
+                    <TabItem Header="Informacion personal" x:Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" IsSelected="False" FontSize="16" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"  VerticalContentAlignment="Stretch" >
                         <Grid x:Name="page1" Background="White" OpacityMask="{x:Null}" Margin="2" Visibility="Visible">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="43*"/>
