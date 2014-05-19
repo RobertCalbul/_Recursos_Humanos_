@@ -46,9 +46,11 @@
 
             <Label Content="Usuario" Margin="0" x:Name="label24" Foreground="White" FontWeight="Normal" FontSize="16" Grid.Column="1" Grid.Row="1" />
             <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
-            <TextBox Margin="0" x:Name="textBox1" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
-            <TextBox Margin="0" x:Name="textBox2" Grid.Row="5" Grid.Column="1" />
-            <Label Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click">
+            <TextBox Margin="0" x:Name="textBox1" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
+            <PasswordBox Margin="0" x:Name="textBox2" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" Password="123" VerticalContentAlignment="Center" />
+
+
+            <Label Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand">
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="Button.Click">
                         <EventTrigger.Actions>
@@ -111,7 +113,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="cBusqueda" Background="#FFE6E7E8" BorderBrush="#FF2D2D2D" SelectionBrush="#FF43E2E2" TextChanged="cBusqueda_TextChanged" Margin="0,0,1,0" Style="{StaticResource Search}" Padding="0" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" />
                 <Label Content="Buscar funcionario" Margin="0" x:Name="label1" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Padding="0" />
-                <Image x:Name="image1" Stretch="Fill" Source="Images/lupa.png" MouseLeftButtonUp="btnBuscar_click" Margin="0" Opacity="0.5" Visibility="Visible" Grid.Row="2" Grid.Column="2" />
+                <Image x:Name="image1" Stretch="Fill" Source="Images/lupa.png" MouseLeftButtonUp="btnBuscar_click" Margin="0" Opacity="0.5" Visibility="Visible" Grid.Row="2" Grid.Column="2" Cursor="Hand" />
                 <Separator x:Name="separator1" Background="#FF2D2D2D" Margin="0" FontFamily="Futura LT" FontSize="16" Grid.Row="12" Grid.ColumnSpan="2" Grid.Column="1" />
                 <Separator Margin="0" x:Name="separator2" Background="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="2" />
                 <RadioButton Content="Rut" Margin="0" x:Name="rbRut" Checked="RadioButtonSearch" HorizontalAlignment="Stretch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="4" Grid.Column="1" />
@@ -124,8 +126,8 @@
                 <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
                 <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
                 <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
-                <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" />
-                <ListBox Margin="0" x:Name="lAutoComplete" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" />
+                <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" />
+                <ListBox Margin="0" x:Name="lAutoComplete" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Cursor="Hand" />
             </Grid>
 
         </Grid>
@@ -150,7 +152,7 @@
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Label Margin="0" x:Name="lName" Foreground="#FF2D2D2D" FontSize="32" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" IsEnabled="False" Content="" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" />
-                <Label Margin="0" x:Name="lPuesto" Foreground="#FF2D2D2D" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="2" Content="" Padding="0" Grid.ColumnSpan="3" />
+                <Label Margin="0" x:Name="lPuesto" Foreground="#FF2D2D2D" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="2" Content="" Padding="0" Grid.ColumnSpan="3" ToolTip="Puesto del personal" />
                 <TabControl Margin="0" x:Name="tabControl1" Background="#FF4185F4" BorderBrush="#FF4185F4" Padding="0" TabStripPlacement="Top" SelectedIndex="0" BorderThickness="0" Grid.Row="4" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="4">
                     <TabControl.Resources>
                         <Style TargetType="{x:Type TabItem}">
@@ -177,7 +179,7 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="Informacion personal" x:Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" IsSelected="False" FontSize="16" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light">
+                    <TabItem Header="Informacion personal" x:Name="tabItem1" Foreground="#FF2D2D2D" SnapsToDevicePixels="False" IsEnabled="True" UseLayoutRounding="False" IsTabStop="True" IsHitTestVisible="True" IsManipulationEnabled="False" Focusable="True" Padding="0" AllowDrop="False" OverridesDefaultStyle="False" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" IsSelected="False" FontSize="16" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" ToolTip="" VerticalContentAlignment="Stretch" >
                         <Grid x:Name="page1" Background="White" OpacityMask="{x:Null}" Margin="2" Visibility="Visible">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="43*"/>
@@ -204,7 +206,7 @@
                                 <ColumnDefinition Width="11*"/>
                             </Grid.ColumnDefinitions>
                             <Border  Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="0,0,3,0" BorderThickness="1" CornerRadius="1" Padding="1,1,0,0" BorderBrush="#FFE6E7E8" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Margin="0" x:Name="iPerfil" Source="Images/icono.png" MouseLeftButtonUp="iPerfil_Click" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" />
+                                <Image Margin="0" x:Name="iPerfil" Source="Images/icono.png" MouseLeftButtonUp="iPerfil_Click" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" ToolTip="Presiona aqui para cargar una fotografia" Cursor="Hand" />
                             </Border>
                             <Label Content="Nombres" x:Name="label4" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" Margin="0" />
                             <Label Content="Apellidos" Margin="0" x:Name="label5" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="2" />
@@ -240,10 +242,10 @@
                             <ComboBox x:Name="tBank" Margin="0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="cargarBanco" Grid.Row="8"/>
                             <Label Content="Banco" Margin="0" x:Name="label11_Copy" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="6" Grid.Row="8" />
                             <ComboBox x:Name="tNacionalidad" Margin="0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="verpaises" Grid.Row="9"/>
-                            <Image Name="btnDateNacimiento" Grid.Column="4" Grid.Row="4" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateNacimiento_Click"/>
+                            <Image Name="btnDateNacimiento" Grid.Column="4" Grid.Row="4" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateNacimiento_Click" Cursor="Hand"/>
                         </Grid>
                     </TabItem>
-                    <TabItem x:Name="tabItem2" OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" Padding="0" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light">
+                    <TabItem x:Name="tabItem2" OverridesDefaultStyle="False" Selector.IsSelected="True" SnapsToDevicePixels="True" Header="Contrato" BorderBrush="#FF4185F4" Background="#FF4185F4" HorizontalContentAlignment="Stretch" Padding="0" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Stretch">
                         <Grid Background="White" Margin="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40*"/>
@@ -275,24 +277,24 @@
                             <Label Content="Tipo de contato:" Margin="0" x:Name="label18" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="1" Grid.Row="5" />
                             <Label Content="Cargo:" Margin="0" x:Name="label19" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="1" Grid.Row="6" />
                             <Label Content="Anexos:" Margin="0" x:Name="label20" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="1" Grid.Row="7" />
-                            <TextBox Margin="0" x:Name="tDateInit" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" UseLayoutRounding="False" Background="White" Grid.Column="2" Grid.Row="2" />
-                            <TextBox Margin="0" x:Name="tDateEnd" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" Grid.Column="2" Grid.Row="3" />
-                            <Label Content="Nuevo Contrato" Margin="2" x:Name="btnNewContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Visibility="Visible" Grid.Row="11" Padding="0" />
-                            <Label Content="Finalizar Contrato" Margin="2" x:Name="btnEndContract" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="11" Padding="0" />
-                            <Label Content="Cancelar" Margin="2" x:Name="btnCancelNewContract" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" IsEnabled="True" MouseLeftButtonUp="btnCancelNewContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="11" Padding="0" />
-                            <Label Content="Ingresar Contrato" Margin="2" x:Name="btnInsertNewContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF129D5A" MouseLeftButtonUp="btnInsertNewContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="10" Padding="0" />
-                            <Label Content="Vista Previa" Margin="2" x:Name="btnShowContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseLeftButtonUp="btnShowContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="9" />
+                            <TextBox Margin="0" x:Name="tDateInit" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" UseLayoutRounding="False" Background="White" Grid.Column="2" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" Width="172" />
+                            <TextBox Margin="0" x:Name="tDateEnd" BorderBrush="White" Foreground="#FF2D2D2D" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" Style="{StaticResource textBox}" Background="White" Grid.Column="2" Grid.Row="3" IsEnabled="False" />
+                            <Label Content="Nuevo Contrato" Margin="2" x:Name="btnNewContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF129D5A" Foreground="White" MouseLeftButtonUp="btnNewContract_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Visibility="Visible" Grid.Row="11" Padding="0" Cursor="Hand"/>
+                            <Label Content="Finalizar Contrato" Margin="2" x:Name="btnEndContract" IsEnabled="True" Background="#FFDD4337" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseLeftButtonUp="btnEndContract_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="11" Padding="0" Cursor="Hand"/>
+                            <Label Content="Cancelar" Margin="2" x:Name="btnCancelNewContract" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" IsEnabled="True" MouseLeftButtonUp="btnCancelNewContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="11" Padding="0" Cursor="Hand"/>
+                            <Label Content="Ingresar Contrato" Margin="2" x:Name="btnInsertNewContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Background="#FF129D5A" MouseLeftButtonUp="btnInsertNewContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="10" Padding="0" Cursor="Hand"/>
+                            <Label Content="Vista Previa" Margin="2" x:Name="btnShowContract" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseLeftButtonUp="btnShowContract_Click" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Column="5" Grid.Row="9" Cursor="Hand"/>
                             <ComboBox Margin="0" x:Name="cTypeContract" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" PreviewMouseDown="cTypeContract_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="cTypeContract_SelectionChanged" Grid.Column="2" Grid.Row="5" />
                             <ComboBox Margin="0" x:Name="cCargo" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" Background="White" PreviewMouseDown="cCargo_Click" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="6" />
 
                             <Calendar Margin="0" x:Name="calendar1" SelectedDatesChanged="selectedDateChanges_Clikc" Visibility="Hidden" Background="White" BorderBrush="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Column="3" Grid.Row="2" Grid.RowSpan="6" Grid.ColumnSpan="3" />
                             <Label Content="Ejecutivo de ventas" x:Name="lDescription" Background="#FF4185F4" Foreground="White" FontSize="18" FontStretch="Normal" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="6" FlowDirection="LeftToRight" Target="{Binding}" IsEnabled="True" Grid.ColumnSpan="7" Margin="0" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
                             <ComboBox Margin="0" x:Name="tStat" Background="White" BorderBrush="#FF2D2D2D" Foreground="#FF2D2D2D" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" VerticalContentAlignment="Center" PreviewMouseDown="tStat_PreviewMouseDown" Grid.Column="2" Grid.Row="4" />
-                            <Image x:Name="btnDateInitCalendar" Grid.Column="3" Margin="0" Grid.Row="2" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateInitCalendar_Click"/>
-                            <Image x:Name="btnDateEndCalendar" Grid.Column="3" Margin="0" Grid.Row="3" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateEndCalendar_Click"/>
+                            <Image x:Name="btnDateInitCalendar" Grid.Column="3" Margin="0" Grid.Row="2" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateInitCalendar_Click" Cursor="Hand" ToolTip="Selecciona fecha de inicio"/>
+                            <Image x:Name="btnDateEndCalendar" Grid.Column="3" Margin="0" Grid.Row="3" Source="Images/calendario-icono-8819.ico" MouseDown="btnDateEndCalendar_Click" Cursor="Hand" ToolTip="Selecciona fecha de termino"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Name="tabItem3" OverridesDefaultStyle="False" Padding="0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light">
+                    <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Name="tabItem3" OverridesDefaultStyle="False" Padding="0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" >
                         <Grid Background="White" Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="330*" />
@@ -312,13 +314,13 @@
 
 
 
-                <Label Content="Eliminar" Margin="2" x:Name="btnDeleteReg" Background="#FFE87467" HorizontalContentAlignment="Center" Foreground="White" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnDeleteReg_Click" Grid.Row="6" Grid.Column="3" Padding="0" />
-                <Label Content="Editar" Margin="2" x:Name="btnUpdateReg" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" Grid.Row="6" Grid.Column="2" Padding="0" />
-                <Label Content="Cancelar" Height="Auto" Margin="2" x:Name="btnCancelAdd" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" Grid.Row="6" Grid.Column="3" Padding="0" />
-                <Label Content="Agregar" Margin="2" x:Name="btnAddUser" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" Grid.Row="6" Grid.Column="2" Padding="0" />
+                <Label Content="Eliminar" Margin="2" x:Name="btnDeleteReg" Background="#FFE87467" HorizontalContentAlignment="Center" Foreground="White" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnDeleteReg_Click" Grid.Row="6" Grid.Column="3" Padding="0" Cursor="Hand" />
+                <Label Content="Editar" Margin="2" x:Name="btnUpdateReg" Background="#FF4185F4" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Futura LT" MouseDown="btnUpdateReg_Click" Grid.Row="6" Grid.Column="2" Padding="0" Cursor="Hand" />
+                <Label Content="Cancelar" Height="Auto" Margin="2" x:Name="btnCancelAdd" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Style="{StaticResource label red}" FontSize="16" FontFamily="Futura LT" MouseDown="btnCancelAdd_Click" Grid.Row="6" Grid.Column="3" Padding="0" Cursor="Hand"/>
+                <Label Content="Agregar" Margin="2" x:Name="btnAddUser" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" Grid.Row="6" Grid.Column="2" Padding="0" Cursor="Hand"/>
 
             </Grid>
-            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6">
+            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="71*"/>
                     <RowDefinition Height="423*"/>
@@ -344,7 +346,7 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
                 
-                <Image Grid.Column="1" Margin="0" Grid.Row="1" Source="Images/Logo.jpg"/>
+                <Image x:Name="LogoOficial" Grid.Column="1" Margin="0" Grid.Row="1" Source="Images/Logo.jpg" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2"/>
                 <Label Content="Integrantes" Grid.Column="1" Margin="0" Grid.Row="2" Background="White" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
                 <Label Content="Marcelo Carrasco" Grid.Column="1" Margin="0" Grid.Row="3" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
                 <Label Content="Ariel Saavedra" Grid.Column="1" Margin="0" Grid.Row="4" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>

@@ -95,7 +95,17 @@ namespace Recursos_Humanos_wpf
                 List<String> resul = new Clases.PDF().leerpaises();
                 if (arreglo != null)
                 {
-                    lName.Content = arreglo[1].ToString() + " " + arreglo[2].ToString(); 
+                    //Iniciales en mayusculas
+                    string nombre = arreglo[1].ToString();
+                    string apellido = arreglo[2].ToString();
+                    string[] nombres= nombre.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
+                    string[] apellidos= apellido.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
+                    nombre = apellido = "";
+                    foreach(string x in nombres){nombre+=x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length-1)+" ";}
+                    foreach (string x in apellidos){apellido += x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length - 1) + " ";}
+
+                    lName.Content = nombre + apellido;
+
                     BitmapImage imagenes = new BitmapImage();//Byte[] datas = (byte[])arreglo[0];
                     imagenes.BeginInit();
                     MemoryStream stri = new MemoryStream((byte[])arreglo[0], 0, ((byte[])arreglo[0]).Length, false, false);
@@ -426,6 +436,8 @@ namespace Recursos_Humanos_wpf
             this.lDescription.Content = "Agregar Nuevo contrato";
             Label[] labels = { this.label15, this.label16, this.label17, this.label18, this.label19, this.label20, this.btnShowContract, this.btnInsertNewContract, this.btnCancelNewContract };
             foreach (Label x in labels) x.Visibility = Visibility.Visible;
+            this.tDateInit.IsEnabled = false;
+            this.tDateEnd.IsEnabled = false;
             this.tDateInit.Visibility = Visibility.Visible;
             this.tDateEnd.Visibility = Visibility.Visible;
             this.tStat.Visibility = Visibility.Visible;
@@ -884,7 +896,7 @@ namespace Recursos_Humanos_wpf
         private void bAcceder_Click(object sender, MouseButtonEventArgs e)
         {
             animacionLogeo.Begin();
-            animacionPresentacion.Begin();
+            animacionPresentacion.Begin();            
         }
 
  
