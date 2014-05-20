@@ -41,7 +41,7 @@
 		</Grid.ColumnDefinitions>
 		<Image x:Name="image2" Source="/Images/Close2.png" Margin="0" MouseUp="close_Click" MouseMove="CambiaColor" MouseLeave="ColorNormal" Grid.Column="3" Grid.Row="1" />
 		<Image Margin="0,8,0,0" x:Name="image3" Source="Images/Minimize.png" MouseUp="minimize_Click" Grid.Column="2" Grid.Row="1" />
-		<Grid Margin="0,1,0,0" x:Name="gridLogeo" Background="#FF33B5E5" Grid.Row="3" Panel.ZIndex="1">
+		<Grid Margin="0,1,0,0" x:Name="gridLogeo" Background="#FF33B5E5" Grid.Row="3" Panel.ZIndex="-1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="196*"/>
 				<RowDefinition Height="33*"/>
@@ -339,7 +339,7 @@
 				<Label Content="Agregar" Margin="2" x:Name="btnAddUser" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FF4185F4" Foreground="White" Visibility="Hidden" FocusVisualStyle="{DynamicResource label Blue}" FontSize="16" FontFamily="Futura LT" MouseDown="btnAddUser_Click" Grid.Row="6" Grid.Column="2" Padding="0" Cursor="Hand"/>
 
 			</Grid>
-			<Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="1">
+			<Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="-1">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="71*"/>
 					<RowDefinition Height="423*"/>

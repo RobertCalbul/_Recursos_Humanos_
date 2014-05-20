@@ -101,8 +101,8 @@ namespace Recursos_Humanos_wpf
                     string[] nombres= nombre.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
                     string[] apellidos= apellido.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
                     nombre = apellido = "";
-                    foreach(string x in nombres){nombre+=x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length-1)+" ";}
-                    foreach (string x in apellidos){apellido += x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length - 1) + " ";}
+                    foreach(string x in nombres){nombre+=x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length-1).ToLower()+" ";}
+                    foreach (string x in apellidos) { apellido += x.Substring(0, 1).ToUpper() + x.Substring(1, x.Length - 1).ToLower() + " "; }
 
                     lName.Content = nombre + apellido;
 
@@ -627,7 +627,7 @@ namespace Recursos_Humanos_wpf
             try
             {
                 OpenFileDialog ofd = new OpenFileDialog();
-                //ofd.Filter = "Imagenes jpg(*.jpg)|*.jpg";
+                ofd.Filter = "Imagenes jpg(*.jpg)|*.jpg";
                 if (ofd.ShowDialog() == true)
                 {
                     this.path.Content = ofd.FileName;
