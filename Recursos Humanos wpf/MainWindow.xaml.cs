@@ -896,7 +896,8 @@ namespace Recursos_Humanos_wpf
         private void bAcceder_Click(object sender, MouseButtonEventArgs e)
         {
             animacionLogeo.Begin();
-            animacionPresentacion.Begin();            
+            animacionPresentacion.Begin();
+            //animacionLogo.Begin();
         }
 
  

@@ -3,105 +3,112 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="label red" TargetType="{x:Type Label}">
-            <Setter Property="Background" Value="#FFE87467"></Setter>
-            <Setter Property="Foreground" Value="#ffffffff"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="center"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="center"></Setter>
-            <Setter Property="Height" Value="26"></Setter>
-            <Setter Property="Width" Value="115"></Setter>
-        </Style>
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="Simple Styles.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    		<Style x:Key="label red" TargetType="{x:Type Label}">
+    			<Setter Property="Background" Value="#FFE87467"/>
+    			<Setter Property="Foreground" Value="#ffffffff"/>
+    			<Setter Property="HorizontalContentAlignment" Value="center"/>
+    			<Setter Property="VerticalContentAlignment" Value="center"/>
+    			<Setter Property="Height" Value="26"/>
+    			<Setter Property="Width" Value="115"/>
+    		</Style>
 
-        <Style x:Key="label Blue" TargetType="{x:Type Label}">
-            <Setter Property="Background" Value="#FF4185F4"></Setter>
-            <Setter Property="Foreground" Value="#ffffffff"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="center"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="center"></Setter>
-            <Setter Property="Height" Value="26"></Setter>
-            <Setter Property="Width" Value="115"></Setter>
-        </Style>
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
-        <Style TargetType="{x:Type TextBox}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
-        <Style TargetType="{x:Type RadioButton}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
+    		<Style x:Key="label Blue" TargetType="{x:Type Label}">
+    			<Setter Property="Background" Value="#FF4185F4"/>
+    			<Setter Property="Foreground" Value="#ffffffff"/>
+    			<Setter Property="HorizontalContentAlignment" Value="center"/>
+    			<Setter Property="VerticalContentAlignment" Value="center"/>
+    			<Setter Property="Height" Value="26"/>
+    			<Setter Property="Width" Value="115"/>
+    		</Style>
+    		<Style TargetType="{x:Type Label}">
+    			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    		</Style>
+    		<Style TargetType="{x:Type TextBox}">
+    			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    		</Style>
+    		<Style TargetType="{x:Type RadioButton}">
+    			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    		</Style>
 
-        <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
-        <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"></Setter>
-            <Setter Property="Foreground" Value="#ff2d2d2d" ></Setter>
-        </Style>
+    		<Style TargetType="{x:Type CheckBox}">
+    			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    		</Style>
+    		<Style TargetType="{x:Type ComboBox}">
+    			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    		</Style>
 
 
 
-        <Style x:Key="textBox" TargetType="{x:Type TextBox}">
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="AllowDrop" Value="true" />
-            <Setter Property="Foreground" Value="#ff2d2d2d" />
-            <Setter Property="Background" Value="#00000000" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border Name="Border"
-                                    Background="#00000000"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="0"
-                                    CornerRadius="0"
-                                    Padding="0">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="#ffffffff" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF4185F4" />
-                                <Setter Property="Foreground" Value="#2d2d2d" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="Search" TargetType="{x:Type TextBox}">
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="AllowDrop" Value="true" />
-            <Setter Property="Foreground" Value="#ff2d2d2d" />
-            <Setter Property="Background" Value="#00000000" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border Name="Border"
-                                    Background="#00000000"
-                                    BorderBrush="#2d2d2d"
-                                    BorderThickness="1"
-                                    CornerRadius="2"
-                                    Padding="2">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="Transparent" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#EEEEEE" />
-                                <Setter Property="Foreground" Value="#888888" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+    		<Style x:Key="textBox" TargetType="{x:Type TextBox}">
+    			<Setter Property="SnapsToDevicePixels" Value="True" />
+    			<Setter Property="OverridesDefaultStyle" Value="True" />
+    			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    			<Setter Property="AllowDrop" Value="true" />
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    			<Setter Property="Background" Value="#00000000" />
+    			<Setter Property="Template">
+    				<Setter.Value>
+    					<ControlTemplate TargetType="{x:Type TextBoxBase}">
+    						<Border x:Name="Border"
+    							Background="#00000000"
+    							BorderBrush="Transparent"
+    							BorderThickness="0"
+    							CornerRadius="0"
+    							Padding="0">
+    							<ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+    						</Border>
+    						<ControlTemplate.Triggers>
+    							<Trigger Property="IsEnabled" Value="False">
+    								<Setter TargetName="Border" Property="Background" Value="#ffffffff" />
+    								<Setter TargetName="Border" Property="BorderBrush" Value="#FF4185F4" />
+    								<Setter Property="Foreground" Value="#2d2d2d" />
+    							</Trigger>
+    						</ControlTemplate.Triggers>
+    					</ControlTemplate>
+    				</Setter.Value>
+    			</Setter>
+    		</Style>
+    		<Style x:Key="Search" TargetType="{x:Type TextBox}">
+    			<Setter Property="SnapsToDevicePixels" Value="True" />
+    			<Setter Property="OverridesDefaultStyle" Value="True" />
+    			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    			<Setter Property="AllowDrop" Value="true" />
+    			<Setter Property="Foreground" Value="#ff2d2d2d" />
+    			<Setter Property="Background" Value="#00000000" />
+    			<Setter Property="Template">
+    				<Setter.Value>
+    					<ControlTemplate TargetType="{x:Type TextBoxBase}">
+    						<Border x:Name="Border"
+    							Background="#00000000"
+    							BorderBrush="#2d2d2d"
+    							BorderThickness="1"
+    							CornerRadius="2"
+    							Padding="2">
+    							<ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+    						</Border>
+    						<ControlTemplate.Triggers>
+    							<Trigger Property="IsEnabled" Value="False">
+    								<Setter TargetName="Border" Property="Background" Value="Transparent" />
+    								<Setter TargetName="Border" Property="BorderBrush" Value="#EEEEEE" />
+    								<Setter Property="Foreground" Value="#888888" />
+    							</Trigger>
+    						</ControlTemplate.Triggers>
+    					</ControlTemplate>
+    				</Setter.Value>
+    			</Setter>
+    		</Style>
+        
+
+    	</ResourceDictionary>
         
 
     </Application.Resources>
