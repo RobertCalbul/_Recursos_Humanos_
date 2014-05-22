@@ -49,7 +49,6 @@ namespace Recursos_Humanos_wpf
             this.tabControl1.SelectedIndex = 0;
             this.grid5.IsEnabled = false;
             this.rbRut.IsChecked = true;
-
         }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
