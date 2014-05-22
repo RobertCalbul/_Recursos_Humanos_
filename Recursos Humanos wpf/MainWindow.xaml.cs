@@ -459,8 +459,22 @@ namespace Recursos_Humanos_wpf
             bool crearcarp = new Clases.PDF().CrearCarpetaXml("contratos");     
             if (crearcarp)
             {
+                Boolean flag = true;
                 try
                 {
+                    Console.WriteLine("init");
+                    ThreadPool.QueueUserWorkItem(o =>
+                    {
+                        while (flag)
+                        {
+
+                            Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                this.label.Content = "CARGANDO";
+                            }));
+                            Thread.Sleep(100);
+                        }
+                    });
                     listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();
                     Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.Tdireccion.Text,
@@ -488,11 +502,15 @@ namespace Recursos_Humanos_wpf
                     document.Close();
 
                     new Dialog("Contrato generado con exito.");
+                    flag = false; 
                     System.Diagnostics.Process.Start("contrato.pdf");
+                    this.label.Content = "";
                 }
                 catch (Exception ex)
                 {
+                    flag = false;
                     new Dialog("Ocurrio un error al generar el contrato.").Show();
+                    this.label.Content = "";
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
                 }
             }
