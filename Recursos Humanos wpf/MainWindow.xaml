@@ -17,11 +17,26 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="animacionAddPersonal">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="iAddUser">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="iAddUser">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard Storyboard="{StaticResource AnimacionLogo}"/>
             <BeginStoryboard Storyboard="{StaticResource animacionLogo}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="iAddUser">
+        	<BeginStoryboard x:Name="animacionAddPersonal_BeginStoryboard" Storyboard="{StaticResource animacionAddPersonal}"/>
         </EventTrigger>
     </Window.Triggers>
 
@@ -145,7 +160,16 @@
                 <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
                 <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
                 <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
-                <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" />
+                <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" RenderTransformOrigin="0.5,0.5" >
+                	<Image.RenderTransform>
+                		<TransformGroup>
+                			<ScaleTransform/>
+                			<SkewTransform/>
+                			<RotateTransform/>
+                			<TranslateTransform/>
+                		</TransformGroup>
+                	</Image.RenderTransform>
+                </Image>
                 <ListBox Margin="0" x:Name="lAutoComplete" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Cursor="Hand" />
             </Grid>
 
