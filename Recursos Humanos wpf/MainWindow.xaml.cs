@@ -912,9 +912,19 @@ namespace Recursos_Humanos_wpf
 
         private void bAcceder_Click(object sender, MouseButtonEventArgs e)
         {
-            animacionLogeo.Begin();
-            animacionPresentacion.Begin();
-            //animacionLogo.Begin();
+
+            //Aqui
+            Login login = new Login();
+            object[] Resultado=login.findBy(tNombreUser.Text,tPasswordUser.Password);
+            if (Resultado != null)
+            {
+                animacionLogeo.Begin();
+                animacionPresentacion.Begin();
+                
+            }
+
+
+            
         }
 
  

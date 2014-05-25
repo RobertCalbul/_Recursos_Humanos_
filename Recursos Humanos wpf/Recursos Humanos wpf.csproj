@@ -75,6 +75,7 @@
     <Compile Include="Clases\Comunas.cs" />
     <Compile Include="Clases\Departamento.cs" />
     <Compile Include="Clases\Banco_Personal.cs" />
+    <Compile Include="Clases\Login.cs" />
     <Compile Include="Clases\Personal_Departamento.cs" />
     <Compile Include="Clases\Banco.cs" />
     <Compile Include="Clases\Regiones.cs" />
@@ -95,10 +96,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,9 +109,6 @@
     <Compile Include="Clases\Contratos.cs" />
     <Compile Include="Clases\PDF.cs" />
     <Compile Include="Clases\Personal.cs" />
-    <Compile Include="Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -197,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bienvenido.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
