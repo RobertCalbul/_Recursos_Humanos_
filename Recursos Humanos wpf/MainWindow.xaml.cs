@@ -182,6 +182,7 @@ namespace Recursos_Humanos_wpf
                     i = 0;
                     
                 } loadDataContract(tRut.Text.Trim());
+                llenaaHorario(this.tRut.Text.Trim());
             }
         }
         // click en agregar usuario
@@ -927,6 +928,11 @@ namespace Recursos_Humanos_wpf
             
         }
 
+        public void llenaaHorario(String rut)
+        {
+
+            this.gHorario.ItemsSource = new Registro_Horario(new Personal(rut).get_idPersonal()).findAll();
+        }
  
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 

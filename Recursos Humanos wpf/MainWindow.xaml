@@ -30,30 +30,30 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="animacionBLogin">
-        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label27">
-        		<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
-        		<EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF6099F5"/>
-        	</ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label27">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF6099F5"/>
+            </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="aniBLogin2">
-        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label27">
-        		<EasingColorKeyFrame KeyTime="0" Value="#FF6099F5"/>
-        		<EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF4185F4"/>
-        	</ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label27">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF6099F5"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF4185F4"/>
+            </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="bienvenida">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imageBienvenida">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="imageBienvenida">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="imageBienvenida">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="130"/>
-        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imageBienvenida">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="imageBienvenida">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="imageBienvenida">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="130"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
@@ -66,10 +66,10 @@
             <BeginStoryboard x:Name="animacionAddPersonal_BeginStoryboard" Storyboard="{StaticResource animacionAddPersonal}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="label27">
-        	<BeginStoryboard x:Name="animacionBLogin_BeginStoryboard" Storyboard="{StaticResource animacionBLogin}"/>
+            <BeginStoryboard x:Name="animacionBLogin_BeginStoryboard" Storyboard="{StaticResource animacionBLogin}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="label27">
-        	<BeginStoryboard x:Name="aniBLogin2_BeginStoryboard" Storyboard="{StaticResource aniBLogin2}"/>
+            <BeginStoryboard x:Name="aniBLogin2_BeginStoryboard" Storyboard="{StaticResource aniBLogin2}"/>
         </EventTrigger>
     </Window.Triggers>
 
@@ -373,18 +373,21 @@
                     </TabItem>
                     <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="tabItem3" OverridesDefaultStyle="False" Padding="0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" >
                         <Grid Name="gHEmpleado" Background="White" Margin="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28*"/>
+                                <RowDefinition Height="142*"/>
+                                <RowDefinition Height="53*"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="330*" />
-                                <ColumnDefinition Width="369*" />
+                                <ColumnDefinition Width="66*" />
+                                <ColumnDefinition Width="575*" />
+                                <ColumnDefinition Width="49*"/>
                                 <ColumnDefinition Width="24*" />
                             </Grid.ColumnDefinitions>
-                            <Label Background="#FF129D5A" Content="Nuevo Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="133,418,0,21" MouseLeftButtonUp="btnNewContract_Click" x:Name="label34" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Visible" Width="236" />
-                            <Label Background="#FFDD4337" Content="Finalizar Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="True" Margin="133,418,0,21" MouseLeftButtonUp="btnEndContract_Click" x:Name="label35" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="236" />
-                            <Label Background="#FFE87467" Content="Cancelar" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="True" Margin="133,418,0,21" MouseLeftButtonUp="btnCancelNewContract_Click" x:Name="label36" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
-                            <Label Background="#FF129D5A" Content="Ingresar Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,383,1,0" MouseLeftButtonUp="btnInsertNewContract_Click" x:Name="label37" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
-                            <Label Background="#FF4185F4" Content="Vista Previa" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,348,1,0" MouseLeftButtonUp="btnShowContract_Click" x:Name="label38" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" />
-                            <Label Background="#FF4185F4" Content="Ejecutivo de ventas" FlowDirection="LeftToRight" FontSize="18" FontStretch="Normal" Foreground="White" Grid.ColumnSpan="3" Height="45" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsEnabled="True" Margin="0,-1,0,0" x:Name="label41" Padding="6" Target="{Binding}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="739" />
-                            <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="100,62,0,0" x:Name="dataGrid1" VerticalAlignment="Top" Width="366" Grid.ColumnSpan="2" SelectionChanged="dataGrid1_SelectionChanged" />
+                            <Label Background="#FFE87467" Content="Cancelar" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="True" Margin="262,80,77,-2" MouseLeftButtonUp="btnCancelNewContract_Click" x:Name="label36" VerticalAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" Grid.Row="2" />
+                            <Label Background="#FF129D5A" Content="Ingresar Contrato" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,68,1,0" MouseLeftButtonUp="btnInsertNewContract_Click" x:Name="label37" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" Grid.Row="2" Grid.ColumnSpan="2" />
+                            <Label Background="#FF4185F4" Content="Vista Previa" FontFamily="Futura LT" FontSize="16" Foreground="White" Grid.Column="1" Height="28" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,33,1,0" MouseLeftButtonUp="btnShowContract_Click" x:Name="label38" VerticalAlignment="Top" VerticalContentAlignment="Center" Visibility="Hidden" Width="236" Grid.Row="2" Grid.ColumnSpan="2" />
+                            <DataGrid Name="gHorario" AutoGenerateColumns="True" Margin="0"  SelectionChanged="dataGrid1_SelectionChanged" Grid.Row="1" Grid.Column="1" ColumnWidth="15*" />
                         </Grid>
                     </TabItem>
                 </TabControl>
@@ -398,17 +401,17 @@
 
             </Grid>
             <Image x:Name="imageBienvenida" HorizontalAlignment="Right" Height="88" Margin="0,0,38,30" Width="168" OpacityMask="Black" Source="Images/Bienvenido.png" Panel.ZIndex="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
-            	<Image.RenderTransform>
-            		<TransformGroup>
-            			<ScaleTransform/>
-            			<SkewTransform/>
-            			<RotateTransform/>
-            			<TranslateTransform/>
-            		</TransformGroup>
-            	</Image.RenderTransform>
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
             </Image>
             <!--Grid Presentacion-->
-            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="2">
+            <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="-1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="71*"/>
                     <RowDefinition Height="423*"/>
