@@ -86,14 +86,35 @@
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="interfaz_apf_salud.xaml.cs">
+    <Compile Include="Interfaz\Administrativo\Administrador.xaml.cs">
+      <DependentUpon>Administrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\Presentacion\interfazBienvenida.xaml.cs">
+      <DependentUpon>interfazBienvenida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\User\interfazUserGeneral.xaml.cs">
+      <DependentUpon>interfazUserGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\User\interfaz_apf_salud.xaml.cs">
       <DependentUpon>interfaz_apf_salud.xaml</DependentUpon>
     </Compile>
     <Page Include="Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="interfaz_apf_salud.xaml">
+    <Page Include="Interfaz\Administrativo\Administrador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\Presentacion\interfazBienvenida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\User\interfazUserGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\User\interfaz_apf_salud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

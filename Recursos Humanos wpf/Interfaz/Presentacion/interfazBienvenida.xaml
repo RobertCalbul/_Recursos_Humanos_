@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Recursos_Humanos_wpf.Interfaz.interfazBienvenida"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="757" Height="702">
+    <Grid Margin="0" x:Name="gridPresentacion" Background="White" Grid.RowSpan="3" MinWidth="4.6" Panel.ZIndex="-1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="423*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="558*"/>
+            <ColumnDefinition Width="92*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!--ANIMACION de de la presentacion-->
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <TranslateTransform x:Name="TTranslateX2" />
+            </TransformGroup>
+        </Grid.RenderTransform>
+
+        <Image x:Name="LogoOficial" Grid.Column="1" Margin="0" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Source="/Recursos Humanos wpf;component/Images/Logo.jpg"/>
+        <Label Content="Integrantes" Grid.Column="1" Margin="0" Grid.Row="2" Background="White" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label Content="Marcelo Carrasco" Grid.Column="1" Margin="0" Grid.Row="3" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label Content="Ariel Saavedra" Grid.Column="1" Margin="0" Grid.Row="4" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label Content="Igor Riquelme" Grid.Column="1" Margin="0" Grid.Row="5" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label Content="Esteban Campos" Grid.Column="1" Margin="0" Grid.Row="6" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label Content="Robert Calbul" Grid.Column="1" Margin="0" Grid.Row="7" Foreground="Silver" HorizontalAlignment="Center" Padding="0" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light"/>
+        <Label x:Name="HuevoPascua" Content="Label" Grid.Column="1" Margin="0" Grid.Row="1" Height="4" Width="4" Panel.ZIndex="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label.Triggers >
+                <EventTrigger RoutedEvent="UIElement.MouseLeftButtonUp">
+                    <BeginStoryboard x:Name="objBeginStoryBoard2">
+                        <Storyboard x:Name="animacionPresentacion">
+                            <DoubleAnimation x:Name="opacidadPresent" Storyboard.TargetName="gridPresentacion"
+										Storyboard.TargetProperty="Opacity"     
+										From="1.0" To="0.0" Duration="0:0:1"/>
+                            <DoubleAnimation x:Name="posicionPresent" Storyboard.TargetName="TTranslateX2"
+										Storyboard.TargetProperty="X"
+										From="0" To="800" Duration="0:0:5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Label.Triggers>
+        </Label>
+
+    </Grid>
+</UserControl>
