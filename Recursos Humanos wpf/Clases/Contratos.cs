@@ -88,8 +88,8 @@ namespace Recursos_Humanos_wpf.Clases
             int flag = 0;
             try{
                 Clases.Consultas consult = new Clases.Consultas();
-                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,sueldo_minimo,tipo_contrato_id_tipo_contrato, cargo_id_cargo)" +
-                    " values('"+ this.fInicio + "','" + this.fTermino + "','" + this.estado + "',"+this.SueldoBase+"," + this.tContrato + "," + this.Cargo+ ")";
+                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,sueldo_minimo,tipo_contrato_id_tipo_contrato, cargo_id_cargo,tipo_jornada_id_tipo_jornada)" +
+                    " values('"+ this.fInicio + "','" + this.fTermino + "','" + this.estado + "',"+this.SueldoBase+"," + this.tContrato + "," + this.Cargo+ ",1)";
                 if (consult.Update(sql) > 0)
                 {
                     sql = "SELECT DISTINCT LAST_INSERT_ID() as id_contrato FROM contrato";
