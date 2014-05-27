@@ -19,9 +19,19 @@ namespace Recursos_Humanos_wpf.Interfaz
     /// </summary>
     public partial class Administrador : UserControl
     {
-        public Administrador()
+        MainWindow main;
+        interfazUserGeneral _infoUser;
+        public Administrador(MainWindow main)
         {
             InitializeComponent();
+            _infoUser = new interfazUserGeneral(main);
+            this.main = main;
+        }
+
+        private void back_click(object sender, RoutedEventArgs e)
+        {
+            main.WorkSpace.Children.Clear();
+            main.WorkSpace.Children.Add(_infoUser);
         }
     }
 }

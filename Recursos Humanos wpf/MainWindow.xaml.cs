@@ -25,17 +25,12 @@ using Recursos_Humanos_wpf.Interfaz;
 
 namespace Recursos_Humanos_wpf
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-
         public List<string> listAutocomplet = null;
-
-        Validaciones validacion = new Validaciones();
         interfazUserGeneral _infoUser;
         interfazBienvenida _bienbenida;
+    
         public MainWindow()
         {
             InitializeComponent();
@@ -51,9 +46,6 @@ namespace Recursos_Humanos_wpf
         }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
-
-
-
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
         {
            _infoUser.Search();
@@ -65,14 +57,13 @@ namespace Recursos_Humanos_wpf
         {
 
             _infoUser.limpiarTexbox();
-            this.WorkSpace.IsEnabled = true;
             _infoUser.tDateNaci.IsEnabled = false;
             _infoUser.tRut.IsEnabled = true;
             _infoUser.iPerfil.IsEnabled = true;
             _infoUser.btnAddUser.IsEnabled = true;
+            this.WorkSpace.IsEnabled = true;
             this.cBusqueda.IsEnabled = false;
             this.image1.IsEnabled = false;
-            //this.btnAddAfp.Visibility = Visibility.Visible;
             _infoUser.btnAddUser.Visibility = Visibility.Visible;
             _infoUser.btnCancelAdd.Visibility = Visibility.Visible;
             _infoUser.btnAddUser.Visibility = Visibility.Visible;
@@ -120,6 +111,7 @@ namespace Recursos_Humanos_wpf
                 this.lAutoComplete.ItemsSource = null;
             }
         }
+
         private void lAutoComplete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.lAutoComplete.ItemsSource != null)
@@ -151,7 +143,7 @@ namespace Recursos_Humanos_wpf
 
         private void bAcceder_Click(object sender, RoutedEventArgs e)
         {
-            animacionLogeo.Begin();
+            this.animacionLogeo.Begin();
             _bienbenida.animacionPresentacion.Begin();
         }
 
@@ -161,9 +153,8 @@ namespace Recursos_Humanos_wpf
             object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
             if (Resultado != null)
             {
-                animacionLogeo.Begin();
-                _bienbenida.animacionPresentacion.Begin();
-                
+                this.animacionLogeo.Begin();
+                _bienbenida.animacionPresentacion.Begin();       
             }
         }
 /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
@@ -188,7 +179,7 @@ namespace Recursos_Humanos_wpf
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
         }
- 
+
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
 
     }

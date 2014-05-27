@@ -21,9 +21,6 @@ using System.Windows.Shapes;
 
 namespace Recursos_Humanos_wpf.Interfaz
 {
-    /// <summary>
-    /// Interaction logic for interfazInfoUser.xaml
-    /// </summary>
     public partial class interfazUserGeneral : UserControl
     {
         int flagCalendar = -1;
@@ -38,8 +35,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         List<Banco> listBank = null;
         MainWindow main;
         public interfazUserGeneral(MainWindow main)
-        {
-            
+        {        
             InitializeComponent();
             this.main = main;
             this.tabControl1.SelectedIndex = 0;
@@ -210,9 +206,6 @@ namespace Recursos_Humanos_wpf.Interfaz
                         main.listAutocomplet = new Clases.Personal().findAll(0);
                         main.cBusqueda.IsEnabled = true;
                         this.iPerfil.IsEnabled = false;
-                        this.btnAddUser.Visibility = Visibility.Hidden;
-                        //              this.btnAddAfp.Visibility = Visibility.Hidden;
-                        //                this.btnAddSalud.Visibility = Visibility.Hidden;
                         this.btnCancelAdd.Visibility = Visibility.Hidden;
                         this.btnUpdateReg.Visibility = Visibility.Visible;
                         this.btnDeleteReg.Visibility = Visibility.Visible;
@@ -265,9 +258,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         //CANCELA INGRESO EMPLEADO
         public void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
         {
-
-
-            Label[] labels = {/* this.btnAddAfp, this.btnAddSalud,*/ this.btnAddUser, this.btnCancelAdd };
+            Label[] labels = {this.btnAddUser, this.btnCancelAdd };
             foreach (Label x in labels) x.Visibility = Visibility.Hidden;
             main.WorkSpace.IsEnabled = false;
             main.cBusqueda.IsEnabled = true;
@@ -355,7 +346,6 @@ namespace Recursos_Humanos_wpf.Interfaz
                 interfaces = dtRow["cargo"].ToString();
                 this.tDateInit.Text = validacion.DateFormat(dtRow["fecha_inicio"].ToString());
                 this.tDateEnd.Text = validacion.DateFormat(dtRow["fecha_termino"].ToString());
-                //this.tStat.Text = dtRow["estado"].ToString();
                 int i = 0;
                 foreach (String es in estados)
                 {
@@ -371,7 +361,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             }
             Label[] labelVisible = { this.label15, this.label16, this.label17, this.label18, this.label19, this.label20 };
             Label[] btnVisible = { this.btnShowContract, this.btnInsertNewContract, this.btnCancelNewContract };
-            //cambia color en caso de que no existe contrato PD: ROBERT QLO xd
+            //cambia color en caso de que no existe contrato 
             this.lDescription.Background = interfaces == "1" || interfaces == "" ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dd4337")) : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4185f4"));
             this.lDescription.Content = interfaces == "1" || interfaces == "" ? "Usuario sin contrato" : this.cCargo.Text;
             this.tDateInit.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
@@ -394,7 +384,6 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.btnDateInitCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
             this.btnDateEndCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
         }
-
 
         //CREA INTERFAZ PARA AGREGAR CONTRATO
         private void btnNewContract_Click(object sender, MouseButtonEventArgs e)
@@ -434,7 +423,6 @@ namespace Recursos_Humanos_wpf.Interfaz
                     {
                         while (flag)
                         {
-
                             Dispatcher.BeginInvoke(new Action(() =>
                             {
                                 this.label.Content = "CARGANDO";

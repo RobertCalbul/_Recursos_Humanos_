@@ -87,9 +87,26 @@
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
+        <!-- Header -->
         <Image x:Name="image2" Source="/Images/Close2.png" Margin="0" MouseUp="close_Click" MouseMove="CambiaColor" MouseLeave="ColorNormal" Grid.Column="3" Grid.Row="1" />
         <Image Margin="0,8,0,0" x:Name="image3" Source="Images/Minimize.png" MouseUp="minimize_Click" Grid.Column="2" Grid.Row="1" />
-        <Grid Margin="0,1,0,0" x:Name="gridLogeo" Background="#FF33B5E5" Grid.Row="3" Panel.ZIndex="2">
+        <!-- GRILLA DE LOGO IZQUIERDA-->
+        <Grid x:Name="grid4" Background="#FF33B5E5" MouseLeftButtonDown="moveWindow" Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
+            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
+        </Grid>
+        <!-- FIN GRILLA DE LOGO IZQUIERDA-->
+        <!-- fin header -->
+        
+        
+        
+        <!-- GRILLA DE LOGIN -->
+        <Grid Margin="0,1,0,0" x:Name="gridLogeo" Background="#FF33B5E5" Grid.Row="3" Panel.ZIndex="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="196*"/>
                 <RowDefinition Height="33*"/>
@@ -112,13 +129,10 @@
                     <TranslateTransform x:Name="TTranslateX" />
                 </TransformGroup>
             </Grid.RenderTransform>
-
             <Label Content="Usuario" Margin="0" x:Name="label24" Foreground="White" FontWeight="Normal" FontSize="16" Grid.Column="1" Grid.Row="1" />
             <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
             <TextBox Margin="0" x:Name="tNombreUser" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
             <PasswordBox Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" Password="123" VerticalContentAlignment="Center" />
-
-
             <Label x:Name="label27" Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand">
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="ButtonBase.Click">
@@ -136,19 +150,10 @@
                 </Label.Triggers>
             </Label>
         </Grid>
-
-        <Grid x:Name="grid4" Background="#FF33B5E5" MouseLeftButtonDown="moveWindow" Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180*"/>
-                <ColumnDefinition Width="13*"/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
-            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
-        </Grid>
-
-        <Grid x:Name="dockPanel2" Background="#FFE6E7E8" Margin="0" Grid.Row="3">
-
+        <!-- FIN GRILLA DE LOGIN -->
+        <!-- GRILLA DE TRABAJO -->
+        <Grid x:Name="PanelIzquierdo" Background="#FFE6E7E8" Margin="0" Grid.Row="3">
+            <!-- GRILLA DE BUSQUEDA -->
             <Grid x:Name="grid1" Background="#FFE6E7E8">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70*"/>
@@ -205,8 +210,8 @@
                 </Image>
                 <ListBox Margin="0" x:Name="lAutoComplete" SelectionChanged="lAutoComplete_SelectionChanged" Visibility="Hidden" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Cursor="Hand" />
             </Grid>
-
         </Grid>
+        <!-- GRILLA DE INFO-ADMINITRACION -->
         <Grid x:Name="pInfo" Background="#FFFFFFFF" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4">
             <Grid Margin="0" x:Name="WorkSpace"/>
             <Grid Margin="0" x:Name="Presentacion"/>
@@ -221,9 +226,10 @@
                 </Image.RenderTransform>
             </Image>
             <!--Grid Presentacion-->
-          
-        </Grid>
 
+        </Grid>
+        <!-- FIN GRILLA DE INFO-ADMINITRACION -->
+        <!-- FIN GRILLA DE TRABAJO -->
     </Grid>
 
 </Window>
