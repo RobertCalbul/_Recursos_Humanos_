@@ -174,8 +174,9 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[14] = dtRow["nacionalidad"];
                         arreglo[15] = dtRow["cta_bancaria"];
                         arreglo[16] = dtRow["banco"];
-                    } 
-                }else new Dialog("No se encontraron coincidencias").Show();
+                    }
+                }
+                else new Dialog("No se encontraron coincidencias").ShowDialog();
                 return arreglo;
             }catch(Exception e){
                 return arreglo;

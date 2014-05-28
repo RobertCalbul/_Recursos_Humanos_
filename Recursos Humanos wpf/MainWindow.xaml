@@ -4,19 +4,6 @@
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Recursos_Humanos_wpf.MainWindow"
         Title="Lynxsoft" Height="768" Width="1024" Background="#FFE6E7E8" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="Images/Icono.ico" ShowInTaskbar="True" AllowDrop="True" UseLayoutRounding="True" BorderBrush="#FF2D2D2D" BorderThickness="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="800" MinHeight="700" ResizeMode="CanResize" WindowState="Normal">
     <Window.Resources>
-        <Storyboard x:Key="AnimacionLogo">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LogoOficial" RepeatBehavior="Forever">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="animacionLogo">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LogoOficial">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
         <Storyboard x:Key="animacionAddPersonal">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="iAddUser">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -41,27 +28,28 @@
                 <EasingColorKeyFrame KeyTime="0:0:0.5" Value="#FF4185F4"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="bienvenida">
+        <Storyboard x:Key="AnimacionImaBienvenida">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imageBienvenida">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="imageBienvenida">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="imageBienvenida">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="130"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="130"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="130"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource AnimacionLogo}"/>
-            <BeginStoryboard Storyboard="{StaticResource animacionLogo}"/>
-            <BeginStoryboard Storyboard="{StaticResource bienvenida}"/>
-        </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="iAddUser">
             <BeginStoryboard x:Name="animacionAddPersonal_BeginStoryboard" Storyboard="{StaticResource animacionAddPersonal}"/>
         </EventTrigger>
@@ -130,9 +118,9 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <Label Content="Usuario" Margin="0" x:Name="label24" Foreground="White" FontWeight="Normal" FontSize="16" Grid.Column="1" Grid.Row="1" />
-            <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
+            <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" FontWeight="Normal" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
             <TextBox Margin="0" x:Name="tNombreUser" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
-            <PasswordBox Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" Password="123" VerticalContentAlignment="Center" />
+            <PasswordBox Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" VerticalContentAlignment="Center" KeyDown="tPasswordUser_KeyDown" />
             <Label x:Name="label27" Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand">
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="ButtonBase.Click">
@@ -221,7 +209,7 @@
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform/>
+                        <TranslateTransform Y="130"/>
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>

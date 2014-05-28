@@ -61,7 +61,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 else
                 {
                     main.cBusqueda.Focus();//doy el foco al cuadro de busqueda
-                    new Dialog("Ingrese un parametro de búsqueda.").Show();
+                    new Dialog("Ingrese un parametro de búsqueda.").ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -220,7 +220,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 }
                 else
                 {
-                    new Dialog("Personal no pudo ser ingresado").Show();
+                    new Dialog("Personal no pudo ser ingresado").ShowDialog();
                 }
             }
         }
@@ -248,11 +248,11 @@ namespace Recursos_Humanos_wpf.Interfaz
                 if (per.Update() > 0)
                 {
                     this.Search();
-                    new Dialog("Datos actualizados correctamente.").Show();
+                    new Dialog("Datos actualizados correctamente.").ShowDialog();
                 }
-                else new Dialog("Ocurrio un error al actualizar los datos").Show();
+                else new Dialog("Ocurrio un error al actualizar los datos").ShowDialog();
             }
-            else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").Show();
+            else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").ShowDialog();
         }
 
         //CANCELA INGRESO EMPLEADO
@@ -285,9 +285,9 @@ namespace Recursos_Humanos_wpf.Interfaz
                         main.cBusqueda.Text = "";
                         main.cBusqueda.Focus();
                         main.WorkSpace.IsEnabled = false;
-                        new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.").Show();
+                        new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.").ShowDialog();
                     }
-                    else new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per + ".").Show();
+                    else new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per + ".").ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -309,7 +309,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     this.limpiarTexbox();
                     this.loadDataContract(rut_per);
                     this.cargarDatosPersonal(rut_per, "rut");
-                    new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Se elimino el contrato con exito"); 
+                    new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".").ShowDialog(); //MessageBox.Show("Se elimino el contrato con exito"); 
                 }
             }
         }
@@ -456,7 +456,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     }
                     document.Close();
 
-                    new Dialog("Contrato generado con exito.");
+                    new Dialog("Contrato generado con exito.").ShowDialog();
                     flag = false;
                     System.Diagnostics.Process.Start("contrato.pdf");
                     this.label.Content = "";
@@ -464,7 +464,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 catch (Exception ex)
                 {
                     flag = false;
-                    new Dialog("Ocurrio un error al generar el contrato.").Show();
+                    new Dialog("Ocurrio un error al generar el contrato.").ShowDialog();
                     this.label.Content = "";
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
                 }
@@ -486,7 +486,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     if (contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
-                        new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").Show(); //MessageBox.Show("Contrato ingresado exitosamente.");
+                        new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").ShowDialog(); //MessageBox.Show("Contrato ingresado exitosamente.");
                         this.tDateInit.IsEnabled = false;
                         this.tDateEnd.IsEnabled = false;
                         this.tStat.IsEnabled = false;
@@ -565,7 +565,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             catch (Exception ex)
             {
                 Console.Write("error: " + ex.Message);
-                new Dialog("Seleccione una imagen mas pequeña.").Show();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
+                new Dialog("Seleccione una imagen mas pequeña.").ShowDialog();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
         }
         //CARGA DATOS DE AFP EN COMBOBOX
@@ -626,7 +626,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             Boolean ok = true;
             if (concadenacion.Length > 0)
             {
-                new Dialog(concadenacion).Show();
+                new Dialog(concadenacion).ShowDialog();
                 ok = false;
             }
             return ok;
@@ -644,7 +644,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             Boolean ok = true;
             if (concadenacion.Length > 0)
             {
-                new Dialog(concadenacion).Show();
+                new Dialog(concadenacion).ShowDialog();
                 ok = false;
             }
             return ok;

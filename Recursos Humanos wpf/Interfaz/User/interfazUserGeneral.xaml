@@ -169,7 +169,7 @@
                     <Label Name="label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="10,5,0,0" Grid.Row="9" VerticalAlignment="Top" Width="116"/>
                 </Grid>
             </TabItem>
-            <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="tabItem3" OverridesDefaultStyle="False" Padding="0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" >
+            <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="tabItem3" OverridesDefaultStyle="False" Padding="0,-1,0,0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Stretch" >
                 <Grid Name="gHEmpleado" Background="White" Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="28*"/>

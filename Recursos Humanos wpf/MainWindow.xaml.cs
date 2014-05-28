@@ -22,6 +22,8 @@ using Microsoft.Win32;
 using Recursos_Humanos_wpf.Clases;
 using System.Text.RegularExpressions;
 using Recursos_Humanos_wpf.Interfaz;
+using System.Windows.Media.Animation;
+
 
 namespace Recursos_Humanos_wpf
 {
@@ -29,20 +31,20 @@ namespace Recursos_Humanos_wpf
     {
         public List<string> listAutocomplet = null;
         interfazUserGeneral _infoUser;
-        interfazBienvenida _bienbenida;
+        interfazBienvenida _bienvenida;
     
         public MainWindow()
         {
             InitializeComponent();
             listAutocomplet = new Clases.Personal().findAll(0);
             _infoUser = new interfazUserGeneral(this);
-            _bienbenida = new interfazBienvenida();
+            _bienvenida = new interfazBienvenida();
             this.WorkSpace.IsEnabled = false;
             this.rbRut.IsChecked = true;
             this.WorkSpace.Children.Clear();
             this.WorkSpace.Children.Add(_infoUser);
             this.Presentacion.Children.Clear();
-            this.Presentacion.Children.Add(_bienbenida);
+            this.Presentacion.Children.Add(_bienvenida);
         }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
@@ -141,20 +143,34 @@ namespace Recursos_Humanos_wpf
             this.listAutocomplet = new Clases.Personal().findAll(parametroSearch);
         }
 
-        private void bAcceder_Click(object sender, RoutedEventArgs e)
-        {
-            this.animacionLogeo.Begin();
-            _bienbenida.animacionPresentacion.Begin();
-        }
 
         private void bAcceder_Click(object sender, MouseButtonEventArgs e)
         {
-            Login login = new Login();
-            object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
-            if (Resultado != null)
+            if (tNombreUser.Text != "")
             {
-                this.animacionLogeo.Begin();
-                _bienbenida.animacionPresentacion.Begin();       
+                if (tPasswordUser.Password != "")
+                {   
+                    Login login = new Login();
+                    object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
+                    if (Resultado != null)
+                    {
+                        this.animacionLogeo.Begin();
+                        _bienvenida.animacionPresentacion.Begin();
+
+                        //Muestra la imagen Bienvenido al Admin
+                        Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
+                        AnimacionDeBienvenida.Begin();
+                    }
+                }
+                else
+                {
+                    new Dialog("Por favor, ingresa la contraseña de usuario.").ShowDialog();
+                    tPasswordUser.Focus();
+                }
+            }
+            else {
+                new Dialog("Por favor, ingresa el nombre de usuario.").ShowDialog();
+                tNombreUser.Focus();
             }
         }
 /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
@@ -178,6 +194,41 @@ namespace Recursos_Humanos_wpf
         private void ColorNormal(object sender, MouseEventArgs e)
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
+        }
+
+        private void tPasswordUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.Key == Key.Return)
+            {
+                if (tNombreUser.Text != "")
+                {
+                    if (tPasswordUser.Password != "")
+                    {
+                        Login login = new Login();
+                        object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
+                        if (Resultado != null)
+                        {
+                            this.animacionLogeo.Begin();
+                            _bienvenida.animacionPresentacion.Begin();
+
+                            //Muestra la imagen Bienvenido al Admin
+                            Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
+                            AnimacionDeBienvenida.Begin();
+                        }
+                    }
+                    else
+                    {
+                        new Dialog("Por favor, ingresa la contraseña de usuario.").Show();
+                        tPasswordUser.Focus();
+                    }
+                }
+                else
+                {
+                    new Dialog("Por favor, ingresa el nombre de usuario.").Show();
+                    tNombreUser.Focus();
+                }
+            }
         }
 
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
