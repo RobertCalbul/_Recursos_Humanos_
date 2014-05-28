@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Width="757" Height="702">
+             d:DesignHeight="757" d:DesignWidth="702" Width="Auto" Height="Auto">
 	<UserControl.Resources>
 		<Storyboard x:Key="AnimacionLogo">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LogoOficial">
