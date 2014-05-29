@@ -143,13 +143,11 @@ namespace Recursos_Humanos_wpf
             this.listAutocomplet = new Clases.Personal().findAll(parametroSearch);
         }
 
-
-        private void bAcceder_Click(object sender, MouseButtonEventArgs e)
-        {
+        public void Logearse() {
             if (tNombreUser.Text != "")
             {
                 if (tPasswordUser.Password != "")
-                {   
+                {
                     Login login = new Login();
                     object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
                     if (Resultado != null)
@@ -168,10 +166,17 @@ namespace Recursos_Humanos_wpf
                     tPasswordUser.Focus();
                 }
             }
-            else {
+            else
+            {
                 new Dialog("Por favor, ingresa el nombre de usuario.").ShowDialog();
                 tNombreUser.Focus();
             }
+        }
+
+
+        private void bAcceder_Click(object sender, MouseButtonEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() => { Logearse(); }));
         }
 /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
         private void moveWindow(object sender, MouseButtonEventArgs e)
@@ -196,38 +201,12 @@ namespace Recursos_Humanos_wpf
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
         }
 
+        //Implementado enter al logearse (Enter sobre el cuadro de password)
         private void tPasswordUser_KeyDown(object sender, KeyEventArgs e)
-        {
-            
+        {   
             if (e.Key == Key.Return)
             {
-                if (tNombreUser.Text != "")
-                {
-                    if (tPasswordUser.Password != "")
-                    {
-                        Login login = new Login();
-                        object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
-                        if (Resultado != null)
-                        {
-                            this.animacionLogeo.Begin();
-                            _bienvenida.animacionPresentacion.Begin();
-
-                            //Muestra la imagen Bienvenido al Admin
-                            Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
-                            AnimacionDeBienvenida.Begin();
-                        }
-                    }
-                    else
-                    {
-                        new Dialog("Por favor, ingresa la contraseña de usuario.").Show();
-                        tPasswordUser.Focus();
-                    }
-                }
-                else
-                {
-                    new Dialog("Por favor, ingresa el nombre de usuario.").Show();
-                    tNombreUser.Focus();
-                }
+                Dispatcher.BeginInvoke(new Action(() => { Logearse(); }));
             }
         }
 
