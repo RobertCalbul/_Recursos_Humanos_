@@ -23,6 +23,7 @@ using Recursos_Humanos_wpf.Clases;
 using System.Text.RegularExpressions;
 using Recursos_Humanos_wpf.Interfaz;
 using System.Windows.Media.Animation;
+using Recursos_Humanos_wpf.Interfaz;
 
 
 namespace Recursos_Humanos_wpf
@@ -208,6 +209,13 @@ namespace Recursos_Humanos_wpf
             {
                 Dispatcher.BeginInvoke(new Action(() => { Logearse(); }));
             }
+        }
+
+        private void btnAdministrativo_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.WorkSpace.Children.Clear();
+            this.WorkSpace.Children.Add(new Administrador(this));
+            this.WorkSpace.IsEnabled = true;
         }
 
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recursos_Humanos_wpf.Interfaz.Administrativo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,12 @@ namespace Recursos_Humanos_wpf.Interfaz
     {
         MainWindow main;
         interfazUserGeneral _infoUser;
+        Administrativo_interfazDepto _Departamento;
         public Administrador(MainWindow main)
         {
             InitializeComponent();
             _infoUser = new interfazUserGeneral(main);
+            _Departamento = new Administrativo_interfazDepto();
             this.main = main;
         }
 
@@ -32,6 +35,53 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             main.WorkSpace.Children.Clear();
             main.WorkSpace.Children.Add(_infoUser);
+            main.WorkSpace.IsEnabled = false;
+        }
+
+        private void TreeView_Loaded(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = new TreeViewItem();
+            item.Header = "Gestion Usuarios";
+            item.ItemsSource = new string[] { "Privilegios", "Grupos Usuarios", "Nuevo usuario" };
+
+            // ... Create a second TreeViewItem.
+            TreeViewItem item2 = new TreeViewItem();
+            item2.Header = "Departamento";
+            item2.ItemsSource = new string[] { "Nuevo departamento", "Asignar jefe" };
+
+            // ... Get TreeView reference and add both items.
+            var tree = sender as TreeView;
+            tree.Items.Add(item);
+            tree.Items.Add(item2);
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var tree = sender as TreeView;
+
+            // ... Determine type of SelectedItem.
+            if (tree.SelectedItem is TreeViewItem)
+            {
+                // ... Handle a TreeViewItem.
+                var item = tree.SelectedItem as TreeViewItem;
+               // this.Title = "Selected header padre: " + item.Header.ToString();
+                if (item.Header.ToString().Equals("Departamento"))
+                {
+                    this.WorkSpace.Children.Clear();
+                    this.WorkSpace.Children.Add(_Departamento);
+
+                }
+                else
+                {
+                    this.WorkSpace.Children.Clear();
+                    //this.WorkSpace.Children.Add(_User);
+                }
+            }
+            else if (tree.SelectedItem is string)
+            {
+                // ... Handle a string.
+                //this.Title = "Selected hijo: " + tree.SelectedItem.ToString();
+            }
         }
     }
 }

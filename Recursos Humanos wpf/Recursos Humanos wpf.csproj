@@ -89,6 +89,9 @@
     <Compile Include="Interfaz\Administrativo\Administrador.xaml.cs">
       <DependentUpon>Administrador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml.cs">
+      <DependentUpon>Administrativo_interfazDepto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Presentacion\interfazBienvenida.xaml.cs">
       <DependentUpon>interfazBienvenida.xaml</DependentUpon>
     </Compile>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaz\Administrativo\Administrador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

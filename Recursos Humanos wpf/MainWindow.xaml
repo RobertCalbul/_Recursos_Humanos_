@@ -186,6 +186,7 @@
                 <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
                 <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
                 <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
+                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FFCF1717" MouseDown="btnAdministrativo_Click" ></Label>
                 <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <TransformGroup>
