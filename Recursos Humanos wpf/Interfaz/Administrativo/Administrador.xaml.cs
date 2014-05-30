@@ -23,11 +23,13 @@ namespace Recursos_Humanos_wpf.Interfaz
         MainWindow main;
         interfazUserGeneral _infoUser;
         Administrativo_interfazDepto _Departamento;
+        Administrativo_interfazUser _User;
         public Administrador(MainWindow main)
         {
             InitializeComponent();
             _infoUser = new interfazUserGeneral(main);
             _Departamento = new Administrativo_interfazDepto();
+            _User = new Administrativo_interfazUser();
             this.main = main;
         }
 
@@ -73,7 +75,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 else
                 {
                     this.WorkSpace.Children.Clear();
-                    //this.WorkSpace.Children.Add(_User);
+                    this.WorkSpace.Children.Add(_User);
                 }
             }
             else if (tree.SelectedItem is string)

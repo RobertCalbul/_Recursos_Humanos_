@@ -5,14 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="757" d:DesignWidth="702">
-    <Grid HorizontalAlignment="Right" Width="702">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="64*"/>
             <RowDefinition Height="69*"/>
             <RowDefinition Height="289*"/>
             <RowDefinition Height="335*"/>
         </Grid.RowDefinitions>
-        <TreeView Name="treeUserGroup" Margin="0" Grid.Row="2"/>
+        <TreeView Name="trvMenu" Grid.Row="2" Grid.Column="1" SelectedItemChanged="TreeView_SelectedItemChanged">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type MenuItem}" ItemsSource="{Binding Items}">
+                    <TextBlock Text="{Binding Title}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
     </Grid>
 </UserControl>
