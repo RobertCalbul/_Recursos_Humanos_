@@ -42,7 +42,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             TreeViewItem item = new TreeViewItem();
             item.Header = "Gestion Usuarios";
-            item.ItemsSource = new string[] { "Privilegios", "Grupos Usuarios", "Nuevo usuario" };
+            item.ItemsSource = new string[] { "All","Privilegios", "Grupos Usuarios", "Nuevo usuario" };
 
             // ... Create a second TreeViewItem.
             TreeViewItem item2 = new TreeViewItem();
@@ -69,7 +69,6 @@ namespace Recursos_Humanos_wpf.Interfaz
                 {
                     this.WorkSpace.Children.Clear();
                     this.WorkSpace.Children.Add(_Departamento);
-
                 }
                 else
                 {

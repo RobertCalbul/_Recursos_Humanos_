@@ -82,6 +82,7 @@
     <Compile Include="Clases\Registro_Horario.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Clases\TipoContrato.cs" />
+    <Compile Include="Clases\User_Group.cs" />
     <Compile Include="Clases\Validaciones.cs" />
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
@@ -91,6 +92,9 @@
     </Compile>
     <Compile Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml.cs">
       <DependentUpon>Administrativo_interfazDepto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\Administrativo\Administrativo_interfazUser.xaml.cs">
+      <DependentUpon>Administrativo_interfazUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\Presentacion\interfazBienvenida.xaml.cs">
       <DependentUpon>interfazBienvenida.xaml</DependentUpon>
@@ -110,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\Administrativo\Administrativo_interfazUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
