@@ -19,29 +19,31 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     /// <summary>
     /// Interaction logic for Administrativo_interfazUser.xaml
     /// </summary>
-    public partial class Administrativo_interfazUser : UserControl
+    public partial class interfazUser : UserControl
     {
         MenuItem root;
-        public Administrativo_interfazUser()
+        public interfazUser()
         {
             
             InitializeComponent();
 
-            root = new MenuItem() { Title = "User Group" };
+           
 
-            llenaNaUserGroup();
+            llenaTreeView();
         }
 
-        public void llenaNaUserGroup()
+        public void llenaTreeView()
         {
+            this.trvMenu.Items.Clear();
+            root = new MenuItem() { Title = "User Group" };
             List<User_Group> listaUser = new User_Group().findAll();
-            List<User_Group> listaPrivilegio;
+            List<Privilegio> listaPrivilegio;
             MenuItem grupo;
             for (int g = 0; g < listaUser.Count; g++)
             {
                 Console.WriteLine(listaUser[g].name);
                 grupo = new MenuItem() { Title = listaUser[g].name };
-                listaPrivilegio = new User_Group(listaUser[g].id).getPrivilegio();
+                listaPrivilegio = new Privilegio(listaUser[g].id).findByidGroup();
                 for (int p = 0; p < listaPrivilegio.Count; p++)
                 {
                     Console.WriteLine(listaPrivilegio[p].name);

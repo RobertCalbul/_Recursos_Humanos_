@@ -19,10 +19,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     /// <summary>
     /// Interaction logic for Administrativo_interfazDepto.xaml
     /// </summary>
-    public partial class Administrativo_interfazDepto : UserControl
+    public partial class interfazDepto : UserControl
     {
         List<Departamento> _Departamento;
-        public Administrativo_interfazDepto()
+        public interfazDepto()
         {
             InitializeComponent();
 

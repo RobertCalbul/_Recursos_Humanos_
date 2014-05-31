@@ -23,6 +23,10 @@ namespace Recursos_Humanos_wpf.Clases
         {
             this.id = id;
         }
+        public User_Group(String name)
+        {
+            this.name = name;
+        }
 
         public List<User_Group> findAll()
         {
@@ -45,34 +49,49 @@ namespace Recursos_Humanos_wpf.Clases
                 Console.WriteLine("ERROR User_Group.findAll() " + ex.Message);
                 return listUserGroup;
             }
-
         }
 
-        public List<User_Group> getPrivilegio() { 
-             List<User_Group> listUserGroup = null;
-             String sql = "SELECT b.id_privilegios, b.nombre FROM usergroup_privilegios AS a "+
-            "INNER JOIN privilegios AS b "+
-            "ON (a.id_privilegios = b.id_privilegios) "+
-            "INNER JOIN user_group AS c "+
-            "ON (a.id_user_group = c.id_user_group) "+
-            "WHERE c.id_user_group = "+this.id;
-        try
+        public int save()
         {
-            con = new Conexion().getConexion();
-            listUserGroup = new List<User_Group>();
-            con.Open();
+            String sql = "INSERT INTO user_group (nombre) values('"+this.name+"')";
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
 
-            MySqlCommand sqlCom = new MySqlCommand(sql, con);
-            MySqlDataReader res = sqlCom.ExecuteReader();
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                return  sqlCom.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR User_Group.save() " + ex.Message);
+                return 0;
+            }
 
-            while (res.Read()) listUserGroup.Add(new User_Group(res.GetInt32(0), res.GetString(1)));
-            return listUserGroup;
         }
-        catch (Exception ex)
+
+        public int getIdByName()
         {
-            Console.WriteLine("ERROR User_Group.getPrivilegio() " + ex.Message);
-            return listUserGroup;
-        }
+            List<Privilegio> listPrivilegio = null;
+            String sql = "SELECT id_user_group from user_group WHERE nombre ='" + this.name + "'";
+            try
+            {
+                con = new Conexion().getConexion();
+                listPrivilegio = new List<Privilegio>();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader res = sqlCom.ExecuteReader();
+
+                int id = -1;
+                if (res.Read()) id = res.GetInt32(0);
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR User_Group.getIdByName() " + ex.Message);
+                return -1;
+            }
         }
     }
 }

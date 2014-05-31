@@ -70,7 +70,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Clases\Afp.cs" />
-    <Compile Include="Clases\AutoComplete.cs" />
     <Compile Include="Clases\Cargo.cs" />
     <Compile Include="Clases\Comunas.cs" />
     <Compile Include="Clases\Departamento.cs" />
@@ -78,11 +77,13 @@
     <Compile Include="Clases\Login.cs" />
     <Compile Include="Clases\Personal_Departamento.cs" />
     <Compile Include="Clases\Banco.cs" />
+    <Compile Include="Clases\Privilegio.cs" />
     <Compile Include="Clases\Regiones.cs" />
     <Compile Include="Clases\Registro_Horario.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Clases\TipoContrato.cs" />
     <Compile Include="Clases\User_Group.cs" />
+    <Compile Include="Clases\User_Group_Privilegios.cs" />
     <Compile Include="Clases\Validaciones.cs" />
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
@@ -90,11 +91,14 @@
     <Compile Include="Interfaz\Administrativo\Administrador.xaml.cs">
       <DependentUpon>Administrador.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml.cs">
-      <DependentUpon>Administrativo_interfazDepto.xaml</DependentUpon>
+    <Compile Include="Interfaz\Administrativo\interfazDepto.xaml.cs">
+      <DependentUpon>interfazDepto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaz\Administrativo\Administrativo_interfazUser.xaml.cs">
-      <DependentUpon>Administrativo_interfazUser.xaml</DependentUpon>
+    <Compile Include="Interfaz\Administrativo\interfazUser.xaml.cs">
+      <DependentUpon>interfazUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\Administrativo\interfaz_%28User%29UserGroup.xaml.cs">
+      <DependentUpon>interfaz_%28User%29UserGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\Presentacion\interfazBienvenida.xaml.cs">
       <DependentUpon>interfazBienvenida.xaml</DependentUpon>
@@ -113,11 +117,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Interfaz\Administrativo\Administrativo_interfazDepto.xaml">
+    <Page Include="Interfaz\Administrativo\interfazDepto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Interfaz\Administrativo\Administrativo_interfazUser.xaml">
+    <Page Include="Interfaz\Administrativo\interfazUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\Administrativo\interfaz_%28User%29UserGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

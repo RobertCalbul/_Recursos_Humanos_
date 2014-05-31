@@ -119,8 +119,8 @@
             </Grid.RenderTransform>
             <Label Content="Usuario" Margin="0" x:Name="label24" Foreground="White" FontWeight="Normal" FontSize="16" Grid.Column="1" Grid.Row="1" />
             <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" FontWeight="Normal" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
-            <TextBox Margin="0" x:Name="tNombreUser" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
-            <PasswordBox Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" VerticalContentAlignment="Center" KeyDown="tPasswordUser_KeyDown" />
+            <TextBox Text="robert" Margin="0" x:Name="tNombreUser" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
+            <PasswordBox  Password="robert" Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" VerticalContentAlignment="Center" KeyDown="tPasswordUser_KeyDown" />
             <Label x:Name="label27" Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand">
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="ButtonBase.Click">
