@@ -29,7 +29,6 @@ namespace Recursos_Humanos_wpf
 {
     public partial class MainWindow : Window
     {
-        public String session = "";
         public List<string> listAutocomplet = null;
         interfazUserGeneral _infoUser;
         interfazBienvenida _bienvenida;
@@ -153,7 +152,6 @@ namespace Recursos_Humanos_wpf
                     object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
                     if (Resultado != null)
                     {
-                        session = "a";
                         this.animacionLogeo.Begin();
                         _bienvenida.animacionPresentacion.Begin();
 
@@ -214,26 +212,11 @@ namespace Recursos_Humanos_wpf
 
         private void btnAdministrativo_Click(object sender, MouseButtonEventArgs e)
         {
-            /*this.WorkSpace.Children.Clear();
+            this.WorkSpace.Children.Clear();
             this.WorkSpace.Children.Add(new Administrador(this));
-            this.WorkSpace.IsEnabled = true;
-             */
-            session = "";
+            this.WorkSpace.IsEnabled = true;     
         }
-
-        private void Loader(object sender, RoutedEventArgs e)
-        {
-            if (session == "")
-            {
-                this.WorkSpace.Children.Clear();
-                this.WorkSpace.Children.Add(_infoUser);
-                this.Presentacion.Children.Clear();
-                this.Presentacion.Children.Add(_bienvenida);
-            }
-        }
-
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
-
     }
 
 }
