@@ -1,6 +1,7 @@
 ﻿using Recursos_Humanos_wpf.Clases;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -175,5 +176,16 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             List2.Items.Add(_dragged);
         }
         #endregion
+    }
+    public class MenuItem
+    {
+        public MenuItem()
+        {
+            this.Items = new ObservableCollection<MenuItem>();
+        }
+
+        public String Title { get; set; }
+
+        public System.Collections.ObjectModel.ObservableCollection<MenuItem> Items { get; set; }
     }
 }

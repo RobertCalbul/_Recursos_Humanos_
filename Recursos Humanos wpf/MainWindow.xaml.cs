@@ -57,7 +57,6 @@ namespace Recursos_Humanos_wpf
         // click en agregar usuario
         private void iAddUser_Click(object sender, MouseButtonEventArgs e)
         {
-
             _infoUser.limpiarTexbox();
             _infoUser.tDateNaci.IsEnabled = false;
             _infoUser.tRut.IsEnabled = true;
@@ -66,8 +65,6 @@ namespace Recursos_Humanos_wpf
             this.WorkSpace.IsEnabled = true;
             this.cBusqueda.IsEnabled = false;
             this.image1.IsEnabled = false;
-            _infoUser.btnAddUser.Visibility = Visibility.Visible;
-            _infoUser.btnCancelAdd.Visibility = Visibility.Visible;
             _infoUser.btnAddUser.Visibility = Visibility.Visible;
             _infoUser.btnCancelAdd.Visibility = Visibility.Visible;
             _infoUser.btnUpdateReg.Visibility = Visibility.Hidden;
@@ -213,7 +210,7 @@ namespace Recursos_Humanos_wpf
         private void btnAdministrativo_Click(object sender, MouseButtonEventArgs e)
         {
             this.WorkSpace.Children.Clear();
-            this.WorkSpace.Children.Add(new Administrador(this));
+            this.WorkSpace.Children.Add(new Administrador(this,_infoUser));
             this.WorkSpace.IsEnabled = true;     
         }
         /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="757" d:DesignWidth="702" Width="701">
+             d:DesignHeight="757" d:DesignWidth="702" Width="Auto">
 
     <Grid Name="pantilla">
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
         <TreeView Name="TreeView" Margin="0" Loaded="TreeView_Loaded"
 	    SelectedItemChanged="TreeView_SelectedItemChanged" Grid.RowSpan="2"/>
         <Button Content="Back" Margin="0" Click="back_click" Grid.Column="2"/>
-        <Grid Name="WorkSpace" Grid.Column="1" Margin="0" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <Grid Name="WorkSpace" Grid.Column="1" Margin="0" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
     </Grid>
 </UserControl>

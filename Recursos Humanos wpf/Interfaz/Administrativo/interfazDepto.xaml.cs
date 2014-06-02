@@ -58,8 +58,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 if (new Departamento(int.Parse(this.tId.Text), this.tName.Text, this.tRut.Text).update() > 0)
                 {
-                    _Departamento = new Departamento().findAll_administrativo();
-                    this.data.ItemsSource = _Departamento;
+                    this.data.ItemsSource = new Departamento().findAll_administrativo();
 
                 }
             }
@@ -70,9 +69,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             if (!this.tName.Text.Equals(""))
             {
                 new Departamento(this.tName.Text, this.tRut.Text != "" ? this.tRut.Text : "0").save();
-                _Departamento = new Departamento().findAll_administrativo();
-
-                this.data.ItemsSource = _Departamento;
+                this.data.ItemsSource = new Departamento().findAll_administrativo();
                 this.data.IsEnabled = true;
                 this.btnActualizar.IsEnabled = true;
                 this.btnActualizar.Visibility = Visibility.Hidden;
@@ -89,8 +86,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 if (new Departamento(int.Parse(this.tId.Text)).Delete() > 0)
                 {
-                    _Departamento = new Departamento().findAll_administrativo();
-                    this.data.ItemsSource = _Departamento;
+                    this.data.ItemsSource = new Departamento().findAll_administrativo();
                     limpaCampos();
                 }
             }

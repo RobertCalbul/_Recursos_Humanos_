@@ -25,7 +25,6 @@ namespace Recursos_Humanos_wpf.Clases
             this.id = id;
             this.name = name;
         }
-
         public List<Privilegio> findAll()
         {
             List<Privilegio> listUserGroup = null;
@@ -99,7 +98,6 @@ namespace Recursos_Humanos_wpf.Clases
                 return -1;
             }
         }
-
         public int save()
         {
             String sql = "INSERT INTO privilegios (nombre) values('" + this.name + "')";
@@ -120,7 +118,7 @@ namespace Recursos_Humanos_wpf.Clases
         }
         public int deleteById()
         {
-            String sql = "DELETE FROM  Privilegio WHERE id_privilegio=" + this.id;
+            String sql = "DELETE FROM  privilegios WHERE id_privilegios=" + this.id;
             try
             {
                 con = new Conexion().getConexion();
@@ -135,6 +133,22 @@ namespace Recursos_Humanos_wpf.Clases
                 return 0;
             }
 
+        }
+        public int update()
+        {
+            String sql = "UPDATE privilegios set nombre='"+this.name+"' WHERE id_privilegios="+this.id;
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+                MySqlCommand comando = new MySqlCommand(sql, con);
+                return comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.Write("ERROR Privilegio.update()"+ex.Message);
+                return 0;
+            }
         }
     }
 }

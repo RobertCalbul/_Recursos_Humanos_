@@ -24,10 +24,10 @@ namespace Recursos_Humanos_wpf.Interfaz
         interfazUserGeneral _infoUser;
         interfazDepto _Departamento;
         interfazUser _User;
-        public Administrador(MainWindow main)
+        public Administrador(MainWindow main, interfazUserGeneral infoUser)
         {
             InitializeComponent();
-            _infoUser = new interfazUserGeneral(main);
+            _infoUser = infoUser;
             _Departamento = new interfazDepto();
             _User = new interfazUser();
             this.main = main;
@@ -44,7 +44,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             TreeViewItem item = new TreeViewItem();
             item.Header = "Gestion Usuarios";
-            item.ItemsSource = new string[] { "All","Privilegios", "Grupos Usuarios", "Nuevo usuario" };
+            item.ItemsSource = new string[] { "Privilegios", "User Group", "Usuarios" };
 
             TreeViewItem item2 = new TreeViewItem();
             item2.Header = "Departamento";
@@ -54,8 +54,23 @@ namespace Recursos_Humanos_wpf.Interfaz
             var tree = sender as TreeView;
             tree.Items.Add(item);
             tree.Items.Add(item2);
+            ExpandRecursively(tree,true);
         }
+        #region MANEJO CON EL TREEVIEW
+        private static void ExpandRecursively(ItemsControl itemsControl, bool expand)
+        {
+            ItemContainerGenerator itemContainerGenerator = itemsControl.ItemContainerGenerator;
 
+            for (int i = itemsControl.Items.Count - 1; i >= 0; --i)
+            {
+                ItemsControl childControl = itemContainerGenerator.ContainerFromIndex(i) as ItemsControl;
+                if (childControl != null)
+                    ExpandRecursively(childControl, expand);
+            }
+            TreeViewItem treeViewItem = itemsControl as TreeViewItem;
+            if (treeViewItem != null)
+                treeViewItem.IsExpanded = expand;
+        }
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var tree = sender as TreeView;
@@ -68,22 +83,28 @@ namespace Recursos_Humanos_wpf.Interfaz
                     this.WorkSpace.Children.Clear();
                     this.WorkSpace.Children.Add(_Departamento);
                 }
-                else
-                {
-                    this.WorkSpace.Children.Clear();
-                    this.WorkSpace.Children.Add(_User);
-                    _User.llenaTreeView();
-                }
             }
             else if (tree.SelectedItem is string)
             {
-                if (tree.SelectedItem.ToString().Equals("Grupos Usuarios")) {
+                if (tree.SelectedItem.ToString().Equals("User Group"))
+                {
                     this.WorkSpace.Children.Clear();
                     this.WorkSpace.Children.Add(new interfaz__User_UserGroup());
                     
                 }
+                if (tree.SelectedItem.ToString().Equals("Privilegios"))
+                {
+                    this.WorkSpace.Children.Clear();
+                    this.WorkSpace.Children.Add(new interfaz__User_Privilegio());
+                }
+                if (tree.SelectedItem.ToString().Equals("Usuarios"))
+                {
+                    this.WorkSpace.Children.Clear();
+                    this.WorkSpace.Children.Add(_User);
+                }
                 //this.Title = "Selected hijo: " + tree.SelectedItem.ToString();
             }
         }
+        #endregion
     }
 }

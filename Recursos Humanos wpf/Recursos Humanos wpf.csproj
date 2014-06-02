@@ -97,6 +97,9 @@
     <Compile Include="Interfaz\Administrativo\interfazUser.xaml.cs">
       <DependentUpon>interfazUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\Administrativo\interfaz_%28User%29Privilegio.xaml.cs">
+      <DependentUpon>interfaz_%28User%29Privilegio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\Administrativo\interfaz_%28User%29UserGroup.xaml.cs">
       <DependentUpon>interfaz_%28User%29UserGroup.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaz\Administrativo\interfazUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\Administrativo\interfaz_%28User%29Privilegio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
