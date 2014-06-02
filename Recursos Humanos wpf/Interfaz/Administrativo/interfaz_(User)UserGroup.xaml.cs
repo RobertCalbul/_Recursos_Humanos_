@@ -85,7 +85,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     {
                         Privilegio p = new Privilegio(new Privilegio(privilegio.Content.ToString()).getIdByName());
                         User_Group ug = new User_Group(this.comboGrupos.SelectedIndex + 1);
-                        new User_Group_Privilegios(ug, p).save();
+                        if (new User_Group_Privilegios(ug, p).ifExistPrivilegio() < 1)//si no existe el privilegio
+                        {
+                            new User_Group_Privilegios(ug, p).save();
+                        }
                     }
                     llenaTreeView();
                     LoadAllPrivilegios();
@@ -106,7 +109,6 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                         MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                         if (dialogResult == MessageBoxResult.Yes)
                         {
-                            Console.WriteLine(((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content);
                             String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
                             Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
                             if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)

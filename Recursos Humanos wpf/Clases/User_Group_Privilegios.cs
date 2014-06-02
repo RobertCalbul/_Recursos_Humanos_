@@ -41,6 +41,7 @@ namespace Recursos_Humanos_wpf.Clases
                 return 0;
             }
         }
+
         public int deleteByIdPrivilegio()
         {
             String sql = "DELETE FROM usergroup_privilegios WHERE id_privilegios ="+this.privilegio.id;
@@ -55,6 +56,23 @@ namespace Recursos_Humanos_wpf.Clases
             catch (MySqlException ex)
             {
                 Console.WriteLine("ERROR User_Group_Privilegios.deleteByIdPrivilegio() " + ex.Message);
+                return 0;
+            }
+        }
+
+        public int ifExistPrivilegio()
+        {
+            String sql = "SELECT * FROM usergroup_privilegios WHERE id_privilegios = "+this.privilegio.id+" AND id_user_group = "+this.User_Group.id;
+            try { 
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader res = sqlCom.ExecuteReader();
+
+                if (res.Read()) return 1;
+                else return 0;
+            }catch(Exception ex){
                 return 0;
             }
         }
