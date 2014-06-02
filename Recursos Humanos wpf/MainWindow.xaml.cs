@@ -23,7 +23,6 @@ using Recursos_Humanos_wpf.Clases;
 using System.Text.RegularExpressions;
 using Recursos_Humanos_wpf.Interfaz;
 using System.Windows.Media.Animation;
-using Recursos_Humanos_wpf.Interfaz;
 
 
 namespace Recursos_Humanos_wpf

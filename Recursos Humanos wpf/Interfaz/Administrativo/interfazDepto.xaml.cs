@@ -91,6 +91,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 {
                     _Departamento = new Departamento().findAll_administrativo();
                     this.data.ItemsSource = _Departamento;
+                    limpaCampos();
                 }
             }
         }
@@ -105,9 +106,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             this.btnCancelAdd.Visibility = Visibility.Visible;
             this.btnDelete.IsEnabled = false;
 
-            this.tRut.Text = "";
-            this.tId.Text = "";
-            this.tName.Text = "";
+            limpaCampos();
             this.tName.Focus();
         }
 
@@ -118,6 +117,13 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             this.tName.IsEnabled = false;
             this.btnCancelAdd.Visibility = Visibility.Hidden;
             this.btnAdd.Visibility = Visibility.Hidden;
+        }
+
+        private void limpaCampos()
+        {
+            this.tRut.Text = "";
+            this.tId.Text = "";
+            this.tName.Text = "";
         }
     }
 }

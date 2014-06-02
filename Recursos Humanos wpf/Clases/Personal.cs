@@ -105,13 +105,14 @@ namespace Recursos_Humanos_wpf.Clases
                 MySqlCommand sqlCom = new MySqlCommand(string.Format("SELECT id_personal FROM personal WHERE rut = '{0}'", this.rut), conex);
                 MySqlDataReader res = sqlCom.ExecuteReader();
 
-                int  resultados = -1;
+                int  resultados = 0;
 
                 while (res.Read()) resultados = res.GetInt32(0);
                 conex.Close();
                 return resultados;
-            }catch(Exception e){
-                return -1;
+            }catch(Exception ex){
+                Console.WriteLine("ERROR Personal.get_idPersonal() "+ex.Message);
+                return 0;
             }
         }
         public object[] findBy(string value, string paramSearch)
@@ -178,7 +179,8 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 else new Dialog("No se encontraron coincidencias").ShowDialog();
                 return arreglo;
-            }catch(Exception e){
+            }catch(Exception ex){
+                Console.WriteLine("ERROR Personal.findBy() "+ex.Message);
                 return arreglo;
             }
 

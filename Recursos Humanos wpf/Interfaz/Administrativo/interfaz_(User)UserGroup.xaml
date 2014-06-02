@@ -16,19 +16,20 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="173*"/>
-            <RowDefinition Height="24*"/>
+            <RowDefinition Height="23*"/>
             <RowDefinition Height="38*"/>
             <RowDefinition Height="41*"/>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="298*"/>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="28*"/>
-            <RowDefinition Height="46*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
 
-        <TreeView Name="trvMenu" Grid.ColumnSpan="5">
+        <TreeView Name="trvMenu" Grid.ColumnSpan="3" Grid.Column="1">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type MenuItem}" ItemsSource="{Binding Items}">
                     <TextBlock Text="{Binding Title}" />
@@ -39,11 +40,12 @@
                  PreviewMouseLeftButtonDown="List1_PreviewMouseLeftButtonDown" AllowDrop="True" Margin="0" Grid.Column="1"/>
         <ListBox Name="List2"  Grid.Row="6" Grid.Column="3" Margin="0"  AllowDrop="True" DragEnter="List2_DragEnter"
                  DragOver="List2_DragEnter" Drop="List2_Drop" />
-        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="3" SelectionChanged="comboGrupos_SelectionChanged" IsReadOnly="True" Grid.Column="1"/>
-        <Label Name="btnAddPrivilegio" Content="agregar Privilegio" Grid.Column="3" Margin="0" Grid.Row="10" Background="#FF30BF19" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click"/>
+        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="3"  IsReadOnly="True" Grid.Column="1" SelectionChanged="comboGrupos_SelectionChanged"/>
+        <Label Name="btnAddPrivilegio" Content="Agregar privilegios (Todos)" Grid.Column="3" Margin="0" Grid.Row="8" Background="#FF30BF19" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click" Foreground="White"/>
         <Label Content="Privilegios" Grid.Column="1" Margin="0" Grid.Row="5"/>
         <Label Content="Arrastrar aqui" Grid.Column="3" Margin="0" Grid.Row="5"/>
         <Label Content="Seleccione un Grupo de usuario" Grid.Column="1" Margin="0" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="3" Margin="0" Grid.Row="10" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click"/>
 
 
 

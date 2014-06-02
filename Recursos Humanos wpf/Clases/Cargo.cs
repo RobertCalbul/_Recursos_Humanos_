@@ -29,7 +29,8 @@ namespace Recursos_Humanos_wpf.Clases
                     list.Add(cargo);
                 }
                 return list;
-            }catch(Exception e){
+            }catch(Exception ex){
+                Console.WriteLine("ERROR Cargo.findAll() "+ex.Message);
                 return list;
             }
         }

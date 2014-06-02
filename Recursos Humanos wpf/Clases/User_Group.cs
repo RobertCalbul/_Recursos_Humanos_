@@ -69,7 +69,24 @@ namespace Recursos_Humanos_wpf.Clases
             }
 
         }
+        public int deleteById()
+        {
+            String sql = "DELETE FROM  user_group WHERE id_user_group=" + this.id;
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
 
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                return sqlCom.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR User_Group.deleteById() " + ex.Message);
+                return 0;
+            }
+
+        }
         public int getIdByName()
         {
             List<Privilegio> listPrivilegio = null;

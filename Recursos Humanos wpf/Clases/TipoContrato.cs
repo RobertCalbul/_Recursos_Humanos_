@@ -31,8 +31,9 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 return list;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Console.WriteLine("ERROR TipoContrato.findAll() "+ex.Message);
                 return list;
             }
         }

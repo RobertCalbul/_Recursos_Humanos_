@@ -38,8 +38,7 @@ namespace Recursos_Humanos_wpf.Clases
                  */
                 arreglo = new object[3];
                 string sql = "SELECT * FROM login WHERE nombre='" + nombre + "' AND password='" + password+"'";
-                //SELECT * FROM login where nombre='admin' and password='admin';
-                
+                //SELECT * FROM login where nombre='admin' and password='admin';                
                 DataTable dataTable = new Clases.Consultas().QueryDB(sql);
                 if (dataTable.Rows.Count != 0)
                 {
@@ -49,7 +48,6 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[1] = dtRow["nombre"];
                         arreglo[2] = dtRow["password"];
                         arreglo[3] = dtRow["id_usergroup"];
-
                     }
                 }
                 else
@@ -59,15 +57,11 @@ namespace Recursos_Humanos_wpf.Clases
                 }
                 return arreglo;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Console.WriteLine("ERROR Login.findBy() " + ex.Message);
                 return arreglo;
             }
-
         } // fin del metodo findby
-
-
-
-
     }
 }

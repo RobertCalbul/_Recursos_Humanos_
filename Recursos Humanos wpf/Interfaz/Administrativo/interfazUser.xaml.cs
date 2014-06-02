@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections.Generic;
+
 using System.Collections.ObjectModel;
 namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 {
@@ -23,12 +23,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     {
         MenuItem root;
         public interfazUser()
-        {
-            
+        {         
             InitializeComponent();
-
-           
-
             llenaTreeView();
         }
 
@@ -57,7 +53,6 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var tree = sender as TreeView;
-
             // ... Determine type of SelectedItem.
             if (tree.SelectedItem is MenuItem)
             {
@@ -72,9 +67,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 //this.Title = "Selected hijo: " + tree.SelectedItem.ToString();
                 Console.WriteLine("Selected hijo: " + tree.SelectedItem.ToString());
             }
-        }
-   
+        }   
     }
+
     public class MenuItem
     {
         public MenuItem()

@@ -118,5 +118,23 @@ namespace Recursos_Humanos_wpf.Clases
             }
 
         }
+        public int deleteById()
+        {
+            String sql = "DELETE FROM  Privilegio WHERE id_privilegio=" + this.id;
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                return sqlCom.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Privilegio.deleteById() " + ex.Message);
+                return 0;
+            }
+
+        }
     }
 }

@@ -33,9 +33,10 @@ namespace Recursos_Humanos_wpf.Clases
                 }//end foreach
                 return listreg;
             }//end try
-            catch (Exception ex) { return listreg;}
-
-
+            catch (Exception ex) {
+                Console.WriteLine("ERROR Banco.findAll() "+ex.Message);
+                return listreg;
+            }
         }//end findAll
     }//fin class
 }

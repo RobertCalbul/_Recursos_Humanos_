@@ -42,8 +42,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         }
 
 
-
-        /*>>>>INICIO CRUD CONTRATOS<<<<<*/
+        #region CRUD EMPLEADO
         public void Search()
         {
             try
@@ -224,7 +223,6 @@ namespace Recursos_Humanos_wpf.Interfaz
                 }
             }
         }
-
         //ACTUALIZA DATOS EMPLEADO
         public void btnUpdateReg_Click(object sender, MouseButtonEventArgs e)
         {
@@ -254,7 +252,6 @@ namespace Recursos_Humanos_wpf.Interfaz
             }
             else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").ShowDialog();
         }
-
         //CANCELA INGRESO EMPLEADO
         public void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
         {
@@ -268,7 +265,6 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.calendar2.Visibility = Visibility.Hidden;
             limpiarTexbox();
         }
-
         //ELIMINA UN EMPLEADO
         public void btnDeleteReg_Click(object sender, MouseButtonEventArgs e)
         {
@@ -295,8 +291,8 @@ namespace Recursos_Humanos_wpf.Interfaz
                 MessageBox.Show("Error en eliminar personal" + ex.Message);
             }
         }
-        /*>>>>FIN OPERACIONES CRUD EMPLEADOS<<<<<*/
-   
+        #endregion
+        #region CRUD CONTRATO
         //ELIMINA UN CONTRATO ASOCIADO A UN EMPLEADO
         private void btnEndContract_Click(object sender, MouseButtonEventArgs e)
         {
@@ -384,7 +380,6 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.btnDateInitCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
             this.btnDateEndCalendar.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Hidden;
         }
-
         //CREA INTERFAZ PARA AGREGAR CONTRATO
         private void btnNewContract_Click(object sender, MouseButtonEventArgs e)
         {
@@ -503,16 +498,16 @@ namespace Recursos_Humanos_wpf.Interfaz
             }
 
         }
-        /*>>>>FIN CRUD CONTRATOS<<<<<*/
-        /*>>>>CALENDARIOS >>>>>>*/
+        #endregion
 
+        /*>>>>CALENDARIOS >>>>>>*/
+        #region Calendarios
         //ABRE EL CALENDARIO
         private void btnDateInitCalendar_Click(object sender, MouseButtonEventArgs e)
         {
             flagCalendar = 0;
             this.calendar1.Visibility = Visibility.Visible;
             this.calendar1.Margin = this.btnDateInitCalendar.Margin;// new Thickness(0, 130, 0, 0);
-
         }
         //SETEA LA FECHA DE INICIO O TERMINO DE COTRATO
         private void selectedDateChanges_Clikc(object sender, SelectionChangedEventArgs e)
@@ -542,7 +537,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.tYear.Text = (2014 - int.Parse(this.tDateNaci.Text.Substring(0, 4))).ToString();
             this.calendar2.Visibility = Visibility.Hidden;
         }
-        /*FIN CALENDARIO<<<<<*/
+        #endregion fin Calendarios
 
 
         //CARGA IMAGEN A CONTENDOR IMAGEN PERFIL
@@ -568,6 +563,8 @@ namespace Recursos_Humanos_wpf.Interfaz
                 new Dialog("Seleccione una imagen mas pequeña.").ShowDialog();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
         }
+
+        #region CARGA COMBOBOX
         //CARGA DATOS DE AFP EN COMBOBOX
         private void cAfp_Click(object sender, MouseButtonEventArgs e)
         {
@@ -599,8 +596,49 @@ namespace Recursos_Humanos_wpf.Interfaz
             int busqueda = this.cTypeContract.SelectedIndex + 1;
             foreach (Cargo cargo in new Cargo().findAll(busqueda)) this.cCargo.Items.Add(cargo.cargo);
         }
+        // CARGAR LAS COMUNAS
+        private void Loadcom_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Comu.Items.Clear();
+            int busqueda = this.Regi.SelectedIndex + 1;
+            foreach (Comunas comuna in new Comunas().FindByidReg(busqueda)) this.Comu.Items.Add(comuna.nombre_comuna);
+        }
+        //CARGA LAS REGIONES
+        private void Loadreg_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.Regi.Items.Clear();
+            foreach (Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
+        }
+        private void cargarBanco(object sender, MouseButtonEventArgs e)
+        {
+            this.tBank.Items.Clear();
+            foreach (Banco banco in new Banco().findAll()) this.tBank.Items.Add(banco.nombre);
+        }
+        private void verpaises(object sender, MouseButtonEventArgs e)
+        {
+            List<String> resul = new Clases.PDF().leerpaises();
+            foreach (String pais in resul) this.tNacionalidad.Items.Add(pais.Trim());
+        }
+        private void tStat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.tStat.Items.Clear();
+            List<String> estados = new List<String>();
+            estados.Add("VIGENTE");
+            estados.Add("NO VIGENTE");
+            foreach (String es in estados) this.tStat.Items.Add(es);
+        }
+        private void cTypeContract_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Al cambiar el tipo de contrato, reseteo el combobox del cargo
+            foreach (Cargo cargo in new Cargo().findAll(cTypeContract.SelectedIndex))
+            {
+                cCargo.Items.Clear();
+                Comu.Items.Add(cargo.cargo);
+            }
+        }
+        #endregion FIN CARGA COMBOBOX
 
-
+        #region VALIDACIONES
         public Boolean validacionAddUser()
         {
             String concadenacion = string.IsNullOrEmpty(this.tRut.Text.Trim()) ? "*Ingrese el rut para completar el registro" + System.Environment.NewLine : "";
@@ -670,21 +708,8 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             this.tRut.Text = validacion.validaRut(this.tRut.Text, this.tRut);
         }
-
-        // CARGAR LAS COMUNAS
-        private void Loadcom_Click(object sender, MouseButtonEventArgs e)
-        {
-            this.Comu.Items.Clear();
-            int busqueda = this.Regi.SelectedIndex + 1;
-            foreach (Comunas comuna in new Comunas().FindByidReg(busqueda)) this.Comu.Items.Add(comuna.nombre_comuna);
-
-        }
-        //CARGA LAS REGIONES
-        private void Loadreg_Click(object sender, MouseButtonEventArgs e)
-        {
-            this.Regi.Items.Clear();
-            foreach (Regiones regiones in new Regiones().findAll()) this.Regi.Items.Add(regiones.nombre);
-        }
+        #endregion FIN VALIDACIONES
+        
 
         private void Tdireccion_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -701,45 +726,11 @@ namespace Recursos_Humanos_wpf.Interfaz
             }
         }
 
-        private void cargarBanco(object sender, MouseButtonEventArgs e)
-        {
-            this.tBank.Items.Clear();
-            foreach (Banco banco in new Banco().findAll()) this.tBank.Items.Add(banco.nombre);
-        }
-
-        private void verpaises(object sender, MouseButtonEventArgs e)
-        {
-            List<String> resul = new Clases.PDF().leerpaises();
-            foreach (String pais in resul) this.tNacionalidad.Items.Add(pais.Trim());
-        }
-
-        private void tStat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.tStat.Items.Clear();
-            List<String> estados = new List<String>();
-            estados.Add("VIGENTE");
-            estados.Add("NO VIGENTE");
-            foreach (String es in estados) this.tStat.Items.Add(es);
-        }
-
-        private void cTypeContract_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Al cambiar el tipo de contrato, reseteo el combobox del cargo
-            foreach (Cargo cargo in new Cargo().findAll(cTypeContract.SelectedIndex))
-            {
-                cCargo.Items.Clear();
-                Comu.Items.Add(cargo.cargo);
-            }
-        }
-
-
         public void llenaaHorario(String rut)
         {
 
             this.gHorario.ItemsSource = new Registro_Horario(new Personal(rut).get_idPersonal()).findAll();
         }
-
-
         public void ClearContract()
         {
             this.tDateInit.Text = "";

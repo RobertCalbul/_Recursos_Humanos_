@@ -31,6 +31,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
             llenaComboUserGroup();
             llenaTreeView();
+            LoadAllPrivilegios();
         }
 
         public void llenaTreeView()
@@ -42,15 +43,12 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             MenuItem grupo;
             for (int g = 0; g < listaUser.Count; g++)
             {
-                Console.WriteLine(listaUser[g].name);
                 grupo = new MenuItem() { Title = listaUser[g].name };
                 listaPrivilegio = new Privilegio(listaUser[g].id).findByidGroup();
                 for (int p = 0; p < listaPrivilegio.Count; p++)
                 {
-                    Console.WriteLine(listaPrivilegio[p].name);
                     grupo.Items.Add(new MenuItem() { Title = listaPrivilegio[p].name });
                 }
-
                 root.Items.Add(grupo);
             }
             trvMenu.Items.Add(root);
@@ -63,13 +61,75 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void comboGrupos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Privilegio> Privilegio = new Privilegio().findAll();
+                LoadPrivilegio_UserGroup();
+        }
+        private void LoadAllPrivilegios()
+        {
             this.List1.Items.Clear();
-            this.List2.Items.Clear();
-            foreach (Privilegio list in Privilegio)
+            foreach (Privilegio list in new Privilegio().findAll())
                 this.List1.Items.Add(list.name);
         }
-/*Drag and Drop*/
+        private void LoadPrivilegio_UserGroup() {
+            this.List2.Items.Clear();
+            foreach (Privilegio list in new Privilegio(new User_Group(this.comboGrupos.SelectedItem.ToString()).getIdByName()).findByidGroup())
+                this.List2.Items.Add(new ListBoxItem() { Content = list.name });
+        }
+        //boton para agregar privilegio a userGroup
+        private void btnAddPrivilegio_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (this.comboGrupos.SelectedItem!=null)//si selecciono algun grupo de usuario
+            {
+                if (this.List2.Items.Count>0)//si ahi al menos un privilegio en la lista 2
+                {
+                    foreach (ListBoxItem privilegio in this.List2.Items)
+                    {
+                        Privilegio p = new Privilegio(new Privilegio(privilegio.Content.ToString()).getIdByName());
+                        User_Group ug = new User_Group(this.comboGrupos.SelectedIndex + 1);
+                        new User_Group_Privilegios(ug, p).save();
+                    }
+                    llenaTreeView();
+                    LoadAllPrivilegios();
+                    LoadPrivilegio_UserGroup();
+                }
+                else new Dialog("Agrege a lo menos un privilegio ").Show();
+            }
+            else new Dialog("Seleccione un Grupo de usuario").Show();
+        }
+
+        private void btnDeletePrivilegio_Click(object sender, MouseButtonEventArgs e)
+        {
+            try {
+                if (this.comboGrupos.SelectedItem != null)//si selecciono algun grupo de usuario
+                {
+                    if (this.List2.Items.Count > 0)//si ahi al menos un privilegio en la lista 2
+                    {
+                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        if (dialogResult == MessageBoxResult.Yes)
+                        {
+                            Console.WriteLine(((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content);
+                            String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
+                            Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
+                            if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)
+                            {
+                                Console.WriteLine("BORRADO PRIVILEGIO EXITOSO");
+                                LoadPrivilegio_UserGroup();
+                                llenaTreeView();
+                            }
+                            else { Console.WriteLine("BORRADO PRIVILEGIO ERRONEO"); }
+                            LoadAllPrivilegios();
+                            LoadPrivilegio_UserGroup();
+                        }
+                    }
+                    else new Dialog("Seleccione un privilegio ").Show();
+                }
+                else new Dialog("Seleccione un Grupo de usuario").Show();
+            }
+            catch (ArgumentOutOfRangeException ex) {
+                new Dialog("Seleccione un privilegio a elimnar").Show();
+            }            
+        }
+
+        #region Drag and Drop ListBox
         private void List1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (_dragged != null)
@@ -112,19 +172,6 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             List1.Items.Remove(_dragged);
             List2.Items.Add(_dragged);
         }
-        /*Drag and Drop*/
-        //boton para agregar privilegio a userGroup
-        private void btnAddPrivilegio_Click(object sender, MouseButtonEventArgs e)
-        {
-
-            foreach (ListBoxItem privilegio in this.List2.Items)
-            {
-                Console.WriteLine(privilegio.Content + " " + privilegio.Content.GetType());
-                Privilegio p = new Privilegio(new Privilegio(privilegio.Content.ToString()).getIdByName());
-                User_Group ug = new User_Group(this.comboGrupos.SelectedIndex+1);
-                new User_Group_Privilegios(ug,p).save();
-            }
-            llenaTreeView();
-        }
+        #endregion
     }
 }
