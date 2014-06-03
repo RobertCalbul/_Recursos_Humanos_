@@ -75,7 +75,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 this.btnCancelAdd.Visibility = Visibility.Hidden;
                 this.btnAdd.Visibility = Visibility.Hidden;
             }
-            else new Dialog("Ingrese un nombre al nuevo departamento").Show();
+            else new Dialog("Ingrese un nombre al nuevo departamento").ShowDialog();
         }
 
         private void btnDelete_Click(object sender, MouseButtonEventArgs e)

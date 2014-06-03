@@ -9,25 +9,42 @@ namespace Recursos_Humanos_wpf.Clases
 {
     class Login
     {
-        //MySqlConnection conex = null;
-        public int id_Login { get; set; }
+        MySqlConnection con = null;
+        public int id { get; set; }
         public string nombre { get; set; }
         public string password { get; set; }
-        public int id_UserGroup { get; set; }
+        public User_Group UserGroup { get; set; }
 
         public Login()
         { }
-        public Login(int id_Login, string nombre, string password,int id_UserGroup)
+        public Login(int id) {
+            this.id = id;
+        }
+        public Login(String nombre)
         {
-            this.id_Login = id_Login;
+            this.nombre = nombre;
+        }
+        public Login(String nombre,String password) {
             this.nombre = nombre;
             this.password = password;
-            this.id_UserGroup = id_UserGroup;
+        }
+        public Login(string nombre, string password, User_Group UserGroup)
+        {
+            this.nombre = nombre;
+            this.password = password;
+            this.UserGroup = UserGroup;
+        }
+        public Login(int id, string nombre, string password, User_Group UserGroup)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.password = password;
+            this.UserGroup = UserGroup;
         }
 
-        public object[] findBy(string nombre, string password)
+        public Login findBy()
         {
-            object[] arreglo = null;
+            Login arreglo = null;
             try
             {   /*
                  *0. id_login
@@ -36,18 +53,18 @@ namespace Recursos_Humanos_wpf.Clases
                  *3. id_usergroup
                  * 
                  */
-                arreglo = new object[3];
-                string sql = "SELECT * FROM login WHERE nombre='" + nombre + "' AND password='" + password+"'";
+                arreglo = new Login();
+                string sql = "SELECT * FROM login WHERE nombre='" + this.nombre + "' AND password='" + this.password+"'";
                 //SELECT * FROM login where nombre='admin' and password='admin';                
                 DataTable dataTable = new Clases.Consultas().QueryDB(sql);
                 if (dataTable.Rows.Count != 0)
                 {
                     foreach (DataRow dtRow in dataTable.Rows)
                     {
-                        arreglo[0] = dtRow["id_login"];
-                        arreglo[1] = dtRow["nombre"];
-                        arreglo[2] = dtRow["password"];
-                        arreglo[3] = dtRow["id_usergroup"];
+                        arreglo.id= int.Parse(dtRow["id_login"].ToString());
+                        arreglo.nombre = dtRow["nombre"].ToString();
+                        arreglo.password = dtRow["password"].ToString();
+                        arreglo.UserGroup = new User_Group(int.Parse(dtRow["id_usergroup"].ToString()));
                     }
                 }
                 else
@@ -63,5 +80,91 @@ namespace Recursos_Humanos_wpf.Clases
                 return arreglo;
             }
         } // fin del metodo findby
+
+        public List<Login> findAll()
+        {
+            List<Login> listLogin = null;
+            String sql = "SELECT * FROM login";
+            try
+            {
+                con = new Conexion().getConexion();
+                listLogin = new List<Login>();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader res = sqlCom.ExecuteReader();
+
+                while (res.Read())
+                {
+                    listLogin.Add(new Login(res.GetInt32(0),res.GetString(1),res.GetString(2),new User_Group(res.GetInt32(3))));
+                }
+                return listLogin;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Login.findAll() " + ex.Message);
+                return listLogin;
+            }
+        }
+
+        public Login getIdByName()
+        {
+            Login id = null;
+            String sql = "SELECT id_login FROM login WHERE nombre ='"+this.nombre+"'";
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader res = sqlCom.ExecuteReader();
+
+                if (res.Read())
+                {
+                    id = new Login(res.GetInt32(0));
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Login.getIdByName() " + ex.Message);
+                return id;
+            }
+
+        }
+        public int save()
+        {
+            String sql = "INSERT INTO login (nombre,password,id_usergroup) values('"+this.nombre+"','"+this.password+"',"+this.UserGroup.id+")";
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                return sqlCom.ExecuteNonQuery();  
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Login.save() " + ex.Message);
+                return 0;
+            }
+        }
+
+        public int deleteById() {
+            String sql = "DELETE FROM login WHERE id_login="+this.id;
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                return sqlCom.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Login.deleteById() " + ex.Message);
+                return 0;
+            }
+        }
     }
 }

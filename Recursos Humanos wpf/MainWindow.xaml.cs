@@ -142,12 +142,11 @@ namespace Recursos_Humanos_wpf
         }
 
         public void Logearse() {
-            if (tNombreUser.Text != "")
+            if (!tNombreUser.Text.Trim().Equals(""))
             {
-                if (tPasswordUser.Password != "")
+                if (!tPasswordUser.Password.Trim().Equals(""))
                 {
-                    Login login = new Login();
-                    object[] Resultado = login.findBy(tNombreUser.Text, tPasswordUser.Password);
+                    Login Resultado = new Login(tNombreUser.Text, tPasswordUser.Password).findBy();
                     if (Resultado != null)
                     {
                         this.animacionLogeo.Begin();

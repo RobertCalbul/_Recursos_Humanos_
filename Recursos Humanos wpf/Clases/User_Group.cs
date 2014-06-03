@@ -50,7 +50,32 @@ namespace Recursos_Humanos_wpf.Clases
                 return listUserGroup;
             }
         }
+        public User_Group findById()
+        {
+            User_Group userGroup =  null;;
+            String sql = "SELECT * FROM user_group WHERE id_user_group ="+this.id;
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+                userGroup = new User_Group();
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader res = sqlCom.ExecuteReader();
 
+                while (res.Read())
+                {
+                    userGroup.id = res.GetInt32(0);
+                    userGroup.name = res.GetString(1);
+                }
+                return userGroup;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR User_Group.findById() " + ex.Message);
+                return userGroup;
+            }
+
+        }
         public int save()
         {
             String sql = "INSERT INTO user_group (nombre) values('"+this.name+"')";
@@ -89,12 +114,10 @@ namespace Recursos_Humanos_wpf.Clases
         }
         public int getIdByName()
         {
-            List<Privilegio> listPrivilegio = null;
             String sql = "SELECT id_user_group from user_group WHERE nombre ='" + this.name + "'";
             try
             {
                 con = new Conexion().getConexion();
-                listPrivilegio = new List<Privilegio>();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);

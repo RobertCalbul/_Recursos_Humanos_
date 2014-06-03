@@ -21,7 +21,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     /// </summary>
     public partial class interfaz__User_UserGroup : UserControl
     {
-        public  ListBoxItem _dragged;
+        private  ListBoxItem _dragged;
         List<User_Group> userGroup;
         MenuItem root;
         public interfaz__User_UserGroup()
@@ -82,22 +82,26 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 if (this.List2.Items.Count>0)//si ahi al menos un privilegio en la lista 2
                 {
-                    foreach (ListBoxItem privilegio in this.List2.Items)
+                    MessageBoxResult dialogResult = MessageBox.Show("Realmente desea Agregar estos privilegios a " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                    if (dialogResult == MessageBoxResult.Yes)
                     {
-                        Privilegio p = new Privilegio(new Privilegio(privilegio.Content.ToString()).getIdByName());
-                        User_Group ug = new User_Group(this.comboGrupos.SelectedIndex + 1);
-                        if (new User_Group_Privilegios(ug, p).ifExistPrivilegio() < 1)//si no existe el privilegio
+                        foreach (ListBoxItem privilegio in this.List2.Items)
                         {
-                            new User_Group_Privilegios(ug, p).save();
+                            Privilegio p = new Privilegio(new Privilegio(privilegio.Content.ToString()).getIdByName());
+                            User_Group ug = new User_Group(this.comboGrupos.SelectedIndex + 1);
+                            if (new User_Group_Privilegios(ug, p).ifExistPrivilegio() < 1)//si no existe el privilegio
+                            {
+                                new User_Group_Privilegios(ug, p).save();
+                            }
                         }
-                    }
-                    llenaTreeView();
-                    LoadAllPrivilegios();
-                    LoadPrivilegio_UserGroup();
+                        LoadAllPrivilegios();
+                        LoadPrivilegio_UserGroup();
+                        llenaTreeView();
+                    }                  
                 }
-                else new Dialog("Agrege a lo menos un privilegio ").Show();
+                else new Dialog("Agrege a lo menos un privilegio ").ShowDialog();
             }
-            else new Dialog("Seleccione un Grupo de usuario").Show();
+            else new Dialog("Seleccione un Grupo de usuario").ShowDialog();
         }
 
         private void btnDeletePrivilegio_Click(object sender, MouseButtonEventArgs e)
@@ -107,28 +111,30 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 {
                     if (this.List2.Items.Count > 0)//si ahi al menos un privilegio en la lista 2
                     {
-                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                        if (dialogResult == MessageBoxResult.Yes)
+                        String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
+                        if (NamePrivilegio != null)//si no selecciono ningun privilegio a eliminar
                         {
-                            String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
-                            Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
-                            if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)
+                            MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                            if (dialogResult == MessageBoxResult.Yes)
                             {
-                                Console.WriteLine("BORRADO PRIVILEGIO EXITOSO");
+                                Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
+                                if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)
+                                {
+                                    LoadPrivilegio_UserGroup();
+                                    llenaTreeView();
+                                }
+                                LoadAllPrivilegios();
                                 LoadPrivilegio_UserGroup();
-                                llenaTreeView();
                             }
-                            else { Console.WriteLine("BORRADO PRIVILEGIO ERRONEO"); }
-                            LoadAllPrivilegios();
-                            LoadPrivilegio_UserGroup();
                         }
+                        else new Dialog("Seleccione un privilegio a eliminar.").ShowDialog();
                     }
-                    else new Dialog("Seleccione un privilegio ").Show();
+                    else new Dialog("No hay ningun privilegio asignado previamente.").ShowDialog();
                 }
-                else new Dialog("Seleccione un Grupo de usuario").Show();
+                else new Dialog("Seleccione un Grupo de usuario").ShowDialog();
             }
             catch (ArgumentOutOfRangeException ex) {
-                new Dialog("Seleccione un privilegio a elimnar").Show();
+                new Dialog("Seleccione un privilegio a elimnar").ShowDialog();
             }            
         }
 
