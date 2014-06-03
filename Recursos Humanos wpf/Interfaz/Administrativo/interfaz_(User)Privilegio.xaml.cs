@@ -28,6 +28,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             this.btnAdd.Visibility = Visibility.Hidden;
             this.btnCancelAdd.Visibility = Visibility.Hidden;
             this.tName.IsEnabled = false;
+            this.btnDelete.IsEnabled = false;
         }
 
         private void btnUpdate_Click(object sender, MouseButtonEventArgs e)
@@ -111,5 +112,63 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             this.btnActualizar.Visibility = Visibility.Visible;
             this.tName.IsEnabled = true;
         }
+
+
+        #region ESTILO VISUAL BOTONES
+        public void styleVisualBtn(Label btn, Brush color, int borde)
+        {
+            btn.BorderBrush = color;
+            btn.BorderThickness = new Thickness(borde, 0, 0, 0);
+        }
+        private void btnCancelAdd_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnCancelAdd, Brushes.Red, 5);
+        }
+
+        private void btnCancelAdd_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnCancelAdd, null, 0);
+        }
+
+        private void btnDelete_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnDelete, Brushes.Red, 5);
+        }
+
+        private void btnDelete_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnDelete, null, 0);
+        }
+
+        private void btnAdd_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnAdd, Brushes.Blue, 5);
+        }
+
+        private void btnAdd_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnAdd,null, 0);
+        }
+
+        private void btnNewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnNewItem, Brushes.Green, 5);
+        }
+
+        private void btnNewItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnNewItem, null, 0);
+        }
+
+        private void btnActualizar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnActualizar, Brushes.Blue, 5);
+        }
+
+        private void btnActualizar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnActualizar, null, 0);
+        }
+        #endregion
     }
 }

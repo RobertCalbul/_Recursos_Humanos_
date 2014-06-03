@@ -69,8 +69,8 @@
             <RowDefinition Height="702*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="257*"/>
-            <ColumnDefinition Width="660*"/>
+            <ColumnDefinition Width="230*"/>
+            <ColumnDefinition Width="687*"/>
             <ColumnDefinition Width="46*"/>
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="10*"/>
@@ -90,9 +90,9 @@
         </Grid>
         <!-- FIN GRILLA DE LOGO IZQUIERDA-->
         <!-- fin header -->
-        
-        
-        
+
+
+
         <!-- GRILLA DE LOGIN -->
         <Grid Margin="0,1,0,0" x:Name="gridLogeo" Background="#FF33B5E5" Grid.Row="3" Panel.ZIndex="1">
             <Grid.RowDefinitions>
@@ -121,7 +121,7 @@
             <Label Content="Clave" Margin="0" x:Name="label26" FontSize="16" FontWeight="Normal" Foreground="White" Grid.Column="1" Grid.Row="4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" />
             <TextBox Text="" Margin="0" x:Name="tNombreUser" Grid.Column="1" Grid.Row="2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" FontSize="20" />
             <PasswordBox  Password="" Margin="0" x:Name="tPasswordUser" Grid.Row="5" Grid.Column="1" ToolTip="Ingresa tu contraseña" FontSize="20" VerticalContentAlignment="Center" KeyDown="tPasswordUser_KeyDown" />
-            <Label x:Name="label27" Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand">
+            <Label x:Name="label27" Content="LogIn" Margin="0" Grid.Row="7" Background="#FF4185F4" Grid.Column="1" VerticalContentAlignment="Center" Foreground="White" FontSize="18" MouseDown="bAcceder_Click" HorizontalContentAlignment="Center" Cursor="Hand" MouseEnter="label27_MouseEnter" MouseLeave="label27_MouseLeave">
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="ButtonBase.Click">
                         <BeginStoryboard x:Name="objBeginStoryBoard">
@@ -186,7 +186,7 @@
                 <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
                 <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
                 <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
-                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FFCF1717" MouseDown="btnAdministrativo_Click" ></Label>
+                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FF4185F4" MouseDown="btnAdministrativo_Click" Margin="10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{DynamicResource label Blue}" Foreground="White" Width="Auto" Height="Auto" />
                 <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <TransformGroup>

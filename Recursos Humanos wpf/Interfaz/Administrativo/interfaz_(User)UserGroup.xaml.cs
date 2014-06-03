@@ -176,6 +176,37 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             List2.Items.Add(_dragged);
         }
         #endregion
+
+        #region ESTILO VISUAL BOTONES
+        public void styleVisualBtn(Label btn, Brush color, int borde)
+        {
+            btn.BorderBrush = color;
+            btn.BorderThickness = new Thickness(borde, 0, 0, 0);
+        }
+        private void btnAddPrivilegio_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnAddPrivilegio, Brushes.Green, 5);
+        }
+
+        private void btnAddPrivilegio_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnAddPrivilegio, null, 0);
+        }
+
+        private void btnDeletePrivilegio_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnDeletePrivilegio, Brushes.Red, 5);
+        }
+
+        private void btnDeletePrivilegio_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnDeletePrivilegio, null, 0);
+        }
+
+        #endregion
+
+
+
     }
     public class MenuItem
     {

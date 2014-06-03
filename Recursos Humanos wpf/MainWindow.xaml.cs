@@ -45,6 +45,7 @@ namespace Recursos_Humanos_wpf
             this.WorkSpace.Children.Add(_infoUser);
             this.Presentacion.Children.Clear();
             this.Presentacion.Children.Add(_bienvenida);
+            this.tNombreUser.Focus();
         }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
@@ -151,7 +152,7 @@ namespace Recursos_Humanos_wpf
                     {
                         this.animacionLogeo.Begin();
                         _bienvenida.animacionPresentacion.Begin();
-
+                        this.cBusqueda.Focus();
                         //Muestra la imagen Bienvenido al Admin
                         Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
                         AnimacionDeBienvenida.Begin();
@@ -213,7 +214,28 @@ namespace Recursos_Humanos_wpf
             this.WorkSpace.Children.Add(new Administrador(this,_infoUser));
             this.WorkSpace.IsEnabled = true;     
         }
-        /*>>>>>FIN RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
+
+
+
+
+        #region ESTILO VISUAL BOTONES
+        public void styleVisualBtn(Label btn, Brush color, int borde)
+        {
+            btn.BorderBrush = color;
+            btn.BorderThickness = new Thickness(borde, 0, 0, 0);
+        }
+        private void label27_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(label27, Brushes.Blue, 5);
+        }
+
+        private void label27_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(label27, null, 0);
+        }
+
+        #endregion
+      
     }
 
 }

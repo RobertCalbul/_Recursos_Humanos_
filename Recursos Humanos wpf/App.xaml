@@ -22,8 +22,8 @@
     			<Setter Property="HorizontalContentAlignment" Value="center"/>
     			<Setter Property="VerticalContentAlignment" Value="center"/>
     			<Setter Property="Height" Value="26"/>
-    			<Setter Property="Width" Value="115"/>
-    		</Style>
+                <Setter Property="Width" Value="115"/>
+            </Style>
     		<Style TargetType="{x:Type Label}">
     			<Setter Property="FontFamily"  Value="./Font/#Futura LT Light.ttf"/>
     			<Setter Property="Foreground" Value="#ff2d2d2d" />
