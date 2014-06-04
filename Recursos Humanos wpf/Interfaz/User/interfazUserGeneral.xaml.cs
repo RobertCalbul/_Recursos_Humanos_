@@ -531,6 +531,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         private void btnDateNacimiento_Click(object sender, MouseButtonEventArgs e)
         {
             flagCalendar = 2;
+            this.calendar2.Focus();
             this.calendar2.Visibility = Visibility.Visible;
             this.calendar2.DisplayMode = CalendarMode.Decade;
             this.calendar2.Margin = this.btnDateNacimiento.Margin;
@@ -754,6 +755,11 @@ namespace Recursos_Humanos_wpf.Interfaz
             foreach (TextBox x in campos) x.Text = "";
             foreach (ComboBox x in combos) x.Items.Clear();
             this.iPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/icono.png"));
+        }
+
+        private void calendar2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.calendar2.Visibility = Visibility.Hidden;
         }
     }
 }

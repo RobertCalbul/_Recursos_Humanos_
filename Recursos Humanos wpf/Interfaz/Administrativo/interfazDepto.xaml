@@ -34,14 +34,14 @@
         </Grid>
         <TextBox Name="tName" Grid.Column="3" Margin="0" Grid.Row="3" TextWrapping="Wrap" Text=""/>
         <TextBox Name="tRut" Grid.Column="3" Margin="0" Grid.Row="5" TextWrapping="Wrap" Text=""/>
-        <Label Name="btnActualizar" Content="Actualizar" Grid.Column="5" Margin="0" Grid.Row="1" MouseDown="btnUpdate_Click" Background="#FF4185F4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" MouseEnter="btnActualizar_MouseEnter" MouseLeave="btnActualizar_MouseLeave"/>
+        <Label Name="btnActualizar" Content="Actualizar" Grid.Column="5" Margin="0" Grid.Row="1" MouseDown="btnUpdate_Click" Background="#FF4185F4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" MouseEnter="btnActualizar_MouseEnter" MouseLeave="btnActualizar_MouseLeave" Cursor="Hand"/>
         <TextBox Name="tId" Grid.Column="3" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" IsEnabled="False"/>
-        <Label Name="btnAdd" Content="Agregar" Grid.Column="5" Margin="0" Grid.Row="3" Background="#FF4185F4" MouseDown="btnAdd_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" MouseEnter="btnAdd_MouseEnter" MouseLeave="btnAdd_MouseLeave"/>
-        <Label Name="btnDelete" Content="Elminar" Grid.Column="5" Margin="0,1,0,0" Grid.Row="9" Background="#FFE87467" MouseDown="btnDelete_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnDelete_MouseEnter" MouseLeave="btnDelete_MouseLeave"/>
-        <Label Name="btnNewItem" Content="Nuevo" Grid.Column="3" Margin="0" Grid.Row="9" Background="#FF129D5A" MouseDown="btnNewItem_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnNewItem_MouseEnter" MouseLeave="btnNewItem_MouseLeave"/>
+        <Label Name="btnAdd" Content="Agregar" Grid.Column="5" Margin="0" Grid.Row="3" Background="#FF4185F4" MouseDown="btnAdd_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" MouseEnter="btnAdd_MouseEnter" MouseLeave="btnAdd_MouseLeave" Cursor="Hand"/>
+        <Label Name="btnDelete" Content="Elminar" Grid.Column="5" Margin="0,1,0,0" Grid.Row="9" Background="#FFE87467" MouseDown="btnDelete_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnDelete_MouseEnter" MouseLeave="btnDelete_MouseLeave" Cursor="Hand"/>
+        <Label Name="btnNewItem" Content="Nuevo" Grid.Column="3" Margin="0" Grid.Row="9" Background="#FF129D5A" MouseDown="btnNewItem_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnNewItem_MouseEnter" MouseLeave="btnNewItem_MouseLeave" Cursor="Hand"/>
         <Label Content="ID depto" Grid.Column="1" Margin="0" Grid.Row="1"/>
         <Label Content="Nombre depto" Grid.Column="1" Margin="0" Grid.Row="3"/>
         <Label Content="Rut jefe" Grid.Column="1" Margin="0" Grid.Row="5"/>
-        <Label Name="btnCancelAdd" Content="Cancelar" Grid.Column="5" Margin="0" Grid.Row="5" MouseDown="btnCancelAdd_Click" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnCancelAdd_MouseEnter" MouseLeave="btnCancelAdd_MouseLeave"/>
+        <Label Name="btnCancelAdd" Content="Cancelar" Grid.Column="5" Margin="0" Grid.Row="5" MouseDown="btnCancelAdd_Click" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnCancelAdd_MouseEnter" MouseLeave="btnCancelAdd_MouseLeave" Cursor="Hand"/>
     </Grid>
 </UserControl>

@@ -41,12 +41,12 @@
                  PreviewMouseLeftButtonDown="List1_PreviewMouseLeftButtonDown" AllowDrop="True" Margin="0" Grid.Column="1"/>
         <ListBox Name="List2"  Grid.Row="7" Grid.Column="3" Margin="0"  AllowDrop="True" DragEnter="List2_DragEnter"
                  DragOver="List2_DragEnter" Drop="List2_Drop" />
-        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="4"  IsReadOnly="True" Grid.Column="1" SelectionChanged="comboGrupos_SelectionChanged" VerticalContentAlignment="Center"/>
-        <Label Name="btnAddPrivilegio" Content="Agregar privilegios (Todos)" Grid.Column="3" Margin="0" Grid.Row="9" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click" Foreground="White" MouseEnter="btnAddPrivilegio_MouseEnter" MouseLeave="btnAddPrivilegio_MouseLeave"/>
+        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="4"  IsReadOnly="True" Grid.Column="1" SelectionChanged="comboGrupos_SelectionChanged" VerticalContentAlignment="Center" Cursor="Hand"/>
+        <Label Name="btnAddPrivilegio" Content="Agregar privilegios (Todos)" Grid.Column="3" Margin="0" Grid.Row="9" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click" Foreground="White" MouseEnter="btnAddPrivilegio_MouseEnter" MouseLeave="btnAddPrivilegio_MouseLeave" Cursor="Hand"/>
         <Label Content="Privilegios" Grid.Column="1" Margin="0" Grid.Row="6"/>
         <Label Content="Arrastrar aqui" Grid.Column="3" Margin="0" Grid.Row="6"/>
         <Label Content="Seleccione un Grupo de usuario" Grid.Column="1" Margin="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="178"/>
-        <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="3" Margin="0" Grid.Row="11" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click" MouseEnter="btnDeletePrivilegio_MouseEnter" MouseLeave="btnDeletePrivilegio_MouseLeave"/>
+        <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="3" Margin="0" Grid.Row="11" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click" MouseEnter="btnDeletePrivilegio_MouseEnter" MouseLeave="btnDeletePrivilegio_MouseLeave" Cursor="Hand"/>
 
 
 
