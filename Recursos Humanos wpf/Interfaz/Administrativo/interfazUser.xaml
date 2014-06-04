@@ -7,17 +7,10 @@
              MouseMove="Window_MouseMove"
              d:DesignHeight="784" d:DesignWidth="702">
 
-    <Grid Name="WorkSpace" Margin="0" Grid.RowSpan="2">
+    <Grid  Margin="0" Grid.RowSpan="2">
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="48*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="342*"/>
-            <RowDefinition Height="51*"/>
+            <RowDefinition Height="601*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="42*"/>
             <RowDefinition Height="15*"/>
@@ -29,34 +22,56 @@
             <ColumnDefinition Width="72*"/>
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="212*"/>
+            <ColumnDefinition Width="223*"/>
             <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="212*"/>
-            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="226*"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
-        <Border Name="border" Grid.Column="5" Grid.Row="1" Grid.RowSpan="11" BorderBrush="#FF2D2D2D" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="5">
+        
+        <ListBox Name="lListLogin" Grid.ColumnSpan="3" Margin="0,32,0,0" Grid.Row="1" Grid.Column="1" SelectionChanged="lListLogin_SelectionChanged"/>
+        <Label Name="btnNewUser" Content="Add" Grid.Column="1" Margin="1" Grid.Row="3" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnNewUser_MouseEnter" MouseLeave="btnNewUser_MouseLeave" MouseDown="btnNewUser_Click"/>
+        <Label Name="btnDeleteUser" Content="Delete" Grid.Column="2" Margin="1" Grid.Row="3" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnDeleteUser_MouseEnter" MouseLeave="btnDeleteUser_MouseLeave" MouseDown="btnDeleteUser_MouseDown"/>
+        <Label Name="btnFilter" Content="Filtrar" Grid.Column="3" Margin="1" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseEnter="btnFilter_MouseEnter" MouseLeave="btnFilter_MouseLeave"/>
+        <Label Content="Usuario" Grid.Column="1" Margin="0,0,0,569" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-        </Border>
-        <Separator Grid.Row="6" Grid.Column="6" VerticalAlignment="Top" Grid.ColumnSpan="3" Background="#FF2D2D2D" Height="1" Margin="0" />
-        <Label Content="&gt;&gt;" Grid.Column="7" Grid.Row="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.RowSpan="2"/>
-        <Label Content="User Name" Grid.Column="6" Grid.Row="2"/>
-        <ListBox Name="lListLogin" Grid.ColumnSpan="3" Margin="0" Grid.Row="2" Grid.Column="1" Grid.RowSpan="7" SelectionChanged="lListLogin_SelectionChanged"/>
-        <Label Content="Usuario" Grid.Column="1" Margin="0" Grid.Row="1" Grid.ColumnSpan="3"/>
-        <Label Content="Password" Grid.Column="6" Margin="0" Grid.Row="4"/>
-        <TextBox Name="tUserName" Grid.Column="8" Margin="0" TextWrapping="Wrap" Grid.Row="2"/>
-        <TextBox Name="tPassword" Grid.Column="8" Margin="0" TextWrapping="Wrap" Grid.Row="4"/>
-        <Label Name="btnNewUser" Content="Add" Grid.Column="1" Margin="1" Grid.Row="10" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnNewUser_MouseEnter" MouseLeave="btnNewUser_MouseLeave" MouseDown="btnNewUser_Click"/>
-        <Label Name="btnDeleteUser" Content="Delete" Grid.Column="2" Margin="1" Grid.Row="10" Background="#FFE87467" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnDeleteUser_MouseEnter" MouseLeave="btnDeleteUser_MouseLeave" MouseDown="btnDeleteUser_MouseDown"/>
-        <Label Name="btnFilter" Content="Filtrar" Grid.Column="3" Margin="1" Grid.Row="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseEnter="btnFilter_MouseEnter" MouseLeave="btnFilter_MouseLeave"/>
-        <ListBox Name="lListUserGroup" Grid.Column="6" Margin="0" Grid.Row="7" PreviewMouseLeftButtonDown="lListUserGroup_PreviewMouseLeftButtonDown"/>
-        <ListBox Name="lListDestinoUserGroup" Grid.Column="8" Margin="0" Grid.Row="7" DragEnter="lListDestinoUserGroup_DragEnter" Drop="lListDestinoUserGroup_Drop"/>
-        <Label Content="Asignar un Grupo de Usuario" Grid.Column="6" Margin="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Name="btnAdduser" Content="Agregar Usuario" Grid.Column="8" Margin="0" Grid.Row="10" Background="#FF129D5A" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="btnAdduser_MouseEnter" MouseLeave="btnAdduser_MouseLeave" MouseDown="btnAdduser_MouseDown"/>
-        <Label Name="btnDeleteUserGroup" Content="Quitar User Group" Grid.Column="8" Margin="0,5,0,0" Grid.Row="8" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="btnDeleteUserGroup_MouseEnter" MouseLeave="btnDeleteUserGroup_MouseLeave"/>
-        <Label Name="btnCancelAddUser" Content="Cancelar" Grid.Column="6" Margin="0" Grid.Row="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FFE87467" MouseDown="btnCancelAddUser_MouseDown" MouseEnter="btnCancelAddUser_MouseEnter" MouseLeave="btnCancelAddUser_MouseLeave"/>
+        <Grid Name="workSpace" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="212*"/>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="215*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="303*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="16*"/>
+            </Grid.RowDefinitions>
+            <Border Name="border" BorderBrush="#FF2D2D2D" BorderThickness="1" CornerRadius="5" Grid.RowSpan="11" Grid.ColumnSpan="5"/>
+            <Separator VerticalAlignment="Top" Background="#FF2D2D2D" Height="1" Margin="0" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="1" />
+            <Label Content="&gt;&gt;" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0" Grid.Row="5" Grid.Column="2"/>
+            <Label Content="User Name" Margin="0" Grid.Column="1" Grid.Row="1"/>
 
-    </Grid>
+            <Label Content="Password" Margin="0" Grid.Column="1" Grid.Row="2"/>
+            <TextBox Name="tUserName" Margin="0,1" TextWrapping="Wrap" Grid.Row="1" Grid.Column="3"/>
+            <TextBox Name="tPassword" Margin="0,1" TextWrapping="Wrap" Grid.Row="2" Grid.Column="3"/>
+            <ListBox Name="lListUserGroup" Margin="0" PreviewMouseLeftButtonDown="lListUserGroup_PreviewMouseLeftButtonDown" Grid.Row="5" Grid.Column="1"/>
+            <ListBox Name="lListDestinoUserGroup" Margin="0" DragEnter="lListDestinoUserGroup_DragEnter" Drop="lListDestinoUserGroup_Drop" Grid.Row="5" Grid.Column="3"/>
+            <Label Content="Asignar un Grupo de Usuario" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <Label Name="btnAdduser" Content="Agregar Usuario" Margin="0" Background="#FF129D5A" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="btnAdduser_MouseEnter" MouseLeave="btnAdduser_MouseLeave" MouseDown="btnAdduser_MouseDown" Grid.Row="9" Grid.Column="1"/>
+            <Label Name="btnDeleteUserGroup" Content="Quitar User Group" Margin="0,2,4,0" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="btnDeleteUserGroup_MouseEnter" MouseLeave="btnDeleteUserGroup_MouseLeave" Grid.Row="7" Grid.Column="3" MouseDown="btnDeleteUserGroup_MouseDown"/>
+            <Label Name="btnCancelAddUser" Content="Cancelar" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FFE87467" MouseDown="btnCancelAddUser_MouseDown" MouseEnter="btnCancelAddUser_MouseEnter" MouseLeave="btnCancelAddUser_MouseLeave" Grid.Column="3" Grid.Row="9"/>
+            <Label Name="btnActualizarUser" Content="Actualizar" Grid.Column="1" Margin="0" Grid.Row="9" Background="#FF4185F4" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="btnActualizarUser_MouseEnter" MouseLeave="btnActualizarUser_MouseLeave"/>
+
+        </Grid>
+        </Grid>
 
 </UserControl>

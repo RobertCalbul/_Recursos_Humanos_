@@ -31,6 +31,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             _listUserGroup = new User_Group().findAll();
             llenaListLogin();
             llenaListUserGroup();
+            this.workSpace.IsEnabled = false;
+            this.btnActualizarUser.Visibility = Visibility.Hidden;
         }
         #region Drag and Drop ListBox
         private void lListUserGroup_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -114,7 +116,15 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             styleVisualBtn(this.btnFilter, null, 0);
         }
+        private void btnActualizarUser_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(this.btnActualizarUser, Brushes.Blue, 5);
+        }
 
+        private void btnActualizarUser_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(this.btnActualizarUser, null, 0);
+        }
         private void btnDeleteUser_MouseEnter(object sender, MouseEventArgs e)
         {
             styleVisualBtn(this.btnDeleteUser, Brushes.Red, 5);
@@ -177,18 +187,17 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             this.lListDestinoUserGroup.Items.Add(new ListBoxItem() { Content = ug.name});
 
             this.btnAdduser.Visibility = Visibility.Hidden;
-            this.btnDeleteUserGroup.IsEnabled = true;
+            this.btnActualizarUser.Visibility = Visibility.Visible;
+            this.workSpace.IsEnabled = true;
+
         }
 
         private void btnNewUser_Click(object sender, MouseButtonEventArgs e)
         {
             this.Clear();
-            this.llenaListUserGroup();
-            this.btnAdduser.IsEnabled = true;
-            this.btnCancelAddUser.IsEnabled = true;
-            this.btnDeleteUserGroup.IsEnabled = true;
+            this.workSpace.IsEnabled = true;
+            this.btnActualizarUser.Visibility = Visibility.Hidden;
             this.btnAdduser.Visibility = Visibility.Visible;
-            this.btnCancelAddUser.Visibility = Visibility.Visible;
         }
 
         private void btnDeleteUser_MouseDown(object sender, MouseButtonEventArgs e)
@@ -208,10 +217,6 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                             if (l.deleteById() > 0)
                             {
                                 this.Clear();
-                                this.btnAdduser.IsEnabled = true;
-                                this.btnCancelAddUser.IsEnabled = true;
-                                this.btnAdduser.Visibility = Visibility.Visible;
-                                this.btnCancelAddUser.Visibility = Visibility.Visible;
                                 this.llenaListLogin();
                             }
                         }
@@ -230,10 +235,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         private void btnCancelAddUser_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Clear();
-            //this.btnAdduser.Visibility = Visibility.Hidden;
-            this.btnAdduser.IsEnabled = false;
-            this.btnDeleteUserGroup.IsEnabled = false;
-            this.btnCancelAddUser.IsEnabled = false;
+            this.workSpace.IsEnabled = false;
         }
 
         private void btnAdduser_MouseDown(object sender, MouseButtonEventArgs e)
@@ -243,7 +245,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 if (!this.tPassword.Text.Trim().Equals(""))
                 {
                     if (this.lListDestinoUserGroup.Items.Count > 0) {
-                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea Agregar estos privilegios a " + this.tUserName, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea Agregar estos privilegios a " + this.tUserName.Text, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                         if (dialogResult == MessageBoxResult.Yes)
                         {
                             foreach (ListBoxItem UserGroups in this.lListDestinoUserGroup.Items)
@@ -261,6 +263,40 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             }
             else new Dialog("Rellene campo User Name").ShowDialog();
         }
+
+        private void btnDeleteUserGroup_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            /*try
+            {
+
+                    if (this.lListDestinoUserGroup.Items.Count > 0)//si ahi al menos un privilegio en la lista 2
+                    {
+                        String NameUserGroup = ((ListBoxItem)this.lListDestinoUserGroup.Items[this.lListDestinoUserGroup.SelectedIndex]).Content.ToString();
+                        if (NameUserGroup != null)//si no selecciono ningun privilegio a eliminar
+                        {
+                            MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar " + NameUserGroup+" de "+this.tUserName, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                            if (dialogResult == MessageBoxResult.Yes)
+                            {
+                                User_Group_Privilegios p = new User_Group_Privilegios(new Privilegio(NameUserGroup).getIdByName());
+                                if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)
+                                {
+
+                                }
+
+                            }
+                        }
+                        else new Dialog("Seleccione un privilegio a eliminar.").ShowDialog();
+                    }
+                    else new Dialog("No hay ningun privilegio asignado previamente.").ShowDialog();
+                
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                new Dialog("Seleccione un privilegio a elimnar").ShowDialog();
+            }   */
+        }
+
+        
 
     }
 }
