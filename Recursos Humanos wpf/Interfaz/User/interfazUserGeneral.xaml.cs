@@ -78,8 +78,10 @@ namespace Recursos_Humanos_wpf.Interfaz
                 //btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
                 List<String> resul = new Clases.PDF().leerpaises();
-                if (arreglo != null)
+                Console.WriteLine(">>>"+arreglo.Length);
+                if (arreglo[0]!=null)
                 {
+                    Console.WriteLine("ENTRO");
                     //Iniciales en mayusculas
                     string nombre = arreglo[1].ToString();
                     string apellido = arreglo[2].ToString();
@@ -167,7 +169,9 @@ namespace Recursos_Humanos_wpf.Interfaz
                     }
                     i = 0;
 
-                } loadDataContract(this.tRut.Text.Trim());
+                }
+                else main.WorkSpace.IsEnabled = false;
+                loadDataContract(this.tRut.Text.Trim());
                 llenaaHorario(this.tRut.Text.Trim());
             }
         }
