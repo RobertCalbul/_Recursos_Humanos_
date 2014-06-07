@@ -147,14 +147,23 @@ namespace Recursos_Humanos_wpf
                 if (!tPasswordUser.Password.Trim().Equals(""))
                 {
                     Login Resultado = new Login(tNombreUser.Text, tPasswordUser.Password).findBy();
+                    
                     if (Resultado != null)
                     {
+                        String ugadmin = new User_Group(Resultado.UserGroup.id).findById().name; //extraemos el user_group
+                        if (ugadmin.Equals("administrador")) 
+                        { 
                         this.animacionLogeo.Begin();
                         _bienvenida.animacionPresentacion.Begin();
                         this.cBusqueda.Focus();
                         //Muestra la imagen Bienvenido al Admin
                         Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
                         AnimacionDeBienvenida.Begin();
+                        }
+                        else
+                        {
+                            new Dialog("El usuario ingresado no es valido, contactese con el administrador.").ShowDialog();
+                        }
                     }
                 }
                 else

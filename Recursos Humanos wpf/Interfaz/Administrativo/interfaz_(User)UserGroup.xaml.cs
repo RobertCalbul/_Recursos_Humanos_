@@ -209,7 +209,23 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             styleVisualBtn(btnDeletePrivilegio, null, 0);
         }
 
+
+        private void btnaddGroup_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnaddGroup, Brushes.Green, 5);
+        }
+
+        private void btnaddGroup_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(btnaddGroup, null, 0);
+        }
+
         #endregion
+
+        private void btnaddGroup_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            new addGroup_User().ShowDialog();
+        }
 
 
 

@@ -47,6 +47,7 @@
         <Label Content="Arrastrar aqui" Grid.Column="3" Margin="0" Grid.Row="6"/>
         <Label Content="Seleccione un Grupo de usuario" Grid.Column="1" Margin="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="178"/>
         <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="3" Margin="0" Grid.Row="11" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click" MouseEnter="btnDeletePrivilegio_MouseEnter" MouseLeave="btnDeletePrivilegio_MouseLeave" Cursor="Hand"/>
+        <Label x:Name="btnaddGroup" Content="Agregar Grupo" Margin="0,10,135,11" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnaddGroup_MouseEnter" MouseLeave="btnaddGroup_MouseLeave" Cursor="Hand" Grid.Column="1" MouseDown="btnaddGroup_MouseDown"/>
 
 
 
