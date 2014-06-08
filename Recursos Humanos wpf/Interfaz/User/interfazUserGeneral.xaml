@@ -5,6 +5,100 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="757" d:DesignWidth="702" Width="Auto" Height="Auto">
+	<UserControl.Resources>
+		<Storyboard x:Key="ani1">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeleteReg">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF0ADA6"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani2">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnUpdateReg">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8BB4F7"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani3">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnCancelAdd">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF1ABA3"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani4">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAddUser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8FB9FD"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani5">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnNewContract">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF6ECFA0"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani6">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnEndContract">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFDD4337"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFE68780"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFDD4337"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani7">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnCancelNewContract">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF1ADA5"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani8">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnInsertNewContract">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF5BD198"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani9">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnShowContract">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF91BAFD"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnUpdateReg">
+			<BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnCancelAdd">
+			<BeginStoryboard x:Name="ani3_BeginStoryboard" Storyboard="{StaticResource ani3}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAddUser">
+			<BeginStoryboard x:Name="ani4_BeginStoryboard" Storyboard="{StaticResource ani4}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnNewContract">
+			<BeginStoryboard x:Name="ani5_BeginStoryboard" Storyboard="{StaticResource ani5}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnEndContract">
+			<BeginStoryboard x:Name="ani6_BeginStoryboard" Storyboard="{StaticResource ani6}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnCancelNewContract">
+			<BeginStoryboard x:Name="ani7_BeginStoryboard" Storyboard="{StaticResource ani7}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnInsertNewContract">
+			<BeginStoryboard x:Name="ani8_BeginStoryboard" Storyboard="{StaticResource ani8}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnShowContract">
+			<BeginStoryboard x:Name="ani9_BeginStoryboard" Storyboard="{StaticResource ani9}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeleteReg">
+			<BeginStoryboard Storyboard="{StaticResource ani1}"/>
+		</EventTrigger>
+	</UserControl.Triggers>
     <Grid Margin="0" x:Name="WorkSpace" Background="#FFFFFFFC">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="26*"/>

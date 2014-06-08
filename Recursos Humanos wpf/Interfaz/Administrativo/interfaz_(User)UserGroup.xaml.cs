@@ -82,8 +82,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 if (this.List2.Items.Count>0)//si ahi al menos un privilegio en la lista 2
                 {
-                    MessageBoxResult dialogResult = MessageBox.Show("Realmente desea Agregar estos privilegios a " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                    if (dialogResult == MessageBoxResult.Yes)
+                    QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.comboGrupos.SelectedItem);
+                    pregunta.ShowDialog();
+                    if (pregunta.DialogResult == true)
                     {
                         foreach (ListBoxItem privilegio in this.List2.Items)
                         {
@@ -113,9 +114,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     {
                         String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
                         if (NamePrivilegio != null)//si no selecciono ningun privilegio a eliminar
-                        {
-                            MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                            if (dialogResult == MessageBoxResult.Yes)
+                        {   
+                            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem);
+                            pregunta.ShowDialog();
+                            if (pregunta.DialogResult == true)
                             {
                                 Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
                                 if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)

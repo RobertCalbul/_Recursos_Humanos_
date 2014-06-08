@@ -6,6 +6,80 @@
              mc:Ignorable="d" 
              MouseMove="Window_MouseMove"
              d:DesignHeight="784" d:DesignWidth="702">
+	<UserControl.Resources>
+		<Storyboard x:Key="ani1">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnNewUser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF4DCD8F"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani2">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeleteUser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEEA8A0"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani3">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeleteUserGroup">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEEA8A0"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani4">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnCancelAddUser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEEA8A0"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani5">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnActualizarUser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8DB6F9"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani6">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnFilter">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8DB6F9"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani7">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAdduser">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF63C194"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnNewUser">
+			<BeginStoryboard Storyboard="{StaticResource ani1}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeleteUser">
+			<BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeleteUserGroup">
+			<BeginStoryboard x:Name="ani3_BeginStoryboard" Storyboard="{StaticResource ani3}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnCancelAddUser">
+			<BeginStoryboard x:Name="ani4_BeginStoryboard" Storyboard="{StaticResource ani4}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnActualizarUser">
+			<BeginStoryboard x:Name="ani5_BeginStoryboard" Storyboard="{StaticResource ani5}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnFilter">
+			<BeginStoryboard x:Name="ani6_BeginStoryboard" Storyboard="{StaticResource ani6}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAdduser">
+			<BeginStoryboard x:Name="ani7_BeginStoryboard" Storyboard="{StaticResource ani7}"/>
+		</EventTrigger>
+	</UserControl.Triggers>
 
     <Grid  Margin="0" Grid.RowSpan="2">
         <Grid.RowDefinitions>

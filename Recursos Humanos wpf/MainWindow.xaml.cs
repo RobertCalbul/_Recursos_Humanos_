@@ -243,6 +243,8 @@ namespace Recursos_Humanos_wpf
         }
 
         #endregion
+
+
       
     }
 

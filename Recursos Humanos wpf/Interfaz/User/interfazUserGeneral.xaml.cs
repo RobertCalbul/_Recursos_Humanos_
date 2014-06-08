@@ -275,9 +275,10 @@ namespace Recursos_Humanos_wpf.Interfaz
             try
             {
                 this.tabControl1.SelectedIndex = 0;
-                String rut_per = this.tRut.Text.Trim();
-                MessageBoxResult dialogResult = MessageBox.Show("Desea borrar el personal con rut: " + rut_per + " ?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                if (dialogResult == MessageBoxResult.Yes)
+                String rut_per = this.tRut.Text.Trim();                
+                QuestionDialog pregunta = new QuestionDialog("Desea borrar el personal con rut: " + rut_per + " ?");
+                pregunta.ShowDialog();
+                if (pregunta.DialogResult == true)                
                 {
                     if (new Clases.Personal(rut_per).DeleteByRrut() > 0)
                     {
@@ -300,9 +301,10 @@ namespace Recursos_Humanos_wpf.Interfaz
         //ELIMINA UN CONTRATO ASOCIADO A UN EMPLEADO
         private void btnEndContract_Click(object sender, MouseButtonEventArgs e)
         {
-            string rut_per = this.tRut.Text.Trim();
-            MessageBoxResult dialogResult = MessageBox.Show("Desea borrar el contrato asociado al rut: " + rut_per + " ?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (dialogResult == MessageBoxResult.Yes)
+            string rut_per = this.tRut.Text.Trim();            
+            QuestionDialog pregunta = new QuestionDialog("Desea borrar el contrato asociado al rut: " + rut_per + " ?");
+            pregunta.ShowDialog();
+            if (pregunta.DialogResult == true)
             {
                 if (new Clases.Contratos().DeleteByRut(new Personal(rut_per)) > 0)
                 {
@@ -474,9 +476,10 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             try
             {
-                String rut_per = this.tRut.Text.Trim();
-                MessageBoxResult dialogResult = MessageBox.Show("Desea asignar el contrato al rut: " + rut_per + " ?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                if (dialogResult == MessageBoxResult.Yes && validacionAddContract())
+                String rut_per = this.tRut.Text.Trim();                
+                QuestionDialog pregunta = new QuestionDialog("Desea asignar el contrato al rut: " + rut_per + " ?");
+                pregunta.ShowDialog();
+                if (pregunta.DialogResult == true && validacionAddContract())
                 {
                     listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();

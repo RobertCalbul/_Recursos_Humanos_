@@ -33,8 +33,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnUpdate_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Realmente desea modificar los datos?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (dialogResult == MessageBoxResult.Yes)
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea modificar los datos?");
+            pregunta.ShowDialog();            
+            if (pregunta.DialogResult == true)
             {
                 if (new Privilegio(int.Parse(this.tId.Text), this.tName.Text).update() > 0)
                 {
@@ -81,8 +82,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnDelete_Click(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar este dato?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (dialogResult == MessageBoxResult.Yes)
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este dato?");
+            pregunta.ShowDialog();
+            if (pregunta.DialogResult == true)
             {
                 if (new Privilegio(int.Parse(this.tId.Text)).deleteById() > 0)
                 {

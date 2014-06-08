@@ -48,10 +48,20 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:3" Value="130"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="aniAdministrativo">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAdministrativo">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8FB6F5"/>
+        		<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="iAddUser">
             <BeginStoryboard x:Name="animacionAddPersonal_BeginStoryboard" Storyboard="{StaticResource animacionAddPersonal}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAdministrativo">
+        	<BeginStoryboard x:Name="aniAdministrativo_BeginStoryboard" Storyboard="{StaticResource aniAdministrativo}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="label27">
             <BeginStoryboard x:Name="animacionBLogin_BeginStoryboard" Storyboard="{StaticResource animacionBLogin}"/>
@@ -86,7 +96,7 @@
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
-            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" />
+            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="1" />
         </Grid>
         <!-- FIN GRILLA DE LOGO IZQUIERDA-->
         <!-- fin header -->
@@ -186,7 +196,7 @@
                 <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
                 <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
                 <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
-                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FF4185F4" MouseDown="btnAdministrativo_Click" Margin="10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{DynamicResource label Blue}" Foreground="White" Width="Auto" Height="Auto" />
+                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FF4185F4" MouseDown="btnAdministrativo_Click" Margin="10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{DynamicResource label Blue}" Foreground="White" Width="Auto" Height="Auto" Cursor="Hand" />
                 <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <TransformGroup>

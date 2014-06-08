@@ -6,6 +6,40 @@
              mc:Ignorable="d"  
              MouseMove="Window_MouseMove"
              d:DesignHeight="757" d:DesignWidth="702">
+	<UserControl.Resources>
+		<Storyboard x:Key="ani1">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnaddGroup">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani2">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAddPrivilegio">
+				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="ani3">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeletePrivilegio">
+				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF1ADA5"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnaddGroup">
+			<BeginStoryboard Storyboard="{StaticResource ani1}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAddPrivilegio">
+			<BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeletePrivilegio">
+			<BeginStoryboard x:Name="ani3_BeginStoryboard" Storyboard="{StaticResource ani3}"/>
+		</EventTrigger>
+	</UserControl.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>

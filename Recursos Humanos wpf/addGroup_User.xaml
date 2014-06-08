@@ -3,17 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Dialog" Height="264" Width="380" WindowStyle="None" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" MaxWidth="380" MinWidth="380" HorizontalAlignment="Center" VerticalAlignment="Center" ShowInTaskbar="False" AllowsTransparency="True" BorderThickness="1" BorderBrush="#FF8D8D8D">
     <Window.Resources>
-        <Storyboard x:Key="OnMouseEnter1">
+        <Storyboard x:Key="ani1">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="bAddGroup">
                 <EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
                 <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF72A6FB"/>
                 <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ani2">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="bCancelGroup">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FFFD2300"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF79A8B"/>
+        		<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFFD2300"/>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="bAddGroup">
-            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            <BeginStoryboard x:Name="ani1_BeginStoryboard" Storyboard="{StaticResource ani1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="bCancelGroup">
+        	<BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
         </EventTrigger>
     </Window.Triggers>
     <Grid Width="368" Name="grid" Margin="5,0,5,8">

@@ -209,9 +209,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     String userName = this.lListLogin.Items[this.lListLogin.SelectedIndex].ToString();
                     Console.WriteLine(userName);
                     if (userName != null)//si no selecciono ningun privilegio a eliminar
-                    {
-                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea eliminar el Usuario " + userName, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                        if (dialogResult == MessageBoxResult.Yes)
+                    {   
+                        QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar el Usuario " + userName);
+                        pregunta.ShowDialog();
+                        if (pregunta.DialogResult == true)
                         {
                             Login l = new Login(new Login(userName).getIdByName().id);
                             if (l.deleteById() > 0)
@@ -245,8 +246,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 if (!this.tPassword.Text.Trim().Equals(""))
                 {
                     if (this.lListDestinoUserGroup.Items.Count > 0) {
-                        MessageBoxResult dialogResult = MessageBox.Show("Realmente desea Agregar estos privilegios a " + this.tUserName.Text, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                        if (dialogResult == MessageBoxResult.Yes)
+                        
+                        QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.tUserName.Text);
+                        pregunta.ShowDialog();
+                        if (pregunta.DialogResult == true)
                         {
                             foreach (ListBoxItem UserGroups in this.lListDestinoUserGroup.Items)
                             {

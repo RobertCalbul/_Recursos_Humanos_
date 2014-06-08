@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <TreeView Name="TreeView" Margin="0" Loaded="TreeView_Loaded"
 	    SelectedItemChanged="TreeView_SelectedItemChanged" Grid.RowSpan="3"/>
-        <Button Content="Back" Margin="0" Click="back_click" Grid.Column="2" Grid.Row="1"/>
+        <Button Content="Back" Margin="0" Click="back_click" Grid.Column="2" Grid.Row="1" Cursor="Hand"/>
         <Grid Name="WorkSpace" Grid.Column="1" Margin="0" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
 
     </Grid>
