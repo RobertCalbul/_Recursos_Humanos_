@@ -21,15 +21,17 @@ namespace Recursos_Humanos_wpf.Clases
         public String fTermino { get; set; }
         public int SueldoBase { get; set; }
         public String estado {get;set;}
+        public String jornada_cargo { get; set; }
+        //declaracion de constructores
         public Contratos() { }
-        public Contratos(String rut,String fInicio, String fTermino, String estado, int SueldoBase, String tContrato, String Cargo) {
+        public Contratos(String rut,String fInicio, String fTermino, String estado, String tContrato, String Cargo,String jornada_cargo) {
             this.rut = rut;
             this.fInicio = fInicio;
             this.fTermino = fTermino;
             this.estado = estado;
-            this.SueldoBase = SueldoBase;
             this.tContrato = tContrato;
             this.Cargo = Cargo;
+            this.jornada_cargo = jornada_cargo;
         }
         public Contratos(String rut, String fInicio, String nombre, String direccion, String Cargo, String depto, String tContrato, int SueldoBase, String fTermino, String afp, String salud)
         {
@@ -84,12 +86,33 @@ namespace Recursos_Humanos_wpf.Clases
             }
         }
 
+        public int get_sueldo(String cargo,String jornada)
+        {
+            int sueldo = 0;
+            try
+            {
+                string sql = "select sueldo from jornada_cargo"
+                             + " where cargo_id_cargo=" + cargo + " and tipo_jornada_id_tipo_jornada=" + jornada;
+                foreach (DataRow dtRow in new Clases.Consultas().QueryDB(sql).Rows)
+                {
+                    sueldo = int.Parse(dtRow["sueldo"].ToString());
+                }
+                return sueldo;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Contrato.findBy() " + e.Message.ToString());
+                return sueldo;
+            }
+        }
+
+
         public int save() { 
             int flag = 0;
             try{
                 Clases.Consultas consult = new Clases.Consultas();
-                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,sueldo_minimo,tipo_contrato_id_tipo_contrato, cargo_id_cargo,tipo_jornada_id_tipo_jornada)" +
-                    " values('"+ this.fInicio + "','" + this.fTermino + "','" + this.estado + "',"+this.SueldoBase+"," + this.tContrato + "," + this.Cargo+ ",1)";
+                String sql = "INSERT INTO contrato (fecha_inicio,fecha_termino,estado,tipo_contrato_id_tipo_contrato,cargo_id_cargo,jornada_cargo)" +
+                    " values('"+ this.fInicio + "','" + this.fTermino + "','" + this.estado + "'," + this.tContrato + "," + this.Cargo+","+this.jornada_cargo +")";
                 if (consult.Update(sql) > 0)
                 {
                     sql = "SELECT DISTINCT LAST_INSERT_ID() as id_contrato FROM contrato";

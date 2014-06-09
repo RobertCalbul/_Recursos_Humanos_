@@ -29,6 +29,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         List<Salud> listSalud = null;
         List<Departamento> listDpto = null;
         List<Cargo> listCargo = null;
+        List<tipo_jornada> listJornada = null;
         List<TipoContrato> listTipoContrato = null;
         List<Regiones> listReg = null;
         List<Comunas> listCom = null;
@@ -371,12 +372,14 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.tStat.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.cTypeContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.cCargo.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
+            this.cJornada.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
 
             this.tDateInit.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
             this.tDateEnd.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
             this.tStat.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
             this.cTypeContract.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
             this.cCargo.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
+            this.cJornada.IsEnabled = interfaces == "1" || interfaces == "" ? true : false;
 
             this.btnEndContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Hidden : Visibility.Visible;
             this.btnNewContract.Visibility = interfaces == "1" || interfaces == "" ? Visibility.Visible : Visibility.Hidden;
@@ -400,6 +403,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             this.tStat.Visibility = Visibility.Visible;
             this.cTypeContract.Visibility = Visibility.Visible;
             this.cCargo.Visibility = Visibility.Visible;
+            this.cJornada.Visibility = Visibility.Visible;
             this.btnEndContract.Visibility = Visibility.Hidden;
             this.btnNewContract.Visibility = Visibility.Hidden;
             this.btnDateInitCalendar.Visibility = Visibility.Visible;
@@ -433,12 +437,15 @@ namespace Recursos_Humanos_wpf.Interfaz
                     });
                     listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();
+                    listJornada = new tipo_jornada().findforCargo(this.cCargo.Text);
                     Clases.Contratos contrato = new Clases.Contratos(this.tRut.Text, this.tDateInit.Text, this.tName.Text + " " + this.tSurname.Text, this.Tdireccion.Text,
                                                             listCargo[this.cCargo.SelectedIndex].cargo, this.cDepto.Text.Trim(),
-                                                            listTipoContrato[this.cTypeContract.SelectedIndex].tipo, 25000, this.tDateEnd.Text,
+                                                            listTipoContrato[this.cTypeContract.SelectedIndex].tipo, 
+                                                            new Contratos().get_sueldo(listCargo[this.cCargo.SelectedIndex].id.ToString(), listJornada[this.cJornada.SelectedIndex].id_tipo_jornada.ToString()),
+                                                            this.tDateEnd.Text,
                                                             this.cAfp.Text.Trim(), this.cSalud.Text.Trim()
                         );
-
+                   
                     new Clases.PDF().CrearArchivoXML("contratos/contract.xml",
                     contrato.rut, contrato.fInicio, contrato.nombre_completo, contrato.direccion, contrato.Cargo, contrato.depto, contrato.tContrato,
                     contrato.SueldoBase, contrato.fTermino, contrato.afp, contrato.salud);
@@ -483,8 +490,10 @@ namespace Recursos_Humanos_wpf.Interfaz
                 {
                     listCargo = new Cargo().findAll(this.cTypeContract.SelectedIndex + 1);
                     listTipoContrato = new TipoContrato().findAll();
+                    listJornada = new tipo_jornada().findforCargo(this.cCargo.Text);
                     Clases.Contratos contrato = new Contratos(rut_per, this.tDateInit.Text, this.tDateEnd.Text, this.tStat.Text.ToUpper(),
-                                                    250000, listTipoContrato[this.cTypeContract.SelectedIndex].id.ToString(), listCargo[this.cCargo.SelectedIndex].id.ToString());
+                                                    listTipoContrato[this.cTypeContract.SelectedIndex].id.ToString(), listCargo[this.cCargo.SelectedIndex].id.ToString(),
+                                                    listJornada[this.cJornada.SelectedIndex].id_tipo_jornada.ToString());
                     if (contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
@@ -763,6 +772,14 @@ namespace Recursos_Humanos_wpf.Interfaz
         private void calendar2_MouseLeave(object sender, MouseEventArgs e)
         {
             this.calendar2.Visibility = Visibility.Hidden;
+        }
+
+        private void cJornada_Click(object sender, MouseButtonEventArgs e)
+        {
+            this.cJornada.Items.Clear();
+            int busqueda = this.cTypeContract.SelectedIndex + 1;
+            foreach (tipo_jornada jorn in new tipo_jornada().findforCargo(cCargo.Text)) this.cJornada.Items.Add(jorn.nombre);
+
         }
     }
 }

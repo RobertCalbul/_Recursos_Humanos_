@@ -244,7 +244,7 @@ namespace Recursos_Humanos_wpf.Clases
                                + " justificada, sin que ello importe menoscabo para el Trabajador."),
                                new XAttribute("tercer_parrafo",
                                "2- El Empleador se compromete a remunerar al Trabajador con la"
-                               + " suma de " + enletras("250000")
+                               + " suma de " + enletras(sueldo.ToString())
                                + " pesos como sueldo BASE por Mes además se asigna al Trabajador una"
                                + " comisión de __________________________. Las remuneraciones se"
                                + " pagarán Los 5 primeros días del Mes por 1 Mes periodos vencidos,"

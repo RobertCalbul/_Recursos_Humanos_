@@ -101,6 +101,7 @@
     <Compile Include="Clases\Registro_Horario.cs" />
     <Compile Include="Clases\Salud.cs" />
     <Compile Include="Clases\TipoContrato.cs" />
+    <Compile Include="Clases\tipo_jornada.cs" />
     <Compile Include="Clases\User_Group.cs" />
     <Compile Include="Clases\User_Group_Privilegios.cs" />
     <Compile Include="Clases\Validaciones.cs" />

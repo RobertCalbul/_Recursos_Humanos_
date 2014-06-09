@@ -49,11 +49,11 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="aniAdministrativo">
-        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAdministrativo">
-        		<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
-        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8FB6F5"/>
-        		<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
-        	</ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAdministrativo">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF8FB6F5"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+            </ColorAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
@@ -61,7 +61,7 @@
             <BeginStoryboard x:Name="animacionAddPersonal_BeginStoryboard" Storyboard="{StaticResource animacionAddPersonal}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAdministrativo">
-        	<BeginStoryboard x:Name="aniAdministrativo_BeginStoryboard" Storyboard="{StaticResource aniAdministrativo}"/>
+            <BeginStoryboard x:Name="aniAdministrativo_BeginStoryboard" Storyboard="{StaticResource aniAdministrativo}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="label27">
             <BeginStoryboard x:Name="animacionBLogin_BeginStoryboard" Storyboard="{StaticResource animacionBLogin}"/>
@@ -212,9 +212,13 @@
         </Grid>
         <!-- GRILLA DE INFO-ADMINITRACION -->
         <Grid x:Name="pInfo" Background="#FFFFFFFF" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4">
-            <Grid Margin="0" x:Name="WorkSpace"/>
-            <Grid Margin="0" x:Name="Presentacion"/>
-            <Image x:Name="imageBienvenida" HorizontalAlignment="Right" Height="88" Margin="0,0,38,30" Width="168" OpacityMask="Black" Source="Images/Bienvenido.png" Panel.ZIndex="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="159*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0" x:Name="WorkSpace" Grid.ColumnSpan="2"/>
+            <Grid Margin="0" x:Name="Presentacion" Grid.ColumnSpan="2"/>
+            <Image x:Name="imageBienvenida" HorizontalAlignment="Right" Height="88" Margin="0,0,38,30" Width="168" OpacityMask="Black" Source="Images/Bienvenido.png" Panel.ZIndex="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
