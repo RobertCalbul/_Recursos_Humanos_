@@ -180,9 +180,10 @@ namespace Recursos_Humanos_wpf.Interfaz
         public void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {
             this.tRut.IsEnabled = true;
-            main.iAddUser.IsEnabled = true;
-            MessageBoxResult dialogResult = MessageBox.Show("Desea agregar a esta persona?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (dialogResult == MessageBoxResult.Yes && validacionAddUser())
+            main.iAddUser.IsEnabled = true;            
+            QuestionDialog pregunta = new QuestionDialog("Desea agregar a esta persona?");
+            pregunta.ShowDialog();
+            if (pregunta.DialogResult == true && validacionAddUser())
             {
                 byte[] foto = File.ReadAllBytes(path.Content.ToString());
                 listDpto = new Departamento().findAll();
@@ -212,9 +213,10 @@ namespace Recursos_Humanos_wpf.Interfaz
                         this.iPerfil.IsEnabled = false;
                         this.btnCancelAdd.Visibility = Visibility.Hidden;
                         this.btnUpdateReg.Visibility = Visibility.Visible;
-                        this.btnDeleteReg.Visibility = Visibility.Visible;
-                        MessageBoxResult pregunta = MessageBox.Show("¿Desea contratar a este nuevo personal?", "Pregunta:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-                        if (pregunta == MessageBoxResult.Yes)
+                        this.btnDeleteReg.Visibility = Visibility.Visible;                        
+                        QuestionDialog pregunta2 = new QuestionDialog("¿Desea contratar a este nuevo personal?");
+                        pregunta2.ShowDialog();
+                        if (pregunta2.DialogResult == true)                        
                         {
                             this.tabControl1.SelectedIndex = 1;
                             cargarDatosPersonal(this.tRut.Text, "rut");
