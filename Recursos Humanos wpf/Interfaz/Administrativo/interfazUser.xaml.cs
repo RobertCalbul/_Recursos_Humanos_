@@ -28,9 +28,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             InitializeComponent();
             
-            _listUserGroup = new User_Group().findAll();
-            llenaListLogin();
-            llenaListUserGroup();
+            this._listUserGroup = new User_Group().findAll();
+            this.llenaListLogin();
+            this.llenaListUserGroup();
             this.workSpace.IsEnabled = false;
             this.btnActualizarUser.Visibility = Visibility.Hidden;
         }
@@ -179,25 +179,30 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         //Cuando seleccione uno
         private void lListLogin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.lListDestinoUserGroup.Items.Clear();
-            int index = this.lListLogin.SelectedIndex;            
-            this.tUserName.Text = this._listLogin[index].nombre;
-            this.tPassword.Text = this._listLogin[index].password;
-            User_Group ug = new User_Group(this._listLogin[index].UserGroup.id).findById();
-            this.lListDestinoUserGroup.Items.Add(new ListBoxItem() { Content = ug.name});
+            if (this.lListLogin.IsEnabled==true)
+            {
+                this.lListDestinoUserGroup.Items.Clear();
+                int index = this.lListLogin.SelectedIndex;
+                this.tUserName.Text = this._listLogin[index].nombre;
+                this.tPassword.Text = this._listLogin[index].password;
+                User_Group ug = new User_Group(this._listLogin[index].UserGroup.id).findById();
+                this.lListDestinoUserGroup.Items.Add(new ListBoxItem() { Content = ug.name });
 
-            this.btnAdduser.Visibility = Visibility.Hidden;
-            this.btnActualizarUser.Visibility = Visibility.Visible;
-            this.workSpace.IsEnabled = true;
-
+                this.btnAdduser.Visibility = Visibility.Hidden;
+                this.btnActualizarUser.Visibility = Visibility.Visible;
+                this.workSpace.IsEnabled = true;
+                this.llenaListUserGroup();
+            }
         }
 
         private void btnNewUser_Click(object sender, MouseButtonEventArgs e)
         {
             this.Clear();
+            this.lListLogin.IsEnabled = false;
             this.workSpace.IsEnabled = true;
             this.btnActualizarUser.Visibility = Visibility.Hidden;
             this.btnAdduser.Visibility = Visibility.Visible;
+            this.llenaListUserGroup();
         }
 
         private void btnDeleteUser_MouseDown(object sender, MouseButtonEventArgs e)
@@ -237,6 +242,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             this.Clear();
             this.workSpace.IsEnabled = false;
+            this.lListLogin.IsEnabled = true;
         }
 
         private void btnAdduser_MouseDown(object sender, MouseButtonEventArgs e)
@@ -256,7 +262,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                                 User_Group ug = new User_Group(new User_Group(UserGroups.Content.ToString()).getIdByName());
                                 if (new Login(this.tUserName.Text.Trim(),this.tPassword.Text.Trim(),ug).save()>0)//si no existe el privilegio
                                 {
-                                    this.llenaListLogin();
+
+                                    this.llenaListLogin(); 
+                                    this.lListLogin.IsEnabled = true;
                                 }
                             }
                         }                  
