@@ -15,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -564,6 +565,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             try
             {
+                Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Imagenes jpg(*.jpg)|*.jpg";
                 if (ofd.ShowDialog() == true)
@@ -574,12 +576,14 @@ namespace Recursos_Humanos_wpf.Interfaz
                         BitmapDecoder bitdecoder = BitmapDecoder.Create(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                         this.iPerfil.Source = bitdecoder.Frames[0];
                     }
-                }
+                } Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
             }
             catch (Exception ex)
             {
                 Console.Write("error: " + ex.Message);
+                Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
                 new Dialog("Seleccione una imagen mas pequeña.").ShowDialog();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
+                Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
             }
         }
 
@@ -782,6 +786,22 @@ namespace Recursos_Humanos_wpf.Interfaz
             int busqueda = this.cTypeContract.SelectedIndex + 1;
             foreach (tipo_jornada jorn in new tipo_jornada().findforCargo(cCargo.Text)) this.cJornada.Items.Add(jorn.nombre);
 
+        }
+
+        public void addEfecto()
+        {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 2;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.BitmapEffect = myBlurEffect;
+        }
+
+        public void QuitarEfecto()
+        {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 0;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.BitmapEffect = myBlurEffect;
         }
     }
 }

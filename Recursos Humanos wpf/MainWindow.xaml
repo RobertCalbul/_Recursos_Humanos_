@@ -55,6 +55,13 @@
                 <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="anibtnCerrarSesion">
+        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label4">
+        		<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF98BEFB"/>
+        		<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+        	</ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="iAddUser">
@@ -68,6 +75,9 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="label27">
             <BeginStoryboard x:Name="aniBLogin2_BeginStoryboard" Storyboard="{StaticResource aniBLogin2}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="label4">
+        	<BeginStoryboard x:Name="anibtnCerrarSesion_BeginStoryboard" Storyboard="{StaticResource anibtnCerrarSesion}"/>
         </EventTrigger>
     </Window.Triggers>
 
@@ -97,6 +107,25 @@
             </Grid.ColumnDefinitions>
             <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
             <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="1" />
+            <Label Content="Cerrar Sesión" Margin="0" x:Name="label4" Background="#FF4185F4" Foreground="White" FontSize="16" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="2" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Cursor="Hand" TextOptions.TextHintingMode="Animated" FontStretch="Expanded" MouseDown="btnCerrarSesion" IsEnabled="False" Opacity="0" >
+                <Label.Triggers >
+                    <EventTrigger RoutedEvent="ButtonBase.Click">
+                        <BeginStoryboard x:Name="objBeginStoryBoard2">
+                            <Storyboard x:Name="animacionCerrarSesion">
+                                <DoubleAnimation x:Name="opacidadLogeo2" Storyboard.TargetName="gridLogeo"
+									    Storyboard.TargetProperty="Opacity"     
+									    From="0.0" To="1.0" Duration="0:0:1"/>
+                                <DoubleAnimation x:Name="posicionX4" Storyboard.TargetName="TTranslateX"
+									    Storyboard.TargetProperty="X"
+									    From="-500" To="0" Duration="0:0:0"/>
+                                <DoubleAnimation x:Name="opaBtnCerraSesion2" Storyboard.TargetName="label4"
+									    Storyboard.TargetProperty="Opacity"     
+									    From="1.0" To="0.0" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Label.Triggers>
+            </Label>
         </Grid>
         <!-- FIN GRILLA DE LOGO IZQUIERDA-->
         <!-- fin header -->
@@ -142,6 +171,9 @@
                                 <DoubleAnimation x:Name="posicionX" Storyboard.TargetName="TTranslateX"
 									Storyboard.TargetProperty="X"
 									From="0" To="-500" Duration="0:0:5"/>
+                                <DoubleAnimation x:Name="opaBtnCerraSesion" Storyboard.TargetName="label4"
+									Storyboard.TargetProperty="Opacity"     
+									From="0.0" To="1.0" Duration="0:0:1"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>

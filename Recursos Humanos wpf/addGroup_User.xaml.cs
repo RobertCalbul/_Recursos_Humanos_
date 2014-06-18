@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using Recursos_Humanos_wpf;
 
 namespace Recursos_Humanos_wpf
 {
@@ -37,9 +38,8 @@ namespace Recursos_Humanos_wpf
         {
             String nombre = this.tAddGroup.Text;
             User_Group ug = new User_Group(nombre);
-            if(ug.save() != 0){
-                new Dialog("Grupo agregado correctamente").ShowDialog();
-            
+            if(ug.save() != 0){                
+                new Dialog("Grupo agregado correctamente").ShowDialog();                
             }
             else
             {

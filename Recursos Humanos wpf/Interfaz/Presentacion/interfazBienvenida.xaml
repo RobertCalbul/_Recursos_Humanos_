@@ -64,6 +64,16 @@
 										From="0" To="800" Duration="0:0:5"/>
                         </Storyboard>
                     </BeginStoryboard>
+                    <BeginStoryboard x:Name="objBeginStoryBoard3">
+                        <Storyboard x:Name="aniPresentacionCerrarSesion">
+                            <DoubleAnimation x:Name="opaPresent" Storyboard.TargetName="gridPresentacion"
+										Storyboard.TargetProperty="Opacity"     
+										From="0.0" To="1.0" Duration="0:0:1"/>
+                            <DoubleAnimation x:Name="posiPresent" Storyboard.TargetName="TTranslateX2"
+										Storyboard.TargetProperty="X"
+										From="800" To="0" Duration="0:0:0"/>
+                        </Storyboard>
+                    </BeginStoryboard>
                 </EventTrigger>
             </Label.Triggers>
         </Label>

@@ -23,7 +23,7 @@ using Recursos_Humanos_wpf.Clases;
 using System.Text.RegularExpressions;
 using Recursos_Humanos_wpf.Interfaz;
 using System.Windows.Media.Animation;
-
+using System.Windows.Media.Effects;
 
 namespace Recursos_Humanos_wpf
 {
@@ -153,30 +153,54 @@ namespace Recursos_Humanos_wpf
                         String ugadmin = new User_Group(Resultado.UserGroup.id).findById().name; //extraemos el user_group
                         if (ugadmin.Equals("administrador")) 
                         { 
-                        this.animacionLogeo.Begin();
-                        _bienvenida.animacionPresentacion.Begin();
-                        this.cBusqueda.Focus();
-                        //Muestra la imagen Bienvenido al Admin
-                        Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
-                        AnimacionDeBienvenida.Begin();
+                            this.animacionLogeo.Begin();
+                            _bienvenida.animacionPresentacion.Begin();
+                            this.cBusqueda.Focus();
+                            //Muestra la imagen Bienvenido al Admin
+                            Storyboard AnimacionDeBienvenida = (Storyboard)FindResource("AnimacionImaBienvenida");
+                            AnimacionDeBienvenida.Begin();
+                            label4.IsEnabled = true;//Habilito el label cerrar sesion
+
+                            tNombreUser.Text = tPasswordUser.Password = "";//reseteo los input del logeo
                         }
                         else
                         {
+                            Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
                             new Dialog("El usuario ingresado no es valido, contactese con el administrador.").ShowDialog();
+                            Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
                         }
                     }
                 }
                 else
                 {
+                    Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
                     new Dialog("Por favor, ingresa la contraseña de usuario.").ShowDialog();
+                    Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
                     tPasswordUser.Focus();
-                }
+                }                
             }
             else
             {
+                Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));                
                 new Dialog("Por favor, ingresa el nombre de usuario.").ShowDialog();
+                Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
                 tNombreUser.Focus();
             }
+        }
+
+        public void addEfecto() {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 2;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.BitmapEffect = myBlurEffect;
+        }
+
+        public void QuitarEfecto()
+        {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 0;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.BitmapEffect = myBlurEffect;
         }
 
 
@@ -187,7 +211,11 @@ namespace Recursos_Humanos_wpf
 /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            try { 
+                this.DragMove();
+                }
+            catch(Exception z){
+            }
         }
         private void close_Click(object sender, MouseButtonEventArgs e)
         {
@@ -224,8 +252,6 @@ namespace Recursos_Humanos_wpf
         }
 
 
-
-
         #region ESTILO VISUAL BOTONES
         public void styleVisualBtn(Label btn, Brush color, int borde)
         {
@@ -243,6 +269,15 @@ namespace Recursos_Humanos_wpf
         }
 
         #endregion
+
+        private void btnCerrarSesion(object sender, MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("Cerrar sesion");
+            this.animacionCerrarSesion.Begin();
+            _bienvenida.aniPresentacionCerrarSesion.Begin();
+            label4.IsEnabled = false;
+            tNombreUser.Focus();
+        }
 
 
       

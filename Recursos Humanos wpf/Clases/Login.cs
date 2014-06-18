@@ -68,7 +68,7 @@ namespace Recursos_Humanos_wpf.Clases
                     }
                 }
                 else
-                {
+                {                    
                     new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.").ShowDialog();
                     return null;
                 }
