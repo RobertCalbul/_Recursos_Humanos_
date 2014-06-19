@@ -39,6 +39,7 @@ namespace Recursos_Humanos_wpf.Clases
                 MySqlDataReader res = sqlCom.ExecuteReader();
 
                 while (res.Read()) listUserGroup.Add(new Privilegio(res.GetInt32(0), res.GetString(1)));
+                con.Close();
                 return listUserGroup;
             }
             catch (Exception ex)
@@ -67,6 +68,7 @@ namespace Recursos_Humanos_wpf.Clases
                 MySqlDataReader res = sqlCom.ExecuteReader();
 
                 while (res.Read()) listPrivilegio.Add(new Privilegio(res.GetInt32(0), res.GetString(1)));
+                con.Close();
                 return listPrivilegio;
             }
             catch (Exception ex)

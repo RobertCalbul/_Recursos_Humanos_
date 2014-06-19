@@ -38,14 +38,22 @@ namespace Recursos_Humanos_wpf
         {
             String nombre = this.tAddGroup.Text;
             User_Group ug = new User_Group(nombre);
-            if(ug.save() != 0){                
-                new Dialog("Grupo agregado correctamente").ShowDialog();                
+            if (ug.ifExist() < 1) { 
+                if(ug.save() != 0){
+                    this.tAddGroup.Text = "";
+                    new Dialog("Grupo agregado correctamente").ShowDialog();
+                }
+                else
+                {
+                new Dialog("Error en agregar grupo").ShowDialog();
+                }
             }
             else
             {
-                new Dialog("Error en agregar grupo").ShowDialog();
+                this.tAddGroup.Text = "";
+                new Dialog("El Grupo ya existe, ingrese otro nombre.").ShowDialog();
             }
-
         }
+        
     }
 }

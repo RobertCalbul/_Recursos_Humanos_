@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,8 +29,6 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             InitializeComponent();
             userGroup = new User_Group().findAll();
-            
-
             llenaComboUserGroup();
             llenaTreeView();
             LoadAllPrivilegios();
@@ -56,6 +55,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         }
         public void llenaComboUserGroup()
         {
+            userGroup = new User_Group().findAll();
+            this.comboGrupos.Items.Clear();
             foreach (User_Group list in userGroup)
                 this.comboGrupos.Items.Add(list.name);
         }
@@ -68,12 +69,16 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             this.List1.Items.Clear();
             foreach (Privilegio list in new Privilegio().findAll())
-                this.List1.Items.Add(list.name);
+            {
+                this.List1.Items.Add(list.name);  
+            }
         }
         private void LoadPrivilegio_UserGroup() {
             this.List2.Items.Clear();
             foreach (Privilegio list in new Privilegio(new User_Group(this.comboGrupos.SelectedItem.ToString()).getIdByName()).findByidGroup())
+            {
                 this.List2.Items.Add(new ListBoxItem() { Content = list.name });
+            }
         }
         //boton para agregar privilegio a userGroup
         private void btnAddPrivilegio_Click(object sender, MouseButtonEventArgs e)
@@ -94,6 +99,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                             {
                                 new User_Group_Privilegios(ug, p).save();
                             }
+                            Thread.Sleep(100);
                         }
                         LoadAllPrivilegios();
                         LoadPrivilegio_UserGroup();
@@ -122,9 +128,11 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                                 Privilegio p = new Privilegio(new Privilegio(NamePrivilegio).getIdByName());
                                 if (new User_Group_Privilegios(p).deleteByIdPrivilegio() > 0)
                                 {
+                                    Thread.Sleep(100);
                                     LoadPrivilegio_UserGroup();
                                     llenaTreeView();
                                 }
+                                Thread.Sleep(100);
                                 LoadAllPrivilegios();
                                 LoadPrivilegio_UserGroup();
                             }
@@ -180,8 +188,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         }
         private void List2_Drop(object sender, DragEventArgs e)
         {
+            List2.Items.Add(_dragged); 
             List1.Items.Remove(_dragged);
-            List2.Items.Add(_dragged);
         }
         #endregion
 
@@ -227,6 +235,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         private void btnaddGroup_MouseDown(object sender, MouseButtonEventArgs e)
         {
             new addGroup_User().ShowDialog();
+            llenaTreeView();
+            this.comboGrupos.Items.Clear();
+            llenaComboUserGroup();
         }
 
 

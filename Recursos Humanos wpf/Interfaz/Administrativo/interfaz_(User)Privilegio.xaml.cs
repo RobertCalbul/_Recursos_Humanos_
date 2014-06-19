@@ -20,6 +20,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     /// </summary>
     public partial class interfaz__User_Privilegio : UserControl
     {
+        Privilegio _privilegios;
         public interfaz__User_Privilegio()
         {
             InitializeComponent();
@@ -48,13 +49,20 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         {
             if (!this.tName.Text.Equals(""))
             {
-                new Privilegio(this.tName.Text).save();
-                this.data.ItemsSource = new Privilegio().findAll();
-                this.data.IsEnabled = true;
-                this.btnActualizar.IsEnabled = true;
-                this.btnActualizar.Visibility = Visibility.Hidden;
-                this.btnCancelAdd.Visibility = Visibility.Hidden;
-                this.btnAdd.Visibility = Visibility.Hidden;
+                if (new Privilegio(this.tName.Text).save() > 0)
+                {
+                    this.data.ItemsSource = new Privilegio().findAll();
+                    this.tName.Text = "";
+                    this.tName.IsEnabled = false;
+                    this.data.IsEnabled = true;
+                    this.btnActualizar.IsEnabled = true;
+                    this.btnActualizar.Visibility = Visibility.Hidden;
+                    this.btnCancelAdd.Visibility = Visibility.Hidden;
+                    this.btnAdd.Visibility = Visibility.Hidden;
+                }
+                else {
+                    new Dialog("No se pudo ingresar el nuevo privilegio.").ShowDialog();
+                }
             }
             else new Dialog("Ingrese un nombre al nuevo Privilegio.").ShowDialog();
         }

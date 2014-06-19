@@ -24,12 +24,16 @@ namespace Recursos_Humanos_wpf.Interfaz
         interfazUserGeneral _infoUser;
         interfazDepto _Departamento;
         interfazUser _User;
+        interfaz__User_UserGroup _UserGroup;
+        interfaz__User_Privilegio _Privilegio;
         public Administrador(MainWindow main, interfazUserGeneral infoUser)
         {
             InitializeComponent();
             _infoUser = infoUser;
             _Departamento = new interfazDepto();
             _User = new interfazUser();
+            _UserGroup = new interfaz__User_UserGroup();
+            _Privilegio = new interfaz__User_Privilegio();
             this.main = main;
         }
 
@@ -89,13 +93,13 @@ namespace Recursos_Humanos_wpf.Interfaz
                 if (tree.SelectedItem.ToString().Equals("User Group"))
                 {
                     this.WorkSpace.Children.Clear();
-                    this.WorkSpace.Children.Add(new interfaz__User_UserGroup());
+                    this.WorkSpace.Children.Add(_UserGroup);
                     
                 }
                 if (tree.SelectedItem.ToString().Equals("Privilegios"))
                 {
                     this.WorkSpace.Children.Clear();
-                    this.WorkSpace.Children.Add(new interfaz__User_Privilegio());
+                    this.WorkSpace.Children.Add(_Privilegio);
                 }
                 if (tree.SelectedItem.ToString().Equals("Usuarios"))
                 {

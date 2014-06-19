@@ -56,11 +56,11 @@
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="anibtnCerrarSesion">
-        	<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label4">
-        		<EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
-        		<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF98BEFB"/>
-        		<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
-        	</ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="label4">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF4185F4"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF98BEFB"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF4185F4"/>
+            </ColorAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
@@ -77,7 +77,7 @@
             <BeginStoryboard x:Name="aniBLogin2_BeginStoryboard" Storyboard="{StaticResource aniBLogin2}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="label4">
-        	<BeginStoryboard x:Name="anibtnCerrarSesion_BeginStoryboard" Storyboard="{StaticResource anibtnCerrarSesion}"/>
+            <BeginStoryboard x:Name="anibtnCerrarSesion_BeginStoryboard" Storyboard="{StaticResource anibtnCerrarSesion}"/>
         </EventTrigger>
     </Window.Triggers>
 
@@ -199,12 +199,10 @@
                     <RowDefinition Height="233*"/>
                     <RowDefinition Height="31*"/>
                     <RowDefinition Height="4*"/>
-                    <RowDefinition Height="12*"/>
-                    <RowDefinition Height="26*"/>
-                    <RowDefinition Height="22*"/>
-                    <RowDefinition Height="24*"/>
-                    <RowDefinition Height="22*"/>
-                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="29*"/>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="36*"/>
+                    <RowDefinition Height="7*"/>
                     <RowDefinition Height="28*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -217,18 +215,14 @@
                 <Label Content="Buscar funcionario" Margin="0" x:Name="label1" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Padding="0" />
                 <Image x:Name="image1" Stretch="Fill" Source="Images/lupa.png" MouseLeftButtonUp="btnBuscar_click" Margin="0" Opacity="0.5" Visibility="Visible" Grid.Row="2" Grid.Column="2" Cursor="Hand" />
                 <Separator x:Name="separator1" Background="#FF2D2D2D" Margin="0" FontFamily="Futura LT" FontSize="16" Grid.Row="12" Grid.ColumnSpan="2" Grid.Column="1" />
-                <Separator Margin="0" x:Name="separator2" Background="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Separator Margin="0" x:Name="separator2" Background="#FF2D2D2D" FontFamily="Futura LT" FontSize="16" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
                 <RadioButton Content="Rut" Margin="0" x:Name="rbRut" Checked="RadioButtonSearch" HorizontalAlignment="Stretch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="4" Grid.Column="1" />
                 <RadioButton Content="Nombres" HorizontalAlignment="Stretch" Margin="0" x:Name="rbName" Checked="RadioButtonSearch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="5" Grid.Column="1" />
                 <RadioButton Content="Apellidos" HorizontalAlignment="Stretch" Margin="0,1,0,0" x:Name="rbSurname" Checked="RadioButtonSearch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="6" Grid.Column="1" />
                 <RadioButton Content="Telefono" HorizontalAlignment="Stretch" Margin="0" x:Name="rbPhone" Checked="RadioButtonSearch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="7" Grid.Column="1" />
                 <RadioButton Content="Direccion" HorizontalAlignment="Stretch" Margin="0" x:Name="rbAdress" Checked="RadioButtonSearch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="8" Grid.Column="1" />
                 <RadioButton Content="Email" HorizontalAlignment="Stretch" Margin="0" x:Name="rbEmail" Checked="RadioButtonSearch" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="9" Grid.Column="1" />
-                <CheckBox Content="Administrativo" Margin="0" x:Name="checkBox1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="14" Grid.Column="1" />
-                <CheckBox Content="Personal Aseo" Margin="0" x:Name="checkBox2" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="15" Grid.Column="1" />
-                <CheckBox Content="Operarios" Margin="0" x:Name="checkBox3" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="16" Grid.Column="1" />
-                <CheckBox Content="Externos" Margin="0" x:Name="checkBox4" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="17" Grid.Column="1" />
-                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="11" Grid.Column="1" Background="#FF4185F4" MouseDown="btnAdministrativo_Click" Margin="10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{DynamicResource label Blue}" Foreground="White" Width="Auto" Height="Auto" Cursor="Hand" />
+                <Label Name="btnAdministrativo" Content="ADMINISTRATIVO" Grid.Row="14" Grid.Column="1" Background="#FF4185F4" MouseDown="btnAdministrativo_Click" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{DynamicResource label Blue}" Foreground="White" Width="Auto" Height="Auto" Cursor="Hand" />
                 <Image Margin="0" x:Name="iAddUser" Stretch="Fill" Source="Images/add_user_gray.png" MouseDown="iAddUser_Click" Grid.Row="11" Grid.Column="2" Cursor="Hand" ToolTip="Agrega un nuevo personal" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <TransformGroup>

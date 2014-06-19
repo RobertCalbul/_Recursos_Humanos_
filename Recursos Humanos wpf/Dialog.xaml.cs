@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Windows.Media.Effects;
 
 namespace Recursos_Humanos_wpf
 {
@@ -34,10 +35,7 @@ namespace Recursos_Humanos_wpf
                 this.label2.MinHeight = 130;
                 this.label2.MaxHeight = 130;
                 this.label1.Margin = new Thickness(10, 10, 10,10);
-                //116,0,104,12
-            }
-
-            
+            }  
         }
 
         private void acept(object sender, MouseButtonEventArgs e)

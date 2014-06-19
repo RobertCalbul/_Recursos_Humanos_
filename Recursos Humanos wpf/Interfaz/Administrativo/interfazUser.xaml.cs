@@ -27,10 +27,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         public interfazUser()
         {
             InitializeComponent();
-            
             this._listUserGroup = new User_Group().findAll();
-            this.llenaListLogin();
-            this.llenaListUserGroup();
+            
             this.workSpace.IsEnabled = false;
             this.btnActualizarUser.Visibility = Visibility.Hidden;
         }
@@ -305,6 +303,13 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 new Dialog("Seleccione un privilegio a elimnar").ShowDialog();
             }   */
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this._listUserGroup = new User_Group().findAll();
+            this.llenaListLogin();
+            this.llenaListUserGroup();
         }
 
         

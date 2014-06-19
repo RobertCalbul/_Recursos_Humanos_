@@ -133,5 +133,24 @@ namespace Recursos_Humanos_wpf.Clases
                 return -1;
             }
         }
+
+        public int ifExist() {
+            String sql = "SELECT nombre FROM user_group WHERE nombre = '" + this.name + "'";
+            try
+            {
+                con = new Conexion().getConexion();
+                con.Open();
+
+                MySqlCommand sqlCom = new MySqlCommand(sql, con);
+                MySqlDataReader resultado = sqlCom.ExecuteReader();
+                if (resultado.Read()) return 1;
+                else return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR User_Group.ifExist() " + ex.Message);
+                return 0;
+            } 
+        }
     }
 }

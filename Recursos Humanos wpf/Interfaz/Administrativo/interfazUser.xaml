@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              MouseMove="Window_MouseMove"
-             d:DesignHeight="784" d:DesignWidth="702">
+             d:DesignHeight="784" d:DesignWidth="702" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<Storyboard x:Key="ani1">
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnNewUser">

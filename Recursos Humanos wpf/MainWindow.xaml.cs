@@ -147,12 +147,12 @@ namespace Recursos_Humanos_wpf
                 if (!tPasswordUser.Password.Trim().Equals(""))
                 {
                     Login Resultado = new Login(tNombreUser.Text, tPasswordUser.Password).findBy();
-                    
+
                     if (Resultado != null)
                     {
                         String ugadmin = new User_Group(Resultado.UserGroup.id).findById().name; //extraemos el user_group
-                        if (ugadmin.Equals("administrador")) 
-                        { 
+                        if (ugadmin.Equals("administrador"))
+                        {
                             this.animacionLogeo.Begin();
                             _bienvenida.animacionPresentacion.Begin();
                             this.cBusqueda.Focus();
@@ -169,6 +169,12 @@ namespace Recursos_Humanos_wpf
                             new Dialog("El usuario ingresado no es valido, contactese con el administrador.").ShowDialog();
                             Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
                         }
+                    }
+                    else
+                    {
+                        Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
+                        new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.").ShowDialog(); 
+                        Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
                     }
                 }
                 else
