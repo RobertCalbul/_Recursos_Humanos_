@@ -285,8 +285,10 @@ namespace Recursos_Humanos_wpf
             tNombreUser.Focus();
         }
 
-
-      
+        private void label3_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }   
     }
 
 }

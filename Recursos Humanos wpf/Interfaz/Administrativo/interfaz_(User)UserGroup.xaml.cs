@@ -75,9 +75,12 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         }
         private void LoadPrivilegio_UserGroup() {
             this.List2.Items.Clear();
-            foreach (Privilegio list in new Privilegio(new User_Group(this.comboGrupos.SelectedItem.ToString()).getIdByName()).findByidGroup())
+            if (this.comboGrupos.SelectedItem != null)
             {
-                this.List2.Items.Add(new ListBoxItem() { Content = list.name });
+                foreach (Privilegio list in new Privilegio(new User_Group(this.comboGrupos.SelectedItem.ToString()).getIdByName()).findByidGroup())
+                {
+                    this.List2.Items.Add(new ListBoxItem() { Content = list.name });
+                }
             }
         }
         //boton para agregar privilegio a userGroup

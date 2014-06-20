@@ -105,8 +105,6 @@
                 <ColumnDefinition Width="13*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="True" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
-            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="False" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="1" />
             <Label Content="Cerrar Sesión" Margin="0" x:Name="label4" Background="#FF4185F4" Foreground="White" FontSize="16" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="2" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Cursor="Hand" TextOptions.TextHintingMode="Animated" FontStretch="Expanded" MouseDown="btnCerrarSesion" IsEnabled="False" Opacity="0" >
                 <Label.Triggers >
                     <EventTrigger RoutedEvent="ButtonBase.Click">
@@ -126,6 +124,9 @@
                     </EventTrigger>
                 </Label.Triggers>
             </Label>
+            <Label Content="Lynx" Margin="4,4,0,0" x:Name="label2" IsEnabled="false" Foreground="White" FontFamily="Meiryo" FontWeight="Bold" FontSize="24" />
+            <Label Content="soft" Margin="65,6,0,0" x:Name="label3" Foreground="White" IsEnabled="true" FontSize="24" FontStyle="Normal" FontFamily="Futura LT" Panel.ZIndex="1" MouseDoubleClick="label3_MouseDoubleClick" />
+            
         </Grid>
         <!-- FIN GRILLA DE LOGO IZQUIERDA-->
         <!-- fin header -->
