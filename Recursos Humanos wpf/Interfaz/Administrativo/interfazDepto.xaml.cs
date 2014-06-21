@@ -21,10 +21,11 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     /// </summary>
     public partial class interfazDepto : UserControl
     {
-        public interfazDepto()
+        MainWindow main;
+        public interfazDepto(MainWindow main)
         {
             InitializeComponent();
-
+            this.main = main;
             this.data.ItemsSource = new Departamento().findAll_administrativo();
 
             this.btnActualizar.Visibility = Visibility.Hidden;
@@ -52,7 +53,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnUpdate_Click(object sender, MouseButtonEventArgs e)
         {
-            QuestionDialog pregunta = new QuestionDialog("Realmente desea modificar los datos?");
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea modificar los datos?", main);
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true)
             {
@@ -76,12 +77,12 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 this.btnCancelAdd.Visibility = Visibility.Hidden;
                 this.btnAdd.Visibility = Visibility.Hidden;
             }
-            else new Dialog("Ingrese un nombre al nuevo departamento").ShowDialog();
+            else new Dialog("Ingrese un nombre al nuevo departamento", main).ShowDialog();
         }
 
         private void btnDelete_Click(object sender, MouseButtonEventArgs e)
         {
-            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este dato?");
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este dato?", main);
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true)
             {

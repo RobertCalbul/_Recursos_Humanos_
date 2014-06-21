@@ -30,18 +30,16 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             InitializeComponent();
             _infoUser = infoUser;
-            _Departamento = new interfazDepto();
-            _User = new interfazUser();
-            _UserGroup = new interfaz__User_UserGroup();
-            _Privilegio = new interfaz__User_Privilegio();
+            _Departamento = new interfazDepto(main);
+            _User = new interfazUser(main);
+            _UserGroup = new interfaz__User_UserGroup(main);
+            _Privilegio = new interfaz__User_Privilegio(main);
             this.main = main;
         }
 
         private void back_click(object sender, RoutedEventArgs e)
         {
-            main.WorkSpace.Children.Clear();
-            main.WorkSpace.Children.Add(_infoUser);
-            main.WorkSpace.IsEnabled = false;
+            
         }
 
         private void TreeView_Loaded(object sender, RoutedEventArgs e)
@@ -110,5 +108,27 @@ namespace Recursos_Humanos_wpf.Interfaz
             }
         }
         #endregion
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            main.WorkSpace.Children.Clear();
+            main.WorkSpace.Children.Add(_infoUser);
+            main.WorkSpace.IsEnabled = false;
+        }
+
+        private void Label_MouseEnter(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(this.Back, Brushes.Blue, 5);
+        }
+  
+        private void Label_MouseLeave(object sender, MouseEventArgs e)
+        {
+            styleVisualBtn(this.Back, null,0);
+        }
+        public void styleVisualBtn(Label btn, Brush color, int borde)
+        {
+            btn.BorderBrush = color;
+            btn.BorderThickness = new Thickness(borde, 0, 0, 0);
+        }
     }
 }

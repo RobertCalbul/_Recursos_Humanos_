@@ -24,9 +24,11 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         private ListBoxItem _dragged;
         List<Login> _listLogin;
         List<User_Group> _listUserGroup;
-        public interfazUser()
+        MainWindow main;
+        public interfazUser(MainWindow main)
         {
             InitializeComponent();
+            this.main = main;
             this._listUserGroup = new User_Group().findAll();
             
             this.workSpace.IsEnabled = false;
@@ -212,8 +214,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     String userName = this.lListLogin.Items[this.lListLogin.SelectedIndex].ToString();
                     Console.WriteLine(userName);
                     if (userName != null)//si no selecciono ningun privilegio a eliminar
-                    {   
-                        QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar el Usuario " + userName);
+                    {
+                        QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar el Usuario " + userName, main);
                         pregunta.ShowDialog();
                         if (pregunta.DialogResult == true)
                         {
@@ -225,9 +227,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                             }
                         }
                     }
-                    else new Dialog("Seleccione un Usuario a eliminar.").ShowDialog();
+                    else new Dialog("Seleccione un Usuario a eliminar.", main).ShowDialog();
                 }
-                else new Dialog("No hay ningun usuario en la lista.").ShowDialog();
+                else new Dialog("No hay ningun usuario en la lista.", main).ShowDialog();
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -250,8 +252,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                 if (!this.tPassword.Text.Trim().Equals(""))
                 {
                     if (this.lListDestinoUserGroup.Items.Count > 0) {
-                        
-                        QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.tUserName.Text);
+
+                        QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.tUserName.Text, main);
                         pregunta.ShowDialog();
                         if (pregunta.DialogResult == true)
                         {
@@ -265,12 +267,13 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                                     this.lListLogin.IsEnabled = true;
                                 }
                             }
-                        }                  
-                    } else new Dialog("Seleccione un grupo de usuario a asignar.").ShowDialog();
+                        }
+                    }
+                    else new Dialog("Seleccione un grupo de usuario a asignar.", main).ShowDialog();
                 }
-                else new Dialog("Rellene campo Password").ShowDialog();
+                else new Dialog("Rellene campo Password", main).ShowDialog();
             }
-            else new Dialog("Rellene campo User Name").ShowDialog();
+            else new Dialog("Rellene campo User Name", main).ShowDialog();
         }
 
         private void btnDeleteUserGroup_MouseDown(object sender, MouseButtonEventArgs e)

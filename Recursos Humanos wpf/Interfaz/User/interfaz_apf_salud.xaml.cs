@@ -20,10 +20,12 @@ namespace Recursos_Humanos_wpf
     public partial class interfaz_apf_salud : Window
     {
         int flag;
-        public interfaz_apf_salud(int flag)
+        MainWindow main;
+        public interfaz_apf_salud(int flag,MainWindow main)
         {
             this.flag = flag;
             InitializeComponent();
+            this.main = main;
             this.Title = flag==1?"Ingreso nueva prevision":"Ingreso nueva AFP"; 
         }
 
@@ -35,17 +37,17 @@ namespace Recursos_Humanos_wpf
 
                 if (this.flag == 0)//AFP
                 {
-                    if (new Clases.Afp(name, desc).save() > 0 ) new Dialog("Registro AFP Guardado Con Exito!!.").Show();
-                    else new Dialog("No se pudo guardar el Registro AFP.").Show();
+                    if (new Clases.Afp(name, desc).save() > 0) new Dialog("Registro AFP Guardado Con Exito!!.", main).Show();
+                    else new Dialog("No se pudo guardar el Registro AFP.", main).Show();
                 }
                 else if (this.flag == 1) 
                 {
-                    if (new Clases.Salud(name, desc).save() > 0) new Dialog("Registro de Salud Guardado Con Exito!!.").Show();
-                    else new Dialog("No se pudo guardar el Registro de Salud.").Show();
+                    if (new Clases.Salud(name, desc).save() > 0) new Dialog("Registro de Salud Guardado Con Exito!!.", main).Show();
+                    else new Dialog("No se pudo guardar el Registro de Salud.", main).Show();
                 }
             }catch(Exception ex){
                 Console.WriteLine("Interfaz_afp_salud.btnInsert_Click() " + ex.Message.ToString());
-                new Dialog("Rellene todos los campos.").Show(); 
+                new Dialog("Rellene todos los campos.", main).Show(); 
             }
         }
 

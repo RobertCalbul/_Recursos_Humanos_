@@ -21,11 +21,14 @@ namespace Recursos_Humanos_wpf
     public partial class Dialog : Window
     {
         String msg { get; set; }
-        public Dialog(String msg)
+        MainWindow main;
+
+        public Dialog(String msg,MainWindow main)
         {
             
             InitializeComponent();
-            label2.Content = msg;
+            this.main = main;
+            this.label2.Content = msg;
             if (msg.Length < 200)
             {
                 this.MinHeight = 190;
@@ -35,13 +38,37 @@ namespace Recursos_Humanos_wpf
                 this.label2.MinHeight = 130;
                 this.label2.MaxHeight = 130;
                 this.label1.Margin = new Thickness(10, 10, 10,10);
-            }  
+            }
+            Dispatcher.BeginInvoke(new Action(() => { addEfecto(); })); 
         }
 
         private void acept(object sender, MouseButtonEventArgs e)
         {
+            Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
             this.Close();
         }
+        public void addEfecto()
+        {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 2;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.main.BitmapEffect = myBlurEffect;
+        }
 
+        public void QuitarEfecto()
+        {
+            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 0;
+            myBlurEffect.KernelType = KernelType.Box;
+            this.main.BitmapEffect = myBlurEffect;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) { 
+                Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                this.Close();
+            }
+        }
     }
 }

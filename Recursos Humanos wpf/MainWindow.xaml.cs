@@ -29,16 +29,18 @@ namespace Recursos_Humanos_wpf
 {
     public partial class MainWindow : Window
     {
+        public MainWindow main;
         public List<string> listAutocomplet = null;
-        interfazUserGeneral _infoUser;
-        interfazBienvenida _bienvenida;
+        private interfazUserGeneral _infoUser;
+        private interfazBienvenida _bienvenida;
     
         public MainWindow()
         {
             InitializeComponent();
+            this.main = this;
             listAutocomplet = new Clases.Personal().findAll(0);
-            _infoUser = new interfazUserGeneral(this);
-            _bienvenida = new interfazBienvenida();
+            this._infoUser = new interfazUserGeneral(this);
+            this._bienvenida = new interfazBienvenida();
             this.WorkSpace.IsEnabled = false;
             this.rbRut.IsChecked = true;
             this.WorkSpace.Children.Clear();
@@ -58,22 +60,22 @@ namespace Recursos_Humanos_wpf
         // click en agregar usuario
         private void iAddUser_Click(object sender, MouseButtonEventArgs e)
         {
-            _infoUser.limpiarTexbox();
-            _infoUser.tDateNaci.IsEnabled = false;
-            _infoUser.tRut.IsEnabled = true;
-            _infoUser.iPerfil.IsEnabled = true;
-            _infoUser.btnAddUser.IsEnabled = true;
+            this._infoUser.limpiarTexbox();
+            this._infoUser.tDateNaci.IsEnabled = false;
+            this._infoUser.tRut.IsEnabled = true;
+            this._infoUser.iPerfil.IsEnabled = true;
+            this._infoUser.btnAddUser.IsEnabled = true;
             this.WorkSpace.IsEnabled = true;
             this.cBusqueda.IsEnabled = false;
             this.image1.IsEnabled = false;
-            _infoUser.btnAddUser.Visibility = Visibility.Visible;
-            _infoUser.btnCancelAdd.Visibility = Visibility.Visible;
-            _infoUser.btnUpdateReg.Visibility = Visibility.Hidden;
-            _infoUser.btnDeleteReg.Visibility = Visibility.Hidden;
-            _infoUser.tabControl1.SelectedIndex = 0;
-            _infoUser.tName.Focus();
+            this._infoUser.btnAddUser.Visibility = Visibility.Visible;
+            this._infoUser.btnCancelAdd.Visibility = Visibility.Visible;
+            this._infoUser.btnUpdateReg.Visibility = Visibility.Hidden;
+            this._infoUser.btnDeleteReg.Visibility = Visibility.Hidden;
+            this._infoUser.tabControl1.SelectedIndex = 0;
+            this._infoUser.tName.Focus();
             this.cBusqueda.Text = "";
-            _infoUser.loadDataContract("");
+            this._infoUser.loadDataContract("");
         }
         
 /*>>>>AUTOCOMPLETE<<<<<*/
@@ -165,50 +167,26 @@ namespace Recursos_Humanos_wpf
                         }
                         else
                         {
-                            Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
-                            new Dialog("El usuario ingresado no es valido, contactese con el administrador.").ShowDialog();
-                            Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                            new Dialog("El usuario ingresado no es valido, contactese con el administrador.", main).ShowDialog();
                         }
                     }
                     else
                     {
-                        Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
-                        new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.").ShowDialog(); 
-                        Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                        new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.", main).ShowDialog(); 
                     }
                 }
                 else
                 {
-                    Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
-                    new Dialog("Por favor, ingresa la contraseña de usuario.").ShowDialog();
-                    Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                    new Dialog("Por favor, ingresa la contraseña de usuario.", main).ShowDialog();
                     tPasswordUser.Focus();
                 }                
             }
             else
             {
-                Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));                
-                new Dialog("Por favor, ingresa el nombre de usuario.").ShowDialog();
-                Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                new Dialog("Por favor, ingresa el nombre de usuario.", main).ShowDialog();
                 tNombreUser.Focus();
             }
         }
-
-        public void addEfecto() {
-            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
-            myBlurEffect.Radius = 2;
-            myBlurEffect.KernelType = KernelType.Box;
-            this.BitmapEffect = myBlurEffect;
-        }
-
-        public void QuitarEfecto()
-        {
-            BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
-            myBlurEffect.Radius = 0;
-            myBlurEffect.KernelType = KernelType.Box;
-            this.BitmapEffect = myBlurEffect;
-        }
-
 
         private void bAcceder_Click(object sender, MouseButtonEventArgs e)
         {
@@ -280,9 +258,14 @@ namespace Recursos_Humanos_wpf
         {
             //MessageBox.Show("Cerrar sesion");
             this.animacionCerrarSesion.Begin();
-            _bienvenida.aniPresentacionCerrarSesion.Begin();
-            label4.IsEnabled = false;
-            tNombreUser.Focus();
+            this._bienvenida.aniPresentacionCerrarSesion.Begin();
+            this.label4.IsEnabled = false;
+            this.WorkSpace.Children.Clear();
+            this._infoUser = new interfazUserGeneral(this);
+            this.WorkSpace.Children.Add(this._infoUser);
+            this.WorkSpace.IsEnabled = false;
+            this.cBusqueda.Text = "";
+            this.tNombreUser.Focus();
         }
 
         private void label3_MouseDoubleClick(object sender, MouseButtonEventArgs e)

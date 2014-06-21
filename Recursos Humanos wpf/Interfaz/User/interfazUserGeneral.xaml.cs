@@ -62,7 +62,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 else
                 {
                     main.cBusqueda.Focus();//doy el foco al cuadro de busqueda
-                    new Dialog("Ingrese un parametro de búsqueda.").ShowDialog();
+                    new Dialog("Ingrese un parametro de búsqueda.", main).ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -181,8 +181,8 @@ namespace Recursos_Humanos_wpf.Interfaz
         public void btnAddUser_Click(object sender, MouseButtonEventArgs e)
         {
             this.tRut.IsEnabled = true;
-            main.iAddUser.IsEnabled = true;            
-            QuestionDialog pregunta = new QuestionDialog("Desea agregar a esta persona?");
+            main.iAddUser.IsEnabled = true;
+            QuestionDialog pregunta = new QuestionDialog("Desea agregar a esta persona?", main);
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true && validacionAddUser())
             {
@@ -214,8 +214,8 @@ namespace Recursos_Humanos_wpf.Interfaz
                         this.iPerfil.IsEnabled = false;
                         this.btnCancelAdd.Visibility = Visibility.Hidden;
                         this.btnUpdateReg.Visibility = Visibility.Visible;
-                        this.btnDeleteReg.Visibility = Visibility.Visible;                        
-                        QuestionDialog pregunta2 = new QuestionDialog("¿Desea contratar a este nuevo personal?");
+                        this.btnDeleteReg.Visibility = Visibility.Visible;
+                        QuestionDialog pregunta2 = new QuestionDialog("¿Desea contratar a este nuevo personal?", main);
                         pregunta2.ShowDialog();
                         if (pregunta2.DialogResult == true)                        
                         {
@@ -227,7 +227,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 }
                 else
                 {
-                    new Dialog("Personal no pudo ser ingresado").ShowDialog();
+                    new Dialog("Personal no pudo ser ingresado", main).ShowDialog();
                 }
             }
         }
@@ -254,11 +254,11 @@ namespace Recursos_Humanos_wpf.Interfaz
                 if (per.Update() > 0)
                 {
                     this.Search();
-                    new Dialog("Datos actualizados correctamente.").ShowDialog();
+                    new Dialog("Datos actualizados correctamente.", main).ShowDialog();
                 }
-                else new Dialog("Ocurrio un error al actualizar los datos").ShowDialog();
+                else new Dialog("Ocurrio un error al actualizar los datos", main).ShowDialog();
             }
-            else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'").ShowDialog();
+            else new Dialog("Ingrese formato fecha nacimiento 'YYYY-MM-DD'", main).ShowDialog();
         }
         //CANCELA INGRESO EMPLEADO
         public void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
@@ -279,8 +279,8 @@ namespace Recursos_Humanos_wpf.Interfaz
             try
             {
                 this.tabControl1.SelectedIndex = 0;
-                String rut_per = this.tRut.Text.Trim();                
-                QuestionDialog pregunta = new QuestionDialog("Desea borrar el personal con rut: " + rut_per + " ?");
+                String rut_per = this.tRut.Text.Trim();
+                QuestionDialog pregunta = new QuestionDialog("Desea borrar el personal con rut: " + rut_per + " ?", main);
                 pregunta.ShowDialog();
                 if (pregunta.DialogResult == true)                
                 {
@@ -290,9 +290,9 @@ namespace Recursos_Humanos_wpf.Interfaz
                         main.cBusqueda.Text = "";
                         main.cBusqueda.Focus();
                         main.WorkSpace.IsEnabled = false;
-                        new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.").ShowDialog();
+                        new Dialog("El empleado con rut " + rut_per + " fue eliminado satisfactoriamente.", main).ShowDialog();
                     }
-                    else new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per + ".").ShowDialog();
+                    else new Dialog("Ocurrio algo inesperado al eliminar al empleado con rut " + rut_per + ".", main).ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -305,8 +305,8 @@ namespace Recursos_Humanos_wpf.Interfaz
         //ELIMINA UN CONTRATO ASOCIADO A UN EMPLEADO
         private void btnEndContract_Click(object sender, MouseButtonEventArgs e)
         {
-            string rut_per = this.tRut.Text.Trim();            
-            QuestionDialog pregunta = new QuestionDialog("Desea borrar el contrato asociado al rut: " + rut_per + " ?");
+            string rut_per = this.tRut.Text.Trim();
+            QuestionDialog pregunta = new QuestionDialog("Desea borrar el contrato asociado al rut: " + rut_per + " ?", main);
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true)
             {
@@ -315,7 +315,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     this.limpiarTexbox();
                     this.loadDataContract(rut_per);
                     this.cargarDatosPersonal(rut_per, "rut");
-                    new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".").ShowDialog(); //MessageBox.Show("Se elimino el contrato con exito"); 
+                    new Dialog("Se cancelo el contrato a empleado con rut " + rut_per + ".", main).ShowDialog(); //MessageBox.Show("Se elimino el contrato con exito"); 
                 }
             }
         }
@@ -467,7 +467,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     }
                     document.Close();
 
-                    new Dialog("Contrato generado con exito.").ShowDialog();
+                    new Dialog("Contrato generado con exito.", main).ShowDialog();
                     flag = false;
                     System.Diagnostics.Process.Start("contrato.pdf");
                     this.label.Content = "";
@@ -475,7 +475,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 catch (Exception ex)
                 {
                     flag = false;
-                    new Dialog("Ocurrio un error al generar el contrato.").ShowDialog();
+                    new Dialog("Ocurrio un error al generar el contrato.", main).ShowDialog();
                     this.label.Content = "";
                     Console.WriteLine("MainWindow.btnShowContract_Click() " + ex.Message.ToString());
                 }
@@ -486,8 +486,8 @@ namespace Recursos_Humanos_wpf.Interfaz
         {
             try
             {
-                String rut_per = this.tRut.Text.Trim();                
-                QuestionDialog pregunta = new QuestionDialog("Desea asignar el contrato al rut: " + rut_per + " ?");
+                String rut_per = this.tRut.Text.Trim();
+                QuestionDialog pregunta = new QuestionDialog("Desea asignar el contrato al rut: " + rut_per + " ?", main);
                 pregunta.ShowDialog();
                 if (pregunta.DialogResult == true && validacionAddContract())
                 {
@@ -500,7 +500,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                     if (contrato.save() > 0)
                     {
                         loadDataContract(rut_per);
-                        new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".").ShowDialog(); //MessageBox.Show("Contrato ingresado exitosamente.");
+                        new Dialog("Se ingreso contrato a empleado con rut " + rut_per + ".", main).ShowDialog(); //MessageBox.Show("Contrato ingresado exitosamente.");
                         this.tDateInit.IsEnabled = false;
                         this.tDateEnd.IsEnabled = false;
                         this.tStat.IsEnabled = false;
@@ -508,7 +508,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                         this.cCargo.IsEnabled = false;
 
                     }
-                    else new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".").Show();
+                    else new Dialog("Ocurrio un error al ingresar contrato a persona con rut " + rut_per + ".", main).Show();
                 }
             }
             catch (Exception ex)
@@ -581,9 +581,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             catch (Exception ex)
             {
                 Console.Write("error: " + ex.Message);
-                Dispatcher.BeginInvoke(new Action(() => { addEfecto(); }));
-                new Dialog("Seleccione una imagen mas pequeña.").ShowDialog();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
-                Dispatcher.BeginInvoke(new Action(() => { QuitarEfecto(); }));
+                new Dialog("Seleccione una imagen mas pequeña.", main).ShowDialog();// MessageBox.Show("El archivo seleccionado no es un tipo de imagen válido" + ex.Message);
             }
         }
 
@@ -687,7 +685,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             Boolean ok = true;
             if (concadenacion.Length > 0)
             {
-                new Dialog(concadenacion).ShowDialog();
+                new Dialog(concadenacion, main).ShowDialog();
                 ok = false;
             }
             return ok;
@@ -705,7 +703,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             Boolean ok = true;
             if (concadenacion.Length > 0)
             {
-                new Dialog(concadenacion).ShowDialog();
+                new Dialog(concadenacion, main).ShowDialog();
                 ok = false;
             }
             return ok;
@@ -793,7 +791,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
             myBlurEffect.Radius = 2;
             myBlurEffect.KernelType = KernelType.Box;
-            this.BitmapEffect = myBlurEffect;
+            this.main.BitmapEffect = myBlurEffect;
         }
 
         public void QuitarEfecto()
@@ -801,7 +799,7 @@ namespace Recursos_Humanos_wpf.Interfaz
             BlurBitmapEffect myBlurEffect = new BlurBitmapEffect();
             myBlurEffect.Radius = 0;
             myBlurEffect.KernelType = KernelType.Box;
-            this.BitmapEffect = myBlurEffect;
+            this.main.BitmapEffect = myBlurEffect;
         }
     }
 }

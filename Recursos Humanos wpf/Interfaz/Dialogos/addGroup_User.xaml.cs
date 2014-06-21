@@ -21,10 +21,11 @@ namespace Recursos_Humanos_wpf
     /// </summary>
     public partial class addGroup_User : Window
     {
-        public addGroup_User()
-        {
-            
+        MainWindow main;
+        public addGroup_User(MainWindow main)
+        {            
             InitializeComponent();
+            this.main = main;
             this.bAddGroup.Margin = new Thickness(10, 10, 10,10);
             this.bCancelGroup.Margin = new Thickness(10, 10, 10, 10);
         }
@@ -41,17 +42,17 @@ namespace Recursos_Humanos_wpf
             if (ug.ifExist() < 1) { 
                 if(ug.save() != 0){
                     this.tAddGroup.Text = "";
-                    new Dialog("Grupo agregado correctamente").ShowDialog();
+                    new Dialog("Grupo agregado correctamente", main).ShowDialog();
                 }
                 else
                 {
-                new Dialog("Error en agregar grupo").ShowDialog();
+                    new Dialog("Error en agregar grupo", main).ShowDialog();
                 }
             }
             else
             {
                 this.tAddGroup.Text = "";
-                new Dialog("El Grupo ya existe, ingrese otro nombre.").ShowDialog();
+                new Dialog("El Grupo ya existe, ingrese otro nombre.", main).ShowDialog();
             }
         }
         

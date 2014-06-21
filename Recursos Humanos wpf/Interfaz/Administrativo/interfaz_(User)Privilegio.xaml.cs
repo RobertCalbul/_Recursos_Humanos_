@@ -21,9 +21,11 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
     public partial class interfaz__User_Privilegio : UserControl
     {
         Privilegio _privilegios;
-        public interfaz__User_Privilegio()
+        MainWindow main;
+        public interfaz__User_Privilegio(MainWindow main)
         {
             InitializeComponent();
+            this.main = main;
             this.data.ItemsSource = new Privilegio().findAll();
             this.btnActualizar.Visibility = Visibility.Hidden;
             this.btnAdd.Visibility = Visibility.Hidden;
@@ -34,7 +36,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnUpdate_Click(object sender, MouseButtonEventArgs e)
         {
-            QuestionDialog pregunta = new QuestionDialog("Realmente desea modificar los datos?");
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea modificar los datos?", main);
             pregunta.ShowDialog();            
             if (pregunta.DialogResult == true)
             {
@@ -61,10 +63,10 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     this.btnAdd.Visibility = Visibility.Hidden;
                 }
                 else {
-                    new Dialog("No se pudo ingresar el nuevo privilegio.").ShowDialog();
+                    new Dialog("No se pudo ingresar el nuevo privilegio.", main).ShowDialog();
                 }
             }
-            else new Dialog("Ingrese un nombre al nuevo Privilegio.").ShowDialog();
+            else new Dialog("Ingrese un nombre al nuevo Privilegio.", main).ShowDialog();
         }
 
         private void btnCancelAdd_Click(object sender, MouseButtonEventArgs e)
@@ -90,7 +92,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnDelete_Click(object sender, MouseButtonEventArgs e)
         {
-            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este dato?");
+            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este dato?", main);
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true)
             {

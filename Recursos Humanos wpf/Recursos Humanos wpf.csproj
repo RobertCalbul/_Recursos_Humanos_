@@ -105,10 +105,10 @@
     <Compile Include="Clases\User_Group.cs" />
     <Compile Include="Clases\User_Group_Privilegios.cs" />
     <Compile Include="Clases\Validaciones.cs" />
-    <Compile Include="addGroup_User.xaml.cs">
+    <Compile Include="Interfaz\Dialogos\addGroup_User.xaml.cs">
       <DependentUpon>addGroup_User.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog.xaml.cs">
+    <Compile Include="Interfaz\Dialogos\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\Administrativo\Administrador.xaml.cs">
@@ -135,14 +135,14 @@
     <Compile Include="Interfaz\User\interfaz_apf_salud.xaml.cs">
       <DependentUpon>interfaz_apf_salud.xaml</DependentUpon>
     </Compile>
-    <Compile Include="QuestionDialog.xaml.cs">
+    <Compile Include="Interfaz\Dialogos\QuestionDialog.xaml.cs">
       <DependentUpon>QuestionDialog.xaml</DependentUpon>
     </Compile>
-    <Page Include="addGroup_User.xaml">
+    <Page Include="Interfaz\Dialogos\addGroup_User.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialog.xaml">
+    <Page Include="Interfaz\Dialogos\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,7 +195,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="QuestionDialog.xaml">
+    <Page Include="Interfaz\Dialogos\QuestionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -177,7 +177,7 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[16] = dtRow["banco"];
                     }
                 }
-                else new Dialog("No se encontraron coincidencias").ShowDialog();
+               // else new Dialog("No se encontraron coincidencias",).ShowDialog();
                 return arreglo;
             }catch(Exception ex){
                 Console.WriteLine("ERROR Personal.findBy() "+ex.Message);

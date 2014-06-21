@@ -25,9 +25,11 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
         private  ListBoxItem _dragged;
         List<User_Group> userGroup;
         MenuItem root;
-        public interfaz__User_UserGroup()
+        MainWindow main;
+        public interfaz__User_UserGroup(MainWindow main)
         {
             InitializeComponent();
+            this.main = main;
             userGroup = new User_Group().findAll();
             llenaComboUserGroup();
             llenaTreeView();
@@ -90,7 +92,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             {
                 if (this.List2.Items.Count>0)//si ahi al menos un privilegio en la lista 2
                 {
-                    QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.comboGrupos.SelectedItem);
+                    QuestionDialog pregunta = new QuestionDialog("Realmente desea Agregar estos privilegios a " + this.comboGrupos.SelectedItem, main);
                     pregunta.ShowDialog();
                     if (pregunta.DialogResult == true)
                     {
@@ -109,9 +111,9 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                         llenaTreeView();
                     }                  
                 }
-                else new Dialog("Agrege a lo menos un privilegio ").ShowDialog();
+                else new Dialog("Agrege a lo menos un privilegio ", main).ShowDialog();
             }
-            else new Dialog("Seleccione un Grupo de usuario").ShowDialog();
+            else new Dialog("Seleccione un Grupo de usuario", main).ShowDialog();
         }
 
         private void btnDeletePrivilegio_Click(object sender, MouseButtonEventArgs e)
@@ -123,8 +125,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                     {
                         String NamePrivilegio = ((ListBoxItem)this.List2.Items[this.List2.SelectedIndex]).Content.ToString();
                         if (NamePrivilegio != null)//si no selecciono ningun privilegio a eliminar
-                        {   
-                            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem);
+                        {
+                            QuestionDialog pregunta = new QuestionDialog("Realmente desea eliminar este privilegio de " + this.comboGrupos.SelectedItem, main);
                             pregunta.ShowDialog();
                             if (pregunta.DialogResult == true)
                             {
@@ -140,14 +142,14 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
                                 LoadPrivilegio_UserGroup();
                             }
                         }
-                        else new Dialog("Seleccione un privilegio a eliminar.").ShowDialog();
+                        else new Dialog("Seleccione un privilegio a eliminar.", main).ShowDialog();
                     }
-                    else new Dialog("No hay ningun privilegio asignado previamente.").ShowDialog();
+                    else new Dialog("No hay ningun privilegio asignado previamente.", main).ShowDialog();
                 }
-                else new Dialog("Seleccione un Grupo de usuario").ShowDialog();
+                else new Dialog("Seleccione un Grupo de usuario", main).ShowDialog();
             }
             catch (ArgumentOutOfRangeException ex) {
-                new Dialog("Seleccione un privilegio a elimnar").ShowDialog();
+                new Dialog("Seleccione un privilegio a elimnar", main).ShowDialog();
             }            
         }
 
@@ -237,7 +239,7 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
 
         private void btnaddGroup_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            new addGroup_User().ShowDialog();
+            new addGroup_User(main).ShowDialog();
             llenaTreeView();
             this.comboGrupos.Items.Clear();
             llenaComboUserGroup();
