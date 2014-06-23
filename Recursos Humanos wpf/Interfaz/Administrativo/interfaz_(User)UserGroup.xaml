@@ -6,82 +6,85 @@
              mc:Ignorable="d"  
              MouseMove="Window_MouseMove"
              d:DesignHeight="757" d:DesignWidth="702">
-	<UserControl.Resources>
-		<Storyboard x:Key="ani1">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnaddGroup">
-				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
-				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Key="ani2">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAddPrivilegio">
-				<EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
-				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Key="ani3">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeletePrivilegio">
-				<EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF1ADA5"/>
-				<EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-	</UserControl.Resources>
-	<UserControl.Triggers>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnaddGroup">
-			<BeginStoryboard Storyboard="{StaticResource ani1}"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAddPrivilegio">
-			<BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeletePrivilegio">
-			<BeginStoryboard x:Name="ani3_BeginStoryboard" Storyboard="{StaticResource ani3}"/>
-		</EventTrigger>
-	</UserControl.Triggers>
+    <UserControl.Resources>
+        <Storyboard x:Key="ani1">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnaddGroup">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ani2">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnAddPrivilegio">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF129D5A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FF79D1A7"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FF129D5A"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ani3">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeletePrivilegio">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFE87467"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF1ADA5"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE87467"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnaddGroup">
+            <BeginStoryboard Storyboard="{StaticResource ani1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnAddPrivilegio">
+            <BeginStoryboard x:Name="ani2_BeginStoryboard" Storyboard="{StaticResource ani2}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="btnDeletePrivilegio">
+            <BeginStoryboard x:Name="ani3_BeginStoryboard" Storyboard="{StaticResource ani3}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="318*"/>
+            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="140*"/>
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="311*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="196*"/>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="39*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="256*"/>
             <RowDefinition Height="11*"/>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="39*"/>
-            <RowDefinition Height="11*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <TreeView Name="trvMenu" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1">
+        <TreeView Name="trvMenu" Grid.ColumnSpan="4" Grid.Column="1" Grid.Row="3">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type MenuItem}" ItemsSource="{Binding Items}">
                     <TextBlock Text="{Binding Title}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <ListBox Name="List1" Grid.Row="7"
-                 PreviewMouseLeftButtonDown="List1_PreviewMouseLeftButtonDown" AllowDrop="True" Margin="0" Grid.Column="1"/>
-        <ListBox Name="List2"  Grid.Row="7" Grid.Column="3" Margin="0"  AllowDrop="True" DragEnter="List2_DragEnter"
+        <ListBox Name="List1" Grid.Row="9"
+                 PreviewMouseLeftButtonDown="List1_PreviewMouseLeftButtonDown" AllowDrop="True" Margin="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ListBox Name="List2"  Grid.Row="9" Grid.Column="4" Margin="0"  AllowDrop="True" DragEnter="List2_DragEnter"
                  DragOver="List2_DragEnter" Drop="List2_Drop" />
-        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="4"  IsReadOnly="True" Grid.Column="1" SelectionChanged="comboGrupos_SelectionChanged" VerticalContentAlignment="Center" Cursor="Hand"/>
-        <Label Name="btnAddPrivilegio" Content="Agregar privilegios (Todos)" Grid.Column="3" Margin="0" Grid.Row="9" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click" Foreground="White" MouseEnter="btnAddPrivilegio_MouseEnter" MouseLeave="btnAddPrivilegio_MouseLeave" Cursor="Hand"/>
-        <Label Content="Privilegios" Grid.Column="1" Margin="0" Grid.Row="6"/>
-        <Label Content="Arrastrar aqui" Grid.Column="3" Margin="0" Grid.Row="6"/>
-        <Label Content="Seleccione un Grupo de usuario" Grid.Column="1" Margin="0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="178"/>
-        <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="3" Margin="0" Grid.Row="11" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click" MouseEnter="btnDeletePrivilegio_MouseEnter" MouseLeave="btnDeletePrivilegio_MouseLeave" Cursor="Hand"/>
-        <Label x:Name="btnaddGroup" Content="Agregar Grupo" Margin="0,10,135,11" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnaddGroup_MouseEnter" MouseLeave="btnaddGroup_MouseLeave" Cursor="Hand" Grid.Column="1" MouseDown="btnaddGroup_MouseDown"/>
+        <ComboBox Name="comboGrupos" Margin="0" Grid.Row="6"  IsReadOnly="True" Grid.Column="1" SelectionChanged="comboGrupos_SelectionChanged" VerticalContentAlignment="Center" Cursor="Hand" Grid.ColumnSpan="2"/>
+        <Label Name="btnAddPrivilegio" Content="Agregar privilegios (Todos)" Grid.Column="4" Margin="0" Grid.Row="11" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnAddPrivilegio_Click" Foreground="White" MouseEnter="btnAddPrivilegio_MouseEnter" MouseLeave="btnAddPrivilegio_MouseLeave" Cursor="Hand"/>
+        <Label Content="Privilegios" Grid.Column="1" Margin="0" Grid.Row="8" Grid.ColumnSpan="2"/>
+        <Label Content="Arrastrar aqui" Grid.Column="4" Margin="0" Grid.Row="8"/>
+        <Label Content="Seleccione un Grupo de usuario" Grid.Column="1" Margin="0" Grid.Row="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="178"/>
+        <Label Name="btnDeletePrivilegio" Content="Eliminar (Uno)" Grid.Column="4" Margin="0" Grid.Row="13" Background="#FFE87467" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseDown="btnDeletePrivilegio_Click" MouseEnter="btnDeletePrivilegio_MouseEnter" MouseLeave="btnDeletePrivilegio_MouseLeave" Cursor="Hand"/>
+        <Label x:Name="btnaddGroup" Content="Agregar Grupo" Margin="0" Background="#FF129D5A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" MouseEnter="btnaddGroup_MouseEnter" MouseLeave="btnaddGroup_MouseLeave" Cursor="Hand" Grid.Column="1" MouseDown="btnaddGroup_MouseDown" Grid.Row="1"/>
 
 
 

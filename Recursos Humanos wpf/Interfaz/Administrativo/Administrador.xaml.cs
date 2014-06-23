@@ -118,12 +118,12 @@ namespace Recursos_Humanos_wpf.Interfaz
 
         private void Label_MouseEnter(object sender, MouseEventArgs e)
         {
-            styleVisualBtn(this.Back, Brushes.Blue, 5);
+            styleVisualBtn(Back, Brushes.Blue, 5);
         }
   
         private void Label_MouseLeave(object sender, MouseEventArgs e)
         {
-            styleVisualBtn(this.Back, null,0);
+            styleVisualBtn(Back, null,0);
         }
         public void styleVisualBtn(Label btn, Brush color, int borde)
         {

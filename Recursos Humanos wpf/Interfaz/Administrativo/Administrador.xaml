@@ -8,20 +8,19 @@
 
     <Grid Name="pantilla">
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="13*"/>
-            <RowDefinition Height="373*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="733*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="446*"/>
-            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="535*"/>
             <ColumnDefinition Width="17*"/>
         </Grid.ColumnDefinitions>
         <TreeView Name="TreeView" Margin="0" Loaded="TreeView_Loaded"
-	    SelectedItemChanged="TreeView_SelectedItemChanged" Grid.RowSpan="3"/>
-        <Grid Name="WorkSpace" Grid.Column="1" Margin="0" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <Label Name="Back" Content="Atras" Margin="0" Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseDown="Label_MouseDown" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave"/>
+	    SelectedItemChanged="TreeView_SelectedItemChanged" Grid.Row="2"/>
+        <Grid Name="WorkSpace" Grid.Column="1" Margin="0" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+        <Label Name="Back" Content="Atras" Margin="0,0,0,5" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FF4185F4" Foreground="White" MouseDown="Label_MouseDown" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave"/>
 
     </Grid>
 </UserControl>

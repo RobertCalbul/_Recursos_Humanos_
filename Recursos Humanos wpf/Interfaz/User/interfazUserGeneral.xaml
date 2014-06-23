@@ -101,22 +101,22 @@
     </UserControl.Triggers>
     <Grid Margin="0" x:Name="WorkSpace" Background="#FFFFFFFC">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="26*"/>
-            <ColumnDefinition Width="461*"/>
-            <ColumnDefinition Width="117*"/>
-            <ColumnDefinition Width="116*"/>
-            <ColumnDefinition Width="21*"/>
-            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="401*"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="16*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="46*"/>
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="493*"/>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="531*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="32*"/>
         </Grid.RowDefinitions>
         <Label Margin="0" x:Name="lName" Foreground="#FF2D2D2D" FontSize="32" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" IsEnabled="False" Content="" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" />
         <Label Margin="0" x:Name="lPuesto" Foreground="#FF2D2D2D" FontSize="18" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="2" Content="" Padding="0" Grid.ColumnSpan="3" ToolTip="Puesto del personal" />
@@ -162,17 +162,17 @@
                         <RowDefinition Height="107*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="16*" />
-                        <ColumnDefinition Width="108*"/>
-                        <ColumnDefinition Width="146*" />
-                        <ColumnDefinition Width="122*" />
-                        <ColumnDefinition Width="22*"/>
                         <ColumnDefinition Width="15*" />
-                        <ColumnDefinition Width="135*"/>
+                        <ColumnDefinition Width="100*"/>
                         <ColumnDefinition Width="135*" />
-                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="113*" />
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="123*"/>
+                        <ColumnDefinition Width="133*" />
+                        <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <Border  Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="0,0,3,0" BorderThickness="1" CornerRadius="1" Padding="1,1,0,0" BorderBrush="#FFE6E7E8" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border  Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Margin="0,28,3,28" BorderThickness="1" CornerRadius="1" Padding="1,1,0,0" BorderBrush="#FFE6E7E8" HorizontalAlignment="Center" VerticalAlignment="Center" Height="122" Width="97">
                         <Image Margin="0" x:Name="iPerfil" Source="/Recursos Humanos wpf;component/Images/icono.png" MouseLeftButtonUp="iPerfil_Click" Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" ToolTip="Presiona aqui para cargar una fotografia" Cursor="Hand" />
                     </Border>
                     <Label Content="Nombres" x:Name="label4" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" Margin="0" />
@@ -190,11 +190,11 @@
                     <TextBox Margin="0" x:Name="tSurname" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tSurname_PreviewTextInput" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" />
                     <TextBox x:Name="tRut" SelectionBrush="#FF3399FF" BorderBrush="White" Background="White" Style="{StaticResource textBox}" LostFocus="tRut_LostFocus" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="3" Margin="0" Grid.ColumnSpan="2" />
                     <TextBox Grid.Column="3" x:Name="tDateNaci" Style="{StaticResource textBox}" Background="White" BorderBrush="White" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Grid.Row="4" />
-                    <ComboBox x:Name="cSalud" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cSalud_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Text="" Grid.Row="7" Grid.ColumnSpan="2" Margin="0" Cursor="Hand"/>
-                    <ComboBox Margin="0,1,0,0" x:Name="cDepto" Background="White" BorderBrush="#FF2D2D2D" PreviewMouseDown="cDepto_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="8" Grid.ColumnSpan="2" Cursor="Hand" />
-                    <ComboBox Margin="0,1,0,0" x:Name="cAfp" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cAfp_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="9" Grid.ColumnSpan="2" Cursor="Hand"/>
-                    <ComboBox x:Name="Regi" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadreg_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" SelectionChanged="Regi_SelectionChanged" Grid.Row="5" Grid.ColumnSpan="2" Cursor="Hand"/>
-                    <ComboBox x:Name="Comu" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadcom_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="6" Grid.ColumnSpan="2" Cursor="Hand"/>
+                    <ComboBox x:Name="cSalud" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cSalud_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Text="" Grid.Row="7" Grid.ColumnSpan="2" Margin="1,1,0,0" Cursor="Hand" Padding="0"/>
+                    <ComboBox Margin="1,1,0,0" x:Name="cDepto" Background="White" BorderBrush="#FF2D2D2D" PreviewMouseDown="cDepto_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="8" Grid.ColumnSpan="2" Cursor="Hand" Padding="0" />
+                    <ComboBox Margin="1,1,0,0" x:Name="cAfp" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="cAfp_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="9" Grid.ColumnSpan="2" Cursor="Hand" Padding="0"/>
+                    <ComboBox x:Name="Regi" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadreg_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" SelectionChanged="Regi_SelectionChanged" Grid.Row="5" Grid.ColumnSpan="2" Cursor="Hand" Margin="1,1,0,0" Padding="0"/>
+                    <ComboBox x:Name="Comu" BorderBrush="#FF2D2D2D" Background="White" PreviewMouseDown="Loadcom_Click" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="3" Foreground="#FF2D2D2D" Grid.Row="6" Grid.ColumnSpan="2" Cursor="Hand" Margin="1,1,0,0" Padding="0"/>
                     <TextBox Grid.Column="7" x:Name="Tdireccion" Style="{StaticResource textBox}" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" Background="White" BorderBrush="White" PreviewTextInput="Tdireccion_PreviewTextInput" Grid.Row="4" />
                     <TextBox x:Name="tPhone" Background="White" BorderBrush="White" Style="{StaticResource textBox}" PreviewTextInput="tPhone_PreviewTextInput" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Grid.Row="5" />
                     <TextBox x:Name="tEmail" Background="White" BorderBrush="White" Style="{StaticResource textBox}" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Grid.Row="6" />
@@ -206,9 +206,9 @@
                     <Label Content="Nacionalidad" Margin="0,1,0,0" x:Name="label23" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="6" Grid.Row="9" />
                     <Label Content="Direccion" Grid.Column="6" x:Name="label25" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" FontSize="16" RenderTransformOrigin="0.789,-0.964" Grid.Row="4" />
                     <Calendar Grid.Column="4" Grid.ColumnSpan="4" Margin="0,0,0,32" x:Name="calendar2" SelectedDatesChanged="calendar2_SelectedDatesChanged" IsEnabled="True" Visibility="Hidden" DisplayMode="Decade" Grid.Row="4" Grid.RowSpan="6" Panel.ZIndex="1"  MouseLeave="calendar2_MouseLeave" />
-                    <ComboBox x:Name="tBank" Margin="0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="cargarBanco" Grid.Row="8" Cursor="Hand"/>
+                    <ComboBox x:Name="tBank" Margin="1,1,0,0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="cargarBanco" Grid.Row="8" Cursor="Hand" Padding="0"/>
                     <Label Content="Banco" Margin="0" x:Name="label11_Copy" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" Grid.Column="6" Grid.Row="8" />
-                    <ComboBox x:Name="tNacionalidad" Margin="0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="verpaises" Grid.Row="9" Cursor="Hand"/>
+                    <ComboBox x:Name="tNacionalidad" Margin="1,1,0,0" BorderBrush="#FF2D2D2D" Background="White" FontSize="16" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Center" Grid.Column="7" Foreground="#FF2D2D2D" PreviewMouseDown="verpaises" Grid.Row="9" Cursor="Hand" Padding="0"/>
                     <Image x:Name="btnDateNacimiento" Grid.Column="4" Grid.Row="4" Source="/Recursos Humanos wpf;component/Images/calendario-icono-8819.ico" MouseDown="btnDateNacimiento_Click" Cursor="Hand"/>
                 </Grid>
 
@@ -265,7 +265,7 @@
                 </Grid>
             </TabItem>
             <TabItem Background="#FF4185F4" BorderBrush="#FF4185F4" Header="Historial Empleados" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" x:Name="tabItem3" OverridesDefaultStyle="False" Padding="0,-1,0,0" Selector.IsSelected="True" SnapsToDevicePixels="True" Margin="2,2,-2,-1" FontFamily="/Recursos Humanos wpf;component/Font/#Futura LT Light" VerticalContentAlignment="Stretch" >
-                <Grid Name="gHEmpleado" Background="White" Margin="0">
+                <Grid Name="gHEmpleado" Background="White" Margin="3,3,3,2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="28*"/>
                         <RowDefinition Height="142*"/>
