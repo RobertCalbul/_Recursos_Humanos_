@@ -34,7 +34,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lPregunta" Content="Label" Margin="90,24,10,45" FontSize="14"/>
-        <Image HorizontalAlignment="Left" Height="57" Margin="25,24,0,0" VerticalAlignment="Top" Width="60" Source="Images/preguntaIcono.png"/>
+        <Image HorizontalAlignment="Left" Height="57" Margin="25,24,0,0" VerticalAlignment="Top" Width="60" Source="/Recursos Humanos wpf;component/Images/preguntaIcono.png"/>
         <Label x:Name="lSi" Content="Si" Background="#FF4185F4"  VerticalContentAlignment="Center" Foreground="White" Margin="272,112,115,10" FontSize="14" Cursor="Hand" HorizontalContentAlignment="Center" Padding="5" MouseDown="Yes"/>
         <Label x:Name="lNo" Content="No" Background="#FF4185F4"  VerticalContentAlignment="Center" Foreground="White" Margin="379,112,10,10" FontSize="14" Cursor="Hand" HorizontalContentAlignment="Center" Padding="5" MouseDown="No"/>
 
