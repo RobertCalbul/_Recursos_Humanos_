@@ -30,13 +30,18 @@ namespace Recursos_Humanos_wpf
     public partial class MainWindow : Window
     {
         public MainWindow main;
+
         public List<string> listAutocomplet = null;
         private interfazUserGeneral _infoUser;
         private interfazBienvenida _bienvenida;
-    
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             this.main = this;
             listAutocomplet = new Clases.Personal().findAll(0);
             this._infoUser = new interfazUserGeneral(this);
@@ -48,7 +53,8 @@ namespace Recursos_Humanos_wpf
             this.Presentacion.Children.Clear();
             this.Presentacion.Children.Add(_bienvenida);
             this.tNombreUser.Focus();
-        }
+
+        } 
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
@@ -271,7 +277,9 @@ namespace Recursos_Humanos_wpf
         private void label3_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }   
+        }
+
+          
     }
 
 }

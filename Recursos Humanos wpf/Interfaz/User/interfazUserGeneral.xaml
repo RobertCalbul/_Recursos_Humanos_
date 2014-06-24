@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="757" d:DesignWidth="702" Width="Auto" Height="Auto">
+             d:DesignHeight="757" d:DesignWidth="702" Width="Auto" Height="Auto" IsTabStop="True" Focusable="True" AllowDrop="True">
     <UserControl.Resources>
         <Storyboard x:Key="ani1">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="btnDeleteReg">
