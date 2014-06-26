@@ -57,7 +57,8 @@ namespace Recursos_Humanos_wpf.Interfaz.Administrativo
             pregunta.ShowDialog();
             if (pregunta.DialogResult == true)
             {
-                if (new Departamento(int.Parse(this.tId.Text), this.tName.Text, this.tRut.Text).update() > 0)
+                Personal per = new Personal(this.tRut.Text);
+                if (new Departamento(int.Parse(this.tId.Text), this.tName.Text, per.get_idPersonal().ToString()).update() > 0)
                 {
                     this.data.ItemsSource = new Departamento().findAll_administrativo();
 

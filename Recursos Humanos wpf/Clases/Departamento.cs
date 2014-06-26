@@ -126,7 +126,7 @@ namespace Recursos_Humanos_wpf.Clases
 
         public int update()
         {
-            String query = "update departamento set nombre='" + this.name + "', id_jefe= " + int.Parse(this.rut_jefe) + " where id_departamento = " + this.id;
+            String query = "update departamento set nombre='" + this.name + "', id_jefe= " + this.rut_jefe+ " where id_departamento = " + this.id;
             MySqlConnection con = null;
             try
             {
