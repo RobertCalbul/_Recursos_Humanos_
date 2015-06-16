@@ -79,7 +79,7 @@ namespace Recursos_Humanos_wpf.Interfaz
                 tDateNaci.IsEnabled = false;//solo editable por el calendario
                 //btnDateNacimiento.Visibility = Visibility.Hidden;
                 object[] arreglo = new Clases.Personal().findBy(value, paramSearch);
-                List<String> resul = new Clases.PDF().leerpaises();
+                List<String> resul = new Clases.Pdf().Leerpaises();
                 Console.WriteLine(">>>"+arreglo.Length);
                 if (arreglo[0]!=null)
                 {
@@ -420,7 +420,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         //MUESTRA PREVISUALIZACION CONTRATO
         private void btnShowContract_Click(object sender, MouseButtonEventArgs e)
         {
-            bool crearcarp = new Clases.PDF().CrearCarpetaXml("contratos");
+            bool crearcarp = new Clases.Pdf().CrearCarpetaXml("contratos");
             if (crearcarp)
             {
                 Boolean flag = true;
@@ -449,12 +449,12 @@ namespace Recursos_Humanos_wpf.Interfaz
                                                             this.cAfp.Text.Trim(), this.cSalud.Text.Trim()
                         );
                    
-                    new Clases.PDF().CrearArchivoXML("contratos/contract.xml",
+                    new Clases.Pdf().CrearArchivoXml("contratos/contract.xml",
                     contrato.rut, contrato.fInicio, contrato.nombre_completo, contrato.direccion, contrato.Cargo, contrato.depto, contrato.tContrato,
                     contrato.SueldoBase, contrato.fTermino, contrato.afp, contrato.salud);
                     Document document = new Document();
 
-                    List<String> resul = new Clases.PDF().leer("administrativo");
+                    List<String> resul = new Clases.Pdf().Leer("administrativo");
 
                     PdfWriter.GetInstance(document, new FileStream("contrato.pdf", FileMode.OpenOrCreate));
                     document.Open();
@@ -637,7 +637,7 @@ namespace Recursos_Humanos_wpf.Interfaz
         }
         private void verpaises(object sender, MouseButtonEventArgs e)
         {
-            List<String> resul = new Clases.PDF().leerpaises();
+            List<String> resul = new Clases.Pdf().Leerpaises();
             foreach (String pais in resul) this.tNacionalidad.Items.Add(pais.Trim());
         }
         private void tStat_PreviewMouseDown(object sender, MouseButtonEventArgs e)

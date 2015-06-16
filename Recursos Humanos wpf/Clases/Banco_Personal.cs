@@ -25,7 +25,7 @@ namespace Recursos_Humanos_wpf.Clases
             try
             {
                 int ardilloqlo;
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlCommand comando = new MySqlCommand(string.Format("insert into banco_personal (banco_id_banco,personal_id_personal,cta_bancaria) values ('{0}','{1}','{2}')",
                     this.banco_id_banco,this.personal_id_personal,this.cta_bancaria), conex);

@@ -31,7 +31,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "select * from privilegios";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 listUserGroup = new List<Privilegio>();
                 con.Open();
 
@@ -60,7 +60,7 @@ namespace Recursos_Humanos_wpf.Clases
            "WHERE c.id_user_group = " + this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 listPrivilegio = new List<Privilegio>();
                 con.Open();
 
@@ -83,7 +83,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT id_privilegios from privilegios WHERE nombre ='" + this.name+"'";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 listPrivilegio = new List<Privilegio>();
                 con.Open();
 
@@ -105,7 +105,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "INSERT INTO privilegios (nombre) values('" + this.name + "')";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -123,7 +123,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "DELETE FROM  privilegios WHERE id_privilegios=" + this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -141,7 +141,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "UPDATE privilegios set nombre='"+this.name+"' WHERE id_privilegios="+this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
                 MySqlCommand comando = new MySqlCommand(sql, con);
                 return comando.ExecuteNonQuery();

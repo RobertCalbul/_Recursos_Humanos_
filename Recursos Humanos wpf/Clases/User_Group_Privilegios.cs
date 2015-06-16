@@ -29,7 +29,7 @@ namespace Recursos_Humanos_wpf.Clases
                 "values(" + this.User_Group.id + ","+this.privilegio.id+",1)";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -47,7 +47,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "DELETE FROM usergroup_privilegios WHERE id_privilegios ="+this.privilegio.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -64,7 +64,7 @@ namespace Recursos_Humanos_wpf.Clases
         {
             String sql = "SELECT * FROM usergroup_privilegios WHERE id_privilegios = "+this.privilegio.id+" AND id_user_group = "+this.User_Group.id;
             try { 
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);

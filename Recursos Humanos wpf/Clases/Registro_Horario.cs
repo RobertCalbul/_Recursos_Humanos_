@@ -34,7 +34,7 @@ namespace Recursos_Humanos_wpf.Clases
             try
             {
 
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
                 MySqlCommand sqlCom = new MySqlCommand(query, con);
                 MySqlDataReader res = sqlCom.ExecuteReader();

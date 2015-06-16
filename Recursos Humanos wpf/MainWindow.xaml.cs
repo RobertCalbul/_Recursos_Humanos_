@@ -54,12 +54,12 @@ namespace Recursos_Humanos_wpf
             this.Presentacion.Children.Add(_bienvenida);
             this.tNombreUser.Focus();
 
-        } 
+        }
         /*>>>>INICIO OPERACIONES CRUD EMPLEADOS<<<<<*/
         //BUSCA DATOS EMPLEADOS POR FILTRO
         private void btnBuscar_click(object sender, MouseButtonEventArgs e)
         {
-           _infoUser.Search();
+            _infoUser.Search();
             _infoUser.calendar1.Visibility = Visibility.Hidden;
         }
 
@@ -83,8 +83,8 @@ namespace Recursos_Humanos_wpf
             this.cBusqueda.Text = "";
             this._infoUser.loadDataContract("");
         }
-        
-/*>>>>AUTOCOMPLETE<<<<<*/
+
+        /*>>>>AUTOCOMPLETE<<<<<*/
         private void cBusqueda_TextChanged(object sender, TextChangedEventArgs e)
         {
             string typed = this.cBusqueda.Text.Trim();
@@ -134,7 +134,7 @@ namespace Recursos_Humanos_wpf
                 _infoUser.Search();
             }
         }
-/*>>>>FIN SOLO AUTOCOMPLETE<<<<<*/
+        /*>>>>FIN SOLO AUTOCOMPLETE<<<<<*/
 
         //FILTRO SEGUN INFORMACION PERSONAL
         private void RadioButtonSearch(object sender, RoutedEventArgs e)
@@ -149,7 +149,8 @@ namespace Recursos_Humanos_wpf
             this.listAutocomplet = new Clases.Personal().findAll(parametroSearch);
         }
 
-        public void Logearse() {
+        public void Logearse()
+        {
             if (!tNombreUser.Text.Trim().Equals(""))
             {
                 if (!tPasswordUser.Password.Trim().Equals(""))
@@ -178,14 +179,14 @@ namespace Recursos_Humanos_wpf
                     }
                     else
                     {
-                        new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.", main).ShowDialog(); 
+                        new Dialog("Lo sentimos. El usuario o contraseña es incorrecta.", main).ShowDialog();
                     }
                 }
                 else
                 {
                     new Dialog("Por favor, ingresa la contraseña de usuario.", main).ShowDialog();
                     tPasswordUser.Focus();
-                }                
+                }
             }
             else
             {
@@ -198,28 +199,30 @@ namespace Recursos_Humanos_wpf
         {
             Dispatcher.BeginInvoke(new Action(() => { Logearse(); }));
         }
-/*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
+        /*>>>>>RELACIONADA CON LA VENTANA (MOVIMIENTOS, EVENTOS)>>>>*/
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
-            try { 
+            try
+            {
                 this.DragMove();
-                }
-            catch(Exception z){
+            }
+            catch (Exception z)
+            {
             }
         }
         private void close_Click(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
-       private void minimize_Click(object sender, MouseButtonEventArgs e)
+        private void minimize_Click(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }         
+        }
         //EVENTOS para el cambio de color de la imagen cerrar X
         private void CambiaColor(object sender, MouseEventArgs e)
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/CloseRed.png"));
-        }              
+        }
         private void ColorNormal(object sender, MouseEventArgs e)
         {
             this.image2.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Close2.png"));
@@ -227,7 +230,7 @@ namespace Recursos_Humanos_wpf
 
         //Implementado enter al logearse (Enter sobre el cuadro de password)
         private void tPasswordUser_KeyDown(object sender, KeyEventArgs e)
-        {   
+        {
             if (e.Key == Key.Return)
             {
                 Dispatcher.BeginInvoke(new Action(() => { Logearse(); }));
@@ -237,8 +240,8 @@ namespace Recursos_Humanos_wpf
         private void btnAdministrativo_Click(object sender, MouseButtonEventArgs e)
         {
             this.WorkSpace.Children.Clear();
-            this.WorkSpace.Children.Add(new Administrador(this,_infoUser));
-            this.WorkSpace.IsEnabled = true;     
+            this.WorkSpace.Children.Add(new Administrador(this, _infoUser));
+            this.WorkSpace.IsEnabled = true;
         }
 
 
@@ -279,7 +282,7 @@ namespace Recursos_Humanos_wpf
             WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
 
-          
+
     }
 
 }

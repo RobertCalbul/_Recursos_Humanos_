@@ -17,7 +17,7 @@ namespace Recursos_Humanos_wpf.Clases
             DataTable dt = new DataTable();
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conex);
                 da.Fill(dt);
@@ -36,7 +36,7 @@ namespace Recursos_Humanos_wpf.Clases
 
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlCommand sqlCom = new MySqlCommand(query, conex);
                 return sqlCom.ExecuteNonQuery();
@@ -60,7 +60,7 @@ namespace Recursos_Humanos_wpf.Clases
             int retorno = 0;
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlCommand comando = new MySqlCommand(string.Format("Insert into salud (nombre,descuento) values ('{0}','{1}')",
                     name, desc), conex);

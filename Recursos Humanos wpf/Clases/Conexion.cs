@@ -7,9 +7,9 @@ namespace Recursos_Humanos_wpf.Clases
 {
     class Conexion
     {
-        public MySqlConnection getConexion()
+        public MySqlConnection GetConexion()
         {
-            return new MySqlConnection("data source=localhost; user id=root; password=12345678; database=recursos_humanos");
+            return new MySqlConnection("data source=localhost; user id=root; password=''; database=recursos_humanos");
         }
     }
 }

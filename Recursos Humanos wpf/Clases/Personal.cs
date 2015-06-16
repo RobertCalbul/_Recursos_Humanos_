@@ -23,22 +23,23 @@ namespace Recursos_Humanos_wpf.Clases
         public string nacionalidad { get; set; }
         public string fecha_nacimiento { get; set; }
         public int comuna { get; set; }
-        public int region_residencia {get; set;}
+        public int region_residencia { get; set; }
         public int AFP_id_afp { get; set; }
         public int salud_id_salud { get; set; }
         public int id_banco { get; set; }
 
         public Personal()
         { }
-        public Personal(string rut) {
+        public Personal(string rut)
+        {
             this.rut = rut;
         }
 
-        
-        
+
+
         //ESTE ES EL ACTUAL
-        public Personal(string rut, string nombre, string apellido, int edad ,byte[] foto_portada,string telefono, string direccion,string email, 
-            string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud) 
+        public Personal(string rut, string nombre, string apellido, int edad, byte[] foto_portada, string telefono, string direccion, string email,
+            string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud)
         {
             this.rut = rut;
             this.nombre = nombre;
@@ -57,7 +58,7 @@ namespace Recursos_Humanos_wpf.Clases
             this.salud_id_salud = id_salud;
         }
         public Personal(string rut, string nombre, string apellido, int edad, string telefono, string direccion, string email,
-    string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud,int id_banco)
+    string cta_bancaria, string nacionalidad, string fecha_nacimiento, int comuna, int region_residencia, int id_afp, int id_salud, int id_banco)
         {
             this.rut = rut;
             this.nombre = nombre;
@@ -77,7 +78,7 @@ namespace Recursos_Humanos_wpf.Clases
         }
         public List<string> findAll(int value)
         {
-            conex = new Clases.Conexion().getConexion();
+            conex = new Clases.Conexion().GetConexion();
             conex.Open();
 
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM recursos_humanos.personal", conex);
@@ -88,7 +89,7 @@ namespace Recursos_Humanos_wpf.Clases
             while (res.Read())
             {
                 string Myreader = "";
-                Myreader += value==0?res.GetString(1):value==1?res.GetString(2):value==2?res.GetString(3):"";
+                Myreader += value == 0 ? res.GetString(1) : value == 1 ? res.GetString(2) : value == 2 ? res.GetString(3) : "";
                 Myreader += value == 3 ? res.GetString(6) : value == 4 ? res.GetString(7) : value == 5 ? res.GetString(8) : "";
                 resultados.Add(Myreader);
             }
@@ -96,22 +97,25 @@ namespace Recursos_Humanos_wpf.Clases
             return resultados;
         }
 
-        public int get_idPersonal() {
+        public int get_idPersonal()
+        {
             try
             {
-                conex = new Clases.Conexion().getConexion();
+                conex = new Clases.Conexion().GetConexion();
                 conex.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(string.Format("SELECT id_personal FROM personal WHERE rut = '{0}'", this.rut), conex);
                 MySqlDataReader res = sqlCom.ExecuteReader();
 
-                int  resultados = 0;
+                int resultados = 0;
 
                 while (res.Read()) resultados = res.GetInt32(0);
                 conex.Close();
                 return resultados;
-            }catch(Exception ex){
-                Console.WriteLine("ERROR Personal.get_idPersonal() "+ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Personal.get_idPersonal() " + ex.Message);
                 return 0;
             }
         }
@@ -141,17 +145,17 @@ namespace Recursos_Humanos_wpf.Clases
                  * 
                  */
                 arreglo = new object[17];
-                string sql =    "SELECT p.foto_portada,p.nombre,p.apellido,p.rut,p.fecha_nacimiento,p.direccion,p.comuna,"
-                                +" s.nombre AS salud,d.nombre AS depto,a.nombre AS afp,p.edad,p.region_residencia,"
-                                +" p.telefono,p.email,p.nacionalidad,bp.cta_bancaria,b.nombre as banco"
-                                +" FROM personal AS p"
-                                +" INNER JOIN afp AS a ON(p.AFP_id_afp = a.id_afp)"
-                                +" INNER JOIN salud AS s ON(p.salud_id_salud = s.id_salud)"
-                                +" INNER JOIN personal_departamento AS pd ON(p.id_personal = pd.id_personal)"
-                                +" INNER JOIN departamento AS d ON(pd.id_departamento = d.id_departamento)"
-                                +" INNER JOIN banco_personal AS bp ON(bp.personal_id_personal = p.id_personal)"
-                                +" INNER JOIN banco AS b ON(b.id_banco = bp.banco_id_banco)"
-                                +" WHERE p." + paramSearch + " = '" + value + "'";
+                string sql = "SELECT p.foto_portada,p.nombre,p.apellido,p.rut,p.fecha_nacimiento,p.direccion,p.comuna,"
+                                + " s.nombre AS salud,d.nombre AS depto,a.nombre AS afp,p.edad,p.region_residencia,"
+                                + " p.telefono,p.email,p.nacionalidad,bp.cta_bancaria,b.nombre as banco"
+                                + " FROM personal AS p"
+                                + " INNER JOIN afp AS a ON(p.AFP_id_afp = a.id_afp)"
+                                + " INNER JOIN salud AS s ON(p.salud_id_salud = s.id_salud)"
+                                + " INNER JOIN personal_departamento AS pd ON(p.id_personal = pd.id_personal)"
+                                + " INNER JOIN departamento AS d ON(pd.id_departamento = d.id_departamento)"
+                                + " INNER JOIN banco_personal AS bp ON(bp.personal_id_personal = p.id_personal)"
+                                + " INNER JOIN banco AS b ON(b.id_banco = bp.banco_id_banco)"
+                                + " WHERE p." + paramSearch + " = '" + value + "'";
                 DataTable dataTable = new Clases.Consultas().QueryDB(sql);
                 if (dataTable.Rows.Count != 0)
                 {
@@ -168,7 +172,7 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[7] = dtRow["salud"];
                         arreglo[8] = dtRow["depto"];
                         arreglo[9] = dtRow["afp"];
-                        arreglo[10] = dtRow["edad"]; 
+                        arreglo[10] = dtRow["edad"];
                         arreglo[11] = dtRow["region_residencia"];
                         arreglo[12] = dtRow["telefono"];
                         arreglo[13] = dtRow["email"];
@@ -177,10 +181,12 @@ namespace Recursos_Humanos_wpf.Clases
                         arreglo[16] = dtRow["banco"];
                     }
                 }
-               // else new Dialog("No se encontraron coincidencias",).ShowDialog();
+                // else new Dialog("No se encontraron coincidencias",).ShowDialog();
                 return arreglo;
-            }catch(Exception ex){
-                Console.WriteLine("ERROR Personal.findBy() "+ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR Personal.findBy() " + ex.Message);
                 return arreglo;
             }
 
@@ -191,7 +197,7 @@ namespace Recursos_Humanos_wpf.Clases
             int retorno = 0;
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = conex;
                 command.CommandText = "Insert into personal (rut,nombre,apellido,edad,foto_portada,telefono,direccion,email,nacionalidad,fecha_nacimiento,AFP_id_afp,salud_id_salud,comuna,region_residencia)"
@@ -255,9 +261,10 @@ namespace Recursos_Humanos_wpf.Clases
             }
             return retorno;
 
-        } 
+        }
 
-        public int Update() {
+        public int Update()
+        {
             /**Metodo que se encarga de actualizar la informacion basica de un empleado registrado
              * 
              * **/
@@ -274,14 +281,14 @@ namespace Recursos_Humanos_wpf.Clases
                     + "',bp.cta_bancaria='" + this.cta_bancaria
                     + "',bp.banco_id_banco='" + this.id_banco
                     + "',p.AFP_id_afp='" + this.AFP_id_afp
-                    + "',p.salud_id_salud='" +this.salud_id_salud
-                    + "',p.nacionalidad ='"+this.nacionalidad
-                    + "',p.fecha_nacimiento='"+this.fecha_nacimiento
-                    + "',p.comuna='"+this.comuna
-                    + "',p.region_residencia='"+this.region_residencia
+                    + "',p.salud_id_salud='" + this.salud_id_salud
+                    + "',p.nacionalidad ='" + this.nacionalidad
+                    + "',p.fecha_nacimiento='" + this.fecha_nacimiento
+                    + "',p.comuna='" + this.comuna
+                    + "',p.region_residencia='" + this.region_residencia
                     + "' WHERE p.rut='" + this.rut + "'";
                 return new Clases.Consultas().Update(sql);
-               
+
             }
             catch (Exception ex)
             {
@@ -295,7 +302,7 @@ namespace Recursos_Humanos_wpf.Clases
         {
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlCommand comando3 = new MySqlCommand(string.Format("delete from personal where rut = '{0}'", this.rut), conex);
                 return comando3.ExecuteNonQuery();
@@ -306,7 +313,8 @@ namespace Recursos_Humanos_wpf.Clases
                 conex.Close();
                 return 0;
             }
-            finally {
+            finally
+            {
                 conex.Close();
             }
 

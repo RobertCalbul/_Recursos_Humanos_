@@ -34,7 +34,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "select * from user_group";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 listUserGroup = new List<User_Group>();
                 con.Open();
 
@@ -56,7 +56,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT * FROM user_group WHERE id_user_group ="+this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
                 userGroup = new User_Group();
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -81,7 +81,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "INSERT INTO user_group (nombre) values('"+this.name+"')";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -99,7 +99,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "DELETE FROM  user_group WHERE id_user_group=" + this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -117,7 +117,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT id_user_group from user_group WHERE nombre ='" + this.name + "'";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -138,7 +138,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT nombre FROM user_group WHERE nombre = '" + this.name + "'";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);

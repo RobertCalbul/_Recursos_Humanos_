@@ -28,7 +28,7 @@ namespace Recursos_Humanos_wpf.Clases
         public int save() {
             try
             {
-                conex = new Conexion().getConexion();
+                conex = new Conexion().GetConexion();
                 conex.Open();
                 MySqlCommand comando = new MySqlCommand(string.Format("insert into personal_departamento (id_personal,id_departamento) values ('{0}','{1}')",
                     this.id_personal, this.id_departamento), conex);

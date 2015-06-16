@@ -86,7 +86,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT * FROM login";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 listLogin = new List<Login>();
                 con.Open();
 
@@ -112,7 +112,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "SELECT id_login FROM login WHERE nombre ='"+this.nombre+"'";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -136,7 +136,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "INSERT INTO login (nombre,password,id_usergroup) values('"+this.nombre+"','"+this.password+"',"+this.UserGroup.id+")";
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
@@ -153,7 +153,7 @@ namespace Recursos_Humanos_wpf.Clases
             String sql = "DELETE FROM login WHERE id_login="+this.id;
             try
             {
-                con = new Conexion().getConexion();
+                con = new Conexion().GetConexion();
                 con.Open();
 
                 MySqlCommand sqlCom = new MySqlCommand(sql, con);
